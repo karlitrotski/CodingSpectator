@@ -43,8 +43,9 @@ public class JUnitListener extends BasicListener {
 
 		@Override
 		public void testCaseFinished(ITestCaseElement testCaseElement) {
-			String result= testCaseElement.getTestResult(false).toString();
-			operationRecorder.recordFinishedTestCase(testCaseElement.getTestRunSession().getTestRunName(), result);
+			String result= testCaseElement.getTestResult(true).toString();
+			String progressState=testCaseElement.getProgressState().toString();
+			operationRecorder.recordFinishedTestCase(testCaseElement.getTestRunSession().getTestRunName(), result+", "+progressState);
 		}
 
 		@Override
