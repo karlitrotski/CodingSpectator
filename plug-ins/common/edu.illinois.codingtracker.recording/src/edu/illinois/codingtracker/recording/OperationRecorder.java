@@ -379,4 +379,14 @@ public class OperationRecorder {
 		}
 	}
 
+	public void recordLooseFocus() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	public void recordGainsFocus() {
+		// TODO Auto-generated method stub
+		
+	}
+
 }
