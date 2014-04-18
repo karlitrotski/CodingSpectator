@@ -10,8 +10,10 @@ package edu.illinois.codingtracker.operations;
  */
 public abstract class OperationSymbols {
 
-	//Used symbols: 26 + 16, remaining symbols: Q R S T U V W X Y Z
-
+	//Used symbols: 26 + 16, remaining symbols:  R S T U V W X Y Z
+	//Add Symbol for Application_Loose_focus
+	public static final char APPLICATION_FOCUS_L_A= 'Q';
+	
 	public static final char ECLIPSE_STARTED_SYMBOL= 'l';
 
 	public static final char NEW_REFACTORING_STARTED_SYMBOL= 'J';
