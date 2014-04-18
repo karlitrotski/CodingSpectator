@@ -37,6 +37,8 @@ import edu.illinois.codingtracker.operations.references.ReferencingProjectsChang
 import edu.illinois.codingtracker.operations.resources.CopiedResourceOperation;
 import edu.illinois.codingtracker.operations.resources.CreatedResourceOperation;
 import edu.illinois.codingtracker.operations.resources.DeletedResourceOperation;
+import edu.illinois.codingtracker.operations.resources.DetectFocusGainsWorkbench;
+import edu.illinois.codingtracker.operations.resources.DetectFocusLooseWorkbench;
 import edu.illinois.codingtracker.operations.resources.ExternallyModifiedResourceOperation;
 import edu.illinois.codingtracker.operations.resources.MovedResourceOperation;
 import edu.illinois.codingtracker.operations.starts.LaunchedApplicationOperation;
@@ -71,7 +73,15 @@ public class OperationDeserializer {
 
 	private static UserOperation createEmptyUserOperation(char operationSymbol) {
 		UserOperation userOperation;
+		//Falta instancias el metodo gain y loose
 		switch (operationSymbol) {
+			case OperationSymbols.APPLICATION_FOCUS_GAINS:
+				userOperation= new DetectFocusLooseWorkbench();
+			break;
+			case OperationSymbols.APPLICATION_FOCUS_LOOSE:
+				userOperation= new DetectFocusGainsWorkbench();
+			break;
+			
 			case OperationSymbols.ECLIPSE_STARTED_SYMBOL:
 				userOperation= new StartedEclipseOperation();
 				break;
