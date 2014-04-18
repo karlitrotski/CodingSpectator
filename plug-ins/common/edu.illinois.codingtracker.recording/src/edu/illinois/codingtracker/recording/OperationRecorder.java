@@ -51,6 +51,8 @@ import edu.illinois.codingtracker.operations.references.ReferencingProjectsChang
 import edu.illinois.codingtracker.operations.resources.CopiedResourceOperation;
 import edu.illinois.codingtracker.operations.resources.CreatedResourceOperation;
 import edu.illinois.codingtracker.operations.resources.DeletedResourceOperation;
+import edu.illinois.codingtracker.operations.resources.DetectFocusGainsWorkbench;
+import edu.illinois.codingtracker.operations.resources.DetectFocusLooseWorkbench;
 import edu.illinois.codingtracker.operations.resources.ExternallyModifiedResourceOperation;
 import edu.illinois.codingtracker.operations.resources.MovedResourceOperation;
 import edu.illinois.codingtracker.operations.starts.LaunchedApplicationOperation;
@@ -380,13 +382,13 @@ public class OperationRecorder {
 	}
 
 	public void recordLooseFocus() {
-		// TODO Auto-generated method stub
 		
+		TextRecorder.record(new DetectFocusLooseWorkbench());
 	}
 
 	public void recordGainsFocus() {
-		// TODO Auto-generated method stub
 		
+		TextRecorder.record(new DetectFocusGainsWorkbench());
 	}
 
 }
