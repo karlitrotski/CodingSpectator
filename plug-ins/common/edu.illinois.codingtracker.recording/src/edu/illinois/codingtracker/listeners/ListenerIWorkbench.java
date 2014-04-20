@@ -1,5 +1,9 @@
 package edu.illinois.codingtracker.listeners;
-
+/**
+ * @author Teofilo_Chambilla_Aquino
+ * Listener for Detect when the development environment 
+ * looses or gains focus (user uses another application) 
+ */
 import org.eclipse.ui.IWindowListener;
 import org.eclipse.ui.PlatformUI;
 import org.eclipse.ui.IWorkbenchWindow;

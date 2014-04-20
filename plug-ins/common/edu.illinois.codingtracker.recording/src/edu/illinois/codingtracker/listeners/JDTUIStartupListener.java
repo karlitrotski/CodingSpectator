@@ -14,7 +14,7 @@ import edu.illinois.codingtracker.recording.TextRecorder;
  * 
  * @author Stas Negara
  * @author Mohsen Vakilian - Extracted PartListener from this class.
- * 
+ * 18-04-2014 Add ListenerIWorkbench by Teofilo_Chambilla
  */
 public class JDTUIStartupListener implements StartupListener {
 

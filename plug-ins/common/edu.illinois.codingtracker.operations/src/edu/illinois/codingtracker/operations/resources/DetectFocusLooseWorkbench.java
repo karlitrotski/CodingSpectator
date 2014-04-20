@@ -1,5 +1,9 @@
 package edu.illinois.codingtracker.operations.resources;
-
+/**
+ * @author Teofilo_Chambilla_Aquino
+ * Class write symbol R when the development environment 
+ * Loose focus (user uses another application) 
+ */
 import org.eclipse.ui.IWorkbenchWindow;
 
 import edu.illinois.codingtracker.operations.OperationLexer;
