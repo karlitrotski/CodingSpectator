@@ -2,7 +2,7 @@ package edu.illinois.codingtracker.operations.resources;
 /**
  * @author Teofilo_Chambilla_Aquino
  * Class write symbol Q when the development environment 
- * gains focus (user uses another application) 
+ * gains focus when the user uses another application
  */
 import edu.illinois.codingtracker.operations.OperationLexer;
 import edu.illinois.codingtracker.operations.OperationSymbols;
