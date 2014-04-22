@@ -272,9 +272,8 @@ public class OperationRecorder {
 	public void recordStartedTestCase(String testRunName, String testClassName, String testMethodName) {
 		TextRecorder.record(new TestCaseStartedOperation(testRunName, testClassName, testMethodName));
 	}
-
-	public void recordFinishedTestCase(String testRunName, String result) {
-		TextRecorder.record(new TestCaseFinishedOperation(testRunName, result));
+	public void recordFinishedTestCase(String testRunName, String result, String progressState, String trace) {
+		TextRecorder.record(new TestCaseFinishedOperation(testRunName, result, progressState, trace));
 	}
 
 	public void recordLaunchedApplication(String launchMode, String launchName, String application, String product, boolean useProduct) {
