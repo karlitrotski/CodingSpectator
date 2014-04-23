@@ -97,5 +97,14 @@ public abstract class OperationSymbols {
 	public static final char PROJECT_OPTIONS_CHANGED_SYMBOL= 'E';
 
 	public static final char REFERENCING_PROJECTS_CHANGED_SYMBOL= 'F';
+	
+	public static final char QUICKFIX_INVOCATION_SYMBOL= 'S';
+	
+	public static final char QUICKFIX_USAGE_SYMBOL= 'T';
+	
+	public static final char CODE_ERROR_SYMBOL= 'U';
+	
+	
+	
 
 }
