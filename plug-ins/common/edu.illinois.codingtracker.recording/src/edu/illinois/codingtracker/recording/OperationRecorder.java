@@ -37,6 +37,8 @@ import edu.illinois.codingtracker.operations.files.snapshoted.NewFileOperation;
 import edu.illinois.codingtracker.operations.files.snapshoted.RefreshedFileOperation;
 import edu.illinois.codingtracker.operations.files.snapshoted.SVNCommittedFileOperation;
 import edu.illinois.codingtracker.operations.files.snapshoted.SVNInitiallyCommittedFileOperation;
+import edu.illinois.codingtracker.operations.focus.DetectFocusGainsWorkbench;
+import edu.illinois.codingtracker.operations.focus.DetectFocusLooseWorkbench;
 import edu.illinois.codingtracker.operations.junit.TestCaseFinishedOperation;
 import edu.illinois.codingtracker.operations.junit.TestCaseStartedOperation;
 import edu.illinois.codingtracker.operations.junit.TestSessionFinishedOperation;
@@ -51,8 +53,6 @@ import edu.illinois.codingtracker.operations.references.ReferencingProjectsChang
 import edu.illinois.codingtracker.operations.resources.CopiedResourceOperation;
 import edu.illinois.codingtracker.operations.resources.CreatedResourceOperation;
 import edu.illinois.codingtracker.operations.resources.DeletedResourceOperation;
-import edu.illinois.codingtracker.operations.resources.DetectFocusGainsWorkbench;
-import edu.illinois.codingtracker.operations.resources.DetectFocusLooseWorkbench;
 import edu.illinois.codingtracker.operations.resources.ExternallyModifiedResourceOperation;
 import edu.illinois.codingtracker.operations.resources.MovedResourceOperation;
 import edu.illinois.codingtracker.operations.starts.LaunchedApplicationOperation;
