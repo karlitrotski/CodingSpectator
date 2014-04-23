@@ -10,7 +10,8 @@ package edu.illinois.codingtracker.operations;
  */
 public abstract class OperationSymbols {
 
-	//Used symbols: 26 + 16, remaining symbols: Q R S T U V W X Y Z
+	//Used symbols: 26 + 16, remaining symbols: T U V W X Y Z
+	// @JurajKubelka, @cinai: S is used for APPLICATION_REMOVED_SYMBOL
 
 	public static final char ECLIPSE_STARTED_SYMBOL= 'l';
 
@@ -91,6 +92,8 @@ public abstract class OperationSymbols {
 	public static final char TEST_CASE_FINISHED_SYMBOL= 'B';
 
 	public static final char APPLICATION_LAUNCHED_SYMBOL= 'C';
+
+	public static final char APPLICATION_REMOVED_SYMBOL = 'S';
 
 	public static final char WORKSPACE_OPTIONS_CHANGED_SYMBOL= 'D';
 

@@ -4,10 +4,12 @@
 package edu.illinois.codingtracker.listeners;
 
 import org.eclipse.core.runtime.CoreException;
+import org.eclipse.debug.core.DebugException;
 import org.eclipse.debug.core.DebugPlugin;
 import org.eclipse.debug.core.ILaunch;
 import org.eclipse.debug.core.ILaunchConfiguration;
 import org.eclipse.debug.core.ILaunchListener;
+import org.eclipse.debug.core.model.IProcess;
 
 import edu.illinois.codingtracker.helpers.Debugger;
 import edu.illinois.codingtracker.helpers.Messages;
@@ -40,12 +42,32 @@ public class LaunchListener extends BasicListener implements ILaunchListener {
 
 	@Override
 	public void launchRemoved(ILaunch launch) {
-		//do nothing
+		if (launch.isTerminated()) {
+			try {
+				String launchMode= launch.getLaunchMode();
+				ILaunchConfiguration launchConfiguration= launch.getLaunchConfiguration();
+				String launchName= launchConfiguration.getName();
+				String application= launchConfiguration.getAttribute("application", "");
+				String product= launchConfiguration.getAttribute("product", "");
+				boolean useProduct= launchConfiguration.getAttribute("useProduct", false);
+				IProcess[] processes = launch.getProcesses();
+				int[] exitValues = new int[processes.length];
+				for (int i = 0; i < processes.length; i++) {
+					exitValues[i] = processes[i].getExitValue();
+				};
+				operationRecorder.recordRemovedApplication(launchMode, launchName, application, product, useProduct, 
+															exitValues);
+			} catch (DebugException e) {
+				Debugger.logExceptionToErrorLog(e, Messages.Recorder_RemovedConfigurationException);
+			} catch (CoreException e) {
+				Debugger.logExceptionToErrorLog(e, Messages.Recorder_RemovedConfigurationException);
+			}
+		}
 	}
 
 	@Override
 	public void launchChanged(ILaunch launch) {
-		//do nothing
+		// nothing to do
 	}
 
 }

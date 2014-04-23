@@ -20,6 +20,8 @@ public class Messages extends NLS {
 
 	public static String Recorder_LaunchConfigurationException;
 
+	public static String Recorder_RemovedConfigurationException;
+
 	public static String Recorder_CompleteReadUnknownFileException;
 
 	public static String Recorder_BadDocumentLocation;
