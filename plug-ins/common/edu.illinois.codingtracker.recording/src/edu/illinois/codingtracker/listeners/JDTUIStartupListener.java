@@ -14,7 +14,7 @@ import edu.illinois.codingtracker.recording.TextRecorder;
  * 
  * @author Stas Negara
  * @author Mohsen Vakilian - Extracted PartListener from this class.
- * 
+ * @author Joffre Yagual - Added registration of AnnotationModelListener and CompletionListener
  */
 public class JDTUIStartupListener implements StartupListener {
 
@@ -37,6 +37,8 @@ public class JDTUIStartupListener implements StartupListener {
 			RefactoringExecutionListener.register();
 			JUnitListener.register();
 			LaunchListener.register();
+			CompletionListener.register();
+			AnnotationModelListener.register();
 			TextRecorder.record(new StartedEclipseOperation());
 		}
 	}
