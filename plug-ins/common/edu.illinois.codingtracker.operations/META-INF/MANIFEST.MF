@@ -4,7 +4,8 @@ Bundle-Name: edu.illinois.codingtracker.operations
 Bundle-SymbolicName: edu.illinois.codingtracker.operations
 Bundle-Version: 1.0.0.qualifier
 Bundle-RequiredExecutionEnvironment: JavaSE-1.6
-Export-Package: edu.illinois.codingtracker.operations,
+Export-Package: cl.uchile.codingtracker.operations.annotations,
+ edu.illinois.codingtracker.operations,
  edu.illinois.codingtracker.operations.conflicteditors,
  edu.illinois.codingtracker.operations.files,
  edu.illinois.codingtracker.operations.files.snapshoted,
