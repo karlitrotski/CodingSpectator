@@ -62,10 +62,12 @@ import edu.illinois.codingtracker.operations.textchanges.RedoneTextChangeOperati
 import edu.illinois.codingtracker.operations.textchanges.TextChangeOperation;
 import edu.illinois.codingtracker.operations.textchanges.UndoneConflictEditorTextChangeOperation;
 import edu.illinois.codingtracker.operations.textchanges.UndoneTextChangeOperation;
+import cl.uchile.codingtracker.operations.annotations.AnnotationErrorOperation;
 
 /**
  * 
  * @author Stas Negara
+ * @author Joffre Yagual - Added method recordNewAnnotationError
  * 
  */
 @SuppressWarnings("restriction")
@@ -377,6 +379,10 @@ public class OperationRecorder {
 		if (lastEditedFile != null && resource.getFullPath().isPrefixOf(lastEditedFile.getFullPath())) {
 			lastEditedFile= null;
 		}
+	}
+	
+	public void recordNewAnnotationError(int currentAnnotationErrors) {
+		TextRecorder.record(new AnnotationErrorOperation(currentAnnotationErrors));
 	}
 
 }
