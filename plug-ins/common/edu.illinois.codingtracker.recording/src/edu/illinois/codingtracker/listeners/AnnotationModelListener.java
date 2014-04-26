@@ -3,7 +3,6 @@ package edu.illinois.codingtracker.listeners;
 
 import java.util.ArrayList;
 import org.eclipse.swt.widgets.Display;
-import org.eclipse.ui.IEditorPart;
 import org.eclipse.ui.IWorkbenchPage;
 import org.eclipse.ui.IWorkbenchPart;
 import org.eclipse.ui.IWorkbenchWindow;
@@ -89,7 +88,7 @@ public class AnnotationModelListener extends BasicListener implements IAnnotatio
 				.getAnnotationMatchesbyType(added, "org.eclipse.jdt.ui.error");
 		if (errorAdded.isEmpty())
 			return;
-		//Write code here for processing the event
+		operationRecorder.recordNewAnnotationError(errorAdded.size());
 	}
 	
 	
