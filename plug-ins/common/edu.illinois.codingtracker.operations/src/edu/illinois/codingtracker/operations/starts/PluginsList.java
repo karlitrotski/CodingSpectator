@@ -21,8 +21,25 @@ import edu.illinois.codingtracker.operations.UserOperation;
 
 public class PluginsList extends UserOperation {
 	
+	StringBuffer text;
+	
 	public PluginsList() {
 		super();
+		text = new StringBuffer();
+		IBundleGroupProvider[] providers = Platform.getBundleGroupProviders();
+
+		if (providers != null) {
+		    for (int i = 0; i < providers.length; i++) {
+		        IBundleGroup[] bundleGroups = providers[i].getBundleGroups();
+		        for (int j = 0; j < bundleGroups.length; j++) {
+		            Bundle[] bundles = bundleGroups[j] == null ? new Bundle[0] : bundleGroups[j]
+		                    .getBundles();
+		            for (int k = 0; k < bundles.length; k++) {
+		                text.append(bundles[k].getSymbolicName()+ ",");
+		            }                
+		        }
+		    }
+		}		
 	}
 
 	@Override
@@ -37,25 +54,7 @@ public class PluginsList extends UserOperation {
 
 	@Override
 	protected void populateTextChunk(OperationTextChunk textChunk) {
-		IBundleGroupProvider[] providers = Platform.getBundleGroupProviders();
-
-		Map<Long, IBundleGroup> bundlesMap = new HashMap<Long, IBundleGroup>();
-
-		if (providers != null) {
-		    for (int i = 0; i < providers.length; i++) {
-		        IBundleGroup[] bundleGroups = providers[i].getBundleGroups();
-
-		        textChunk.append("Bundle groups:");
-		        for (int j = 0; j < bundleGroups.length; j++) {
-		            Bundle[] bundles = bundleGroups[j] == null ? new Bundle[0] : bundleGroups[j]
-		                    .getBundles();
-		            textChunk.append(bundleGroups[j].getIdentifier());
-		            for (int k = 0; k < bundles.length; k++) {
-		                bundlesMap.put(bundles[k].getBundleId(), bundleGroups[j]);
-		            }                
-		        }
-		    }
-		}
+		textChunk.append(text);
 	}
 
 	@Override
