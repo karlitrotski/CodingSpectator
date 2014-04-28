@@ -385,4 +385,10 @@ public class OperationRecorder {
 		TextRecorder.record(new AnnotationErrorOperation(currentAnnotationErrors));
 	}
 
+
+//TODO QF
+	public void recordNewCompletionQuickfix(int currentAnnotationErrors){
+		TextRecorder.record(new CompletionQuickfixOperation(currentAnnotationErrors));
+	}
+
 }
