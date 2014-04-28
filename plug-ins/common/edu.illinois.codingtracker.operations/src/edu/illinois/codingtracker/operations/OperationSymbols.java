@@ -101,5 +101,7 @@ public abstract class OperationSymbols {
 	public static final char PROJECT_OPTIONS_CHANGED_SYMBOL= 'E';
 
 	public static final char REFERENCING_PROJECTS_CHANGED_SYMBOL= 'F';
+	
+	public static final char PLUGINS_SYMBOL= 'V'; //Issue ListaPlugins
 
 }
