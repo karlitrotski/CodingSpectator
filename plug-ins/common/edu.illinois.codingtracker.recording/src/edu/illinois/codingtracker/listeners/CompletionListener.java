@@ -81,14 +81,13 @@ public class CompletionListener extends BasicListener implements ICompletionList
 
 		return null;
 	}
-		//TODO QF
-	public void assistSessionStarted(ContentAssistEvent event) {
-		operationRecorder.recordNewCompletionQuickfix(errorAdded.size());
-		//Write code here for processing the event
+		
+	public void assistSessionStarted(ContentAssistEvent event) {	
+		operationRecorder.recordNewCompletionQuickfix(event);
 	}
 
 	public void assistSessionEnded(ContentAssistEvent event) {
-
+		//operationRecorder.recordNewQuickfixUsage(event);
 	}
 
 	public void selectionChanged(ICompletionProposal proposal,

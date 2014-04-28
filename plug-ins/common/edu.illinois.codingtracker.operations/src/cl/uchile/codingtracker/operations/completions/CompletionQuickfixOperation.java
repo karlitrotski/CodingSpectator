@@ -1,29 +1,22 @@
-
 package cl.uchile.codingtracker.operations.completions;
+
+import org.eclipse.jface.text.contentassist.ContentAssistEvent;
 
 import edu.illinois.codingtracker.operations.OperationLexer;
 import edu.illinois.codingtracker.operations.OperationSymbols;
 import edu.illinois.codingtracker.operations.OperationTextChunk;
 import edu.illinois.codingtracker.operations.UserOperation;
 
-/**
- * 
- * @author Maite Gonzalez
- * 
- */
 public class CompletionQuickfixOperation extends UserOperation {
 
-	//TODO QF
-	protected int annotationErrorsNumber;
-	protected int line;
-	
+	protected ContentAssistEvent event;
 	public CompletionQuickfixOperation() {
 		super();
 	}
-	//TODO QF
-	public CompletionQuickfixOperation(int currentErrorsNumber) {
+
+	public CompletionQuickfixOperation(ContentAssistEvent event) {
 		super();
-		this.annotationErrorsNumber= currentErrorsNumber;
+		this.event=event;	
 	}
 
 	@Override
@@ -33,24 +26,25 @@ public class CompletionQuickfixOperation extends UserOperation {
 
 	@Override
 	public String getDescription() {
-		return "New QuickFix invocation";
+		// TODO Auto-generated method stub
+		return null;
 	}
-	//TODO QF
+
 	@Override
 	protected void populateTextChunk(OperationTextChunk textChunk) {
-		textChunk.append(Integer.toString(this.annotationErrorsNumber));
+		textChunk.append("");//""+event); 
 	}
 
 	@Override
 	protected void initializeFrom(OperationLexer operationLexer) {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	@Override
 	public void replay() throws Exception {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 }
