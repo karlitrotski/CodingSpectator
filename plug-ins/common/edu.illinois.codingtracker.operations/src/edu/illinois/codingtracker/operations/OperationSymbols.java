@@ -10,7 +10,7 @@ package edu.illinois.codingtracker.operations;
  */
 public abstract class OperationSymbols {
 
-	//Used symbols: 26 + 17, remaining symbols: S T U W X Y Z
+	//Used symbols: 26 + 17, remaining symbols:  S T U W X Y Z
 	//18-04-2014 Add Symbol Q and R for Application_Loose_focus/Gains
 	public static final char APPLICATION_FOCUS_GAINS= 'Q';
 	
