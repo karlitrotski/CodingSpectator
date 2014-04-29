@@ -25,6 +25,25 @@ public class PluginsList extends UserOperation {
 	
 	public PluginsList() {
 		super();
+	}
+
+	@Override
+	protected char getOperationSymbol() {
+		return OperationSymbols.PLUGINS_SYMBOL;
+	}
+
+	@Override
+	public String getDescription() {
+		return "List of installed plugins";
+	}
+
+	@Override
+	protected void populateTextChunk(OperationTextChunk textChunk) {
+		populatePluginsList();
+		textChunk.append(text);
+	}
+
+	private void populatePluginsList() {
 		text = new StringBuffer();
 		IBundleGroupProvider[] providers = Platform.getBundleGroupProviders();
 
@@ -40,21 +59,7 @@ public class PluginsList extends UserOperation {
 		        }
 		    }
 		}		
-	}
-
-	@Override
-	protected char getOperationSymbol() {
-		return OperationSymbols.PLUGINS_SYMBOL;
-	}
-
-	@Override
-	public String getDescription() {
-		return "List of installed plugins";
-	}
-
-	@Override
-	protected void populateTextChunk(OperationTextChunk textChunk) {
-		textChunk.append(text);
+		
 	}
 
 	@Override
