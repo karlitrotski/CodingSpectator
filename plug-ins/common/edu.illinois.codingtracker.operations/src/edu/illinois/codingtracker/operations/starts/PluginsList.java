@@ -64,7 +64,7 @@ public class PluginsList extends UserOperation {
 
 	@Override
 	protected void initializeFrom(OperationLexer operationLexer) {
-		//Nothing to initialize		
+		text = new StringBuffer(operationLexer.readString());	
 	}
 
 	@Override
