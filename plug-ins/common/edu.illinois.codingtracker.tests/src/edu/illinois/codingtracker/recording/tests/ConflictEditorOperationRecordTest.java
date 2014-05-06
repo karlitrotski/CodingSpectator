@@ -13,13 +13,31 @@ import org.junit.*;
  */
 public class ConflictEditorOperationRecordTest {
 	
-	private OpenedConflictEditorOperation a = new OpenedConflictEditorOperation();
+	private OpenedConflictEditorOperation openedConflictEditorOperation;
+	private SavedConflictEditorOperation savedConflictEditorOperation;
 	
 	@Before
 	public void setUp(){
+		openedConflictEditorOperation= new OpenedConflictEditorOperation();
+		savedConflictEditorOperation = new SavedConflictEditorOperation();
 		
 	}
+	
 	//Test for ConflictEditorOperation
+	@Test
+	public void testingConflictEditorOperation(){
+		//OperationTextChunk textChunk = openedConflictedEditorOperation;
+	}
+	
 	//Test for OpenedConflictEditorOperation
+	@Test
+	public void testingOpenedConflictEditorOperation(){
+		
+	}
+	
 	//Test for SavedConflictEditorOperation
+	@Test
+	public void testingSavedConflictEditorOperation(){
+		
+	}
 }
