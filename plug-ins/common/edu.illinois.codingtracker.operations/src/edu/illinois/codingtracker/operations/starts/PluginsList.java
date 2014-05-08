@@ -1,7 +1,9 @@
 package edu.illinois.codingtracker.operations.starts;
 
-import java.util.HashMap;
-import java.util.Map;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
+import java.util.TreeMap;
 
 
 import org.eclipse.core.resources.IWorkspace;
@@ -46,18 +48,27 @@ public class PluginsList extends UserOperation {
 	private void populatePluginsList() {
 		text = new StringBuffer();
 		IBundleGroupProvider[] providers = Platform.getBundleGroupProviders();
-
+		TreeMap<String, List<String>> bundlesMap = new TreeMap<String, List<String>>(String.CASE_INSENSITIVE_ORDER);
 		if (providers != null) {
 		    for (int i = 0; i < providers.length; i++) {
 		        IBundleGroup[] bundleGroups = providers[i].getBundleGroups();
 		        for (int j = 0; j < bundleGroups.length; j++) {
 		            Bundle[] bundles = bundleGroups[j] == null ? new Bundle[0] : bundleGroups[j]
 		                    .getBundles();
+		            List <String> valueList = bundlesMap.get(bundleGroups[j].getName()) == null ?
+		            		new ArrayList<String>() : bundlesMap.get(bundleGroups[j].getName());
 		            for (int k = 0; k < bundles.length; k++) {
-		                text.append(bundles[k].getSymbolicName()+ ",");
-		            }                
+		            	valueList.add(bundles[k].getSymbolicName());
+		            }
+		            bundlesMap.put(bundleGroups[j].getName(), valueList);
 		        }
 		    }
+		    for (String str : bundlesMap.keySet()) {
+		    	List <String> valueList = bundlesMap.get(str);
+		    	Collections.sort(valueList, String.CASE_INSENSITIVE_ORDER);
+		    	text.append(" Bundle:: " + str + "," + valueList.toString());		    	
+		    }
+		    		    
 		}		
 		
 	}
