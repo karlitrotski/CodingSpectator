@@ -8,7 +8,7 @@ import org.eclipse.debug.core.DebugException;
 import org.eclipse.debug.core.DebugPlugin;
 import org.eclipse.debug.core.ILaunch;
 import org.eclipse.debug.core.ILaunchConfiguration;
-import org.eclipse.debug.core.ILaunchListener;
+import org.eclipse.debug.core.ILaunchesListener2;
 import org.eclipse.debug.core.model.IProcess;
 
 import edu.illinois.codingtracker.helpers.Debugger;
@@ -19,14 +19,13 @@ import edu.illinois.codingtracker.helpers.Messages;
  * @author Stas Negara
  * 
  */
-public class LaunchListener extends BasicListener implements ILaunchListener {
+public class LaunchListener extends BasicListener implements ILaunchesListener2 {
 
 	public static void register() {
 		DebugPlugin.getDefault().getLaunchManager().addLaunchListener(new LaunchListener());
 	}
 
-	@Override
-	public void launchAdded(ILaunch launch) {
+	public void _launchAdded(ILaunch launch) {
 		try {
 			String launchMode= launch.getLaunchMode();
 			ILaunchConfiguration launchConfiguration= launch.getLaunchConfiguration();
@@ -40,8 +39,7 @@ public class LaunchListener extends BasicListener implements ILaunchListener {
 		}
 	}
 
-	@Override
-	public void launchRemoved(ILaunch launch) {
+	public void _launchRemoved(ILaunch launch) {
 		if (launch.isTerminated()) {
 			try {
 				String launchMode= launch.getLaunchMode();
@@ -65,9 +63,33 @@ public class LaunchListener extends BasicListener implements ILaunchListener {
 		}
 	}
 
-	@Override
-	public void launchChanged(ILaunch launch) {
+	public void _launchChanged(ILaunch launch) {
 		// nothing to do
 	}
 
+	@Override
+	public void launchesRemoved(ILaunch[] launches) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void launchesAdded(ILaunch[] launches) {
+		for(ILaunch launch : launches) {
+			this._launchAdded(launch);
+		}
+	}
+
+	@Override
+	public void launchesChanged(ILaunch[] launches) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void launchesTerminated(ILaunch[] launches) {
+		for(ILaunch launch : launches) {
+			this._launchRemoved(launch);
+		}
+	}
 }
