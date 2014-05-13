@@ -55,6 +55,8 @@ public class PartListener extends BasicListener implements IPartListener {
 
 	@Override
 	public void partActivated(IWorkbenchPart part) {
+		IFile activatedFile = getFileOfWorkbenchPart(part);
+		operationRecorder.recordActivatedFile(activatedFile);
 	}
 
 	@Override
@@ -63,17 +65,22 @@ public class PartListener extends BasicListener implements IPartListener {
 
 	@Override
 	public void partClosed(IWorkbenchPart part) {
+		IFile closedFile= getFileOfWorkbenchPart(part);
+		if (EditorHelper.isConflictEditor(part)) {
+			closeConflictEditor((CompareEditor)part);
+		} else if (closedFile != null) {
+			closeRegularEditor(part, closedFile);
+		}
+	}
+
+	private IFile getFileOfWorkbenchPart(IWorkbenchPart part) {
 		IFile closedFile= null;
 		if (part instanceof CompareEditor) {
 			closedFile= EditorHelper.getEditedJavaFile((CompareEditor)part);
 		} else if (part instanceof AbstractDecoratedTextEditor) {
 			closedFile= EditorHelper.getEditedJavaFile((AbstractDecoratedTextEditor)part);
 		}
-		if (EditorHelper.isConflictEditor(part)) {
-			closeConflictEditor((CompareEditor)part);
-		} else if (closedFile != null) {
-			closeRegularEditor(part, closedFile);
-		}
+		return closedFile;
 	}
 
 	private void closeConflictEditor(CompareEditor compareEditor) {

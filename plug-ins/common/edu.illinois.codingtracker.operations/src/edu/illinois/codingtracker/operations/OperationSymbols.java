@@ -102,4 +102,5 @@ public abstract class OperationSymbols {
 
 	public static final char REFERENCING_PROJECTS_CHANGED_SYMBOL= 'F';
 
+	public static final char PART_ACTIVATED_SYMBOL= '@';
 }
