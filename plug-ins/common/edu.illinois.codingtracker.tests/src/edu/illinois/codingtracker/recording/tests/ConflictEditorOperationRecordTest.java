@@ -5,6 +5,7 @@ package edu.illinois.codingtracker.recording.tests;
 
 import static org.junit.Assert.*;
 
+import edu.illinois.codingtracker.operations.OperationTextChunk;
 import edu.illinois.codingtracker.operations.conflicteditors.*;
 import org.junit.*;
 /**
@@ -26,7 +27,7 @@ public class ConflictEditorOperationRecordTest {
 	//Test for ConflictEditorOperation
 	@Test
 	public void testingConflictEditorOperation(){
-		//OperationTextChunk textChunk = openedConflictedEditorOperation;
+		OperationTextChunk textChunk;
 	}
 	
 	//Test for OpenedConflictEditorOperation
