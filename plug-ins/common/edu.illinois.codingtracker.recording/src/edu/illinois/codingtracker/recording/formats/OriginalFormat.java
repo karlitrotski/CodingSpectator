@@ -6,27 +6,10 @@ package edu.illinois.codingtracker.recording.formats;
 import edu.illinois.codingtracker.operations.OperationTextChunk;
 
 /**
- * @author Kera Notebook 2.0
+ * @author Matías Pardo G.
  *
  */
-public class OriginalFormat extends AbsOriginalFormat implements IFormat {
+public class OriginalFormat implements IFormat {
 
-	/* (non-Javadoc)
-	 * @see edu.illinois.codingtracker.recording.formats.IFormat#generateSerializationText()
-	 */
-	@Override
-	public OperationTextChunk generateSerializationText() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	/* (non-Javadoc)
-	 * @see edu.illinois.codingtracker.recording.formats.IFormat#populateTextChunk(edu.illinois.codingtracker.operations.OperationTextChunk)
-	 */
-	@Override
-	public void populateTextChunk(OperationTextChunk textChunk) {
-		// TODO Auto-generated method stub
-		
-	}
 	
 }
