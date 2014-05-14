@@ -16,7 +16,7 @@ import edu.illinois.codingtracker.helpers.Debugger;
  * @author Stas Negara
  * 
  */
-public abstract class UserOperation implements IUserOperation {
+public abstract class UserOperation{
 
 	//Made public to be able to assign when the replayer is loaded/reset
 	public static boolean isReplayedRefactoring= false;
