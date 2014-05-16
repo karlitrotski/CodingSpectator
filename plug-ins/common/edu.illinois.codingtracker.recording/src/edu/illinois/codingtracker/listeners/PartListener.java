@@ -8,9 +8,10 @@ import org.eclipse.core.resources.IFile;
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.ui.IEditorPart;
 import org.eclipse.ui.IEditorReference;
-import org.eclipse.ui.IPartListener;
+import org.eclipse.ui.IPartListener2;
 import org.eclipse.ui.IWorkbenchPage;
 import org.eclipse.ui.IWorkbenchPart;
+import org.eclipse.ui.IWorkbenchPartReference;
 import org.eclipse.ui.IWorkbenchWindow;
 import org.eclipse.ui.texteditor.AbstractDecoratedTextEditor;
 
@@ -24,7 +25,7 @@ import edu.illinois.codingtracker.compare.helpers.EditorHelper;
  * 
  */
 @SuppressWarnings("restriction")
-public class PartListener extends BasicListener implements IPartListener {
+public class PartListener extends BasicListener implements IPartListener2 {
 
 	private static IWorkbenchPage getActivePage() {
 		IWorkbenchWindow activeWorkbenchWindow= BasicListener.getActiveWorkbenchWindow();
@@ -53,17 +54,11 @@ public class PartListener extends BasicListener implements IPartListener {
 		});
 	}
 
-	@Override
 	public void partActivated(IWorkbenchPart part) {
 		IFile activatedFile = getFileOfWorkbenchPart(part);
 		operationRecorder.recordActivatedFile(activatedFile);
 	}
 
-	@Override
-	public void partBroughtToTop(IWorkbenchPart part) {
-	}
-
-	@Override
 	public void partClosed(IWorkbenchPart part) {
 		IFile closedFile= getFileOfWorkbenchPart(part);
 		if (EditorHelper.isConflictEditor(part)) {
@@ -112,12 +107,53 @@ public class PartListener extends BasicListener implements IPartListener {
 	}
 
 	@Override
-	public void partDeactivated(IWorkbenchPart part) {
+	public void partActivated(IWorkbenchPartReference partRef) {
+		IWorkbenchPart part= partRef.getPart(true);
+		if(part!=null) {
+			if(part instanceof IEditorPart){
+				partActivated(part);
+			}
+		}	
 	}
 
 	@Override
-	public void partOpened(IWorkbenchPart part) {
+	public void partBroughtToTop(IWorkbenchPartReference partRef) {
+		// do nothing
 	}
 
+	@Override
+	public void partClosed(IWorkbenchPartReference partRef) {
+		IWorkbenchPart part= partRef.getPart(true);
+		if(part!=null) {
+			if(part instanceof IEditorPart){
+				partClosed(part);
+			}
+		}
+	}
+
+	@Override
+	public void partDeactivated(IWorkbenchPartReference partRef) {
+		// do nothing
+	}
+
+	@Override
+	public void partOpened(IWorkbenchPartReference partRef) {
+		// do nothing
+	}
+
+	@Override
+	public void partHidden(IWorkbenchPartReference partRef) {
+		// do nothing
+	}
+
+	@Override
+	public void partVisible(IWorkbenchPartReference partRef) {
+		// do nothing
+	}
+
+	@Override
+	public void partInputChanged(IWorkbenchPartReference partRef) {
+		// do nothing
+	}
 
 }
