@@ -64,7 +64,7 @@ import edu.illinois.codingtracker.operations.textchanges.RedoneTextChangeOperati
 import edu.illinois.codingtracker.operations.textchanges.TextChangeOperation;
 import edu.illinois.codingtracker.operations.textchanges.UndoneConflictEditorTextChangeOperation;
 import edu.illinois.codingtracker.operations.textchanges.UndoneTextChangeOperation;
-import edu.illinois.codingtracker.operations.parts.PartActivatedOperation;
+import edu.illinois.codingtracker.operations.parts.PartOperation;
 /**
  * 
  * @author Stas Negara
@@ -392,7 +392,6 @@ public class OperationRecorder {
 
 	public void recordActivatedFile(IFile activatedFile) {
 		invalidateLastEditedFile(activatedFile);
-		TextRecorder.record(new PartActivatedOperation(activatedFile));
+		TextRecorder.record(new PartOperation(activatedFile, PartOperation.ACTIVATED));
 	}
-
 }
