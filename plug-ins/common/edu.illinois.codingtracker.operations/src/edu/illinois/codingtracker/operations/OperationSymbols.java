@@ -93,7 +93,7 @@ public abstract class OperationSymbols {
 
 	public static final char APPLICATION_LAUNCHED_SYMBOL= 'C';
 
-	public static final char APPLICATION_REMOVED_SYMBOL = 'S';
+	public static final char APPLICATION_TERMINATED_SYMBOL = 'S';
 
 	public static final char WORKSPACE_OPTIONS_CHANGED_SYMBOL= 'D';
 

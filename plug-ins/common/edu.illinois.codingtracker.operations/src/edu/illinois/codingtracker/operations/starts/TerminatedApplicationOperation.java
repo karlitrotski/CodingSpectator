@@ -4,11 +4,11 @@ import edu.illinois.codingtracker.operations.OperationLexer;
 import edu.illinois.codingtracker.operations.OperationSymbols;
 import edu.illinois.codingtracker.operations.OperationTextChunk;
 
-public class RemovedApplicationOperation extends LaunchedApplicationOperation {
+public class TerminatedApplicationOperation extends LaunchedApplicationOperation {
 
 	private int[] exitValues;
 
-	public RemovedApplicationOperation(String launchMode, String launchName, String application, String product, boolean useProduct, 
+	public TerminatedApplicationOperation(String launchMode, String launchName, String application, String product, boolean useProduct, 
 			int[] exitValues) {
 		super(launchMode, launchName, application, product, useProduct);
 		this.exitValues = exitValues;
@@ -16,18 +16,17 @@ public class RemovedApplicationOperation extends LaunchedApplicationOperation {
 	
 	@Override
 	protected char getOperationSymbol() {
-		return OperationSymbols.APPLICATION_REMOVED_SYMBOL;
+		return OperationSymbols.APPLICATION_TERMINATED_SYMBOL;
 	}
 
 	@Override
 	public String getDescription() {
-		return "Removed application";
+		return "Terminated application";
 	}
 
 	@Override
 	protected void populateTextChunk(OperationTextChunk textChunk) {
 		super.populateTextChunk(textChunk);
-		// TODO: store array of int values
 		textChunk.append(exitValues);
 	}
 
@@ -36,11 +35,4 @@ public class RemovedApplicationOperation extends LaunchedApplicationOperation {
 		super.initializeFrom(operationLexer);
 		exitValues = operationLexer.readIntArray();
 	}
-
-	@Override
-	public void replay() throws Exception {
-		// TODO Auto-generated method stub
-
-	}
-
 }

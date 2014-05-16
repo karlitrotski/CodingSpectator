@@ -25,7 +25,7 @@ public class LaunchListener extends BasicListener implements ILaunchesListener2 
 		DebugPlugin.getDefault().getLaunchManager().addLaunchListener(new LaunchListener());
 	}
 
-	public void _launchAdded(ILaunch launch) {
+	public void launchAdded(ILaunch launch) {
 		try {
 			String launchMode= launch.getLaunchMode();
 			ILaunchConfiguration launchConfiguration= launch.getLaunchConfiguration();
@@ -39,57 +39,49 @@ public class LaunchListener extends BasicListener implements ILaunchesListener2 
 		}
 	}
 
-	public void _launchRemoved(ILaunch launch) {
-		if (launch.isTerminated()) {
-			try {
-				String launchMode= launch.getLaunchMode();
-				ILaunchConfiguration launchConfiguration= launch.getLaunchConfiguration();
-				String launchName= launchConfiguration.getName();
-				String application= launchConfiguration.getAttribute("application", "");
-				String product= launchConfiguration.getAttribute("product", "");
-				boolean useProduct= launchConfiguration.getAttribute("useProduct", false);
-				IProcess[] processes = launch.getProcesses();
-				int[] exitValues = new int[processes.length];
-				for (int i = 0; i < processes.length; i++) {
-					exitValues[i] = processes[i].getExitValue();
-				};
-				operationRecorder.recordRemovedApplication(launchMode, launchName, application, product, useProduct, 
-															exitValues);
-			} catch (DebugException e) {
-				Debugger.logExceptionToErrorLog(e, Messages.Recorder_RemovedConfigurationException);
-			} catch (CoreException e) {
-				Debugger.logExceptionToErrorLog(e, Messages.Recorder_RemovedConfigurationException);
-			}
+	public void launchTerminated(ILaunch launch) {
+		try {
+			String launchMode = launch.getLaunchMode();
+			ILaunchConfiguration launchConfiguration= launch.getLaunchConfiguration();
+			String launchName = launchConfiguration.getName();
+			String application = launchConfiguration.getAttribute("application", "");
+			String product = launchConfiguration.getAttribute("product", "");
+			boolean useProduct = launchConfiguration.getAttribute("useProduct", false);
+			IProcess[] processes = launch.getProcesses();
+			int[] exitValues = new int[processes.length];
+			for (int i = 0; i < processes.length; i++) {
+				exitValues[i] = processes[i].getExitValue();
+			};
+			operationRecorder.recordTerminatedApplication(launchMode, launchName, application, product, useProduct, 
+					exitValues);
+		} catch (DebugException e) {
+			Debugger.logExceptionToErrorLog(e, Messages.Recorder_RemovedConfigurationException);
+		} catch (CoreException e) {
+			Debugger.logExceptionToErrorLog(e, Messages.Recorder_RemovedConfigurationException);
 		}
-	}
-
-	public void _launchChanged(ILaunch launch) {
-		// nothing to do
-	}
-
-	@Override
-	public void launchesRemoved(ILaunch[] launches) {
-		// TODO Auto-generated method stub
-		
 	}
 
 	@Override
 	public void launchesAdded(ILaunch[] launches) {
 		for(ILaunch launch : launches) {
-			this._launchAdded(launch);
+			this.launchAdded(launch);
 		}
-	}
-
-	@Override
-	public void launchesChanged(ILaunch[] launches) {
-		// TODO Auto-generated method stub
-		
 	}
 
 	@Override
 	public void launchesTerminated(ILaunch[] launches) {
 		for(ILaunch launch : launches) {
-			this._launchRemoved(launch);
+			this.launchTerminated(launch);
 		}
+	}
+
+	@Override
+	public void launchesRemoved(ILaunch[] launches) {
+		// nothing to do
+	}
+
+	@Override
+	public void launchesChanged(ILaunch[] launches) {
+		// nothing to do
 	}
 }
