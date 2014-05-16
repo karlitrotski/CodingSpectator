@@ -56,6 +56,7 @@ import edu.illinois.codingtracker.operations.resources.DeletedResourceOperation;
 import edu.illinois.codingtracker.operations.resources.ExternallyModifiedResourceOperation;
 import edu.illinois.codingtracker.operations.resources.MovedResourceOperation;
 import edu.illinois.codingtracker.operations.starts.LaunchedApplicationOperation;
+import edu.illinois.codingtracker.operations.starts.TerminatedApplicationOperation;
 import edu.illinois.codingtracker.operations.textchanges.ConflictEditorTextChangeOperation;
 import edu.illinois.codingtracker.operations.textchanges.PerformedConflictEditorTextChangeOperation;
 import edu.illinois.codingtracker.operations.textchanges.PerformedTextChangeOperation;
@@ -280,6 +281,10 @@ public class OperationRecorder {
 
 	public void recordLaunchedApplication(String launchMode, String launchName, String application, String product, boolean useProduct) {
 		TextRecorder.record(new LaunchedApplicationOperation(launchMode, launchName, application, product, useProduct));
+	}
+
+	public void recordTerminatedApplication(String launchMode, String launchName, String application, String product, boolean useProduct, int[] exitValues) {
+		TextRecorder.record(new TerminatedApplicationOperation(launchMode, launchName, application, product, useProduct, exitValues));
 	}
 
 	public void recordStartedRefactoring(RefactoringDescriptor refactoringDescriptor, int eventType) {

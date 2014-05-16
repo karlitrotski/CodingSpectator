@@ -10,8 +10,9 @@ package edu.illinois.codingtracker.operations;
  */
 public abstract class OperationSymbols {
 
-	//Used symbols: 26 + 16, remaining symbols:  S T U V W X Y Z
+	//Used symbols: 26 + 16, remaining symbols: T U V W X Y Z
 	//18-04-2014 Add Symbol Q and R for Application_Loose_focus/Gains
+
 	public static final char APPLICATION_FOCUS_GAINS= 'Q';
 	
 	public static final char APPLICATION_FOCUS_LOOSE= 'R';
@@ -95,6 +96,8 @@ public abstract class OperationSymbols {
 	public static final char TEST_CASE_FINISHED_SYMBOL= 'B';
 
 	public static final char APPLICATION_LAUNCHED_SYMBOL= 'C';
+
+	public static final char APPLICATION_TERMINATED_SYMBOL = 'S';
 
 	public static final char WORKSPACE_OPTIONS_CHANGED_SYMBOL= 'D';
 
