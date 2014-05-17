@@ -15,9 +15,9 @@ import org.eclipse.ui.PlatformUI;
 import org.eclipse.ui.commands.ICommandService;    
 
 /**
- * @author Teofilo_Chambilla_Aquino
- * class ListenerISortctus for record Sortctus, and command name a Execution
+ * class ListenerISortctus for record Shortctus, and command name a Execution
  * Related to issue karlitrotski/CodingSpectator/#14
+ * @author Teofilo_Chambilla_Aquino
  */
 
 public class ListenerShortcuts extends BasicListener implements IExecutionListener {
@@ -37,11 +37,8 @@ public class ListenerShortcuts extends BasicListener implements IExecutionListen
 	                KeyStroke keyStroke = SWTKeySupport.convertAcceleratorToKeyStroke(accelerator);
 	                KeySequence sequence = KeySequence.getInstance(keyStroke);
 	                if(!sequence.isEmpty()) 
-	                {   
-	                	System.out.println(command.getName());
-	                	System.out.println(command.getId());
-	                	System.out.println(sequence.toString());
-	                //	operationRecorder.recordSortcutsCommandName();
+	                {  
+	                operationRecorder.recordSortcutsCommandName(command.getName(),sequence.toString());
 	                }
 	            }
 				}

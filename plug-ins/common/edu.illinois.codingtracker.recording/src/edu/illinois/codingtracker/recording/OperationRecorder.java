@@ -2,7 +2,6 @@
  * This file is licensed under the University of Illinois/NCSA Open Source License. See LICENSE.TXT for details.
  */
 package edu.illinois.codingtracker.recording;
-
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Map.Entry;
@@ -39,6 +38,7 @@ import edu.illinois.codingtracker.operations.files.snapshoted.SVNCommittedFileOp
 import edu.illinois.codingtracker.operations.files.snapshoted.SVNInitiallyCommittedFileOperation;
 import edu.illinois.codingtracker.operations.focus.DetectFocusGainsWorkbench;
 import edu.illinois.codingtracker.operations.focus.DetectFocusLooseWorkbench;
+ 
 import edu.illinois.codingtracker.operations.junit.TestCaseFinishedOperation;
 import edu.illinois.codingtracker.operations.junit.TestCaseStartedOperation;
 import edu.illinois.codingtracker.operations.junit.TestSessionFinishedOperation;
@@ -54,7 +54,8 @@ import edu.illinois.codingtracker.operations.resources.CopiedResourceOperation;
 import edu.illinois.codingtracker.operations.resources.CreatedResourceOperation;
 import edu.illinois.codingtracker.operations.resources.DeletedResourceOperation;
 import edu.illinois.codingtracker.operations.resources.ExternallyModifiedResourceOperation;
-import edu.illinois.codingtracker.operations.resources.MovedResourceOperation;
+import edu.illinois.codingtracker.operations.resources.MovedResourceOperation; 
+import edu.illinois.codingtracker.operations.shortcuts.getShortCutsCommandName;
 import edu.illinois.codingtracker.operations.starts.LaunchedApplicationOperation;
 import edu.illinois.codingtracker.operations.textchanges.ConflictEditorTextChangeOperation;
 import edu.illinois.codingtracker.operations.textchanges.PerformedConflictEditorTextChangeOperation;
@@ -275,10 +276,9 @@ public class OperationRecorder {
 		TextRecorder.record(new TestCaseStartedOperation(testRunName, testClassName, testMethodName));
 	}
 
-	public void recordFinishedTestCase(String testRunName, String result) {
-		TextRecorder.record(new TestCaseFinishedOperation(testRunName, result));
+ 	public void recordFinishedTestCase(String testRunName, String result, String progressState, String trace) {
+		TextRecorder.record(new TestCaseFinishedOperation(testRunName, result, progressState, trace));
 	}
-
 	public void recordLaunchedApplication(String launchMode, String launchName, String application, String product, boolean useProduct) {
 		TextRecorder.record(new LaunchedApplicationOperation(launchMode, launchName, application, product, useProduct));
 	}
@@ -389,6 +389,10 @@ public class OperationRecorder {
 	public void recordGainsFocus() {
 		
 		TextRecorder.record(new DetectFocusGainsWorkbench());
+	}
+public void recordSortcutsCommandName(String nCommand, String keyShortcuts) {
+		
+		TextRecorder.record(new getShortCutsCommandName(nCommand, keyShortcuts));
 	}
 
 }
