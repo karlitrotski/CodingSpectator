@@ -21,6 +21,13 @@ import edu.illinois.codingtracker.operations.OperationSymbols;
 import edu.illinois.codingtracker.operations.OperationTextChunk;
 import edu.illinois.codingtracker.operations.UserOperation;
 
+/**
+ * Class that writes,  when Eclipse starts, all the list of installed plugins in alphabetical order 
+ * and grouped by Provider. This Class uses V symbol from OperationSymbols.
+ * 
+ * @author Carlos_Dettoni
+ * @author Sebastian_Sanchez
+ */
 public class PluginsList extends UserOperation {
 	
 	StringBuffer text;
@@ -44,7 +51,11 @@ public class PluginsList extends UserOperation {
 		populatePluginsList();
 		textChunk.append(text);
 	}
-
+	
+	/*
+	 * Creates a new StringBuffer and writes the Eclipse plugins in 
+	 * alphabetical order and grouped by Provider
+	 */
 	private void populatePluginsList() {
 		text = new StringBuffer();
 		IBundleGroupProvider[] providers = Platform.getBundleGroupProviders();
