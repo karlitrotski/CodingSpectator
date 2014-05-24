@@ -12,6 +12,9 @@ import edu.illinois.codingtracker.operations.files.FileOperation;
 public class PartOperation extends FileOperation {
 	
 	public static final String ACTIVATED = "ACTIVATED";
+	public static final String OPENED = "OPENED";
+	public static final String HIDDEN = "HIDDEN";
+	public static final String VISIBLE = "VISIBLE";
 	private String description;
 
 	public PartOperation() {

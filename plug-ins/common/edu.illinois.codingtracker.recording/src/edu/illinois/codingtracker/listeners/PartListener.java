@@ -138,17 +138,35 @@ public class PartListener extends BasicListener implements IPartListener2 {
 
 	@Override
 	public void partOpened(IWorkbenchPartReference partRef) {
-		// do nothing
+		IWorkbenchPart part= partRef.getPart(true);
+		if(part!=null) {
+			if(part instanceof IEditorPart){
+				IFile openedFile = getFileOfWorkbenchPart(part);
+				operationRecorder.recordOpenedFile(openedFile);
+			}
+		}
 	}
 
 	@Override
 	public void partHidden(IWorkbenchPartReference partRef) {
-		// do nothing
+		IWorkbenchPart part= partRef.getPart(true);
+		if(part!=null) {
+			if(part instanceof IEditorPart){
+				IFile hiddenFile = getFileOfWorkbenchPart(part);
+				operationRecorder.recordHiddenFile(hiddenFile);
+			}
+		}
 	}
 
 	@Override
 	public void partVisible(IWorkbenchPartReference partRef) {
-		// do nothing
+		IWorkbenchPart part= partRef.getPart(true);
+		if(part!=null) {
+			if(part instanceof IEditorPart){
+				IFile visibleFile = getFileOfWorkbenchPart(part);
+				operationRecorder.recordVisibleFile(visibleFile);
+			}
+		}
 	}
 
 	@Override

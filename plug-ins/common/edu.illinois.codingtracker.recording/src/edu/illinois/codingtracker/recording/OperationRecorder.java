@@ -394,4 +394,20 @@ public class OperationRecorder {
 		invalidateLastEditedFile(activatedFile);
 		TextRecorder.record(new PartOperation(activatedFile, PartOperation.ACTIVATED));
 	}
+
+	public void recordOpenedFile(IFile openedFile) {
+		invalidateLastEditedFile(openedFile);
+		TextRecorder.record(new PartOperation(openedFile, PartOperation.OPENED));
+	}
+
+	public void recordHiddenFile(IFile hiddenFile) {
+		invalidateLastEditedFile(hiddenFile);
+		TextRecorder.record(new PartOperation(hiddenFile, PartOperation.HIDDEN));
+	}
+
+	public void recordVisibleFile(IFile visibleFile) {
+		invalidateLastEditedFile(visibleFile);
+		TextRecorder.record(new PartOperation(visibleFile, PartOperation.VISIBLE));
+		
+	}
 }
