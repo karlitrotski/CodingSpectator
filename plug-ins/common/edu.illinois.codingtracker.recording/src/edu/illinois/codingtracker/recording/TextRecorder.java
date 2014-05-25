@@ -4,6 +4,8 @@
 package edu.illinois.codingtracker.recording;
 
 import edu.illinois.codingspectator.saferecorder.SafeRecorder;
+import edu.illinois.codingtracker.operations.IFormat;
+import edu.illinois.codingtracker.operations.OriginalFormat;
 import edu.illinois.codingtracker.operations.UserOperation;
 
 /**

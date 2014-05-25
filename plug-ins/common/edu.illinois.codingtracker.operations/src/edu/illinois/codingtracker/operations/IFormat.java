@@ -1,9 +1,8 @@
 /**
  * This file is licensed under the University of Illinois/NCSA Open Source License. See LICENSE.TXT for details.
  */
-package edu.illinois.codingtracker.recording.formats;
+package edu.illinois.codingtracker.operations;
 
-import edu.illinois.codingtracker.operations.*;
 import edu.illinois.codingtracker.operations.conflicteditors.ClosedConflictEditorOperation;
 import edu.illinois.codingtracker.operations.conflicteditors.OpenedConflictEditorOperation;
 import edu.illinois.codingtracker.operations.conflicteditors.SavedConflictEditorOperation;
@@ -53,7 +52,7 @@ import edu.illinois.codingtracker.operations.textchanges.UndoneTextChangeOperati
  */
 public interface IFormat {
 	
-	public OperationTextChunk generateSerializationText();
+	public OperationTextChunk generateSerializationText(UserOperation userOperation);
 	
 	//ConflictedEditorOperation Block
 	

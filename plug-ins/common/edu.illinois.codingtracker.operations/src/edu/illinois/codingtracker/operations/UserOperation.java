@@ -35,10 +35,7 @@ public abstract class UserOperation{
 	}
 
 	public OperationTextChunk generateSerializationText(IFormat iFormat) {
-		OperationTextChunk textChunk= new OperationTextChunk(getOperationSymbol());
-		iFormat.populateTextChunk(this, textChunk);
-		textChunk.append(timestamp);
-		Debugger.debugTextChunk(getDescription() + ": ", textChunk);
+		OperationTextChunk textChunk= iFormat.generateSerializationText(this);
 		return textChunk;
 	}
 
@@ -74,7 +71,7 @@ public abstract class UserOperation{
 
 	public abstract String getDescription();
 
-	protected abstract void populateTextChunk(OperationTextChunk textChunk);
+	protected abstract void populateTextChunk(IFormat iFormat, OperationTextChunk textChunk);
 
 	protected abstract void initializeFrom(OperationLexer operationLexer);
 
