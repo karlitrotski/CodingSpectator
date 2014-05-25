@@ -65,7 +65,7 @@ import edu.illinois.codingtracker.operations.textchanges.RedoneTextChangeOperati
 import edu.illinois.codingtracker.operations.textchanges.TextChangeOperation;
 import edu.illinois.codingtracker.operations.textchanges.UndoneConflictEditorTextChangeOperation;
 import edu.illinois.codingtracker.operations.textchanges.UndoneTextChangeOperation;
-
+import edu.illinois.codingtracker.operations.parts.PartOperation;
 /**
  * 
  * @author Stas Negara
@@ -395,4 +395,24 @@ public class OperationRecorder {
 		TextRecorder.record(new DetectFocusGainsWorkbench());
 	}
 
+	public void recordActivatedFile(IFile activatedFile) {
+		invalidateLastEditedFile(activatedFile);
+		TextRecorder.record(new PartOperation(activatedFile, PartOperation.ACTIVATED));
+	}
+
+	public void recordOpenedFile(IFile openedFile) {
+		invalidateLastEditedFile(openedFile);
+		TextRecorder.record(new PartOperation(openedFile, PartOperation.OPENED));
+	}
+
+	public void recordHiddenFile(IFile hiddenFile) {
+		invalidateLastEditedFile(hiddenFile);
+		TextRecorder.record(new PartOperation(hiddenFile, PartOperation.HIDDEN));
+	}
+
+	public void recordVisibleFile(IFile visibleFile) {
+		invalidateLastEditedFile(visibleFile);
+		TextRecorder.record(new PartOperation(visibleFile, PartOperation.VISIBLE));
+		
+	}
 }
