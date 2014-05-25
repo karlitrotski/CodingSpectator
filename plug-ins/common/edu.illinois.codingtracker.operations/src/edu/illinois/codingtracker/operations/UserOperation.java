@@ -16,7 +16,7 @@ import edu.illinois.codingtracker.helpers.Debugger;
  * @author Stas Negara
  * 
  */
-public abstract class UserOperation implements IUserOperation{
+public abstract class UserOperation{
 
 	//Made public to be able to assign when the replayer is loaded/reset
 	public static boolean isReplayedRefactoring= false;
@@ -34,9 +34,9 @@ public abstract class UserOperation implements IUserOperation{
 		this.timestamp= timestamp;
 	}
 
-	public OperationTextChunk generateSerializationText() {
+	public OperationTextChunk generateSerializationText(IFormat iFormat) {
 		OperationTextChunk textChunk= new OperationTextChunk(getOperationSymbol());
-		populateTextChunk(textChunk);
+		iFormat.populateTextChunk(this, textChunk);
 		textChunk.append(timestamp);
 		Debugger.debugTextChunk(getDescription() + ": ", textChunk);
 		return textChunk;

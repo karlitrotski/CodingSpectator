@@ -53,9 +53,7 @@ import edu.illinois.codingtracker.operations.textchanges.UndoneTextChangeOperati
  */
 public interface IFormat {
 	
-	public OperationTextChunk generateSerializationText(IUserOperation iUserOperation);
-	
-	void accept(IUserOperation iUserOperation, OperationTextChunk operationTextChunk);
+	public OperationTextChunk generateSerializationText();
 	
 	//ConflictedEditorOperation Block
 	
