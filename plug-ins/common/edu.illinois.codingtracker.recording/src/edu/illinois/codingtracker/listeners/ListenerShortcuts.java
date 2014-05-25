@@ -38,10 +38,11 @@ public class ListenerShortcuts extends BasicListener implements IExecutionListen
 	                KeySequence sequence = KeySequence.getInstance(keyStroke);
 	                if(!sequence.isEmpty()) 
 	                {  
-	                operationRecorder.recordSortcutsCommandName(command.getName(),sequence.toString());
-	                }
+	                 operationRecorder.recordShortcutsCommandName(command.getName(),sequence.toString());
+	                    }
 	            }
 				}
+           
 				catch (NotDefinedException e) {
 				e.printStackTrace();
 			}

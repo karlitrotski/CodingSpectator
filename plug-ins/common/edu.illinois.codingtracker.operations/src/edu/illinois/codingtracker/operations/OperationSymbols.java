@@ -12,8 +12,10 @@ public abstract class OperationSymbols {
 
 	//Used symbols: 26 + 16, remaining symbols:  S T U V W X Y Z
 	//18-04-2014 Add Symbol Q and R for Application_Loose_focus/Gains
+	public static final char APPLICATION_SHORTCUTS= 'W';
 	public static final char APPLICATION_FOCUS_GAINS= 'Q';
-	
+    public static final char APPLICATION_TERMINATED_SYMBOL = 'S';
+
 	public static final char APPLICATION_FOCUS_LOOSE= 'R';
 	
 	public static final char ECLIPSE_STARTED_SYMBOL= 'l';

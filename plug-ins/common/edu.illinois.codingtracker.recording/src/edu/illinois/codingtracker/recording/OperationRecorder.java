@@ -22,6 +22,7 @@ import edu.illinois.codingtracker.compare.helpers.EditorHelper;
 import edu.illinois.codingtracker.helpers.Debugger;
 import edu.illinois.codingtracker.helpers.FileRevision;
 import edu.illinois.codingtracker.helpers.ResourceHelper;
+import edu.illinois.codingtracker.operations.shortcuts.ShortCutCommandName;
 import edu.illinois.codingtracker.operations.conflicteditors.ClosedConflictEditorOperation;
 import edu.illinois.codingtracker.operations.conflicteditors.OpenedConflictEditorOperation;
 import edu.illinois.codingtracker.operations.conflicteditors.SavedConflictEditorOperation;
@@ -38,7 +39,6 @@ import edu.illinois.codingtracker.operations.files.snapshoted.SVNCommittedFileOp
 import edu.illinois.codingtracker.operations.files.snapshoted.SVNInitiallyCommittedFileOperation;
 import edu.illinois.codingtracker.operations.focus.DetectFocusGainsWorkbench;
 import edu.illinois.codingtracker.operations.focus.DetectFocusLooseWorkbench;
- 
 import edu.illinois.codingtracker.operations.junit.TestCaseFinishedOperation;
 import edu.illinois.codingtracker.operations.junit.TestCaseStartedOperation;
 import edu.illinois.codingtracker.operations.junit.TestSessionFinishedOperation;
@@ -54,8 +54,7 @@ import edu.illinois.codingtracker.operations.resources.CopiedResourceOperation;
 import edu.illinois.codingtracker.operations.resources.CreatedResourceOperation;
 import edu.illinois.codingtracker.operations.resources.DeletedResourceOperation;
 import edu.illinois.codingtracker.operations.resources.ExternallyModifiedResourceOperation;
-import edu.illinois.codingtracker.operations.resources.MovedResourceOperation; 
-import edu.illinois.codingtracker.operations.shortcuts.ShortCutCommandName;
+import edu.illinois.codingtracker.operations.resources.MovedResourceOperation;
 import edu.illinois.codingtracker.operations.starts.LaunchedApplicationOperation;
 import edu.illinois.codingtracker.operations.starts.TerminatedApplicationOperation;
 import edu.illinois.codingtracker.operations.textchanges.ConflictEditorTextChangeOperation;
@@ -276,12 +275,11 @@ public class OperationRecorder {
 	public void recordStartedTestCase(String testRunName, String testClassName, String testMethodName) {
 		TextRecorder.record(new TestCaseStartedOperation(testRunName, testClassName, testMethodName));
 	}
-<<<<<<< HEAD
+ 
 
- 	public void recordFinishedTestCase(String testRunName, String result, String progressState, String trace) {
-=======
+ 	 
 	public void recordFinishedTestCase(String testRunName, String result, String progressState, String trace) {
->>>>>>> 5cbaa86bbf0ce0a7242d94d1d28ac061e09849fb
+ 
 		TextRecorder.record(new TestCaseFinishedOperation(testRunName, result, progressState, trace));
 	}
 	public void recordLaunchedApplication(String launchMode, String launchName, String application, String product, boolean useProduct) {
@@ -399,7 +397,7 @@ public class OperationRecorder {
 		
 		TextRecorder.record(new DetectFocusGainsWorkbench());
 	}
-public void recordSortcutsCommandName(String nCommand, String keyShortcuts) {
+public void recordShortcutsCommandName(String nCommand, String keyShortcuts) {
 		
 		TextRecorder.record(new ShortCutCommandName(nCommand, keyShortcuts));
 	}
