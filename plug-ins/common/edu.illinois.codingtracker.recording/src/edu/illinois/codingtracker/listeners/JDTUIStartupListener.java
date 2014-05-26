@@ -7,6 +7,7 @@ import org.eclipse.core.runtime.Platform;
 import org.eclipse.jdt.internal.ui.startup.StartupListener;
 
 import edu.illinois.codingtracker.helpers.Debugger;
+import edu.illinois.codingtracker.operations.starts.PluginsList;
 import edu.illinois.codingtracker.operations.starts.StartedEclipseOperation;
 import edu.illinois.codingtracker.recording.TextRecorder;
 
@@ -40,6 +41,7 @@ public class JDTUIStartupListener implements StartupListener {
 			ListenerFocus.register();
 			ListenerShortcuts.register();
 			TextRecorder.record(new StartedEclipseOperation());
+			TextRecorder.record(new PluginsList());
 		}
 	}
 
