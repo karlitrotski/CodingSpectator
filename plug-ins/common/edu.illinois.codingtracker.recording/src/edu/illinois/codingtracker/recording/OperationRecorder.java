@@ -11,6 +11,7 @@ import java.util.Set;
 import org.eclipse.compare.internal.CompareEditor;
 import org.eclipse.core.filebuffers.ITextFileBuffer;
 import org.eclipse.core.resources.IFile;
+import org.eclipse.core.resources.IMarkerDelta;
 import org.eclipse.core.resources.IResource;
 import org.eclipse.core.runtime.IPath;
 import org.eclipse.jdt.core.IJavaProject;
@@ -66,6 +67,7 @@ import edu.illinois.codingtracker.operations.textchanges.UndoneTextChangeOperati
 import cl.uchile.codingtracker.operations.annotations.AnnotationErrorOperation;
 import cl.uchile.codingtracker.operations.completions.CompletionQuickfixOperation;
 import cl.uchile.codingtracker.operations.completions.QuickfixUsageOperation;
+import cl.uchile.dcc.codingtracker.operations.markers.SaveMarkersStatusOperation;
 
 /**
  * 
@@ -394,6 +396,10 @@ public class OperationRecorder {
 	}
 	public void recordNewQuickfixUsage(ContentAssistEvent event) {
 		//TextRecorder.record(new QuickfixUsageOperation(event));
+	}
+	
+	public void recordMarkersStatus(IMarkerDelta [] deltas) {
+		TextRecorder.record(new SaveMarkersStatusOperation(deltas));
 	}
 
 
