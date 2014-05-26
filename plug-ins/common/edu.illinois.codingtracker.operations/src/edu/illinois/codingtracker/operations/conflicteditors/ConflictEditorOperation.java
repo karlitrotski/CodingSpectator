@@ -29,6 +29,13 @@ public abstract class ConflictEditorOperation extends UserOperation {
 	protected void populateTextChunk(OperationTextChunk textChunk) {
 		textChunk.append(editorID);
 	}
+	
+	@Override
+	protected void populateXMLTextChunk(OperationTextChunk textChunk){
+		textChunk.append("\t" + "<EditorID>" + "\n");
+		textChunk.append("\t" + editorID + "\n");
+		textChunk.append("\t" + "</EditorID>" + "\n");
+	}
 
 	@Override
 	protected void initializeFrom(OperationLexer operationLexer) {

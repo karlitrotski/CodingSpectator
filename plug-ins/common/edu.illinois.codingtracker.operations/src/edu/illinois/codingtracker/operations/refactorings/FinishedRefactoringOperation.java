@@ -56,6 +56,18 @@ public class FinishedRefactoringOperation extends UserOperation {
 	protected void populateTextChunk(OperationTextChunk textChunk) {
 		textChunk.append(success);
 	}
+	
+	@Override
+	protected void populateXMLTextChunk(OperationTextChunk textChunk){
+		textChunk.append("<FinishedRefactoringOperation>" + "\n");
+		textChunk.append("\t" + "<Success>" + "\n");
+		textChunk.append("\t" + success + "\n");
+		textChunk.append("\t" + "</Success>" + "\n");
+		textChunk.append("\t" + "<timestamp>" + "\n");
+		textChunk.append("\t" + getTime() + "\n");
+		textChunk.append("\t" + "</timestamp>" + "\n");
+		textChunk.append("</FinishedRefactoringOperation>" + "\n");
+	}
 
 	@Override
 	protected void initializeFrom(OperationLexer operationLexer) {

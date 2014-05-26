@@ -4,6 +4,7 @@
 package edu.illinois.codingtracker.operations.junit;
 
 import edu.illinois.codingtracker.operations.OperationSymbols;
+import edu.illinois.codingtracker.operations.OperationTextChunk;
 
 /**
  * 
@@ -28,6 +29,16 @@ public class TestSessionStartedOperation extends JUnitOperation {
 	@Override
 	public String getDescription() {
 		return "Started test session";
+	}
+	
+	@Override
+	protected void populateXMLTextChunk(OperationTextChunk textChunk){
+		textChunk.append("<TestSessionStartedOperation>" + "\n");
+		super.populateXMLTextChunk(textChunk);
+		textChunk.append("\t" + "<timestamp>" + "\n");
+		textChunk.append("\t" + getTime() + "\n");
+		textChunk.append("\t" + "</timestamp>" + "\n");
+		textChunk.append("</TestSessionStartedOperation>" + "\n");
 	}
 
 }
