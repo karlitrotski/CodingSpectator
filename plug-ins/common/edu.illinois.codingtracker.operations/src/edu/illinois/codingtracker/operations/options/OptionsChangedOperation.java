@@ -57,5 +57,21 @@ public abstract class OptionsChangedOperation extends UserOperation {
 		sb.append(super.toString());
 		return sb.toString();
 	}
+	
+	@Override
+	protected void populateXMLTextChunk(OperationTextChunk textChunk) {
+		textChunk.append("\t"+"<OptionsCount>"+"\n");
+		textChunk.append("\t"+options.size()+"\n");
+		textChunk.append("\t"+"</OptionsCount>"+"\n");
+		for (Entry<String, String> optionsEntry : options.entrySet()) {
+			textChunk.append("\t"+"<KEY>"+"\n");
+			textChunk.append("\t"+optionsEntry.getKey()+"\n");
+			textChunk.append("\t"+"</KEY>"+"\n");
+			textChunk.append("\t"+"<VALUE>"+"\n");
+			textChunk.append("\t"+optionsEntry.getValue()+"\n");
+			textChunk.append("\t"+"</VALUE>"+"\n");
+		}
+		
+	}
 
 }

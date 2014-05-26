@@ -12,6 +12,7 @@ import org.eclipse.ltk.core.refactoring.RefactoringStatus;
 
 import edu.illinois.codingtracker.helpers.Debugger;
 import edu.illinois.codingtracker.operations.OperationSymbols;
+import edu.illinois.codingtracker.operations.OperationTextChunk;
 
 /**
  * This operation is no longer recorded.
@@ -68,6 +69,17 @@ public class PerformedRefactoringOperation extends RefactoringOperation {
 		if (performRefactoringOperation.getValidationStatus().hasFatalError()) {
 			throw new RuntimeException("Failed to validate refactoring: " + refactoring.getName());
 		}
+	}
+	
+	@Override
+	protected void populateXMLTextChunk(OperationTextChunk textChunk) {
+		textChunk.append("<PerformedRefactoringOperation>"+"\n");
+		super.populateXMLTextChunk(textChunk);
+		textChunk.append("\t" + "<timestamp>" + "\n");
+		textChunk.append("\t" + getTime() + "\n");
+		textChunk.append("\t" + "</timestamp>" + "\n");
+		textChunk.append("</PerformedRefactoringOperation>"+"\n");
+		
 	}
 
 }

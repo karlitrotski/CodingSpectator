@@ -298,4 +298,39 @@ public class NewStartedRefactoringOperation extends UserOperation {
 		return sb.toString();
 	}
 
+	@Override
+	protected void populateXMLTextChunk(OperationTextChunk textChunk) {
+		textChunk.append("<NewStartedRefactoringOperation>"+"\n");
+		textChunk.append("\t"+"<ShouldAlwaysReplay>"+"\n");
+		textChunk.append("\t"+ shouldAlwaysReplay +"\n");
+		textChunk.append("\t"+"</ShouldAlwaysReplay>"+"\n");
+		textChunk.append("\t"+"<RefactoringMode>"+"\n");
+		textChunk.append("\t"+ refactoringMode +"\n");
+		textChunk.append("\t"+"</RefactoringMode>"+"\n");
+		textChunk.append("\t"+"<ID>"+"\n");
+		textChunk.append("\t"+ id +"\n");
+		textChunk.append("\t"+"</ID>"+"\n");
+		textChunk.append("\t"+"<PROJECT>"+"\n");
+		textChunk.append("\t"+ project +"\n");
+		textChunk.append("\t"+"</PROJECT>"+"\n");
+		textChunk.append("\t"+"<FLAGS>"+"\n");
+		textChunk.append("\t"+ flags +"\n");
+		textChunk.append("\t"+"</FLAGS>"+"\n");
+		textChunk.append("\t"+"<ArgumentsCount>"+"\n");
+		textChunk.append("\t"+ arguments.size() +"\n");
+		textChunk.append("\t"+"</ArgumentsCount>"+"\n");
+		for (Entry<String, String> argumentEntry : arguments.entrySet()) {
+			textChunk.append("\t"+"<KEY>"+"\n");
+			textChunk.append("\t"+argumentEntry.getKey()+"\n");
+			textChunk.append("\t"+"</KEY>"+"\n");
+			textChunk.append("\t"+"<VALUE>"+"\n");
+			textChunk.append("\t"+argumentEntry.getValue()+"\n");
+			textChunk.append("\t"+"</VALUE>"+"\n");
+		}
+		textChunk.append("\t" + "<timestamp>" + "\n");
+		textChunk.append("\t" + getTime() + "\n");
+		textChunk.append("\t" + "</timestamp>" + "\n");		
+		textChunk.append("</NewStartedRefactoringOperation>"+"\n");
+	}
+
 }
