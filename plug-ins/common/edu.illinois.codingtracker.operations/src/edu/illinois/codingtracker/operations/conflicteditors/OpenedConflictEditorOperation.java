@@ -52,6 +52,22 @@ public class OpenedConflictEditorOperation extends ConflictEditorOperation {
 		textChunk.append(editedFilePath);
 		textChunk.append(initialContent);
 	}
+	
+	@Override
+	protected void populateXMLTextChunk(OperationTextChunk textChunk){
+		textChunk.append("<OpenedConflictEditorOperation>" + "\n");
+		super.populateXMLTextChunk(textChunk);
+		textChunk.append("\t" + "<File_path>" + "\n");
+		textChunk.append("\t" + editedFilePath + "\n");
+		textChunk.append("\t" + "</File_path>" + "\n");
+		textChunk.append("\t" + "<Initial_content>" + "\n");
+		textChunk.append("\t" + initialContent + "\n");
+		textChunk.append("\t" + "</Initial_content>" + "\n");
+		textChunk.append("\t" + "<timestamp>" + "\n");
+		textChunk.append("\t" + getTime() + "\n");
+		textChunk.append("\t" + "</timestamp>" + "\n");
+		textChunk.append("</OpenedConflictEditorOperation>" + "\n");
+	}
 
 	@Override
 	protected void initializeFrom(OperationLexer operationLexer) {

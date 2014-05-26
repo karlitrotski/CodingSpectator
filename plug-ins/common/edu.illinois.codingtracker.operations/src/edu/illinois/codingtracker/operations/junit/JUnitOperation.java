@@ -29,6 +29,13 @@ public abstract class JUnitOperation extends UserOperation {
 	protected void populateTextChunk(OperationTextChunk textChunk) {
 		textChunk.append(testRunName);
 	}
+	
+	@Override
+	protected void populateXMLTextChunk(OperationTextChunk textChunk){
+		textChunk.append("\t" + "<TestRunName>" + "\n");
+		textChunk.append("\t" + testRunName + "\n");
+		textChunk.append("\t" + "</TestRunName>" + "\n");
+	}
 
 	@Override
 	protected void initializeFrom(OperationLexer operationLexer) {

@@ -40,6 +40,19 @@ public class TestSessionLaunchedOperation extends JUnitOperation {
 		super.populateTextChunk(textChunk);
 		textChunk.append(launchedProjectName);
 	}
+	
+	@Override
+	protected void populateXMLTextChunk(OperationTextChunk textChunk){
+		textChunk.append("<TestSessionLaunchedOperation>" + "\n");
+		super.populateXMLTextChunk(textChunk);
+		textChunk.append("\t" + "<Launched_Project_Name>" + "\n");
+		textChunk.append("\t" + launchedProjectName + "\n");
+		textChunk.append("\t" + "</Launched_Project_Name>" + "\n");
+		textChunk.append("\t" + "<timestamp>" + "\n");
+		textChunk.append("\t" + getTime() + "\n");
+		textChunk.append("\t" + "</timestamp>" + "\n");
+		textChunk.append("</TestSessionLaunchedOperation>" + "\n");
+	}
 
 	@Override
 	protected void initializeFrom(OperationLexer operationLexer) {
