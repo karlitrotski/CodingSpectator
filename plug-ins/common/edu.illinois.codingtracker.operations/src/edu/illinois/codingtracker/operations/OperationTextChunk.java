@@ -17,6 +17,10 @@ public class OperationTextChunk implements CharSequence {
 		text.append(operationSymbol);
 	}
 
+	public OperationTextChunk() {
+		text=new StringBuffer();
+	}
+
 	public void append(Object obj) {
 		append(obj.toString());
 	}
