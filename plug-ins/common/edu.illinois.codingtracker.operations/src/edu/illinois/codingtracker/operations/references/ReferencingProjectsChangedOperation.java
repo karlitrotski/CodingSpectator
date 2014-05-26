@@ -90,4 +90,26 @@ public class ReferencingProjectsChangedOperation extends UserOperation {
 		return sb.toString();
 	}
 
+	@Override
+	protected void populateXMLTextChunk(OperationTextChunk textChunk) {
+		textChunk.append("<ReferencingProjectsChangedOperation>"+"\n");
+		textChunk.append("\t"+"<ProjectName>"+"\n");
+		textChunk.append("\t"+"projectName"+"\n");
+		textChunk.append("\t"+"</ProjectName>"+"\n");
+		textChunk.append("\t"+"<ReferencingProjectsCount>"+"\n");
+		textChunk.append("\t"+referencingProjectNames.size()+"\n");
+		textChunk.append("\t"+"</ReferencingProjectsCount>"+"\n");
+		for (String referencingProjectName : referencingProjectNames) {
+			textChunk.append("\t"+"<ReferencingProjectName>"+"\n");
+			textChunk.append("\t"+referencingProjectName+"\n");
+			textChunk.append("\t"+"</ReferencingProjectName>"+"\n");
+		}
+		textChunk.append("\t" + "<timestamp>" + "\n");
+		textChunk.append("\t" + getTime() + "\n");
+		textChunk.append("\t" + "</timestamp>" + "\n");
+		textChunk.append("</ReferencingProjectsChangedOperation>"+"\n");
+		
+		
+	}
+
 }
