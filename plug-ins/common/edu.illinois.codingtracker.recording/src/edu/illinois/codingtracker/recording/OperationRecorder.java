@@ -2,7 +2,6 @@
  * This file is licensed under the University of Illinois/NCSA Open Source License. See LICENSE.TXT for details.
  */
 package edu.illinois.codingtracker.recording;
-
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Map.Entry;
@@ -23,6 +22,7 @@ import edu.illinois.codingtracker.compare.helpers.EditorHelper;
 import edu.illinois.codingtracker.helpers.Debugger;
 import edu.illinois.codingtracker.helpers.FileRevision;
 import edu.illinois.codingtracker.helpers.ResourceHelper;
+import edu.illinois.codingtracker.operations.shortcuts.ShortCutCommandName;
 import edu.illinois.codingtracker.operations.conflicteditors.ClosedConflictEditorOperation;
 import edu.illinois.codingtracker.operations.conflicteditors.OpenedConflictEditorOperation;
 import edu.illinois.codingtracker.operations.conflicteditors.SavedConflictEditorOperation;
@@ -275,10 +275,13 @@ public class OperationRecorder {
 	public void recordStartedTestCase(String testRunName, String testClassName, String testMethodName) {
 		TextRecorder.record(new TestCaseStartedOperation(testRunName, testClassName, testMethodName));
 	}
+ 
+
+ 	 
 	public void recordFinishedTestCase(String testRunName, String result, String progressState, String trace) {
+ 
 		TextRecorder.record(new TestCaseFinishedOperation(testRunName, result, progressState, trace));
 	}
-
 	public void recordLaunchedApplication(String launchMode, String launchName, String application, String product, boolean useProduct) {
 		TextRecorder.record(new LaunchedApplicationOperation(launchMode, launchName, application, product, useProduct));
 	}
@@ -393,6 +396,10 @@ public class OperationRecorder {
 	public void recordGainsFocus() {
 		
 		TextRecorder.record(new DetectFocusGainsWorkbench());
+	}
+public void recordShortcutsCommandName(String nCommand, String keyShortcuts) {
+		
+		TextRecorder.record(new ShortCutCommandName(nCommand, keyShortcuts));
 	}
 
 	public void recordActivatedFile(IFile activatedFile) {

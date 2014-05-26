@@ -4,12 +4,10 @@
 package edu.illinois.codingtracker.listeners;
 
 import org.eclipse.core.runtime.CoreException;
-import org.eclipse.debug.core.DebugException;
 import org.eclipse.debug.core.DebugPlugin;
 import org.eclipse.debug.core.ILaunch;
 import org.eclipse.debug.core.ILaunchConfiguration;
-import org.eclipse.debug.core.ILaunchesListener2;
-import org.eclipse.debug.core.model.IProcess;
+import org.eclipse.debug.core.ILaunchListener;
 
 import edu.illinois.codingtracker.helpers.Debugger;
 import edu.illinois.codingtracker.helpers.Messages;
@@ -19,12 +17,13 @@ import edu.illinois.codingtracker.helpers.Messages;
  * @author Stas Negara
  * 
  */
-public class LaunchListener extends BasicListener implements ILaunchesListener2 {
+public class LaunchListener extends BasicListener implements ILaunchListener {
 
 	public static void register() {
 		DebugPlugin.getDefault().getLaunchManager().addLaunchListener(new LaunchListener());
 	}
 
+	@Override
 	public void launchAdded(ILaunch launch) {
 		try {
 			String launchMode= launch.getLaunchMode();
@@ -39,49 +38,14 @@ public class LaunchListener extends BasicListener implements ILaunchesListener2 
 		}
 	}
 
-	public void launchTerminated(ILaunch launch) {
-		try {
-			String launchMode = launch.getLaunchMode();
-			ILaunchConfiguration launchConfiguration= launch.getLaunchConfiguration();
-			String launchName = launchConfiguration.getName();
-			String application = launchConfiguration.getAttribute("application", "");
-			String product = launchConfiguration.getAttribute("product", "");
-			boolean useProduct = launchConfiguration.getAttribute("useProduct", false);
-			IProcess[] processes = launch.getProcesses();
-			int[] exitValues = new int[processes.length];
-			for (int i = 0; i < processes.length; i++) {
-				exitValues[i] = processes[i].getExitValue();
-			};
-			operationRecorder.recordTerminatedApplication(launchMode, launchName, application, product, useProduct, 
-					exitValues);
-		} catch (DebugException e) {
-			Debugger.logExceptionToErrorLog(e, Messages.Recorder_RemovedConfigurationException);
-		} catch (CoreException e) {
-			Debugger.logExceptionToErrorLog(e, Messages.Recorder_RemovedConfigurationException);
-		}
+	@Override
+	public void launchRemoved(ILaunch launch) {
+		//do nothing
 	}
 
 	@Override
-	public void launchesAdded(ILaunch[] launches) {
-		for(ILaunch launch : launches) {
-			this.launchAdded(launch);
-		}
+	public void launchChanged(ILaunch launch) {
+		//do nothing
 	}
 
-	@Override
-	public void launchesTerminated(ILaunch[] launches) {
-		for(ILaunch launch : launches) {
-			this.launchTerminated(launch);
-		}
-	}
-
-	@Override
-	public void launchesRemoved(ILaunch[] launches) {
-		// nothing to do
-	}
-
-	@Override
-	public void launchesChanged(ILaunch[] launches) {
-		// nothing to do
-	}
 }
