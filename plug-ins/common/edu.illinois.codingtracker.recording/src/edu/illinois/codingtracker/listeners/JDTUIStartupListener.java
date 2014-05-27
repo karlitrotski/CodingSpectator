@@ -38,7 +38,8 @@ public class JDTUIStartupListener implements StartupListener {
 			JUnitListener.register();
 			LaunchListener.register();
 			CompletionListener.register();
-			AnnotationModelListener.register();
+			//AnnotationModelListener.register();
+			ResourceChangeListener.register();
 			TextRecorder.record(new StartedEclipseOperation());
 		}
 	}
