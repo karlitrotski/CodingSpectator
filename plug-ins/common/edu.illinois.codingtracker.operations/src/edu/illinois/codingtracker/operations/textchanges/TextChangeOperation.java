@@ -65,6 +65,22 @@ public abstract class TextChangeOperation extends UserOperation {
 		textChunk.append(offset);
 		textChunk.append(length);
 	}
+	
+	@Override
+	protected void populateXMLTextChunk(OperationTextChunk textChunk){
+		textChunk.append("\t" + "<ReplacedText>" + "\n");
+		textChunk.append("\t" + replacedText + "\n");
+		textChunk.append("\t" + "</ReplacedText>" + "\n");
+		textChunk.append("\t" + "<NewText>" + "\n");
+		textChunk.append("\t" + newText + "\n");
+		textChunk.append("\t" + "</NewText>" + "\n");
+		textChunk.append("\t" + "<Offset>" + "\n");
+		textChunk.append("\t" + offset + "\n");
+		textChunk.append("\t" + "</Offset>" + "\n");
+		textChunk.append("\t" + "<Length>" + "\n");
+		textChunk.append("\t" + length + "\n");
+		textChunk.append("\t" + "</Length>" + "\n");
+	}
 
 	@Override
 	protected void initializeFrom(OperationLexer operationLexer) {

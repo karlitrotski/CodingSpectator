@@ -39,6 +39,11 @@ public class StartedEclipseOperation extends UserOperation {
 	protected void populateTextChunk(OperationTextChunk textChunk) {
 		//Nothing to populate here
 	}
+	
+	@Override
+	protected void populateXMLTextChunk(OperationTextChunk textChunk){
+		//Nothing to populate here
+	}
 
 	@Override
 	protected void initializeFrom(OperationLexer operationLexer) {
