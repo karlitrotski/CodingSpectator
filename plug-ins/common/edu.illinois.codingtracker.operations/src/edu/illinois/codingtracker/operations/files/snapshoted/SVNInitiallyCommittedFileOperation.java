@@ -6,6 +6,7 @@ package edu.illinois.codingtracker.operations.files.snapshoted;
 import org.eclipse.core.resources.IFile;
 
 import edu.illinois.codingtracker.operations.OperationSymbols;
+import edu.illinois.codingtracker.operations.OperationTextChunk;
 
 /**
  * 
@@ -32,4 +33,13 @@ public class SVNInitiallyCommittedFileOperation extends CommittedFileOperation {
 		return "SVN initially committed file";
 	}
 
+	@Override
+	protected void populateXMLTextChunk(OperationTextChunk textChunk){
+		textChunk.append("<SVNInitiallyCommittedFileOperation>" + "\n");
+		super.populateXMLTextChunk(textChunk);
+		textChunk.append("\t" + "<timestamp>" + "\n");
+		textChunk.append("\t" + getTime() + "\n");
+		textChunk.append("\t" + "</timestamp>" + "\n");
+		textChunk.append("</SVNInitiallyCommitedFileOperation>" + "\n");
+	}
 }

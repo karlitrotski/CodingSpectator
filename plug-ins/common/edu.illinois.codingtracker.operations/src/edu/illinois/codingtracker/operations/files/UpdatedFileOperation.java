@@ -50,6 +50,19 @@ public class UpdatedFileOperation extends FileOperation {
 		textChunk.append(revision);
 		textChunk.append(committedRevision);
 	}
+	
+	@Override
+	protected void populateXMLTextChunk(OperationTextChunk textChunk){
+		textChunk.append("<UpdatedFileOperation>" + "\n");
+		super.populateXMLTextChunk(textChunk);
+		textChunk.append("\t" + "<Revision>" + "\n");
+		textChunk.append("\t" + revision + "\n");
+		textChunk.append("\t" + "</Revision>" + "\n");
+		textChunk.append("\t" + "<CommittedRevision>" + "\n");
+		textChunk.append("\t" + committedRevision + "\n");
+		textChunk.append("\t" + "</CommittedRevision>" + "\n");
+		textChunk.append("</UpdatedFileOperation>" + "\n");
+	}
 
 	@Override
 	protected void initializeFrom(OperationLexer operationLexer) {

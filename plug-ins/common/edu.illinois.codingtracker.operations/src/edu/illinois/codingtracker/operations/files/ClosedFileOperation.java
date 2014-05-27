@@ -9,6 +9,7 @@ import org.eclipse.ui.texteditor.ITextEditor;
 
 import edu.illinois.codingtracker.compare.helpers.EditorHelper;
 import edu.illinois.codingtracker.operations.OperationSymbols;
+import edu.illinois.codingtracker.operations.OperationTextChunk;
 
 /**
  * 
@@ -46,4 +47,15 @@ public class ClosedFileOperation extends FileOperation {
 			currentEditor= null;
 		}
 	}
+	
+	@Override
+	protected void populateXMLTextChunk(OperationTextChunk textChunk){
+		textChunk.append("<ClosedFileOperation>" + "\n");
+		super.populateXMLTextChunk(textChunk);
+		textChunk.append("\t" + "<timestamp>" + "\n");
+		textChunk.append("\t" + getTime() + "\n");
+		textChunk.append("\t" + "</timestamp>" + "\n");
+		textChunk.append("</ClosedFileOperation>" + "\n");
+	}
+
 }

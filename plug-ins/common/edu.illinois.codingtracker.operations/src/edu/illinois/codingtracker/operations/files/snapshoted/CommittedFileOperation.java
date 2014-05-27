@@ -40,6 +40,17 @@ public abstract class CommittedFileOperation extends SnapshotedFileOperation {
 		textChunk.append(revision);
 		textChunk.append(committedRevision);
 	}
+	
+	@Override
+	protected void populateXMLTextChunk(OperationTextChunk textChunk){
+		super.populateXMLTextChunk(textChunk);
+		textChunk.append("\t" + "<Revision>" + "\n");
+		textChunk.append("\t" + revision + "\n");
+		textChunk.append("\t" + "</Revision>" + "\n");
+		textChunk.append("\t" + "<CommittedRevision>" + "\n");
+		textChunk.append("\t" + committedRevision + "\n");
+		textChunk.append("\t" + "</CommittedRevision>" + "\n");
+	}
 
 	@Override
 	protected void initializeFrom(OperationLexer operationLexer) {
