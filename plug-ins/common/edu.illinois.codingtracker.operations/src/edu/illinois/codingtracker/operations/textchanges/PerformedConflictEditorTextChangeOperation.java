@@ -7,6 +7,7 @@ import org.eclipse.jface.text.BadLocationException;
 import org.eclipse.jface.text.DocumentEvent;
 
 import edu.illinois.codingtracker.operations.OperationSymbols;
+import edu.illinois.codingtracker.operations.OperationTextChunk;
 
 /**
  * 
@@ -36,6 +37,16 @@ public class PerformedConflictEditorTextChangeOperation extends ConflictEditorTe
 	@Override
 	protected void replaySpecificTextChange() throws BadLocationException {
 		currentDocument.replace(offset, length, newText);
+	}
+	
+	@Override
+	protected void populateXMLTextChunk(OperationTextChunk textChunk){
+		textChunk.append("<PerformedConflictEditorTextChangeOperation>" + "\n");
+		super.populateXMLTextChunk(textChunk);
+		textChunk.append("\t" + "<timestamp>" + "\n");
+		textChunk.append("\t" + getTime() + "\n");
+		textChunk.append("\t" + "</timestamp>" + "\n");
+		textChunk.append("</PerformedConflictEditorTextChangeOperation>" + "\n");
 	}
 
 }

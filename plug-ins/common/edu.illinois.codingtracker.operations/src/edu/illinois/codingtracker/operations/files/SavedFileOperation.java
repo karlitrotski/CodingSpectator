@@ -9,6 +9,7 @@ import org.eclipse.ui.texteditor.ITextEditor;
 
 import edu.illinois.codingtracker.helpers.Debugger;
 import edu.illinois.codingtracker.operations.OperationSymbols;
+import edu.illinois.codingtracker.operations.OperationTextChunk;
 import edu.illinois.codingtracker.operations.resources.BreakableResourceOperation;
 
 /**
@@ -45,6 +46,16 @@ public class SavedFileOperation extends BreakableResourceOperation {
 		if (editor == null) {
 			Debugger.debugWarning("Ignored save of the non existent editor:\n" + this);
 		}
+	}
+	
+	@Override
+	protected void populateXMLTextChunk(OperationTextChunk textChunk){
+		textChunk.append("<SavedFileOperation>" + "\n");
+		super.populateXMLTextChunk(textChunk);
+		textChunk.append("\t" + "<timestamp>" + "\n");
+		textChunk.append("\t" + getTime() + "\n");
+		textChunk.append("\t" + "</timestamp>" + "\n");
+		textChunk.append("</SavedFileOperation>" + "\n");
 	}
 
 }

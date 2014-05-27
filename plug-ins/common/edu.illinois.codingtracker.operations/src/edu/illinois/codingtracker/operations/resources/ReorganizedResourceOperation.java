@@ -40,6 +40,14 @@ public abstract class ReorganizedResourceOperation extends UpdatedResourceOperat
 	}
 
 	@Override
+	protected void populateXMLTextChunk(OperationTextChunk textChunk){
+		super.populateXMLTextChunk(textChunk);
+		textChunk.append("\t" + "<DestinationPath>" + "\n");
+		textChunk.append("\t" + destinationPath + "\n");
+		textChunk.append("\t" + "</DestinationPath>" + "\n");
+	}
+	
+	@Override
 	protected void initializeFrom(OperationLexer operationLexer) {
 		super.initializeFrom(operationLexer);
 		destinationPath= operationLexer.readString();
