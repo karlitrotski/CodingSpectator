@@ -39,8 +39,7 @@ public class PluginMonitor extends UserOperation {
 
 	@Override
 	protected char getOperationSymbol() {
-		//return OperationSymbols.PLUGINS_SYMBOL;
-		return 'X';
+		return OperationSymbols.PLUGINS_USAGE;
 	}
 
 	@Override
