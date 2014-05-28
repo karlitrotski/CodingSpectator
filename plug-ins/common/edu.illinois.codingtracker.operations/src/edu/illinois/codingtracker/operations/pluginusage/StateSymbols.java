@@ -23,7 +23,7 @@ public abstract class StateSymbols {
 	 * @param state integer representation of the state
 	 * @return String representation of the state
 	 */
-	public String getStateName(int state){
+	static public String getStateName(int state){
 		switch (state) {
 			case UNINSTALLED:
 				return "Uninstalled";

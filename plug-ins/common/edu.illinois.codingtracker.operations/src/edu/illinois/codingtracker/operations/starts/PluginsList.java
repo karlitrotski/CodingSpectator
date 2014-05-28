@@ -20,6 +20,7 @@ import edu.illinois.codingtracker.operations.OperationLexer;
 import edu.illinois.codingtracker.operations.OperationSymbols;
 import edu.illinois.codingtracker.operations.OperationTextChunk;
 import edu.illinois.codingtracker.operations.UserOperation;
+import edu.illinois.codingtracker.operations.pluginusage.StateSymbols;
 
 /**
  * Class that writes,  when Eclipse starts, all the list of installed plugins in alphabetical order 
@@ -52,6 +53,11 @@ public class PluginsList extends UserOperation {
 		textChunk.append(text);
 	}
 	
+	/* Gets the String representation of bundle's state. */
+	private String getState(Bundle b){
+		return StateSymbols.getStateName(b.getState());
+	}
+	
 	/*
 	 * Creates a new StringBuffer and writes the Eclipse plugins in 
 	 * alphabetical order and grouped by Provider
@@ -69,7 +75,7 @@ public class PluginsList extends UserOperation {
 		            List <String> valueList = bundlesMap.get(bundleGroups[j].getName()) == null ?
 		            		new ArrayList<String>() : bundlesMap.get(bundleGroups[j].getName());
 		            for (int k = 0; k < bundles.length; k++) {
-		            	valueList.add(bundles[k].getSymbolicName());
+		            	valueList.add(bundles[k].getSymbolicName()+"- Initial state: "+getState(bundles[k]));
 		            }
 		            bundlesMap.put(bundleGroups[j].getName(), valueList);
 		        }
