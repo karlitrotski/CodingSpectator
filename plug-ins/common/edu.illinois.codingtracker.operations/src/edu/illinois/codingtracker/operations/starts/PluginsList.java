@@ -75,7 +75,7 @@ public class PluginsList extends UserOperation {
 		            List <String> valueList = bundlesMap.get(bundleGroups[j].getName()) == null ?
 		            		new ArrayList<String>() : bundlesMap.get(bundleGroups[j].getName());
 		            for (int k = 0; k < bundles.length; k++) {
-		            	valueList.add(bundles[k].getSymbolicName()+"- Initial state: "+getState(bundles[k]));
+		            	valueList.add(bundles[k].getSymbolicName()+" - State: "+getState(bundles[k]));
 		            }
 		            bundlesMap.put(bundleGroups[j].getName(), valueList);
 		        }

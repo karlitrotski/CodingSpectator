@@ -30,7 +30,7 @@ public abstract class StateSymbols {
 			case INSTALLED:
 				return "Installed";
 			case RESOLVED:
-				return "Resolver";
+				return "Resolved";
 			case STARTING:
 				return "Starting";
 			case STOPPING:
