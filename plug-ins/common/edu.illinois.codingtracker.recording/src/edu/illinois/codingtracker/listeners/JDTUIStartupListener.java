@@ -10,6 +10,7 @@ import edu.illinois.codingtracker.helpers.Debugger;
 import edu.illinois.codingtracker.operations.starts.PluginsList;
 import edu.illinois.codingtracker.operations.starts.StartedEclipseOperation;
 import edu.illinois.codingtracker.recording.TextRecorder;
+import edu.illinois.codingtracker.operations.pluginusage.PluginMonitor;
 
 /**
  * 
@@ -42,6 +43,7 @@ public class JDTUIStartupListener implements StartupListener {
 			ListenerShortcuts.register();
 			TextRecorder.record(new StartedEclipseOperation());
 			TextRecorder.record(new PluginsList());
+			TextRecorder.record(new PluginMonitor());
 		}
 	}
 
