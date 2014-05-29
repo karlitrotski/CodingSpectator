@@ -24,3 +24,4 @@ Require-Bundle: edu.illinois.codingtracker.compare.helpers;visibility:=reexport,
  org.eclipse.jdt.ui,
  edu.illinois.codingtracker.jdt.project.manipulation
 Bundle-Vendor: University of Illinois
+Import-Package: edu.illinois.codingtracker.recording

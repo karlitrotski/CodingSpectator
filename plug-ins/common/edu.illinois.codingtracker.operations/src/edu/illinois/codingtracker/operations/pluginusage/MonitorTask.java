@@ -9,6 +9,7 @@ import org.eclipse.core.runtime.Platform;
 import org.osgi.framework.Bundle;
 import edu.illinois.codingtracker.recording.TextRecorder;
 
+/* Class that compare all plug-in states, and throw a message when they change. */
 public class MonitorTask extends TimerTask {
 	
 	TreeMap<String, Integer> bundlesMap = new TreeMap<String, Integer>(String.CASE_INSENSITIVE_ORDER);
