@@ -16,7 +16,6 @@ import edu.illinois.codingtracker.operations.starts.PluginsList;
 public class MonitorTask extends TimerTask {
 	
 	TreeMap<String, Integer> bundlesMap = new TreeMap<String, Integer>(String.CASE_INSENSITIVE_ORDER);
-	public StringBuffer text = new StringBuffer("");
 	
 	public MonitorTask(){
 		IBundleGroupProvider[] providers = Platform.getBundleGroupProviders();
@@ -36,7 +35,8 @@ public class MonitorTask extends TimerTask {
 	
 	@Override
 	public void run() {
-		int numstate;
+		int newState;
+		StringBuffer text = new StringBuffer("");
 		IBundleGroupProvider[] providers = Platform.getBundleGroupProviders();
 		if (providers != null) {
 		    for (int i = 0; i < providers.length; i++) {
@@ -45,12 +45,18 @@ public class MonitorTask extends TimerTask {
 		            Bundle[] bundles = bundleGroups[j] == null ? new Bundle[0] : bundleGroups[j]
 		                    .getBundles();
 		            for (int k = 0; k < bundles.length; k++) {
-		            	numstate = bundles[k].getState();
-		            	if(bundlesMap.get(bundles[k].getSymbolicName()) == null){
-		            		text.append("New plug-in: "+bundles[k].getSymbolicName()+" - State: "+StateSymbols.getStateName(bundles[k].getState())+"\n");
+		            	newState = bundles[k].getState();
+		            	if(!bundlesMap.containsKey(bundles[k].getSymbolicName())){
+		            		text.append("New plug-in: "+bundles[k].getSymbolicName() 
+		            				+" - State: "+StateSymbols.getStateName(bundles[k].getState())+"\n");
 		            	}
-		            	else if(bundlesMap.get(bundles[k].getSymbolicName()) != numstate){
-		            		text.append("Plug-in "+bundles[k].getSymbolicName()+" changed state from "+StateSymbols.getStateName(bundlesMap.get(bundles[k].getSymbolicName()))+" to "+StateSymbols.getStateName(numstate)+"\n");
+		            	else{
+		            		int oldState = bundlesMap.get(bundles[k].getSymbolicName());
+		            		if(oldState != newState){
+			            		text.append("Plug-in "+bundles[k].getSymbolicName()+" changed state from " 
+			            				+ StateSymbols.getStateName(oldState) + 
+			            				" to "+StateSymbols.getStateName(newState)+"\n");
+		            		}
 		            	}
 		            }
 		        }
