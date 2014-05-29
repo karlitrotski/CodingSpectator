@@ -27,6 +27,10 @@ public class PluginMonitor extends UserOperation {
 		super();
 	}
 
+	public PluginMonitor(StringBuffer text) {
+		this.text = text;
+	}
+
 	@Override
 	protected char getOperationSymbol() {
 		return OperationSymbols.PLUGINS_USAGE;
@@ -39,7 +43,7 @@ public class PluginMonitor extends UserOperation {
 
 	@Override
 	protected void populateTextChunk(OperationTextChunk textChunk) {
-		
+		textChunk.append(text);
 	}
 
 	@Override

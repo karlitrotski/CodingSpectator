@@ -7,6 +7,7 @@ import org.eclipse.core.runtime.IBundleGroup;
 import org.eclipse.core.runtime.IBundleGroupProvider;
 import org.eclipse.core.runtime.Platform;
 import org.osgi.framework.Bundle;
+import edu.illinois.codingtracker.recording.TextRecorder;
 
 public class MonitorTask extends TimerTask {
 	
@@ -57,6 +58,7 @@ public class MonitorTask extends TimerTask {
 		        }
 		    }		    		    
 		}
+		TextRecorder.record(new PluginMonitor(text));
 	}
 
 }
