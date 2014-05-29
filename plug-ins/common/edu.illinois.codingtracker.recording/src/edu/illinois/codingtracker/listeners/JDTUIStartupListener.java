@@ -3,6 +3,9 @@
  */
 package edu.illinois.codingtracker.listeners;
 
+import java.util.Timer;
+import java.util.TimerTask;
+
 import org.eclipse.core.runtime.Platform;
 import org.eclipse.jdt.internal.ui.startup.StartupListener;
 
@@ -10,7 +13,7 @@ import edu.illinois.codingtracker.helpers.Debugger;
 import edu.illinois.codingtracker.operations.starts.PluginsList;
 import edu.illinois.codingtracker.operations.starts.StartedEclipseOperation;
 import edu.illinois.codingtracker.recording.TextRecorder;
-import edu.illinois.codingtracker.operations.pluginusage.PluginMonitor;
+import edu.illinois.codingtracker.operations.pluginusage.MonitorTask;
 
 /**
  * 
@@ -43,12 +46,21 @@ public class JDTUIStartupListener implements StartupListener {
 			ListenerShortcuts.register();
 			TextRecorder.record(new StartedEclipseOperation());
 			TextRecorder.record(new PluginsList());
-			TextRecorder.record(new PluginMonitor());
+			initializePluginsMonitor();
 		}
 	}
 
 	private static boolean doesMonitorUIExist() {
 		return Platform.getBundle("edu.illinois.codingspectator.monitor.ui") != null;
+	}
+	
+	/*
+	 * Initialize the timer to monitoring the plugins
+	 */
+	private void initializePluginsMonitor(){
+		Timer timer = new Timer();
+		TimerTask task = new MonitorTask();
+		timer.schedule(task, 150000,150000);
 	}
 
 }
