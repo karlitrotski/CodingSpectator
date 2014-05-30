@@ -47,14 +47,16 @@ public class MonitorTask extends TimerTask {
 		            	newState = bundles[k].getState();
 		            	if(!bundlesMap.containsKey(bundles[k].getSymbolicName())){
 		            		text.append("New plug-in: "+bundles[k].getSymbolicName() 
-		            				+" - State: "+StateSymbols.getStateName(bundles[k].getState())+"\n");
+		            				+" - State: "+StateSymbols.getStateName(bundles[k].getState())+" \n");
+		            		bundlesMap.put(bundles[k].getSymbolicName(), bundles[k].getState());
 		            	}
 		            	else{
 		            		int oldState = bundlesMap.get(bundles[k].getSymbolicName());
 		            		if(oldState != newState){
 			            		text.append("Plug-in "+bundles[k].getSymbolicName()+" changed state from " 
 			            				+ StateSymbols.getStateName(oldState) + 
-			            				" to "+StateSymbols.getStateName(newState)+"\n");
+			            				" to "+StateSymbols.getStateName(newState)+" \n");
+			            		bundlesMap.put(bundles[k].getSymbolicName(), bundles[k].getState());
 		            		}
 		            	}
 		            }
