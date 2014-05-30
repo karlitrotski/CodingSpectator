@@ -1,4 +1,4 @@
-package edu.illinois.codingtracker.operations.pluginusage;
+package edu.illinois.codingtracker.listeners;
 
 import java.util.TimerTask;
 import java.util.TreeMap;
@@ -7,6 +7,8 @@ import org.eclipse.core.runtime.IBundleGroup;
 import org.eclipse.core.runtime.IBundleGroupProvider;
 import org.eclipse.core.runtime.Platform;
 import org.osgi.framework.Bundle;
+
+import edu.illinois.codingtracker.operations.pluginusage.*;
 import edu.illinois.codingtracker.recording.TextRecorder;
 
 /* Class that compare all plug-in states, and throw a message when they change. */

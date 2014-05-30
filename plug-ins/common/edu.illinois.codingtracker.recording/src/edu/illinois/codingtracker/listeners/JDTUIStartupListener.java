@@ -13,7 +13,6 @@ import edu.illinois.codingtracker.helpers.Debugger;
 import edu.illinois.codingtracker.operations.starts.PluginsList;
 import edu.illinois.codingtracker.operations.starts.StartedEclipseOperation;
 import edu.illinois.codingtracker.recording.TextRecorder;
-import edu.illinois.codingtracker.operations.pluginusage.MonitorTask;
 
 /**
  * 

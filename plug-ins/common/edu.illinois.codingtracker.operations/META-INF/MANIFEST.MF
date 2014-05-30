@@ -9,6 +9,7 @@ Export-Package: edu.illinois.codingtracker.operations,
  edu.illinois.codingtracker.operations.files,
  edu.illinois.codingtracker.operations.files.snapshoted,
  edu.illinois.codingtracker.operations.focus,
+ edu.illinois.codingtracker.operations.pluginusage,
  edu.illinois.codingtracker.operations.junit,
  edu.illinois.codingtracker.operations.options,
  edu.illinois.codingtracker.operations.parts,
@@ -24,4 +25,3 @@ Require-Bundle: edu.illinois.codingtracker.compare.helpers;visibility:=reexport,
  org.eclipse.jdt.ui,
  edu.illinois.codingtracker.jdt.project.manipulation
 Bundle-Vendor: University of Illinois
-Import-Package: edu.illinois.codingtracker.recording
