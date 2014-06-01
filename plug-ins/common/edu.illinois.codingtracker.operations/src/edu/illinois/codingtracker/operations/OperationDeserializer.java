@@ -21,6 +21,8 @@ import edu.illinois.codingtracker.operations.files.snapshoted.NewFileOperation;
 import edu.illinois.codingtracker.operations.files.snapshoted.RefreshedFileOperation;
 import edu.illinois.codingtracker.operations.files.snapshoted.SVNCommittedFileOperation;
 import edu.illinois.codingtracker.operations.files.snapshoted.SVNInitiallyCommittedFileOperation;
+import edu.illinois.codingtracker.operations.focus.DetectFocusGainsWorkbench;
+import edu.illinois.codingtracker.operations.focus.DetectFocusLooseWorkbench;
 import edu.illinois.codingtracker.operations.junit.TestCaseFinishedOperation;
 import edu.illinois.codingtracker.operations.junit.TestCaseStartedOperation;
 import edu.illinois.codingtracker.operations.junit.TestSessionFinishedOperation;
@@ -28,6 +30,7 @@ import edu.illinois.codingtracker.operations.junit.TestSessionLaunchedOperation;
 import edu.illinois.codingtracker.operations.junit.TestSessionStartedOperation;
 import edu.illinois.codingtracker.operations.options.ProjectOptionsChangedOperation;
 import edu.illinois.codingtracker.operations.options.WorkspaceOptionsChangedOperation;
+import edu.illinois.codingtracker.operations.pluginusage.PluginMonitor;
 import edu.illinois.codingtracker.operations.refactorings.FinishedRefactoringOperation;
 import edu.illinois.codingtracker.operations.refactorings.NewStartedRefactoringOperation;
 import edu.illinois.codingtracker.operations.refactorings.PerformedRefactoringOperation;
@@ -40,6 +43,7 @@ import edu.illinois.codingtracker.operations.resources.DeletedResourceOperation;
 import edu.illinois.codingtracker.operations.resources.ExternallyModifiedResourceOperation;
 import edu.illinois.codingtracker.operations.resources.MovedResourceOperation;
 import edu.illinois.codingtracker.operations.starts.LaunchedApplicationOperation;
+import edu.illinois.codingtracker.operations.starts.PluginsList;
 import edu.illinois.codingtracker.operations.starts.StartedEclipseOperation;
 import edu.illinois.codingtracker.operations.starts.StartedRefactoringOperation;
 import edu.illinois.codingtracker.operations.textchanges.PerformedConflictEditorTextChangeOperation;
@@ -71,7 +75,21 @@ public class OperationDeserializer {
 
 	private static UserOperation createEmptyUserOperation(char operationSymbol) {
 		UserOperation userOperation;
+		//Falta instancias el metodo gain y loose
 		switch (operationSymbol) {
+			case OperationSymbols.PLUGINS_USAGE:
+				userOperation= new PluginMonitor();
+			break;
+			case OperationSymbols.PLUGINS_SYMBOL:
+				userOperation= new PluginsList();
+			break;
+			case OperationSymbols.APPLICATION_FOCUS_GAINS:
+				userOperation= new DetectFocusLooseWorkbench();
+			break;
+			case OperationSymbols.APPLICATION_FOCUS_LOOSE:
+				userOperation= new DetectFocusGainsWorkbench();
+			break;
+			
 			case OperationSymbols.ECLIPSE_STARTED_SYMBOL:
 				userOperation= new StartedEclipseOperation();
 				break;

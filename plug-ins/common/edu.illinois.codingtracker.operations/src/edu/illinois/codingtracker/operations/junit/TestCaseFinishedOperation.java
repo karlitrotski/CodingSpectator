@@ -15,14 +15,17 @@ import edu.illinois.codingtracker.operations.OperationTextChunk;
 public class TestCaseFinishedOperation extends JUnitOperation {
 
 	private String result;
+	private String progressState;
+	private String trace;
 
 	public TestCaseFinishedOperation() {
 		super();
 	}
-
-	public TestCaseFinishedOperation(String testRunName, String result) {
+	public TestCaseFinishedOperation(String testRunName, String result, String progressState, String trace) {
 		super(testRunName);
 		this.result= result;
+		this.progressState = progressState;
+		this.trace = trace;
 	}
 
 	@Override
@@ -39,18 +42,22 @@ public class TestCaseFinishedOperation extends JUnitOperation {
 	protected void populateTextChunk(OperationTextChunk textChunk) {
 		super.populateTextChunk(textChunk);
 		textChunk.append(result);
+		textChunk.append(progressState);
+		textChunk.append(trace);
 	}
 
 	@Override
 	protected void initializeFrom(OperationLexer operationLexer) {
 		super.initializeFrom(operationLexer);
 		result= operationLexer.readString();
+		progressState = operationLexer.readString();
+		trace = operationLexer.readString();
 	}
 
 	@Override
 	public String toString() {
 		StringBuffer sb= new StringBuffer();
-		sb.append("Result: " + result + "\n");
+		sb.append("Result: " + result + ", " + progressState + "\n");
 		sb.append(super.toString());
 		return sb.toString();
 	}

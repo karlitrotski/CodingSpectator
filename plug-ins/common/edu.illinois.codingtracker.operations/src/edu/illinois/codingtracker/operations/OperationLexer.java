@@ -94,4 +94,12 @@ public class OperationLexer {
 		return tempString.replace(ESCAPED_DELIMETER_SYMBOL, DELIMETER_SYMBOL);
 	}
 
+	public int[] readIntArray() {
+		// TODO [1,0,3,9]
+		// String values = getNextLexeme();
+		int [] i = new int[1];
+		i[0] = 0;
+		return i;
+	}
+
 }
