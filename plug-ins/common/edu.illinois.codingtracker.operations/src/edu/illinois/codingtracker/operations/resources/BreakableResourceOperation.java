@@ -34,6 +34,14 @@ public abstract class BreakableResourceOperation extends ResourceOperation {
 		super.populateTextChunk(textChunk);
 		textChunk.append(success);
 	}
+	
+	@Override
+	protected void populateXMLTextChunk(OperationTextChunk textChunk){
+		super.populateXMLTextChunk(textChunk);
+		textChunk.append("\t" + "<success>" + "\n");
+		textChunk.append("\t" + success + "\n");
+		textChunk.append("\t" + "</success>" + "\n");
+	}
 
 	@Override
 	protected void initializeFrom(OperationLexer operationLexer) {

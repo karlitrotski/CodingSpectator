@@ -6,6 +6,7 @@ package edu.illinois.codingtracker.operations.files.snapshoted;
 import org.eclipse.core.resources.IFile;
 
 import edu.illinois.codingtracker.operations.OperationSymbols;
+import edu.illinois.codingtracker.operations.OperationTextChunk;
 
 /**
  * 
@@ -30,6 +31,16 @@ public class CVSCommittedFileOperation extends CommittedFileOperation {
 	@Override
 	public String getDescription() {
 		return "CVS committed file";
+	}
+	
+	@Override
+	protected void populateXMLTextChunk(OperationTextChunk textChunk){
+		textChunk.append("<CVSCommittedFileOperation>" + "\n");
+		super.populateXMLTextChunk(textChunk);
+		textChunk.append("\t" + "<timestamp>" + "\n");
+		textChunk.append("\t" + getTime() + "\n");
+		textChunk.append("\t" + "</timestamp>" + "\n");
+		textChunk.append("</CVSCommittedFileOperation>" + "\n");
 	}
 
 }

@@ -9,6 +9,7 @@ import org.eclipse.core.runtime.CoreException;
 import edu.illinois.codingtracker.helpers.Configuration;
 import edu.illinois.codingtracker.compare.helpers.EditorHelper;
 import edu.illinois.codingtracker.operations.OperationSymbols;
+import edu.illinois.codingtracker.operations.OperationTextChunk;
 
 /**
  * 
@@ -48,6 +49,16 @@ public class DeletedResourceOperation extends UpdatedResourceOperation {
 			//could break the following move operations.
 			resource.delete(IResource.FORCE, null);
 		}
+	}
+	
+	@Override
+	protected void populateXMLTextChunk(OperationTextChunk textChunk){
+		textChunk.append("<DeletedResourceOperation>" + "\n");
+		super.populateXMLTextChunk(textChunk);
+		textChunk.append("\t" + "<timestamp>" + "\n");
+		textChunk.append("\t" + getTime() + "\n");
+		textChunk.append("\t" + "</timestamp>" + "\n");
+		textChunk.append("</DeletedResourceOperation>" + "\n");
 	}
 
 }

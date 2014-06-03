@@ -46,6 +46,15 @@ public class ExternallyModifiedResourceOperation extends ResourceOperation {
 		super.populateTextChunk(textChunk);
 		textChunk.append(isDeleted);
 	}
+	
+	protected void populateXMLTextChunk(OperationTextChunk textChunk){
+		textChunk.append("<ExternallyModifiedResourceOperation>" + "\n");
+		super.populateXMLTextChunk(textChunk);
+		textChunk.append("\t" + "<isDeleted>" + "\n");
+		textChunk.append("\t" + isDeleted + "\n");
+		textChunk.append("\t" + "</isDeleted>" + "\n");
+		textChunk.append("</ExternallyModifiedResourceOperation>" + "\n");
+	}
 
 	@Override
 	protected void initializeFrom(OperationLexer operationLexer) {
