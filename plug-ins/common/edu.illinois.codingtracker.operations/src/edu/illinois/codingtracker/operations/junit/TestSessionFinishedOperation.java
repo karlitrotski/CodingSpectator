@@ -33,12 +33,12 @@ public class TestSessionFinishedOperation extends JUnitOperation {
 	
 	@Override
 	protected void populateXMLTextChunk(OperationTextChunk textChunk){
-		textChunk.append("<TestSessionFinishedOperation>" + "\n");
+		textChunk.concat("<TestSessionFinishedOperation>" + "\n");
 		super.populateXMLTextChunk(textChunk);
-		textChunk.append("\t" + "<timestamp>" + "\n");
-		textChunk.append("\t" + getTime() + "\n");
-		textChunk.append("\t" + "</timestamp>" + "\n");
-		textChunk.append("</TestSessionFinishedOperation>" + "\n");
+		textChunk.concat("\t" + "<timestamp>" + "\n");
+		textChunk.concat("\t" + getTime() + "\n");
+		textChunk.concat("\t" + "</timestamp>" + "\n");
+		textChunk.concat("</TestSessionFinishedOperation>" + "\n");
 	}
 
 }

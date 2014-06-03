@@ -43,12 +43,12 @@ public class WorkspaceOptionsChangedOperation extends OptionsChangedOperation {
 	
 	@Override
 	protected void populateXMLTextChunk(OperationTextChunk textChunk) {
-		textChunk.append("<WorkspaceOptionsChangedOperation"+"\n");
+		textChunk.concat("<WorkspaceOptionsChangedOperation"+"\n");
 		super.populateXMLTextChunk(textChunk);
-		textChunk.append("\t" + "<timestamp>" + "\n");
-		textChunk.append("\t" + getTime() + "\n");
-		textChunk.append("\t" + "</timestamp>" + "\n");
-		textChunk.append("</WorkspaceOptionsChangedOperation"+"\n");		
+		textChunk.concat("\t" + "<timestamp>" + "\n");
+		textChunk.concat("\t" + getTime() + "\n");
+		textChunk.concat("\t" + "</timestamp>" + "\n");
+		textChunk.concat("</WorkspaceOptionsChangedOperation"+"\n");		
 	}
 
 }

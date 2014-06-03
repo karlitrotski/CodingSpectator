@@ -32,9 +32,9 @@ public abstract class ConflictEditorOperation extends UserOperation {
 	
 	@Override
 	protected void populateXMLTextChunk(OperationTextChunk textChunk){
-		textChunk.append("\t" + "<EditorID>" + "\n");
-		textChunk.append("\t" + editorID + "\n");
-		textChunk.append("\t" + "</EditorID>" + "\n");
+		textChunk.concat("\t" + "<EditorID>" + "\n");
+		textChunk.concat("\t" + editorID + "\n");
+		textChunk.concat("\t" + "</EditorID>" + "\n");
 	}
 
 	@Override

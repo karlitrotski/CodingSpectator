@@ -55,18 +55,18 @@ public class OpenedConflictEditorOperation extends ConflictEditorOperation {
 	
 	@Override
 	protected void populateXMLTextChunk(OperationTextChunk textChunk){
-		textChunk.append("<OpenedConflictEditorOperation>" + "\n");
+		textChunk.concat("<OpenedConflictEditorOperation>" + "\n");
 		super.populateXMLTextChunk(textChunk);
-		textChunk.append("\t" + "<File_path>" + "\n");
-		textChunk.append("\t" + editedFilePath + "\n");
-		textChunk.append("\t" + "</File_path>" + "\n");
-		textChunk.append("\t" + "<Initial_content>" + "\n");
-		textChunk.append("\t" + initialContent + "\n");
-		textChunk.append("\t" + "</Initial_content>" + "\n");
-		textChunk.append("\t" + "<timestamp>" + "\n");
-		textChunk.append("\t" + getTime() + "\n");
-		textChunk.append("\t" + "</timestamp>" + "\n");
-		textChunk.append("</OpenedConflictEditorOperation>" + "\n");
+		textChunk.concat("\t" + "<File_path>" + "\n");
+		textChunk.concat("\t" + editedFilePath + "\n");
+		textChunk.concat("\t" + "</File_path>" + "\n");
+		textChunk.concat("\t" + "<Initial_content>" + "\n");
+		textChunk.concat("\t" + initialContent + "\n");
+		textChunk.concat("\t" + "</Initial_content>" + "\n");
+		textChunk.concat("\t" + "<timestamp>" + "\n");
+		textChunk.concat("\t" + getTime() + "\n");
+		textChunk.concat("\t" + "</timestamp>" + "\n");
+		textChunk.concat("</OpenedConflictEditorOperation>" + "\n");
 	}
 
 	@Override

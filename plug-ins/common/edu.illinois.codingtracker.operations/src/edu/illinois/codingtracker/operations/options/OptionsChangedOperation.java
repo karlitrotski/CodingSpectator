@@ -60,16 +60,16 @@ public abstract class OptionsChangedOperation extends UserOperation {
 	
 	@Override
 	protected void populateXMLTextChunk(OperationTextChunk textChunk) {
-		textChunk.append("\t"+"<OptionsCount>"+"\n");
-		textChunk.append("\t"+options.size()+"\n");
-		textChunk.append("\t"+"</OptionsCount>"+"\n");
+		textChunk.concat("\t"+"<OptionsCount>"+"\n");
+		textChunk.concat("\t"+options.size()+"\n");
+		textChunk.concat("\t"+"</OptionsCount>"+"\n");
 		for (Entry<String, String> optionsEntry : options.entrySet()) {
-			textChunk.append("\t"+"<KEY>"+"\n");
-			textChunk.append("\t"+optionsEntry.getKey()+"\n");
-			textChunk.append("\t"+"</KEY>"+"\n");
-			textChunk.append("\t"+"<VALUE>"+"\n");
-			textChunk.append("\t"+optionsEntry.getValue()+"\n");
-			textChunk.append("\t"+"</VALUE>"+"\n");
+			textChunk.concat("\t"+"<KEY>"+"\n");
+			textChunk.concat("\t"+optionsEntry.getKey()+"\n");
+			textChunk.concat("\t"+"</KEY>"+"\n");
+			textChunk.concat("\t"+"<VALUE>"+"\n");
+			textChunk.concat("\t"+optionsEntry.getValue()+"\n");
+			textChunk.concat("\t"+"</VALUE>"+"\n");
 		}
 		
 	}
