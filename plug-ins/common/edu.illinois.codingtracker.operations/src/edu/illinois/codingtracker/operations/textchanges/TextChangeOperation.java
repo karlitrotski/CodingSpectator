@@ -68,18 +68,18 @@ public abstract class TextChangeOperation extends UserOperation {
 	
 	@Override
 	protected void populateXMLTextChunk(OperationTextChunk textChunk){
-		textChunk.append("\t" + "<ReplacedText>" + "\n");
-		textChunk.append("\t" + replacedText + "\n");
-		textChunk.append("\t" + "</ReplacedText>" + "\n");
-		textChunk.append("\t" + "<NewText>" + "\n");
-		textChunk.append("\t" + newText + "\n");
-		textChunk.append("\t" + "</NewText>" + "\n");
-		textChunk.append("\t" + "<Offset>" + "\n");
-		textChunk.append("\t" + offset + "\n");
-		textChunk.append("\t" + "</Offset>" + "\n");
-		textChunk.append("\t" + "<Length>" + "\n");
-		textChunk.append("\t" + length + "\n");
-		textChunk.append("\t" + "</Length>" + "\n");
+		textChunk.concat("\t" + "<ReplacedText>" + "\n");
+		textChunk.concat("\t" + replacedText + "\n");
+		textChunk.concat("\t" + "</ReplacedText>" + "\n");
+		textChunk.concat("\t" + "<NewText>" + "\n");
+		textChunk.concat("\t" + newText + "\n");
+		textChunk.concat("\t" + "</NewText>" + "\n");
+		textChunk.concat("\t" + "<Offset>" + "\n");
+		textChunk.concat("\t" + offset + "\n");
+		textChunk.concat("\t" + "</Offset>" + "\n");
+		textChunk.concat("\t" + "<Length>" + "\n");
+		textChunk.concat("\t" + length + "\n");
+		textChunk.concat("\t" + "</Length>" + "\n");
 	}
 
 	@Override

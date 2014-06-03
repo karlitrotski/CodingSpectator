@@ -36,7 +36,11 @@ public class StartedRefactoringOperation extends UserOperation {
 	}
 	
 	protected void populateXMLTextChunk(OperationTextChunk textChunk){
-		//Nothing to populate here
+		textChunk.concat("<StartedRefactoringOperation>" + "\n");
+		textChunk.concat("\t" + "<timestamp>" + "\n");
+		textChunk.concat("\t" + getTime() + "\n");
+		textChunk.concat("\t" + "</timestamp>" + "\n");
+		textChunk.concat("</StartedRefactoringOperation>" + "\n");
 	}
 
 	@Override

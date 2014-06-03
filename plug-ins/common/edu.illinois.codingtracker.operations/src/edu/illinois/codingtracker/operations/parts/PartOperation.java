@@ -47,6 +47,11 @@ public class PartOperation extends FileOperation {
 		textChunk.append(description);
 		super.populateTextChunk(textChunk);
 	}
+	
+	@Override
+	protected void populateXMLTextChunk(OperationTextChunk textChunk){
+		//TODO: Implement Here
+	}
 
 	@Override
 	protected void initializeFrom(OperationLexer operationLexer) {

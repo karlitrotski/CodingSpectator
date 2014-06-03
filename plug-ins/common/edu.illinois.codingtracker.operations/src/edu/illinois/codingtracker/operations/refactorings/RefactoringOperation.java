@@ -155,25 +155,25 @@ public abstract class RefactoringOperation extends UserOperation {
 	
 	@Override
 	protected void populateXMLTextChunk(OperationTextChunk textChunk) {
-		textChunk.append("\t"+"<ID>"+"\n");
-		textChunk.append("\t"+id+"\n");
-		textChunk.append("\t"+"</ID>"+"\n");
-		textChunk.append("\t"+"<PROJECT>"+"\n");
-		textChunk.append("\t"+project+"\n");
-		textChunk.append("\t"+"</PROJECT>"+"\n");
-		textChunk.append("\t"+"<FLAGS>"+"\n");
-		textChunk.append("\t"+flags+"\n");
-		textChunk.append("\t"+"</FLAGS>"+"\n");
-		textChunk.append("\t"+"<ArgumentsCount>"+"\n");
-		textChunk.append("\t"+arguments.size()+"\n");
-		textChunk.append("\t"+"</ArgumentsCount>"+"\n");
+		textChunk.concat("\t"+"<ID>"+"\n");
+		textChunk.concat("\t"+id+"\n");
+		textChunk.concat("\t"+"</ID>"+"\n");
+		textChunk.concat("\t"+"<PROJECT>"+"\n");
+		textChunk.concat("\t"+project+"\n");
+		textChunk.concat("\t"+"</PROJECT>"+"\n");
+		textChunk.concat("\t"+"<FLAGS>"+"\n");
+		textChunk.concat("\t"+flags+"\n");
+		textChunk.concat("\t"+"</FLAGS>"+"\n");
+		textChunk.concat("\t"+"<ArgumentsCount>"+"\n");
+		textChunk.concat("\t"+arguments.size()+"\n");
+		textChunk.concat("\t"+"</ArgumentsCount>"+"\n");
 		for (Entry<String, String> argumentEntry : arguments.entrySet()) {
-			textChunk.append("\t"+"<KEY>"+"\n");
-			textChunk.append("\t"+argumentEntry.getKey()+"\n");
-			textChunk.append("\t"+"</KEY>"+"\n");
-			textChunk.append("\t"+"<VALUE>"+"\n");
-			textChunk.append("\t"+argumentEntry.getValue()+"\n");
-			textChunk.append("\t"+"</VALUE>"+"\n");
+			textChunk.concat("\t"+"<KEY>"+"\n");
+			textChunk.concat("\t"+argumentEntry.getKey()+"\n");
+			textChunk.concat("\t"+"</KEY>"+"\n");
+			textChunk.concat("\t"+"<VALUE>"+"\n");
+			textChunk.concat("\t"+argumentEntry.getValue()+"\n");
+			textChunk.concat("\t"+"</VALUE>"+"\n");
 		}
 		
 	}

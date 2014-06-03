@@ -65,9 +65,9 @@ public abstract class ResourceOperation extends UserOperation {
 	}
 	
 	protected void populateXMLTextChunk(OperationTextChunk textChunk){
-		textChunk.append("\t" + "<ResourcePath>" + "\n");
-		textChunk.append("\t" + resourcePath + "\n");
-		textChunk.append("\t" + "</ResourcePath>" + "\n");
+		textChunk.concat("\t" + "<ResourcePath>" + "\n");
+		textChunk.concat("\t" + resourcePath + "\n");
+		textChunk.concat("\t" + "</ResourcePath>" + "\n");
 	}
 
 	@Override

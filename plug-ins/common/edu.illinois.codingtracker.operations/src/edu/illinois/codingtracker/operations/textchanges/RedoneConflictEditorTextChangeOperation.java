@@ -41,12 +41,12 @@ public class RedoneConflictEditorTextChangeOperation extends ConflictEditorTextC
 	
 	@Override
 	protected void populateXMLTextChunk(OperationTextChunk textChunk){
-		textChunk.append("<RedoneConflictEditorTextChangeOperation>" + "\n");
+		textChunk.concat("<RedoneConflictEditorTextChangeOperation>" + "\n");
 		super.populateXMLTextChunk(textChunk);
-		textChunk.append("\t" + "<timestamp>" + "\n");
-		textChunk.append("\t" + getTime() + "\n");
-		textChunk.append("\t" + "</timestamp>" + "\n");
-		textChunk.append("</RedoneConflictEditorTextChangeOperation>" + "\n");
+		textChunk.concat("\t" + "<timestamp>" + "\n");
+		textChunk.concat("\t" + getTime() + "\n");
+		textChunk.concat("\t" + "</timestamp>" + "\n");
+		textChunk.concat("</RedoneConflictEditorTextChangeOperation>" + "\n");
 	}
 
 }

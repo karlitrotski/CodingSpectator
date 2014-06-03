@@ -45,12 +45,12 @@ public class UndoneRefactoringOperation extends RefactoringOperation {
 	}
 	@Override
 	protected void populateXMLTextChunk(OperationTextChunk textChunk) {
-		textChunk.append("<UndoneRefactoringOperation>"+"\n");
+		textChunk.concat("<UndoneRefactoringOperation>"+"\n");
 		super.populateXMLTextChunk(textChunk);
-		textChunk.append("\t" + "<timestamp>" + "\n");
-		textChunk.append("\t" + getTime() + "\n");
-		textChunk.append("\t" + "</timestamp>" + "\n");
-		textChunk.append("</UndoneRefactoringOperation>"+"\n");
+		textChunk.concat("\t" + "<timestamp>" + "\n");
+		textChunk.concat("\t" + getTime() + "\n");
+		textChunk.concat("\t" + "</timestamp>" + "\n");
+		textChunk.concat("</UndoneRefactoringOperation>"+"\n");
 		
 	}
 

@@ -42,7 +42,11 @@ public class StartedEclipseOperation extends UserOperation {
 	
 	@Override
 	protected void populateXMLTextChunk(OperationTextChunk textChunk){
-		//Nothing to populate here
+		textChunk.concat("<StartedEclipseOperation>" + "\n");
+		textChunk.concat("\t" + "<timestamp>" + "\n");
+		textChunk.concat("\t" + getTime() + "\n");
+		textChunk.concat("\t" + "</timestamp>" + "\n");
+		textChunk.concat("</StartedEclipseOperation>" + "\n");
 	}
 
 	@Override

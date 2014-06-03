@@ -51,12 +51,12 @@ public class EditedUnsychronizedFileOperation extends FileOperation {
 	
 	@Override
 	protected void populateXMLTextChunk(OperationTextChunk textChunk){
-		textChunk.append("<EditedUnsynchronizedFileOperation>" + "\n");
+		textChunk.concat("<EditedUnsynchronizedFileOperation>" + "\n");
 		super.populateXMLTextChunk(textChunk);
-		textChunk.append("\t" + "<EditorContent>" + "\n");
-		textChunk.append("\t" + editorContent + "\n");
-		textChunk.append("\t" + "</EditorContent>" + "\n");
-		textChunk.append("</EditedUnsynchronizedFileOperation>" + "\n");
+		textChunk.concat("\t" + "<EditorContent>" + "\n");
+		textChunk.concat("\t" + editorContent + "\n");
+		textChunk.concat("\t" + "</EditorContent>" + "\n");
+		textChunk.concat("</EditedUnsynchronizedFileOperation>" + "\n");
 	}
 
 
