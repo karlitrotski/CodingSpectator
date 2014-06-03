@@ -51,7 +51,7 @@ public class SaveMarkersStatusOperation extends UserOperation{
 	
 	@Override
 	protected void populateXMLTextChunk(OperationTextChunk textChunk){
-		textChunk.concat("<SaveMarkersStatusOp>" + "\n");
+		textChunk.concat("<SaveMarkersStatusOperation>" + "\n");
 		for (int i = 0; i < currentMarkers.length; i++) {
 			int kind = currentMarkers[i].getKind();
 			String lineNumber = currentMarkers[i].getAttribute("lineNumber").toString();
@@ -81,7 +81,7 @@ public class SaveMarkersStatusOperation extends UserOperation{
 		textChunk.concat("\t" + "<timestamp>" + "\n");
 		textChunk.concat("\t" + getTime() + "\n");
 		textChunk.concat("\t" + "</timestamp>" + "\n");
-		textChunk.concat("</SaveMarkersStatusOp>" + "\n");
+		textChunk.concat("</SaveMarkersStatusOperation>" + "\n");
 	}
 
 	@Override
