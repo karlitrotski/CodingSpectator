@@ -10,6 +10,7 @@
 public class QuickfixUsageOperation extends UserOperation {
 
 		protected ContentAssistEvent event;
+		
 		public QuickfixUsageOperation() {
 			super();
 		}
@@ -32,8 +33,19 @@ public class QuickfixUsageOperation extends UserOperation {
 
 		@Override
 		protected void populateTextChunk(OperationTextChunk textChunk) {
-			
 			textChunk.append("  "+event.assistant); 
+		}
+		
+		@Override
+		protected void populateXMLTextChunk(OperationTextChunk textChunk) {
+			textChunk.concat("<QuickfixUsageOperation>" + "\n");
+			textChunk.concat("\t" + "<ContentAssistEvent>" + "\n");
+			textChunk.concat("\t" + event.assistant + "\n");
+			textChunk.concat("\t" + "</ContentAssistEvent>" + "\n");
+			textChunk.concat("\t" + "<timestamp>" + "\n");
+			textChunk.concat("\t" + getTime() + "\n");
+			textChunk.concat("\t" + "</timestamp>" + "\n");
+			textChunk.concat("</QuickfixUsageOperation>" + "\n");
 		}
 
 		@Override

@@ -48,6 +48,41 @@ public class SaveMarkersStatusOperation extends UserOperation{
 			}
 		}
 	}
+	
+	@Override
+	protected void populateXMLTextChunk(OperationTextChunk textChunk){
+		textChunk.concat("<SaveMarkersStatusOp>" + "\n");
+		for (int i = 0; i < currentMarkers.length; i++) {
+			int kind = currentMarkers[i].getKind();
+			String lineNumber = currentMarkers[i].getAttribute("lineNumber").toString();
+			String value = currentMarkers[i].getAttribute("arguments").toString();
+			String message = currentMarkers[i].getAttribute("message").toString();
+			String resource = currentMarkers[i].getResource().getFullPath().toString();
+			if (kind == IResourceDelta.ADDED || kind == IResourceDelta.REMOVED) {
+				textChunk.concat("\t" + "\t" + "<CurrentMarker"+ i +">" + "\n");
+				textChunk.concat("\t" + "\t" + "<Kind>" + "\n");
+				textChunk.concat("\t" + "\t" + kind);
+				textChunk.concat("\t" + "\t" + "</Kind>" + "\n");
+				textChunk.concat("\t" + "\t" + "<LineNumber>" + "\n");
+				textChunk.concat("\t" + "\t" + lineNumber);
+				textChunk.concat("\t" + "\t" + "</LineNumber>" + "\n");
+				textChunk.concat("\t" + "\t" + "<Value>" + "\n");
+				textChunk.concat("\t" + "\t" + value);
+				textChunk.concat("\t" + "\t" + "</Value>" + "\n");
+				textChunk.concat("\t" + "\t" + "<Message>" + "\n");
+				textChunk.concat("\t" + "\t" + message);
+				textChunk.concat("\t" + "\t" + "</Message>" + "\n");
+				textChunk.concat("\t" + "\t" + "<Resource>" + "\n");
+				textChunk.concat("\t" + "\t" + resource);	
+				textChunk.concat("\t" + "\t" + "</Resource>" + "\n");
+				textChunk.concat("\t" + "\t" + "</CurrentMarker" + i +">" + "\n");
+			}
+		}
+		textChunk.concat("\t" + "<timestamp>" + "\n");
+		textChunk.concat("\t" + getTime() + "\n");
+		textChunk.concat("\t" + "</timestamp>" + "\n");
+		textChunk.concat("</SaveMarkersStatusOp>" + "\n");
+	}
 
 	@Override
 	protected void initializeFrom(OperationLexer operationLexer) {
