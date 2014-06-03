@@ -17,7 +17,8 @@ public class TextRecorder {
 	private final static SafeRecorder recorderInstance= new SafeRecorder("codingtracker/codechanges.txt");
 
 	public static void record(UserOperation userOperation) {
-		recorderInstance.record(userOperation.generateSerializationText());
+		recorderInstance.record(userOperation.generateXMLText());
+		//recorderInstance.record(userOperation.generateSerializationText());
 	}
 
 	public static String getMainRecordFilePath() {

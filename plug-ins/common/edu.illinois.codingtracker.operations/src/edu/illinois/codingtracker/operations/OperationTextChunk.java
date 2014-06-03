@@ -31,6 +31,14 @@ public class OperationTextChunk implements CharSequence {
 		}
 		text.append(OperationLexer.escapeString(str)).append(OperationLexer.DELIMETER_SYMBOL);
 	}
+	
+	public void concat(String str) {
+		if (str == null) {
+			str= "";
+		}
+		text.append(OperationLexer.escapeString(str));
+	}
+
 
 	public void append(int num) {
 		text.append(num).append(OperationLexer.DELIMETER_SYMBOL);
