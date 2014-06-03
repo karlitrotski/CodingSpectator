@@ -17,6 +17,7 @@ import org.eclipse.ui.IWorkbenchWindow;
 import org.eclipse.ui.texteditor.AbstractDecoratedTextEditor;
 
 import edu.illinois.codingtracker.compare.helpers.EditorHelper;
+import edu.illinois.codingtracker.operations.parts.IPartState;
 
 /**
  * 
@@ -110,7 +111,7 @@ public class PartListener extends BasicListener implements IPartListener2 {
 				IFile activatedFile = getFileOfWorkbenchPart(part);
 				operationRecorder.recordActivatedFile(activatedFile);
 			} else if (part instanceof IViewPart) {
-				operationRecorder.recortActivatedViewPart(part.getTitle());
+				operationRecorder.recordViewPart(part.getTitle(), IPartState.ACTIVATED);
 			}
 		}	
 	}
@@ -126,6 +127,8 @@ public class PartListener extends BasicListener implements IPartListener2 {
 		if(part!=null) {
 			if(part instanceof IEditorPart){
 				partClosed(part);
+			} else if (part instanceof IViewPart) {
+				operationRecorder.recordViewPart(part.getTitle(), IPartState.CLOSED);
 			}
 		}
 	}
@@ -142,6 +145,8 @@ public class PartListener extends BasicListener implements IPartListener2 {
 			if(part instanceof IEditorPart){
 				IFile openedFile = getFileOfWorkbenchPart(part);
 				operationRecorder.recordOpenedFile(openedFile);
+			} else if (part instanceof IViewPart) {
+				operationRecorder.recordViewPart(part.getTitle(), IPartState.OPENED);
 			}
 		}
 	}
@@ -153,6 +158,8 @@ public class PartListener extends BasicListener implements IPartListener2 {
 			if(part instanceof IEditorPart){
 				IFile hiddenFile = getFileOfWorkbenchPart(part);
 				operationRecorder.recordHiddenFile(hiddenFile);
+			} else if (part instanceof IViewPart) {
+				operationRecorder.recordViewPart(part.getTitle(), IPartState.HIDDEN);
 			}
 		}
 	}
@@ -164,6 +171,8 @@ public class PartListener extends BasicListener implements IPartListener2 {
 			if(part instanceof IEditorPart){
 				IFile visibleFile = getFileOfWorkbenchPart(part);
 				operationRecorder.recordVisibleFile(visibleFile);
+			} else if (part instanceof IViewPart) {
+				operationRecorder.recordViewPart(part.getTitle(), IPartState.VISIBLE);
 			}
 		}
 	}

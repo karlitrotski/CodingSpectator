@@ -416,18 +416,20 @@ public class OperationRecorder {
 	}
 
 
-	public void recordLooseFocus() {
-		
+	public void recordLooseFocus() {	
 		TextRecorder.record(new DetectFocusLooseWorkbench());
 	}
 
-	public void recordGainsFocus() {
-		
+	public void recordGainsFocus() {		
 		TextRecorder.record(new DetectFocusGainsWorkbench());
 	}
-public void recordShortcutsCommandName(String nCommand, String keyShortcuts) {
-		
+
+	public void recordShortcutsCommandName(String nCommand, String keyShortcuts) {
 		TextRecorder.record(new ShortCutCommandName(nCommand, keyShortcuts));
+	}
+
+	public void recordViewPart(String title, String state) {
+		TextRecorder.record(new ViewPartOperation(title, state));
 	}
 
 	public void recordActivatedFile(IFile activatedFile) {
@@ -435,10 +437,6 @@ public void recordShortcutsCommandName(String nCommand, String keyShortcuts) {
 		TextRecorder.record(new EditPartOperation(activatedFile, IPartState.ACTIVATED));
 	}
 
-	public void recortActivatedViewPart(String title) {
-		TextRecorder.record(new ViewPartOperation(title, IPartState.ACTIVATED));
-	}
-	
 	public void recordOpenedFile(IFile openedFile) {
 		invalidateLastEditedFile(openedFile);
 		TextRecorder.record(new EditPartOperation(openedFile, IPartState.OPENED));
@@ -452,7 +450,6 @@ public void recordShortcutsCommandName(String nCommand, String keyShortcuts) {
 	public void recordVisibleFile(IFile visibleFile) {
 		invalidateLastEditedFile(visibleFile);
 		TextRecorder.record(new EditPartOperation(visibleFile, IPartState.VISIBLE));
-		
 	}
 
 }
