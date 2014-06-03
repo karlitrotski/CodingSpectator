@@ -3,6 +3,9 @@
  */
 package edu.illinois.codingtracker.listeners;
 
+import java.util.Timer;
+import java.util.TimerTask;
+
 import org.eclipse.core.runtime.Platform;
 import org.eclipse.jdt.internal.ui.startup.StartupListener;
 
@@ -15,6 +18,7 @@ import edu.illinois.codingtracker.recording.TextRecorder;
  * 
  * @author Stas Negara
  * @author Mohsen Vakilian - Extracted PartListener from this class.
+ * @author Joffre Yagual - Added registration of AnnotationModelListener and CompletionListener
  * 18-04-2014 Add ListenerIWorkbench by Teofilo_Chambilla
  */
 public class JDTUIStartupListener implements StartupListener {
@@ -38,15 +42,27 @@ public class JDTUIStartupListener implements StartupListener {
 			RefactoringExecutionListener.register();
 			JUnitListener.register();
 			LaunchListener.register();
+			CompletionListener.register();
+			ResourceChangeListener.register();
 			ListenerFocus.register();
 			ListenerShortcuts.register();
 			TextRecorder.record(new StartedEclipseOperation());
 			TextRecorder.record(new PluginsList());
+			initializePluginsMonitor();
 		}
 	}
 
 	private static boolean doesMonitorUIExist() {
 		return Platform.getBundle("edu.illinois.codingspectator.monitor.ui") != null;
+	}
+	
+	/*
+	 * Initialize the timer to monitoring the plugins
+	 */
+	private void initializePluginsMonitor(){
+		Timer timer = new Timer();
+		TimerTask task = new MonitorTask();
+		timer.schedule(task, 150000,150000);
 	}
 
 }

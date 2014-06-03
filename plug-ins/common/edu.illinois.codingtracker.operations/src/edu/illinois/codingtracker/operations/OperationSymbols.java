@@ -10,7 +10,7 @@ package edu.illinois.codingtracker.operations;
  */
 public abstract class OperationSymbols {
 
-	//Used symbols: 26 + 17, remaining symbols: W X Y Z
+	//Used symbols: 26 + 17, remaining symbols: Y Z
 	//18-04-2014 Add Symbol Q and R for Application_Loose_focus/Gains
 	public static final char APPLICATION_SHORTCUTS= 'W';
 	public static final char APPLICATION_FOCUS_GAINS= 'Q';
@@ -105,7 +105,15 @@ public abstract class OperationSymbols {
 
 	public static final char REFERENCING_PROJECTS_CHANGED_SYMBOL= 'F';
 	
+	public static final char QUICKFIX_INVOCATION_SYMBOL= 'S';
+	
+	public static final char QUICKFIX_USAGE_SYMBOL= 'T';
+	
+	public static final char CODE_ERROR_SYMBOL= 'U';
+	
 	public static final char PLUGINS_SYMBOL= 'V'; //Issue ListaPlugins
 
 	public static final char PART_OPERATION_SYMBOL= '@';
+	
+	public static final char PLUGINS_USAGE = 'X';	
 }

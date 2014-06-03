@@ -11,11 +11,13 @@ import java.util.Set;
 import org.eclipse.compare.internal.CompareEditor;
 import org.eclipse.core.filebuffers.ITextFileBuffer;
 import org.eclipse.core.resources.IFile;
+import org.eclipse.core.resources.IMarkerDelta;
 import org.eclipse.core.resources.IResource;
 import org.eclipse.core.runtime.IPath;
 import org.eclipse.jdt.core.IJavaProject;
 import org.eclipse.jdt.core.JavaCore;
 import org.eclipse.jface.text.DocumentEvent;
+import org.eclipse.jface.text.contentassist.ContentAssistEvent;
 import org.eclipse.ltk.core.refactoring.RefactoringDescriptor;
 import org.eclipse.ltk.core.refactoring.history.RefactoringExecutionEvent;
 
@@ -66,10 +68,15 @@ import edu.illinois.codingtracker.operations.textchanges.RedoneTextChangeOperati
 import edu.illinois.codingtracker.operations.textchanges.TextChangeOperation;
 import edu.illinois.codingtracker.operations.textchanges.UndoneConflictEditorTextChangeOperation;
 import edu.illinois.codingtracker.operations.textchanges.UndoneTextChangeOperation;
+import cl.uchile.codingtracker.operations.annotations.AnnotationErrorOperation;
+import cl.uchile.codingtracker.operations.completions.CompletionQuickfixOperation;
+import cl.uchile.codingtracker.operations.completions.QuickfixUsageOperation;
+import cl.uchile.dcc.codingtracker.operations.markers.SaveMarkersStatusOperation;
 import edu.illinois.codingtracker.operations.parts.PartOperation;
 /**
  * 
  * @author Stas Negara
+ * @author Joffre Yagual - Added method recordNewAnnotationError
  * 
  */
 @SuppressWarnings("restriction")
@@ -388,6 +395,23 @@ public class OperationRecorder {
 			lastEditedFile= null;
 		}
 	}
+	
+	public void recordNewAnnotationError(int currentAnnotationErrors) {
+		TextRecorder.record(new AnnotationErrorOperation(currentAnnotationErrors));
+	}
+	
+	public void recordNewCompletionQuickfix(ContentAssistEvent event) {
+		TextRecorder.record(new CompletionQuickfixOperation(event));
+		
+	}
+	public void recordNewQuickfixUsage(ContentAssistEvent event) {
+		//TextRecorder.record(new QuickfixUsageOperation(event));
+	}
+	
+	public void recordMarkersStatus(IMarkerDelta [] deltas) {
+		TextRecorder.record(new SaveMarkersStatusOperation(deltas));
+	}
+
 
 	public void recordLooseFocus() {
 		
