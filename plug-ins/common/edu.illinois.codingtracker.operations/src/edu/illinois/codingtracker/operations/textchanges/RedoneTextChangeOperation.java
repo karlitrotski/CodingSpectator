@@ -41,12 +41,12 @@ public class RedoneTextChangeOperation extends TextChangeOperation {
 	
 	@Override
 	protected void populateXMLTextChunk(OperationTextChunk textChunk){
-		textChunk.append("<RedoneTextChangeOperation>" + "\n");
+		textChunk.concat("<RedoneTextChangeOperation>" + "\n");
 		super.populateXMLTextChunk(textChunk);
-		textChunk.append("\t" + "<timestamp>" + "\n");
-		textChunk.append("\t" + getTime() + "\n");
-		textChunk.append("\t" + "</timestamp>" + "\n");
-		textChunk.append("</RedoneTextChangeOperation>" + "\n");
+		textChunk.concat("\t" + "<timestamp>" + "\n");
+		textChunk.concat("\t" + getTime() + "\n");
+		textChunk.concat("\t" + "</timestamp>" + "\n");
+		textChunk.concat("</RedoneTextChangeOperation>" + "\n");
 	}
 
 }

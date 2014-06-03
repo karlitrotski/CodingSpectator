@@ -92,22 +92,22 @@ public class ReferencingProjectsChangedOperation extends UserOperation {
 
 	@Override
 	protected void populateXMLTextChunk(OperationTextChunk textChunk) {
-		textChunk.append("<ReferencingProjectsChangedOperation>"+"\n");
-		textChunk.append("\t"+"<ProjectName>"+"\n");
-		textChunk.append("\t"+"projectName"+"\n");
-		textChunk.append("\t"+"</ProjectName>"+"\n");
-		textChunk.append("\t"+"<ReferencingProjectsCount>"+"\n");
-		textChunk.append("\t"+referencingProjectNames.size()+"\n");
-		textChunk.append("\t"+"</ReferencingProjectsCount>"+"\n");
+		textChunk.concat("<ReferencingProjectsChangedOperation>"+"\n");
+		textChunk.concat("\t"+"<ProjectName>"+"\n");
+		textChunk.concat("\t"+"projectName"+"\n");
+		textChunk.concat("\t"+"</ProjectName>"+"\n");
+		textChunk.concat("\t"+"<ReferencingProjectsCount>"+"\n");
+		textChunk.concat("\t"+referencingProjectNames.size()+"\n");
+		textChunk.concat("\t"+"</ReferencingProjectsCount>"+"\n");
 		for (String referencingProjectName : referencingProjectNames) {
-			textChunk.append("\t"+"<ReferencingProjectName>"+"\n");
-			textChunk.append("\t"+referencingProjectName+"\n");
-			textChunk.append("\t"+"</ReferencingProjectName>"+"\n");
+			textChunk.concat("\t"+"<ReferencingProjectName>"+"\n");
+			textChunk.concat("\t"+referencingProjectName+"\n");
+			textChunk.concat("\t"+"</ReferencingProjectName>"+"\n");
 		}
-		textChunk.append("\t" + "<timestamp>" + "\n");
-		textChunk.append("\t" + getTime() + "\n");
-		textChunk.append("\t" + "</timestamp>" + "\n");
-		textChunk.append("</ReferencingProjectsChangedOperation>"+"\n");
+		textChunk.concat("\t" + "<timestamp>" + "\n");
+		textChunk.concat("\t" + getTime() + "\n");
+		textChunk.concat("\t" + "</timestamp>" + "\n");
+		textChunk.concat("</ReferencingProjectsChangedOperation>"+"\n");
 		
 		
 	}

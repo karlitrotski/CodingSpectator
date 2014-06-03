@@ -36,9 +36,9 @@ public abstract class UpdatedResourceOperation extends BreakableResourceOperatio
 	@Override
 	protected void populateXMLTextChunk(OperationTextChunk textChunk){
 		super.populateXMLTextChunk(textChunk);
-		textChunk.append("\t" + "<updateFlags>" + "\n");
-		textChunk.append("\t" + updateFlags + "\n");
-		textChunk.append("\t" + "</updateFlags>" + "\n");
+		textChunk.concat("\t" + "<updateFlags>" + "\n");
+		textChunk.concat("\t" + updateFlags + "\n");
+		textChunk.concat("\t" + "</updateFlags>" + "\n");
 	}
 
 	@Override

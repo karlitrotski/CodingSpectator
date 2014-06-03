@@ -36,6 +36,21 @@ public class ShortCutCommandName extends UserOperation{
 	protected void populateTextChunk(OperationTextChunk textChunk) {
 		textChunk.append(KeyShortcuts.trim() +"->"+commandName);
 	}
+	
+	@Override
+	protected void populateXMLTextChunk(OperationTextChunk textChunk){
+		textChunk.concat("<ShortCutCommandName>" + "\n");
+		textChunk.concat("\t" + "<KeyShortCuts>" + "\n");
+		textChunk.concat("\t" + KeyShortcuts.trim() + "\n");
+		textChunk.concat("\t" + "</KeyShortCuts>" + "\n");
+		textChunk.concat("\t" + "<CommandName>" + "\n");
+		textChunk.concat("\t" + commandName + "\n");
+		textChunk.concat("\t" + "</CommandName>" + "\n");
+		textChunk.concat("\t" + "<timestamp>" + "\n");
+		textChunk.concat("\t" + getTime() + "\n");
+		textChunk.concat("\t" + "</timestamp>" + "\n");
+		textChunk.concat("</ShortCutCommandName>" + "\n");
+	}
 
 	@Override
 	protected void initializeFrom(OperationLexer operationLexer) {

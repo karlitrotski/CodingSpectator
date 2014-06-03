@@ -41,12 +41,12 @@ public class PerformedConflictEditorTextChangeOperation extends ConflictEditorTe
 	
 	@Override
 	protected void populateXMLTextChunk(OperationTextChunk textChunk){
-		textChunk.append("<PerformedConflictEditorTextChangeOperation>" + "\n");
+		textChunk.concat("<PerformedConflictEditorTextChangeOperation>" + "\n");
 		super.populateXMLTextChunk(textChunk);
-		textChunk.append("\t" + "<timestamp>" + "\n");
-		textChunk.append("\t" + getTime() + "\n");
-		textChunk.append("\t" + "</timestamp>" + "\n");
-		textChunk.append("</PerformedConflictEditorTextChangeOperation>" + "\n");
+		textChunk.concat("\t" + "<timestamp>" + "\n");
+		textChunk.concat("\t" + getTime() + "\n");
+		textChunk.concat("\t" + "</timestamp>" + "\n");
+		textChunk.concat("</PerformedConflictEditorTextChangeOperation>" + "\n");
 	}
 
 }

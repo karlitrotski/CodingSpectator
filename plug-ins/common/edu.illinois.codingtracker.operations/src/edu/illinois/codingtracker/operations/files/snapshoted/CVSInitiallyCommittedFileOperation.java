@@ -35,12 +35,12 @@ public class CVSInitiallyCommittedFileOperation extends CommittedFileOperation {
 	
 	@Override
 	protected void populateXMLTextChunk(OperationTextChunk textChunk){
-		textChunk.append("<CVSInitiallyCommittedFileOperation>" + "\n");
+		textChunk.concat("<CVSInitiallyCommittedFileOperation>" + "\n");
 		super.populateXMLTextChunk(textChunk);
-		textChunk.append("\t" + "<timestamp>" + "\n");
-		textChunk.append("\t" + getTime() + "\n");
-		textChunk.append("\t" + "</timestamp>" + "\n");
-		textChunk.append("</CVSInitiallyCommittedFileOperation>" + "\n");
+		textChunk.concat("\t" + "<timestamp>" + "\n");
+		textChunk.concat("\t" + getTime() + "\n");
+		textChunk.concat("\t" + "</timestamp>" + "\n");
+		textChunk.concat("</CVSInitiallyCommittedFileOperation>" + "\n");
 	}
 
 }

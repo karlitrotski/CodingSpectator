@@ -56,15 +56,15 @@ public class CreatedResourceOperation extends UpdatedResourceOperation {
 	
 	@Override
 	protected void populateXMLTextChunk(OperationTextChunk textChunk){
-		textChunk.append("<CreatedResourceOperation>" + "\n");
+		textChunk.concat("<CreatedResourceOperation>" + "\n");
 		super.populateXMLTextChunk(textChunk);
-		textChunk.append("\t" + "<isFile>" + "\n");
-		textChunk.append("\t" + isFile + "\n");
-		textChunk.append("\t" + "</isFile>" + "\n");
-		textChunk.append("\t" + "<fileContent>" + "\n");
-		textChunk.append("\t" + fileContent + "\n");
-		textChunk.append("\t" + "</fileContent>" + "\n");
-		textChunk.append("</CreatedResourceOperation>" + "\n");
+		textChunk.concat("\t" + "<isFile>" + "\n");
+		textChunk.concat("\t" + isFile + "\n");
+		textChunk.concat("\t" + "</isFile>" + "\n");
+		textChunk.concat("\t" + "<fileContent>" + "\n");
+		textChunk.concat("\t" + fileContent + "\n");
+		textChunk.concat("\t" + "</fileContent>" + "\n");
+		textChunk.concat("</CreatedResourceOperation>" + "\n");
 	}
 
 	@Override
