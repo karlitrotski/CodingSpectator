@@ -68,15 +68,15 @@ public class ProjectOptionsChangedOperation extends OptionsChangedOperation {
 	
 	@Override
 	protected void populateXMLTextChunk(OperationTextChunk textChunk) {
-		textChunk.append("<ProjectOptionsChangedOperation>"+"\n");
-		textChunk.append("\t"+"<ProjectName>"+"\n");
-		textChunk.append("\t"+"projectName"+"\n");
-		textChunk.append("\t"+"</ProjectName>"+"\n");
+		textChunk.concat("<ProjectOptionsChangedOperation>"+"\n");
+		textChunk.concat("\t"+"<ProjectName>"+"\n");
+		textChunk.concat("\t"+"projectName"+"\n");
+		textChunk.concat("\t"+"</ProjectName>"+"\n");
 		super.populateXMLTextChunk(textChunk);
-		textChunk.append("\t" + "<timestamp>" + "\n");
-		textChunk.append("\t" + getTime() + "\n");
-		textChunk.append("\t" + "</timestamp>" + "\n");
-		textChunk.append("</ProjectOptionsChangedOperation>"+"\n");
+		textChunk.concat("\t" + "<timestamp>" + "\n");
+		textChunk.concat("\t" + getTime() + "\n");
+		textChunk.concat("\t" + "</timestamp>" + "\n");
+		textChunk.concat("</ProjectOptionsChangedOperation>"+"\n");
 	}
 
 }

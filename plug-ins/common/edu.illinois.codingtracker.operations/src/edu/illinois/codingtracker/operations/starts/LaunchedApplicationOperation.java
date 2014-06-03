@@ -60,26 +60,26 @@ public class LaunchedApplicationOperation extends UserOperation {
 	
 	@Override
 	protected void populateXMLTextChunk(OperationTextChunk textChunk){
-		textChunk.append("<LaunchedApplicationOperation>" + "\n");
-		textChunk.append("\t" + "<Launch_mode>" + "\n");
-		textChunk.append("\t" + launchMode + "\n");
-		textChunk.append("\t" + "</Launch_mode>" + "\n");
-		textChunk.append("\t" + "<Launch_Name>" + "\n");
-		textChunk.append("\t" + launchName + "\n");
-		textChunk.append("\t" + "</Launch_Name>" + "\n");
-		textChunk.append("\t" + "<Application>" + "\n");
-		textChunk.append("\t" + application + "\n");
-		textChunk.append("\t" + "</Application>" + "\n");
-		textChunk.append("\t" + "<Product>" + "\n");
-		textChunk.append("\t" + product + "\n");
-		textChunk.append("\t" + "</Product>" + "\n");
-		textChunk.append("\t" + "<UseProduct>" + "\n");
-		textChunk.append("\t" + useProduct + "\n");
-		textChunk.append("\t" + "</UseProduct>" + "\n");
-		textChunk.append("\t" + "<timestamp>" + "\n");
-		textChunk.append("\t" + getTime() + "\n");
-		textChunk.append("\t" + "</timestamp>" + "\n");
-		textChunk.append("</LaunchedApplicationOperation>" + "\n");
+		textChunk.concat("<LaunchedApplicationOperation>" + "\n");
+		textChunk.concat("\t" + "<Launch_mode>" + "\n");
+		textChunk.concat("\t" + launchMode + "\n");
+		textChunk.concat("\t" + "</Launch_mode>" + "\n");
+		textChunk.concat("\t" + "<Launch_Name>" + "\n");
+		textChunk.concat("\t" + launchName + "\n");
+		textChunk.concat("\t" + "</Launch_Name>" + "\n");
+		textChunk.concat("\t" + "<Application>" + "\n");
+		textChunk.concat("\t" + application + "\n");
+		textChunk.concat("\t" + "</Application>" + "\n");
+		textChunk.concat("\t" + "<Product>" + "\n");
+		textChunk.concat("\t" + product + "\n");
+		textChunk.concat("\t" + "</Product>" + "\n");
+		textChunk.concat("\t" + "<UseProduct>" + "\n");
+		textChunk.concat("\t" + useProduct + "\n");
+		textChunk.concat("\t" + "</UseProduct>" + "\n");
+		textChunk.concat("\t" + "<timestamp>" + "\n");
+		textChunk.concat("\t" + getTime() + "\n");
+		textChunk.concat("\t" + "</timestamp>" + "\n");
+		textChunk.concat("</LaunchedApplicationOperation>" + "\n");
 	}
 
 	@Override

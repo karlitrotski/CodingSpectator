@@ -49,15 +49,15 @@ public class SavedConflictEditorOperation extends ConflictEditorOperation {
 	
 	@Override
 	protected void populateXMLTextChunk(OperationTextChunk textChunk){
-		textChunk.append("<SavedConflictEditorOperation>" + "\n");
+		textChunk.concat("<SavedConflictEditorOperation>" + "\n");
 		super.populateXMLTextChunk(textChunk);
-		textChunk.append("\t" + "<Success>" + "\n");
-		textChunk.append("\t" + success + "\n");
-		textChunk.append("\t" + "</Success>" + "\n");
-		textChunk.append("\t" + "<timestamp>" + "\n");
-		textChunk.append("\t" + getTime() + "\n");
-		textChunk.append("\t" + "</timestamp>" + "\n");
-		textChunk.append("</SavedConflictEditorOperation>" + "\n");
+		textChunk.concat("\t" + "<Success>" + "\n");
+		textChunk.concat("\t" + success + "\n");
+		textChunk.concat("\t" + "</Success>" + "\n");
+		textChunk.concat("\t" + "<timestamp>" + "\n");
+		textChunk.concat("\t" + getTime() + "\n");
+		textChunk.concat("\t" + "</timestamp>" + "\n");
+		textChunk.concat("</SavedConflictEditorOperation>" + "\n");
 	}
 
 	@Override
