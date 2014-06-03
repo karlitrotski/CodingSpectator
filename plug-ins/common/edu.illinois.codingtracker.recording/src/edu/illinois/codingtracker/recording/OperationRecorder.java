@@ -72,7 +72,10 @@ import cl.uchile.codingtracker.operations.annotations.AnnotationErrorOperation;
 import cl.uchile.codingtracker.operations.completions.CompletionQuickfixOperation;
 import cl.uchile.codingtracker.operations.completions.QuickfixUsageOperation;
 import cl.uchile.dcc.codingtracker.operations.markers.SaveMarkersStatusOperation;
-import edu.illinois.codingtracker.operations.parts.PartOperation;
+import edu.illinois.codingtracker.operations.parts.EditPartOperation;
+import edu.illinois.codingtracker.operations.parts.ViewPartOperation;
+import edu.illinois.codingtracker.operations.parts.IPartState;
+
 /**
  * 
  * @author Stas Negara
@@ -429,22 +432,27 @@ public void recordShortcutsCommandName(String nCommand, String keyShortcuts) {
 
 	public void recordActivatedFile(IFile activatedFile) {
 		invalidateLastEditedFile(activatedFile);
-		TextRecorder.record(new PartOperation(activatedFile, PartOperation.ACTIVATED));
+		TextRecorder.record(new EditPartOperation(activatedFile, IPartState.ACTIVATED));
 	}
 
+	public void recortActivatedViewPart(String title) {
+		TextRecorder.record(new ViewPartOperation(title, IPartState.ACTIVATED));
+	}
+	
 	public void recordOpenedFile(IFile openedFile) {
 		invalidateLastEditedFile(openedFile);
-		TextRecorder.record(new PartOperation(openedFile, PartOperation.OPENED));
+		TextRecorder.record(new EditPartOperation(openedFile, IPartState.OPENED));
 	}
 
 	public void recordHiddenFile(IFile hiddenFile) {
 		invalidateLastEditedFile(hiddenFile);
-		TextRecorder.record(new PartOperation(hiddenFile, PartOperation.HIDDEN));
+		TextRecorder.record(new EditPartOperation(hiddenFile, IPartState.HIDDEN));
 	}
 
 	public void recordVisibleFile(IFile visibleFile) {
 		invalidateLastEditedFile(visibleFile);
-		TextRecorder.record(new PartOperation(visibleFile, PartOperation.VISIBLE));
+		TextRecorder.record(new EditPartOperation(visibleFile, IPartState.VISIBLE));
 		
 	}
+
 }

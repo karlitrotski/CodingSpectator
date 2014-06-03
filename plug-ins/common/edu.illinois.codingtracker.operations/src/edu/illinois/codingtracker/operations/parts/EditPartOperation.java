@@ -9,31 +9,27 @@ import edu.illinois.codingtracker.operations.files.FileOperation;
 /**
  * @see edu.illinois.codingtracker.listeners.PartListener.partActivated(IWorkBenchPart part)
  * */
-public class PartOperation extends FileOperation {
+public class EditPartOperation extends FileOperation implements IPartState {
 	
-	public static final String ACTIVATED = "ACTIVATED";
-	public static final String OPENED = "OPENED";
-	public static final String HIDDEN = "HIDDEN";
-	public static final String VISIBLE = "VISIBLE";
 	private String description;
 
-	public PartOperation() {
+	public EditPartOperation() {
 		super();
 	}
 
-	public PartOperation(IFile file, String description) {
+	public EditPartOperation(IFile file, String description) {
 		super(file);
 		this.description = description;
 	}
 
 	@Override
 	protected char getOperationSymbol() {	
-		return OperationSymbols.PART_OPERATION_SYMBOL;
+		return OperationSymbols.EDIT_PART_OPERATION_SYMBOL;
 	}
 
 	@Override
 	public String getDescription() {
-		return "Part Operation, description: " + description;
+		return "Edit Part Operation, description: " + description;
 	}
 
 	@Override

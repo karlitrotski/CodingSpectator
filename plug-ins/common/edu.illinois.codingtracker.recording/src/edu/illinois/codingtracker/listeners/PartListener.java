@@ -9,6 +9,7 @@ import org.eclipse.swt.widgets.Display;
 import org.eclipse.ui.IEditorPart;
 import org.eclipse.ui.IEditorReference;
 import org.eclipse.ui.IPartListener2;
+import org.eclipse.ui.IViewPart;
 import org.eclipse.ui.IWorkbenchPage;
 import org.eclipse.ui.IWorkbenchPart;
 import org.eclipse.ui.IWorkbenchPartReference;
@@ -52,11 +53,6 @@ public class PartListener extends BasicListener implements IPartListener2 {
 				}
 			}
 		});
-	}
-
-	public void partActivated(IWorkbenchPart part) {
-		IFile activatedFile = getFileOfWorkbenchPart(part);
-		operationRecorder.recordActivatedFile(activatedFile);
 	}
 
 	public void partClosed(IWorkbenchPart part) {
@@ -111,7 +107,10 @@ public class PartListener extends BasicListener implements IPartListener2 {
 		IWorkbenchPart part= partRef.getPart(true);
 		if(part!=null) {
 			if(part instanceof IEditorPart){
-				partActivated(part);
+				IFile activatedFile = getFileOfWorkbenchPart(part);
+				operationRecorder.recordActivatedFile(activatedFile);
+			} else if (part instanceof IViewPart) {
+				operationRecorder.recortActivatedViewPart(part.getTitle());
 			}
 		}	
 	}

@@ -113,7 +113,9 @@ public abstract class OperationSymbols {
 	
 	public static final char PLUGINS_SYMBOL= 'V'; //Issue ListaPlugins
 
-	public static final char PART_OPERATION_SYMBOL= '@';
+	public static final char EDIT_PART_OPERATION_SYMBOL= '@';
 	
-	public static final char PLUGINS_USAGE = 'X';	
+	public static final char PLUGINS_USAGE = 'X';
+
+	public static final char VIEW_PART_OPERATION_SYMBOL = '%';	
 }
