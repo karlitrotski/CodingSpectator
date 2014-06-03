@@ -48,28 +48,15 @@ public class TestCaseFinishedOperation extends JUnitOperation {
 	
 	@Override
 	protected void populateXMLTextChunk(OperationTextChunk textChunk){
-		textChunk.append("<TestCaseFinishedOperation>" + "\n");
+		textChunk.concat("<TestCaseFinishedOperation>" + "\n");
 		super.populateXMLTextChunk(textChunk);
-		textChunk.append("\t" + "<Result>" + "\n");
-		textChunk.append("\t" + result + "\n");
-		textChunk.append("\t" + "</Result>" + "\n");
-		textChunk.append("\t" + "<timestamp>" + "\n");
-		textChunk.append("\t" + getTime() + "\n");
-		textChunk.append("\t" + "</timestamp>" + "\n");
-		textChunk.append("</TestCaseFinishedOperation>" + "\n");
-	}
-	
-	@Override
-	protected void populateXMLTextChunk(OperationTextChunk textChunk){
-		textChunk.append("<TestCaseFinishedOperation>" + "\n");
-		super.populateXMLTextChunk(textChunk);
-		textChunk.append("\t" + "<Result>" + "\n");
-		textChunk.append("\t" + result + "\n");
-		textChunk.append("\t" + "</Result>" + "\n");
-		textChunk.append("\t" + "<timestamp>" + "\n");
-		textChunk.append("\t" + getTime() + "\n");
-		textChunk.append("\t" + "</timestamp>" + "\n");
-		textChunk.append("</TestCaseFinishedOperation>" + "\n");
+		textChunk.concat("\t" + "<Result>" + "\n");
+		textChunk.concat("\t" + result + "\n");
+		textChunk.concat("\t" + "</Result>" + "\n");
+		textChunk.concat("\t" + "<timestamp>" + "\n");
+		textChunk.concat("\t" + getTime() + "\n");
+		textChunk.concat("\t" + "</timestamp>" + "\n");
+		textChunk.concat("</TestCaseFinishedOperation>" + "\n");
 	}
 
 	@Override

@@ -34,6 +34,14 @@ public class CompletionQuickfixOperation extends UserOperation {
 	protected void populateTextChunk(OperationTextChunk textChunk) {
 		textChunk.append("");//""+event); 
 	}
+	
+	protected void populateXMLTextChunk(OperationTextChunk textChunk) {
+		textChunk.concat("<CompletionQuickfixOperation>"+"\n");
+		textChunk.concat("\t" + "<timestamp>" + "\n");
+		textChunk.concat("\t" + getTime() + "\n");
+		textChunk.concat("\t" + "</timestamp>" + "\n");	
+		textChunk.concat("</CompletionQuickfixOperation>"+"\n");
+	}
 
 	@Override
 	protected void initializeFrom(OperationLexer operationLexer) {

@@ -36,9 +36,18 @@ public class TerminatedApplicationOperation extends LaunchedApplicationOperation
 	public String getDescription() {
 		return "Terminated application";
 	}
-
+	
 	@Override
 	protected void populateTextChunk(OperationTextChunk textChunk) {
+		textChunk.append(launchMode);
+		textChunk.append(launchName);
+		textChunk.append(application);
+		textChunk.append(product);
+		textChunk.append(useProduct);
+	}
+
+	@Override
+	protected void populateXMLTextChunk(OperationTextChunk textChunk) {
 		textChunk.concat("<TerminatedApplicationOperation>" + "\n");
 		textChunk.concat("\t" + "<Launch_mode>" + "\n");
 		textChunk.concat("\t" + launchMode + "\n");
