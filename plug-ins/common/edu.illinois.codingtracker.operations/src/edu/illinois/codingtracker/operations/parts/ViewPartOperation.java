@@ -15,11 +15,11 @@ import edu.illinois.codingtracker.operations.UserOperation;
 public class ViewPartOperation extends UserOperation implements IPartState {
 
 	private String title;
-	private String description;
+	private String state;
 
-	public ViewPartOperation(String title, String description) {
+	public ViewPartOperation(String title, String state) {
 		this.title = title;
-		this.description = description;
+		this.state = state;
 	}
 
 	/* (non-Javadoc)
@@ -35,7 +35,7 @@ public class ViewPartOperation extends UserOperation implements IPartState {
 	 */
 	@Override
 	public String getDescription() {
-		return "View Part Operation";
+		return "View Part Operation, state: " + state;
 	}
 
 	/* (non-Javadoc)
@@ -43,7 +43,7 @@ public class ViewPartOperation extends UserOperation implements IPartState {
 	 */
 	@Override
 	protected void populateTextChunk(OperationTextChunk textChunk) {
-		textChunk.append(description);
+		textChunk.append(state);
 		textChunk.append(title);
 	}
 
@@ -52,7 +52,7 @@ public class ViewPartOperation extends UserOperation implements IPartState {
 	 */
 	@Override
 	protected void initializeFrom(OperationLexer operationLexer) {
-		description = operationLexer.readString();
+		state = operationLexer.readString();
 		title = operationLexer.readString();
 	}
 
@@ -66,9 +66,12 @@ public class ViewPartOperation extends UserOperation implements IPartState {
 	}
 
 	@Override
-	protected void populateXMLTextChunk(OperationTextChunk textChunk) {
-		textChunk.append(description);
-		textChunk.append(title);
+	protected void populateXMLTextChunk(OperationTextChunk textChunk) {		
+		textChunk.concat("<ViewPartOperation>" + "\n");
+		textChunk.concat("\t" + "<state>" + state + "</state>" +"\n");
+		textChunk.concat("\t" + "<title>" + title +"</title>" +"\n");
+		textChunk.concat("\t" + "<timestamp>" + getTime() + "</timestamp>" + "\n");
+		textChunk.concat("</ViewPartOperation>" + "\n");
 	}
 
 }

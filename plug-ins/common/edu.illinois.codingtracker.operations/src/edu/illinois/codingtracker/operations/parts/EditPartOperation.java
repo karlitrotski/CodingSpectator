@@ -11,15 +11,15 @@ import edu.illinois.codingtracker.operations.files.FileOperation;
  * */
 public class EditPartOperation extends FileOperation implements IPartState {
 	
-	private String description;
-
+	private String state;
+	
 	public EditPartOperation() {
 		super();
 	}
 
-	public EditPartOperation(IFile file, String description) {
+	public EditPartOperation(IFile file, String state) {
 		super(file);
-		this.description = description;
+		this.state = state;
 	}
 
 	@Override
@@ -29,7 +29,7 @@ public class EditPartOperation extends FileOperation implements IPartState {
 
 	@Override
 	public String getDescription() {
-		return "Edit Part Operation, description: " + description;
+		return "Edit Part Operation, state: " + state;
 	}
 
 	@Override
@@ -40,26 +40,22 @@ public class EditPartOperation extends FileOperation implements IPartState {
 
 	@Override
 	protected void populateTextChunk(OperationTextChunk textChunk) {
-		textChunk.append(description);
+		textChunk.append(state);
 		super.populateTextChunk(textChunk);
 	}
 	
 	@Override
 	protected void populateXMLTextChunk(OperationTextChunk textChunk){
-		textChunk.concat("<PartOperation>" + "\n");
+		textChunk.concat("<EditPartOperation>" + "\n");
 		super.populateXMLTextChunk(textChunk);
-		textChunk.concat("\t" + "<description>" + "\n");
-		textChunk.concat("\t" + description + "\n");
-		textChunk.concat("\t" + "</description>" + "\n");
-		textChunk.concat("\t" + "<timestamp>" + "\n");
-		textChunk.concat("\t" + getTime() + "\n");
-		textChunk.concat("\t" + "</timestamp>" + "\n");
-		textChunk.concat("</PartOperation>" + "\n");
+		textChunk.concat("\t" + "<state>" + state + "</state>" + "\n");
+		textChunk.concat("\t" + "<timestamp>" + getTime() + "</timestamp>" + "\n");
+		textChunk.concat("</EditPartOperation>" + "\n");
 	}
 
 	@Override
 	protected void initializeFrom(OperationLexer operationLexer) {
-		description = operationLexer.readString();
+		state = operationLexer.readString();
 		super.initializeFrom(operationLexer);
 	}
 
