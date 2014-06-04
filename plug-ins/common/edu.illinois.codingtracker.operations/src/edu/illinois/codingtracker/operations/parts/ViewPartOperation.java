@@ -65,4 +65,10 @@ public class ViewPartOperation extends UserOperation implements IPartState {
 
 	}
 
+	@Override
+	protected void populateXMLTextChunk(OperationTextChunk textChunk) {
+		textChunk.append(description);
+		textChunk.append(title);
+	}
+
 }
