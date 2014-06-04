@@ -7,6 +7,7 @@ import org.eclipse.core.commands.ExecutionException;
 import org.eclipse.jface.text.DocumentEvent;
 
 import edu.illinois.codingtracker.operations.OperationSymbols;
+import edu.illinois.codingtracker.operations.OperationTextChunk;
 
 /**
  * 
@@ -36,6 +37,16 @@ public class RedoneConflictEditorTextChangeOperation extends ConflictEditorTextC
 	@Override
 	protected void replaySpecificTextChange() throws ExecutionException {
 		getCurrentDocumentUndoManager().redo();
+	}
+	
+	@Override
+	protected void populateXMLTextChunk(OperationTextChunk textChunk){
+		textChunk.concat("<RedoneConflictEditorTextChangeOperation>" + "\n");
+		super.populateXMLTextChunk(textChunk);
+		textChunk.concat("\t" + "<timestamp>" + "\n");
+		textChunk.concat("\t" + getTime() + "\n");
+		textChunk.concat("\t" + "</timestamp>" + "\n");
+		textChunk.concat("</RedoneConflictEditorTextChangeOperation>" + "\n");
 	}
 
 }

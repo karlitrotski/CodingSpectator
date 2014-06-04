@@ -38,6 +38,17 @@ public class AnnotationErrorOperation extends UserOperation {
 	protected void populateTextChunk(OperationTextChunk textChunk) {
 		textChunk.append(Integer.toString(this.annotationErrorsNumber));
 	}
+	
+	protected void populateXMLTextChunk(OperationTextChunk textChunk) {
+		textChunk.concat("<AnnotationErrorOperation>"+"\n");
+		textChunk.concat("\t"+"<ErrorsNumber>"+"\n");
+		textChunk.concat("\t"+annotationErrorsNumber+"\n");
+		textChunk.concat("\t"+"</ErrorsNumber>"+"\n");
+		textChunk.concat("\t" + "<timestamp>" + "\n");
+		textChunk.concat("\t" + getTime() + "\n");
+		textChunk.concat("\t" + "</timestamp>" + "\n");	
+		textChunk.concat("</AnnotationErrorOperation>"+"\n");
+	}
 
 	@Override
 	protected void initializeFrom(OperationLexer operationLexer) {

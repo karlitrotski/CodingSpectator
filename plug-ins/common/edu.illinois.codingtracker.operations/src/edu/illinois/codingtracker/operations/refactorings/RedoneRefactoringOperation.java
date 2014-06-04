@@ -7,6 +7,7 @@ import org.eclipse.core.runtime.CoreException;
 import org.eclipse.ltk.core.refactoring.RefactoringDescriptor;
 
 import edu.illinois.codingtracker.operations.OperationSymbols;
+import edu.illinois.codingtracker.operations.OperationTextChunk;
 
 /**
  * This operation is no longer recorded.
@@ -41,6 +42,17 @@ public class RedoneRefactoringOperation extends RefactoringOperation {
 		if (!unperformedRefactorings.contains(getTime())) {
 			getRefactoringUndoManager().performRedo(null, null);
 		}
+	}
+	
+	@Override
+	protected void populateXMLTextChunk(OperationTextChunk textChunk) {
+		textChunk.concat("<RedoneRefactoringOperation>"+"\n");
+		super.populateXMLTextChunk(textChunk);
+		textChunk.concat("\t" + "<timestamp>" + "\n");
+		textChunk.concat("\t" + getTime() + "\n");
+		textChunk.concat("\t" + "</timestamp>" + "\n");
+		textChunk.concat("</RedoneRefactoringOperation>"+"\n");
+		
 	}
 
 }

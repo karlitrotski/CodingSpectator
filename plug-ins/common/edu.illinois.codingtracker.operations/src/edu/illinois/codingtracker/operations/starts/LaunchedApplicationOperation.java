@@ -57,6 +57,30 @@ public class LaunchedApplicationOperation extends UserOperation {
 		textChunk.append(product);
 		textChunk.append(useProduct);
 	}
+	
+	@Override
+	protected void populateXMLTextChunk(OperationTextChunk textChunk){
+		textChunk.concat("<LaunchedApplicationOperation>" + "\n");
+		textChunk.concat("\t" + "<Launch_mode>" + "\n");
+		textChunk.concat("\t" + launchMode + "\n");
+		textChunk.concat("\t" + "</Launch_mode>" + "\n");
+		textChunk.concat("\t" + "<Launch_Name>" + "\n");
+		textChunk.concat("\t" + launchName + "\n");
+		textChunk.concat("\t" + "</Launch_Name>" + "\n");
+		textChunk.concat("\t" + "<Application>" + "\n");
+		textChunk.concat("\t" + application + "\n");
+		textChunk.concat("\t" + "</Application>" + "\n");
+		textChunk.concat("\t" + "<Product>" + "\n");
+		textChunk.concat("\t" + product + "\n");
+		textChunk.concat("\t" + "</Product>" + "\n");
+		textChunk.concat("\t" + "<UseProduct>" + "\n");
+		textChunk.concat("\t" + useProduct + "\n");
+		textChunk.concat("\t" + "</UseProduct>" + "\n");
+		textChunk.concat("\t" + "<timestamp>" + "\n");
+		textChunk.concat("\t" + getTime() + "\n");
+		textChunk.concat("\t" + "</timestamp>" + "\n");
+		textChunk.concat("</LaunchedApplicationOperation>" + "\n");
+	}
 
 	@Override
 	protected void initializeFrom(OperationLexer operationLexer) {

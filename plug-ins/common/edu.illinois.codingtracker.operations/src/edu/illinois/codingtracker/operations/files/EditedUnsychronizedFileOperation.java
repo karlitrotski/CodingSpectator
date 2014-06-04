@@ -48,6 +48,17 @@ public class EditedUnsychronizedFileOperation extends FileOperation {
 		super.populateTextChunk(textChunk);
 		textChunk.append(editorContent);
 	}
+	
+	@Override
+	protected void populateXMLTextChunk(OperationTextChunk textChunk){
+		textChunk.concat("<EditedUnsynchronizedFileOperation>" + "\n");
+		super.populateXMLTextChunk(textChunk);
+		textChunk.concat("\t" + "<EditorContent>" + "\n");
+		textChunk.concat("\t" + editorContent + "\n");
+		textChunk.concat("\t" + "</EditorContent>" + "\n");
+		textChunk.concat("</EditedUnsynchronizedFileOperation>" + "\n");
+	}
+
 
 	@Override
 	protected void initializeFrom(OperationLexer operationLexer) {

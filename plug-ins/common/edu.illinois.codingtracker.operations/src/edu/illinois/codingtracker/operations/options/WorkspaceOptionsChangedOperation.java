@@ -9,6 +9,7 @@ import java.util.Map;
 import org.eclipse.jdt.core.JavaCore;
 
 import edu.illinois.codingtracker.operations.OperationSymbols;
+import edu.illinois.codingtracker.operations.OperationTextChunk;
 
 /**
  * 
@@ -38,6 +39,16 @@ public class WorkspaceOptionsChangedOperation extends OptionsChangedOperation {
 	@Override
 	public void replay() throws Exception {
 		JavaCore.setOptions(new Hashtable<String, String>(options));
+	}
+	
+	@Override
+	protected void populateXMLTextChunk(OperationTextChunk textChunk) {
+		textChunk.concat("<WorkspaceOptionsChangedOperation"+"\n");
+		super.populateXMLTextChunk(textChunk);
+		textChunk.concat("\t" + "<timestamp>" + "\n");
+		textChunk.concat("\t" + getTime() + "\n");
+		textChunk.concat("\t" + "</timestamp>" + "\n");
+		textChunk.concat("</WorkspaceOptionsChangedOperation"+"\n");		
 	}
 
 }

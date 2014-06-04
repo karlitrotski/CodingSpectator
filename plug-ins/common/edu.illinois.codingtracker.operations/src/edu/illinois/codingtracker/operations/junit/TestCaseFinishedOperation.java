@@ -45,6 +45,19 @@ public class TestCaseFinishedOperation extends JUnitOperation {
 		textChunk.append(progressState);
 		textChunk.append(trace);
 	}
+	
+	@Override
+	protected void populateXMLTextChunk(OperationTextChunk textChunk){
+		textChunk.concat("<TestCaseFinishedOperation>" + "\n");
+		super.populateXMLTextChunk(textChunk);
+		textChunk.concat("\t" + "<Result>" + "\n");
+		textChunk.concat("\t" + result + "\n");
+		textChunk.concat("\t" + "</Result>" + "\n");
+		textChunk.concat("\t" + "<timestamp>" + "\n");
+		textChunk.concat("\t" + getTime() + "\n");
+		textChunk.concat("\t" + "</timestamp>" + "\n");
+		textChunk.concat("</TestCaseFinishedOperation>" + "\n");
+	}
 
 	@Override
 	protected void initializeFrom(OperationLexer operationLexer) {

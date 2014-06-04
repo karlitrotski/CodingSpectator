@@ -6,6 +6,7 @@ package edu.illinois.codingtracker.operations.files.snapshoted;
 import org.eclipse.core.resources.IFile;
 
 import edu.illinois.codingtracker.operations.OperationSymbols;
+import edu.illinois.codingtracker.operations.OperationTextChunk;
 
 /**
  * 
@@ -30,6 +31,16 @@ public class NewFileOperation extends SnapshotedFileOperation {
 	@Override
 	public String getDescription() {
 		return "New file";
+	}
+	
+	@Override
+	protected void populateXMLTextChunk(OperationTextChunk textChunk){
+		textChunk.concat("<NewFileOperation>" + "\n");
+		super.populateXMLTextChunk(textChunk);
+		textChunk.concat("\t" + "<timestamp>" + "\n");
+		textChunk.concat("\t" + getTime() + "\n");
+		textChunk.concat("\t" + "</timestamp>" + "\n");
+		textChunk.concat("</NewFileOperation>" + "\n");
 	}
 
 }

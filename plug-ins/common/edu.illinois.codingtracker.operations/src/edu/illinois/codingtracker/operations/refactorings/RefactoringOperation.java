@@ -152,6 +152,31 @@ public abstract class RefactoringOperation extends UserOperation {
 		sb.append(super.toString());
 		return sb.toString();
 	}
+	
+	@Override
+	protected void populateXMLTextChunk(OperationTextChunk textChunk) {
+		textChunk.concat("\t"+"<ID>"+"\n");
+		textChunk.concat("\t"+id+"\n");
+		textChunk.concat("\t"+"</ID>"+"\n");
+		textChunk.concat("\t"+"<PROJECT>"+"\n");
+		textChunk.concat("\t"+project+"\n");
+		textChunk.concat("\t"+"</PROJECT>"+"\n");
+		textChunk.concat("\t"+"<FLAGS>"+"\n");
+		textChunk.concat("\t"+flags+"\n");
+		textChunk.concat("\t"+"</FLAGS>"+"\n");
+		textChunk.concat("\t"+"<ArgumentsCount>"+"\n");
+		textChunk.concat("\t"+arguments.size()+"\n");
+		textChunk.concat("\t"+"</ArgumentsCount>"+"\n");
+		for (Entry<String, String> argumentEntry : arguments.entrySet()) {
+			textChunk.concat("\t"+"<KEY>"+"\n");
+			textChunk.concat("\t"+argumentEntry.getKey()+"\n");
+			textChunk.concat("\t"+"</KEY>"+"\n");
+			textChunk.concat("\t"+"<VALUE>"+"\n");
+			textChunk.concat("\t"+argumentEntry.getValue()+"\n");
+			textChunk.concat("\t"+"</VALUE>"+"\n");
+		}
+		
+	}
 
 	protected abstract void replayRefactoring(RefactoringDescriptor refactoringDescriptor) throws CoreException;
 

@@ -58,6 +58,19 @@ public class RefreshedFileOperation extends SnapshotedFileOperation {
 		textChunk.append(replacedText);
 		textChunk.append(isCausedByConflictEditorSave);
 	}
+	
+	@Override
+	protected void populateXMLTextChunk(OperationTextChunk textChunk){
+		textChunk.concat("<RefreshedFileOperation>" + "\n");
+		super.populateXMLTextChunk(textChunk);
+		textChunk.concat("\t" + "<replacedText>" + "\n");
+		textChunk.concat("\t" + replacedText + "\n");
+		textChunk.concat("\t" + "</replacedText>" + "\n");
+		textChunk.concat("\t" + "<IsCausedByConflictEditorSave>" + "\n");
+		textChunk.concat("\t" + isCausedByConflictEditorSave + "\n");
+		textChunk.concat("\t" + "<IsCausedByConflictEditorSave" + "\n");
+		textChunk.concat("</RefreshedFileOperation>" + "\n");
+	}
 
 	@Override
 	protected void initializeFrom(OperationLexer operationLexer) {

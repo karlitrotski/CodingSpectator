@@ -9,6 +9,7 @@ import edu.illinois.codingtracker.operations.OperationSymbols;
 import edu.illinois.codingtracker.operations.OperationTextChunk;
 import edu.illinois.codingtracker.operations.UserOperation;
 
+//Esta clase esta repetida en el package operations.focus
 public class DetectFocusGainsWorkbench extends UserOperation{
 	
 	public DetectFocusGainsWorkbench() {
@@ -29,6 +30,16 @@ public class DetectFocusGainsWorkbench extends UserOperation{
 		// TODO Auto-generated method stub
 		
 	}
+	
+	@Override
+	protected void populateXMLTextChunk(OperationTextChunk textChunk) {
+		textChunk.concat("<DetectFocusGainsWorkbench>"+"\n");
+		textChunk.concat("\t" + "<timestamp>" + "\n");
+		textChunk.concat("\t" + getTime() + "\n");
+		textChunk.concat("\t" + "</timestamp>" + "\n");	
+		textChunk.concat("</DetectFocusGainsWorkbench>"+"\n");
+	}
+	
 	@Override
 	protected void initializeFrom(OperationLexer operationLexer) {
 		// TODO Auto-generated method stub

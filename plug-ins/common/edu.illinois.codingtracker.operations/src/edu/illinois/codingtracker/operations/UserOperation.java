@@ -16,7 +16,7 @@ import edu.illinois.codingtracker.helpers.Debugger;
  * @author Stas Negara
  * 
  */
-public abstract class UserOperation {
+public abstract class UserOperation{
 
 	//Made public to be able to assign when the replayer is loaded/reset
 	public static boolean isReplayedRefactoring= false;
@@ -39,6 +39,12 @@ public abstract class UserOperation {
 		populateTextChunk(textChunk);
 		textChunk.append(timestamp);
 		Debugger.debugTextChunk(getDescription() + ": ", textChunk);
+		return textChunk;
+	}
+	
+	public OperationTextChunk generateXMLText(){
+		OperationTextChunk textChunk= new OperationTextChunk();
+		populateXMLTextChunk(textChunk);
 		return textChunk;
 	}
 
@@ -75,6 +81,8 @@ public abstract class UserOperation {
 	public abstract String getDescription();
 
 	protected abstract void populateTextChunk(OperationTextChunk textChunk);
+	
+	protected abstract void populateXMLTextChunk(OperationTextChunk textChunk);
 
 	protected abstract void initializeFrom(OperationLexer operationLexer);
 

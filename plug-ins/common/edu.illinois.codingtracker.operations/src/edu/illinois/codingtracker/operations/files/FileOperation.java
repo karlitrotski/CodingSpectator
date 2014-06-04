@@ -6,6 +6,7 @@ package edu.illinois.codingtracker.operations.files;
 import org.eclipse.core.resources.IFile;
 
 import edu.illinois.codingtracker.helpers.ResourceHelper;
+import edu.illinois.codingtracker.operations.OperationTextChunk;
 import edu.illinois.codingtracker.operations.resources.ResourceOperation;
 
 /**
@@ -23,5 +24,11 @@ public abstract class FileOperation extends ResourceOperation {
 		super();
 		resourcePath= ResourceHelper.getPortableResourcePath(file);
 	}
+	
+	@Override
+	protected void populateXMLTextChunk(OperationTextChunk textChunk){
+		super.populateXMLTextChunk(textChunk);
+	}
+
 
 }

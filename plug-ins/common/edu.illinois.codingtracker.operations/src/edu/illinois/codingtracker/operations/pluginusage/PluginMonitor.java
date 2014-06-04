@@ -45,6 +45,18 @@ public class PluginMonitor extends UserOperation {
 	protected void populateTextChunk(OperationTextChunk textChunk) {
 		textChunk.append(text);
 	}
+	
+	@Override
+	protected void populateXMLTextChunk(OperationTextChunk textChunk) {
+		textChunk.concat("<TerminatedApplicationOperation>" + "\n");
+		textChunk.concat("\t" + "<text>" + "\n");
+		textChunk.concat("\t" + text + "\n");
+		textChunk.concat("\t" + "</text>" + "\n");	
+		textChunk.concat("\t" + "<timestamp>" + "\n");
+		textChunk.concat("\t" + getTime() + "\n");
+		textChunk.concat("\t" + "</timestamp>" + "\n");
+		textChunk.concat("</TerminatedApplicationOperation>" + "\n");
+	}
 
 	@Override
 	protected void initializeFrom(OperationLexer operationLexer) {

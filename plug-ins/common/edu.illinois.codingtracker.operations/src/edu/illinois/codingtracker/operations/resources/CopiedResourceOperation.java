@@ -9,6 +9,7 @@ import org.eclipse.core.runtime.IPath;
 import org.eclipse.core.runtime.Path;
 
 import edu.illinois.codingtracker.operations.OperationSymbols;
+import edu.illinois.codingtracker.operations.OperationTextChunk;
 
 /**
  * 
@@ -38,6 +39,16 @@ public class CopiedResourceOperation extends ReorganizedResourceOperation {
 	@Override
 	public void replayReorganizedResourceOperation(IResource resource) throws CoreException {
 		resource.copy(new Path(destinationPath), updateFlags, null);
+	}
+	
+	@Override
+	protected void populateXMLTextChunk(OperationTextChunk textChunk){
+		textChunk.concat("<CopiedResourceOperation>" + "\n");
+		super.populateXMLTextChunk(textChunk);
+		textChunk.concat("\t" + "<timestamp>" + "\n");
+		textChunk.concat("\t" + getTime() + "\n");
+		textChunk.concat("\t" + "</timestamp>" + "\n");
+		textChunk.concat("</CopiedResourceOperation>" + "\n");
 	}
 
 }

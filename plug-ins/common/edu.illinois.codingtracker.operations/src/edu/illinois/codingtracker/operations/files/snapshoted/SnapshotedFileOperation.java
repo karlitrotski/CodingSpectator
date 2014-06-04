@@ -40,6 +40,15 @@ public abstract class SnapshotedFileOperation extends FileOperation {
 		super.populateTextChunk(textChunk);
 		textChunk.append(fileContent);
 	}
+	
+	@Override
+	protected void populateXMLTextChunk(OperationTextChunk textChunk){
+		super.populateXMLTextChunk(textChunk);
+		textChunk.concat("\t" + "<FileContent>" + "\n");
+		textChunk.concat("\t" + fileContent + "\n");
+		textChunk.concat("\t" + "</FileContent>" + "\n");
+	}
+
 
 	@Override
 	protected void initializeFrom(OperationLexer operationLexer) {

@@ -44,6 +44,22 @@ public class TestCaseStartedOperation extends JUnitOperation {
 		textChunk.append(testClassName);
 		textChunk.append(testMethodName);
 	}
+	
+	@Override
+	protected void populateXMLTextChunk(OperationTextChunk textChunk){
+		textChunk.concat("<TestCaseStartedOperation>" + "\n");
+		super.populateXMLTextChunk(textChunk);
+		textChunk.concat("\t" + "<Test_class_name>" + "\n");
+		textChunk.concat("\t" + testClassName + "\n");
+		textChunk.concat("\t" + "</Test_class_name>" + "\n");
+		textChunk.concat("\t" + "<Test_method_name>" + "\n");
+		textChunk.concat("\t" + testMethodName + "\n");
+		textChunk.concat("\t" + "</Test_method_name>" + "\n");
+		textChunk.concat("\t" + "<timestamp>" + "\n");
+		textChunk.concat("\t" + getTime() + "\n");
+		textChunk.concat("\t" + "</timestamp>" + "\n");
+		textChunk.concat("</TestCaseStartedOperation>" + "\n");
+	}
 
 	@Override
 	protected void initializeFrom(OperationLexer operationLexer) {

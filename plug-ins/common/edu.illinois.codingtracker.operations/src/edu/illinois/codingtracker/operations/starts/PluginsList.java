@@ -53,6 +53,19 @@ public class PluginsList extends UserOperation {
 		textChunk.append(text);
 	}
 	
+	@Override
+	protected void populateXMLTextChunk(OperationTextChunk textChunk) {
+		populatePluginsList();
+		textChunk.concat("<PluginList>" + "\n");
+		textChunk.concat("\t" + "<List>" + "\n");
+		textChunk.concat("\t" + text + "\n");
+		textChunk.concat("\t" + "</List>" + "\n");
+		textChunk.concat("\t" + "<timestamp>" + "\n");
+		textChunk.concat("\t" + getTime() + "\n");
+		textChunk.concat("\t" + "</timestamp>" + "\n");
+		textChunk.concat("</PluginList>" + "\n");
+	}
+	
 	/* Gets the String representation of bundle's state. */
 	private String getState(Bundle b){
 		return StateSymbols.getStateName(b.getState());
