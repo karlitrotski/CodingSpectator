@@ -5,6 +5,8 @@ package edu.illinois.codingtracker.listeners;
 
 import org.eclipse.compare.internal.CompareEditor;
 import org.eclipse.core.resources.IFile;
+import org.eclipse.jface.viewers.ISelectionChangedListener;
+import org.eclipse.jface.viewers.SelectionChangedEvent;
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.ui.IEditorPart;
 import org.eclipse.ui.IEditorReference;
@@ -27,7 +29,7 @@ import edu.illinois.codingtracker.operations.parts.IPartState;
  * 
  */
 @SuppressWarnings("restriction")
-public class PartListener extends BasicListener implements IPartListener2 {
+public class PartListener extends BasicListener implements IPartListener2, ISelectionChangedListener {
 
 	private static IWorkbenchPage getActivePage() {
 		IWorkbenchWindow activeWorkbenchWindow= BasicListener.getActiveWorkbenchWindow();
@@ -48,8 +50,16 @@ public class PartListener extends BasicListener implements IPartListener2 {
 				while (!isPartListenerRegistered) {
 					IWorkbenchPage activePage= getActivePage();
 					if (activePage != null) {
-						activePage.addPartListener(new PartListener());
+						PartListener partListener = new PartListener();
+						activePage.addPartListener(partListener);
 						isPartListenerRegistered= true;
+						
+						for(IWorkbenchPartReference partRef: activePage.getViewReferences()){
+							IWorkbenchPart part= partRef.getPart(true);
+							if(part!=null){
+								part.getSite().getSelectionProvider().addSelectionChangedListener(partListener);
+							}
+						}
 					}
 				}
 			}
@@ -180,6 +190,12 @@ public class PartListener extends BasicListener implements IPartListener2 {
 	@Override
 	public void partInputChanged(IWorkbenchPartReference partRef) {
 		// do nothing
+	}
+
+	@Override
+	public void selectionChanged(SelectionChangedEvent event) {
+		System.out.println(event.toString());
+		
 	}
 
 }
