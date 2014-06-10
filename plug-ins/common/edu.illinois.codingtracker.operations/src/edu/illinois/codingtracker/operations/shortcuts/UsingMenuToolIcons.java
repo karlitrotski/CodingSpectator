@@ -5,16 +5,20 @@ import edu.illinois.codingtracker.operations.OperationTextChunk;
 import edu.illinois.codingtracker.operations.UserOperation;
 
 public class UsingMenuToolIcons extends UserOperation {
-	private String type;
-	private String nToolIcon;
-	private String nMenuManager;
-	private	String nSubMenu;
-	public UsingMenuToolIcons(String type,String nToolIcon,String nMenuManager,String nSubMenu)
+	private String nPart;
+	private String nType;
+	private String nIndex;
+	private String nName;
+	private	String nNameCommand;
+	private String nIdCommand;
+	public UsingMenuToolIcons(String Part,String type,String Index,String Name,String idcommand, String command)
 	{
-		this.type= type;
-		this.nToolIcon= nToolIcon;
-		this.nMenuManager= nMenuManager;
-		this.nSubMenu= nSubMenu;	
+		this.nPart=Part;
+		this.nType= type;
+		this.nIndex= Index;
+		this.nName= Name;
+		this.nNameCommand= command;
+		this.nIdCommand=idcommand;
 	}
 	
 	@Override
@@ -29,19 +33,9 @@ public class UsingMenuToolIcons extends UserOperation {
 
 	@Override
 	protected void populateTextChunk(OperationTextChunk textChunk) {
-		if(type.equals("ToolItem"))
-		{
-			textChunk.append(type +"-"+
-								nMenuManager +"-"+
-										nToolIcon);
-		}
-		else
-		{
-			textChunk.append(type +"-"+
-								nMenuManager +"-"+
-									nSubMenu);
-		}
 		
+			textChunk.append(nPart+"/"+nType+"/["+nIndex +"]["+nName+"]-["+nIdCommand+"]["+nNameCommand+"]");
+				
 	}
 
 	@Override

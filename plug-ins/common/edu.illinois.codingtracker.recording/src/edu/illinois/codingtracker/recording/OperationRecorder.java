@@ -405,16 +405,9 @@ public void recordShortcutsCommandName(String nCommand, String keyShortcuts) {
 		
 		TextRecorder.record(new ShortCutCommandName(nCommand, keyShortcuts));
 	}
-public void recordUsingMenuToolIcons( 
-								String type,
-									String nToolIcon,
-										String nMenuManager,
-												String nSubMenu)
+public void recordUsingMenuToolIcons( String Part,String type,String Index,String Name,String idcommand, String command)
 	{
-	TextRecorder.record(new UsingMenuToolIcons( type,
-												 nToolIcon,
-												 nMenuManager,
-														 nSubMenu ));
+	TextRecorder.record(new UsingMenuToolIcons( Part, type, Index, Name, idcommand,  command ));
 }
 	public void recordActivatedFile(IFile activatedFile) {
 		invalidateLastEditedFile(activatedFile);

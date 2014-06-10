@@ -1,44 +1,34 @@
 package edu.illinois.codingtracker.listeners;
+import java.util.Collection;
+
 import org.eclipse.core.commands.Command;
 import org.eclipse.core.commands.ExecutionEvent;
 import org.eclipse.core.commands.ExecutionException;
 import org.eclipse.core.commands.IExecutionListener;
-import org.eclipse.core.commands.NotHandledException; 
+import org.eclipse.core.commands.NotHandledException;
 import org.eclipse.core.commands.common.NotDefinedException;
-import org.eclipse.core.resources.IFile;
-import org.eclipse.core.runtime.IPath;
-import org.eclipse.jdt.core.eval.IEvaluationContext;
+import org.eclipse.core.expressions.IEvaluationContext;
 import org.eclipse.jface.action.ActionContributionItem;
+import org.eclipse.jface.action.MenuManager;
 import org.eclipse.jface.bindings.keys.KeySequence;
 import org.eclipse.jface.bindings.keys.KeyStroke;
 import org.eclipse.jface.bindings.keys.SWTKeySupport;
-import org.eclipse.jface.util.Geometry;
-import org.eclipse.jface.viewers.ISelection;
-import org.eclipse.jface.viewers.IStructuredSelection;
-import org.eclipse.ltk.core.refactoring.history.RefactoringExecutionEvent;
 import org.eclipse.swt.SWT;
-import org.eclipse.swt.events.MouseEvent;
 import org.eclipse.swt.graphics.Point;
 import org.eclipse.swt.widgets.Control;
 import org.eclipse.swt.widgets.Display;
-import org.eclipse.swt.widgets.Event; 
+import org.eclipse.swt.widgets.Event;
 import org.eclipse.swt.widgets.Menu;
+import org.eclipse.swt.widgets.MenuItem;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.swt.widgets.ToolItem;
-import org.eclipse.swt.widgets.Widget;
- 
-import org.eclipse.swt.widgets.MenuItem; 
-import org.eclipse.ui.IEditorPart;
-import org.eclipse.ui.ISelectionService;
 import org.eclipse.ui.IWorkbenchWindow;
-import org.eclipse.ui.PlatformUI; 
-import org.eclipse.ui.commands.ICommandService;     
+import org.eclipse.ui.PlatformUI;
+import org.eclipse.ui.actions.ActionFactory;
+import org.eclipse.ui.commands.ICommandService;
 import org.eclipse.ui.handlers.HandlerUtil;
-import org.eclipse.ui.keys.IBindingService;
-import org.eclipse.ui.menus.IMenuService;
-import org.eclipse.ui.services.IServiceLocator;
+import org.eclipse.ui.internal.WWinPluginAction;
 
-import edu.illinois.codingtracker.operations.refactorings.NewStartedRefactoringOperation.RefactoringMode;
 
 /**
  * class ListenerISortctus for record Shortctus, and command name a Execution
@@ -47,45 +37,21 @@ import edu.illinois.codingtracker.operations.refactorings.NewStartedRefactoringO
  */
 
 public class ListenerShortcuts extends BasicListener implements IExecutionListener {
+ 
+	
 	public void notHandled(String commandId, NotHandledException exception) {}
 	public void postExecuteFailure(String commandId, ExecutionException exception) {}
 	public void postExecuteSuccess(String commandId, Object returnValue) {}
+		 
 	public void preExecute(String commandId, ExecutionEvent event ) {
 	    Command command = event.getCommand();
 		Object Trigger= event.getTrigger(); 
-		if(Trigger instanceof Event) 
+	 	if(Trigger instanceof Event) 
 		{	
 			try 
 		     { 
 				Event TriggerEvent = (Event)Trigger;
-				Widget Xwidget =TriggerEvent.widget;
-				String TypeEvents=Xwidget.toString().substring(0,8);
-				 //Read MenuItem
-                if (TypeEvents.equals("MenuItem") & TriggerEvent.keyCode==0 )
-				{  
-                	MenuItem XMenu = (MenuItem)TriggerEvent.widget;
-			  		  operationRecorder.recordUsingMenuToolIcons(TypeEvents
-							  									,""
-							  									,XMenu.getParent().getParentItem().getText()
-							  									,XMenu.getText()); 
-
-				//	  operationRecorder.recordUsingMenuToolIcons(TypeEvents
-					//		  									,""
-						//	  									, command.getCategory().getName()
-							//  									,command.getName()); 
-
-				}
-                //Read ToolITem
-                if (TypeEvents.equals("ToolItem") & TriggerEvent.keyCode==0)
-				{
-				  ToolItem XTool=(ToolItem)TriggerEvent.widget; 
-				  operationRecorder.recordUsingMenuToolIcons(TypeEvents
-							 , XTool.getToolTipText()
-							,command.getCategory().getName()
-							,command.getName()
-							); 
-     
-				}
+				
 				if((TriggerEvent.keyCode>0))
 				{
 				   int accelerator = SWTKeySupport.convertEventToUnmodifiedAccelerator(TriggerEvent);
