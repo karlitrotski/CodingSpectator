@@ -23,42 +23,29 @@ import org.eclipse.core.commands.ExecutionException;
 import org.eclipse.core.commands.IExecutionListener;
 import org.eclipse.core.commands.NotHandledException;
 import org.eclipse.core.commands.common.NotDefinedException;
-import org.eclipse.core.runtime.IConfigurationElement;
-import org.eclipse.core.runtime.IPath;
-import org.eclipse.core.runtime.Path;
-import org.eclipse.core.runtime.Platform;
 import org.eclipse.jface.action.ActionContributionItem;
 import org.eclipse.jface.action.CoolBarManager;
 import org.eclipse.jface.action.IAction;
 import org.eclipse.jface.action.IContributionItem;
-import org.eclipse.jface.action.IMenuManager;
+ 
 import org.eclipse.jface.action.IToolBarManager;
-import org.eclipse.jface.action.MenuManager;
-import org.eclipse.jface.action.ToolBarManager;
-import org.eclipse.jface.viewers.ISelection;
-import org.eclipse.jface.viewers.IStructuredSelection;
+ 
+import org.eclipse.jface.action.ToolBarManager; 
 import org.eclipse.jface.window.ApplicationWindow;
-import org.eclipse.jface.wizard.IWizardPage;
-import org.eclipse.jface.wizard.WizardDialog;
-import org.eclipse.ui.IEditorPart;
-import org.eclipse.ui.IPartListener; 
-import org.eclipse.ui.IPluginContribution;
-import org.eclipse.ui.ISelectionListener;
-import org.eclipse.ui.IViewPart;
-import org.eclipse.ui.IViewReference;
+ 
+
+import org.eclipse.ui.IEditorPart; 
+import org.eclipse.ui.IPluginContribution; 
+import org.eclipse.ui.IViewPart; 
 import org.eclipse.ui.IWorkbenchPage;
 import org.eclipse.ui.IWorkbenchPart; 
 import org.eclipse.ui.IWorkbenchPartSite;
 import org.eclipse.ui.IWorkbenchWindow;
-import org.eclipse.ui.PlatformUI;
-import org.eclipse.ui.actions.ActionFactory;
+import org.eclipse.ui.PlatformUI; 
 import org.eclipse.ui.commands.ICommandService;
-import org.eclipse.ui.internal.PartSite;
-import org.eclipse.ui.internal.WWinPluginAction;
+ 
 
 import edu.illinois.codingtracker.operations.OperationSymbols;
-import edu.illinois.codingtracker.operations.shortcuts.IWidgetId;
-import edu.illinois.codingtracker.operations.shortcuts.PrimitiveWidgetId;
 public class ListenerMenuToolBar extends BasicListener implements IExecutionListener {
 	public static void register() {
 		Display.getDefault().asyncExec(new Runnable() {
@@ -280,7 +267,7 @@ public class ListenerMenuToolBar extends BasicListener implements IExecutionList
 			return getDisplayName(menuItem.getParent()) + "/" + removeChar(menuItem.getText(), '&');
 			}
 		}
-	public static void getWidgetIdentifier(Widget widget,Command command) 
+	public static void getNameMenuToolBar(Widget widget,Command command) 
 	{	
 		Control control = widget.getDisplay().getFocusControl();
 		String ItemIndex = null;
@@ -432,7 +419,7 @@ public class ListenerMenuToolBar extends BasicListener implements IExecutionList
 		Object Trigger= event.getTrigger(); 
 		Event TriggerEvent = (Event)Trigger; 
 		Widget widget =TriggerEvent.widget;
-		getWidgetIdentifier(widget,commandd);
+		getNameMenuToolBar(widget,commandd);
 	 }
  
 	
