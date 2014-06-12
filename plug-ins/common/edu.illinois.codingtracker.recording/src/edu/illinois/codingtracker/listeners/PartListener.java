@@ -4,21 +4,10 @@
 package edu.illinois.codingtracker.listeners;
 
 import org.eclipse.compare.internal.CompareEditor;
-import org.eclipse.core.resources.IContainer;
 import org.eclipse.core.resources.IFile;
-import org.eclipse.core.resources.IResource;
-import org.eclipse.core.runtime.IAdaptable;
-import org.eclipse.core.runtime.IPath;
-import org.eclipse.jdt.core.IJarEntryResource;
-import org.eclipse.jdt.core.IJavaElement;
-import org.eclipse.jdt.internal.corext.util.Messages;
-import org.eclipse.jdt.internal.ui.JavaUIMessages;
-import org.eclipse.jdt.internal.ui.packageview.PackageFragmentRootContainer;
-import org.eclipse.jdt.internal.ui.viewsupport.BasicElementLabels;
-import org.eclipse.jdt.ui.JavaElementLabels;
+import org.eclipse.jdt.internal.ui.viewsupport.StatusBarUpdater;
 import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.jface.viewers.ISelectionChangedListener;
-import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.jface.viewers.SelectionChangedEvent;
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.ui.IEditorPart;
@@ -29,7 +18,6 @@ import org.eclipse.ui.IWorkbenchPage;
 import org.eclipse.ui.IWorkbenchPart;
 import org.eclipse.ui.IWorkbenchPartReference;
 import org.eclipse.ui.IWorkbenchWindow;
-import org.eclipse.ui.model.IWorkbenchAdapter;
 import org.eclipse.ui.texteditor.AbstractDecoratedTextEditor;
 
 import edu.illinois.codingtracker.compare.helpers.EditorHelper;
@@ -40,14 +28,33 @@ import edu.illinois.codingtracker.operations.parts.IPartState;
  * @author Stas Negara
  * @author Mohsen Vakilian - Extracted this class from CodeChangeTracker and added the method
  *         {@link #getActivePage()}.
+ * @author Juraj Kubelka
+ * @author Catalina Espinoza Inaipil - we have extended it by listening to all part state changes
+ *         and by listening to selection changes inside view parts.
  * 
  */
 @SuppressWarnings("restriction")
 public class PartListener extends BasicListener implements IPartListener2, ISelectionChangedListener {
 	
-	private final long LABEL_FLAGS= JavaElementLabels.DEFAULT_QUALIFIED | JavaElementLabels.ROOT_POST_QUALIFIED | JavaElementLabels.APPEND_ROOT_PATH |
-			JavaElementLabels.M_PARAMETER_TYPES | JavaElementLabels.M_PARAMETER_NAMES | JavaElementLabels.M_APP_RETURNTYPE | JavaElementLabels.M_EXCEPTIONS |
-		 	JavaElementLabels.F_APP_TYPE_SIGNATURE | JavaElementLabels.T_TYPE_PARAMETERS;
+	/** 
+	 * It is used for formating a string which represents selected elements in part views. 
+	 * 
+	 * @author Juraj Kubelka
+	 * @author Catalina Espinoza Inaipil
+	 *
+	 */
+	public class SelectionChangeFormater extends StatusBarUpdater {
+
+		public SelectionChangeFormater() {
+			super(null);
+		}
+
+		public String formatMessage(ISelection sel) {
+			return super.formatMessage(sel);
+		}
+	}
+	
+	private SelectionChangeFormater formater = new SelectionChangeFormater();
 
 	private static IWorkbenchPage getActivePage() {
 		IWorkbenchWindow activeWorkbenchWindow= BasicListener.getActiveWorkbenchWindow();
@@ -212,57 +219,7 @@ public class PartListener extends BasicListener implements IPartListener2, ISele
 
 	@Override
 	public void selectionChanged(SelectionChangedEvent event) {
-		operationRecorder.recordViewPart(formatMessage(event.getSelection()), IPartState.SELECTION_CHANGED);
+		operationRecorder.recordViewPart(formater.formatMessage(event.getSelection()), IPartState.SELECTION_CHANGED);
 	}
 	
-	public String formatMessage(ISelection sel) {
-		if (sel instanceof IStructuredSelection && !sel.isEmpty()) {
-			IStructuredSelection selection= (IStructuredSelection) sel;
-
-			int nElements= selection.size();
-			if (nElements > 1) {
-				return Messages.format(JavaUIMessages.StatusBarUpdater_num_elements_selected, String.valueOf(nElements));
-			} else {
-				Object elem= selection.getFirstElement();
-				if (elem instanceof IJavaElement) {
-					return formatJavaElementMessage((IJavaElement) elem);
-				} else if (elem instanceof IResource) {
-					return formatResourceMessage((IResource) elem);
-				} else if (elem instanceof PackageFragmentRootContainer) {
-					PackageFragmentRootContainer container= (PackageFragmentRootContainer) elem;
-					return container.getLabel() + JavaElementLabels.CONCAT_STRING + container.getJavaProject().getElementName();
-				} else if (elem instanceof IJarEntryResource) {
-					IJarEntryResource jarEntryResource= (IJarEntryResource) elem;
-					StringBuffer buf= new StringBuffer(BasicElementLabels.getResourceName(jarEntryResource.getName()));
-					buf.append(JavaElementLabels.CONCAT_STRING);
-					IPath fullPath= jarEntryResource.getFullPath();
-					if (fullPath.segmentCount() > 1) {
-						buf.append(BasicElementLabels.getPathLabel(fullPath.removeLastSegments(1), false));
-						buf.append(JavaElementLabels.CONCAT_STRING);
-					}
-					buf.append(JavaElementLabels.getElementLabel(jarEntryResource.getPackageFragmentRoot(), JavaElementLabels.ROOT_POST_QUALIFIED));
-					return buf.toString();
-				} else if (elem instanceof IAdaptable) {
-					IWorkbenchAdapter wbadapter= (IWorkbenchAdapter) ((IAdaptable)elem).getAdapter(IWorkbenchAdapter.class);
-					if (wbadapter != null) {
-						return wbadapter.getLabel(elem);
-					}
-				}
-			}
-		}
-		return "";  //$NON-NLS-1$
-	}
-	
-	private String formatJavaElementMessage(IJavaElement element) {
-		return JavaElementLabels.getElementLabel(element, LABEL_FLAGS);
-	}
-
-	private String formatResourceMessage(IResource element) {
-		IContainer parent= element.getParent();
-		if (parent != null && parent.getType() != IResource.ROOT)
-			return BasicElementLabels.getResourceName(element.getName()) + JavaElementLabels.CONCAT_STRING + BasicElementLabels.getPathLabel(parent.getFullPath(), false);
-		else
-			return BasicElementLabels.getResourceName(element.getName());
-	}
-
 }
