@@ -19,15 +19,15 @@ import edu.illinois.codingtracker.operations.UserOperation;
  * @author Carlos_Dettoni
  * @author Sebastian_Sanchez
  */
-public class PluginMonitor extends UserOperation {
+public class PluginMonitorOperation extends UserOperation {
 	
 	StringBuffer text;
 	
-	public PluginMonitor() {
+	public PluginMonitorOperation() {
 		super();
 	}
 
-	public PluginMonitor(StringBuffer text) {
+	public PluginMonitorOperation(StringBuffer text) {
 		this.text = text;
 	}
 
@@ -48,14 +48,14 @@ public class PluginMonitor extends UserOperation {
 	
 	@Override
 	protected void populateXMLTextChunk(OperationTextChunk textChunk) {
-		textChunk.concat("<TerminatedApplicationOperation>" + "\n");
+		textChunk.concat("<PluginMonitorOperation>" + "\n");
 		textChunk.concat("\t" + "<text>" + "\n");
 		textChunk.concat("\t" + text + "\n");
 		textChunk.concat("\t" + "</text>" + "\n");	
 		textChunk.concat("\t" + "<timestamp>" + "\n");
 		textChunk.concat("\t" + getTime() + "\n");
 		textChunk.concat("\t" + "</timestamp>" + "\n");
-		textChunk.concat("</TerminatedApplicationOperation>" + "\n");
+		textChunk.concat("</PluginMonitorOperation>" + "\n");
 	}
 
 	@Override

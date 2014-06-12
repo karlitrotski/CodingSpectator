@@ -30,7 +30,7 @@ import edu.illinois.codingtracker.operations.junit.TestSessionLaunchedOperation;
 import edu.illinois.codingtracker.operations.junit.TestSessionStartedOperation;
 import edu.illinois.codingtracker.operations.options.ProjectOptionsChangedOperation;
 import edu.illinois.codingtracker.operations.options.WorkspaceOptionsChangedOperation;
-import edu.illinois.codingtracker.operations.pluginusage.PluginMonitor;
+import edu.illinois.codingtracker.operations.pluginusage.PluginMonitorOperation;
 import edu.illinois.codingtracker.operations.refactorings.FinishedRefactoringOperation;
 import edu.illinois.codingtracker.operations.refactorings.NewStartedRefactoringOperation;
 import edu.illinois.codingtracker.operations.refactorings.PerformedRefactoringOperation;
@@ -78,7 +78,7 @@ public class OperationDeserializer {
 		//Falta instancias el metodo gain y loose
 		switch (operationSymbol) {
 			case OperationSymbols.PLUGINS_USAGE:
-				userOperation= new PluginMonitor();
+				userOperation= new PluginMonitorOperation();
 			break;
 			case OperationSymbols.PLUGINS_SYMBOL:
 				userOperation= new PluginsList();
