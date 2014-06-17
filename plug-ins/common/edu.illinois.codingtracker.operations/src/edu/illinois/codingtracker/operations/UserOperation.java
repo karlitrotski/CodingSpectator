@@ -42,8 +42,8 @@ public abstract class UserOperation{
 		return textChunk;
 	}
 	
-	public OperationTextChunk generateXMLText(){
-		OperationTextChunk textChunk= new OperationTextChunk();
+	public OperationXMLTextChunk generateXMLText(){
+		OperationXMLTextChunk textChunk= new OperationXMLTextChunk();
 		populateXMLTextChunk(textChunk);
 		return textChunk;
 	}
@@ -82,7 +82,7 @@ public abstract class UserOperation{
 
 	protected abstract void populateTextChunk(OperationTextChunk textChunk);
 	
-	protected abstract void populateXMLTextChunk(OperationTextChunk textChunk);
+	protected abstract void populateXMLTextChunk(OperationXMLTextChunk textChunk);
 
 	protected abstract void initializeFrom(OperationLexer operationLexer);
 
