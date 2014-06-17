@@ -27,7 +27,8 @@ import org.eclipse.jface.action.ActionContributionItem;
 import org.eclipse.jface.action.CoolBarManager;
 import org.eclipse.jface.action.IAction;
 import org.eclipse.jface.action.IContributionItem;
- 
+import org.eclipse.ui.menus.IMenuService;
+import org.eclipse.ui.views.contentoutline.IContentOutlinePage;
 import org.eclipse.jface.action.IToolBarManager;
  
 import org.eclipse.jface.action.ToolBarManager; 
@@ -56,6 +57,8 @@ public class ListenerMenuToolBar extends BasicListener implements IExecutionList
 				while (!isListenerRegistereds) { 
 					 IWorkbenchPage activePage= activeWorkbenchWindow.getActivePage();
 					if (activePage != null) {
+						IMenuService service = (IMenuService) PlatformUI.getWorkbench().getAdapter(IMenuService.class);
+					
 						  ICommandService CommandService = (ICommandService) PlatformUI.getWorkbench()
 			        			   		.getAdapter(ICommandService.class);
 			        	   if (CommandService != null) 
@@ -153,7 +156,7 @@ public class ListenerMenuToolBar extends BasicListener implements IExecutionList
 			if (contrib instanceof ActionContributionItem)
 			{
 				ActionContributionItem actionItem = (ActionContributionItem) contrib;
-				id = actionItem.getId();
+				id = actionItem.getAction().getText();
 				if (id != null)
 				{
 					IdWizard=("actionid/" + id); 
@@ -189,6 +192,16 @@ public class ListenerMenuToolBar extends BasicListener implements IExecutionList
 		menuInx = menuItem.getParent().indexOf(menuItem) + menuInx;
 		return MenuItemIndex(menuItem.getParent().getParentItem(), menuInx);
 	}
+	public static String ToolItemIndex(ToolItem ToolItem, String ToolInx)
+	{if (ToolItem == null)
+			return ToolInx;
+
+		if (ToolInx.length() > 0)
+			ToolInx = "|" + ToolInx;
+		ToolInx = ToolItem.getParent().indexOf(ToolItem) + ToolInx;
+		return ToolInx;
+		//return ToolItemIndex(ToolItem.getParent().g.getParentItem(), ToolInx);
+	}
 	public static String getActionId(Widget widget)
 	{   
 		String ItemIndex =null;	
@@ -201,6 +214,10 @@ public class ListenerMenuToolBar extends BasicListener implements IExecutionList
 				if (widget instanceof MenuItem)
 				{
 					ItemIndex = MenuItemIndex((MenuItem) widget, "");
+				}
+				if (widget instanceof ToolItem)
+				{
+					ItemIndex = ToolItemIndex((ToolItem) widget, "");
 				}
 			}
 		}
@@ -268,8 +285,7 @@ public class ListenerMenuToolBar extends BasicListener implements IExecutionList
 			}
 		}
 	public static void getNameMenuToolBar(Widget widget,Command command) 
-	{	
-		Control control = widget.getDisplay().getFocusControl();
+	{	Control control = widget.getDisplay().getFocusControl(); 
 		String ItemIndex = null;
 		String NameSite=getNameSite(control);
 		if (widget instanceof MenuItem)
@@ -300,7 +316,7 @@ public class ListenerMenuToolBar extends BasicListener implements IExecutionList
 					
 					try {
 						operationRecorder.recordUsingMenuToolIcons(NameSite,
-								OperationSymbols.POPUP_VALUE
+								OperationSymbols.CONTEXTMENU_VALUE
 								,ItemIndex,getDisplayName(menuItem),command.getId(),command.getName());
 						
 					} catch (NotDefinedException e) {
@@ -315,7 +331,7 @@ public class ListenerMenuToolBar extends BasicListener implements IExecutionList
 				{
 				try {
 						operationRecorder.recordUsingMenuToolIcons(NameSite,
-								OperationSymbols.POPUP_VALUE
+								OperationSymbols.CONTEXTMENU_VALUE
 								,ItemIndex,getDisplayName(menuItem),command.getId(),command.getName());
 						
 					} catch (NotDefinedException e) {
@@ -330,6 +346,8 @@ public class ListenerMenuToolBar extends BasicListener implements IExecutionList
 		{
 			ToolItem toolItem = (ToolItem) widget;
 			ItemIndex = getItemMenuToolId(toolItem);
+			IViewPart ViewTool = null;
+			IEditorPart EditorTool;
 			if (isOnWorkbenchToolbar(toolItem))
 			{
 				try {
@@ -344,6 +362,32 @@ public class ListenerMenuToolBar extends BasicListener implements IExecutionList
 				} 
 		 			
 			
+			}
+			else if ((ViewTool = getViewParts(control)) != null)
+			{
+				try {
+					operationRecorder.recordUsingMenuToolIcons(
+							NameSite,
+							OperationSymbols.TOOLBAR_VALUE
+							,ItemIndex,getDisplayName(toolItem),
+							command.getId(),
+							command.getName());
+				} catch (NotDefinedException e) {
+					e.printStackTrace();
+				} 
+			}
+			else if ((EditorTool = getEditorParts(control)) != null)
+			{
+				try {
+					operationRecorder.recordUsingMenuToolIcons(
+							NameSite,
+							OperationSymbols.TOOLBAR_VALUE
+							,ItemIndex,getDisplayName(toolItem),
+							command.getId(),
+							command.getName());
+				} catch (NotDefinedException e) {
+					e.printStackTrace();
+				} 
 			}
 		}
 		else if (widget instanceof Menu)
@@ -421,9 +465,6 @@ public class ListenerMenuToolBar extends BasicListener implements IExecutionList
 		Widget widget =TriggerEvent.widget;
 		getNameMenuToolBar(widget,commandd);
 	 }
- 
-	
- 
-	}
+ 	}
  
  

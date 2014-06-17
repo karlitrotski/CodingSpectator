@@ -1,6 +1,4 @@
 package edu.illinois.codingtracker.listeners;
-import java.util.Collection;
-
 import org.eclipse.core.commands.Command;
 import org.eclipse.core.commands.ExecutionEvent;
 import org.eclipse.core.commands.ExecutionException;

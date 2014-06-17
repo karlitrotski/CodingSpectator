@@ -18,7 +18,7 @@ public abstract class OperationSymbols {
 	public static final String EDITOR_VALUE = "Editor";
 	public static final String SHELL_VALUE = "Window";
 	public static final String MENUBAR_VALUE = "MenuBar";
-	public static final String POPUP_VALUE = "Popup"; 
+	public static final String CONTEXTMENU_VALUE = "ContextMenu"; 
 	public static final String TOOLBAR_VALUE = "Toolbar";
 	/*****/	
 	public static final char APPLICATION_SHORTCUTS= 'W';

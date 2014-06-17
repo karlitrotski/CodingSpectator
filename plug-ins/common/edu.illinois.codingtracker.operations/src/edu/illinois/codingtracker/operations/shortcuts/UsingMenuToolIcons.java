@@ -28,7 +28,7 @@ public class UsingMenuToolIcons extends UserOperation {
 
 	@Override
 	public String getDescription() {
- 		 return "get Name Menu and Name ToolIcons";
+ 		 return "get Name Menu,Context Name ToolbarIcons";
 	}
 
 	@Override
