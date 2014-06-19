@@ -3,6 +3,7 @@
  */
 package edu.illinois.codingtracker.listeners;
 
+import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.Platform;
 import org.eclipse.jdt.internal.ui.startup.StartupListener;
 

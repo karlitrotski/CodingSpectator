@@ -26,9 +26,7 @@ import org.eclipse.core.commands.common.NotDefinedException;
 import org.eclipse.jface.action.ActionContributionItem;
 import org.eclipse.jface.action.CoolBarManager;
 import org.eclipse.jface.action.IAction;
-import org.eclipse.jface.action.IContributionItem;
-import org.eclipse.ui.menus.IMenuService;
-import org.eclipse.ui.views.contentoutline.IContentOutlinePage;
+import org.eclipse.jface.action.IContributionItem; 
 import org.eclipse.jface.action.IToolBarManager;
  
 import org.eclipse.jface.action.ToolBarManager; 
@@ -57,8 +55,6 @@ public class ListenerMenuToolBar extends BasicListener implements IExecutionList
 				while (!isListenerRegistereds) { 
 					 IWorkbenchPage activePage= activeWorkbenchWindow.getActivePage();
 					if (activePage != null) {
-						IMenuService service = (IMenuService) PlatformUI.getWorkbench().getAdapter(IMenuService.class);
-					
 						  ICommandService CommandService = (ICommandService) PlatformUI.getWorkbench()
 			        			   		.getAdapter(ICommandService.class);
 			        	   if (CommandService != null) 
@@ -124,19 +120,18 @@ public class ListenerMenuToolBar extends BasicListener implements IExecutionList
 	}
 	public static String removeChar(String input, char toRemove)
 	{
-		StringBuffer buf = new StringBuffer(input.length());
-
+		StringBuffer bufer = new StringBuffer(input.length());
 		int last = 0;
 		for (int pos = input.indexOf(toRemove); pos != -1; pos = input.indexOf(
 				toRemove, last))
 		{
-			buf.append(input.substring(last, pos));
+			bufer.append(input.substring(last, pos));
 			last = pos + 1;
 		}
 
-		buf.append(input.substring(last, input.length()));
+		bufer.append(input.substring(last, input.length()));
 
-		return buf.toString();
+		return bufer.toString();
 	}
 	private static String getActionId(IContributionItem contrib)
 	{
@@ -149,7 +144,7 @@ public class ListenerMenuToolBar extends BasicListener implements IExecutionList
 		id = id == null ? contrib.getId() : id;
 		if (id != null)
 		{
-			IdWizard=("contribid/" + id); 
+			IdWizard=(id); 
 		}
 		else
 		{
@@ -159,7 +154,7 @@ public class ListenerMenuToolBar extends BasicListener implements IExecutionList
 				id = actionItem.getAction().getText();
 				if (id != null)
 				{
-					IdWizard=("actionid/" + id); 
+					IdWizard=(id); 
 				}
 				else
 				{
@@ -167,17 +162,17 @@ public class ListenerMenuToolBar extends BasicListener implements IExecutionList
 					id = action.getActionDefinitionId();
 					if (id != null)
 					{
-						IdWizard=("defid/" + id); 
+						IdWizard=(id); 
 					}
 					else
 					{
-						IdWizard=("actionclass/" + action.getClass().getName()); 
+						IdWizard=(action.getClass().getName()); 
 					}
 				}
 			}
 			else
 			{
-				IdWizard=("contribclass/" + contrib.getClass().getName()); 
+				IdWizard=(contrib.getClass().getName()); 
 			}
 		}
 
@@ -255,6 +250,18 @@ public class ListenerMenuToolBar extends BasicListener implements IExecutionList
 			return getDisplayName(parentItem);
 			}
 		}
+	private static String getDisplayName(ToolBar tool)
+	{
+		Composite parentItem = tool.getParent();
+		if (parentItem == null)
+		{
+			return OperationSymbols.EMPTY_STRING;
+		}
+		else
+			{
+			return OperationSymbols.EMPTY_STRING;
+			}
+		}
 	private static String getDisplayName(ToolItem toolItem)
 	{
 		String name = toolItem.getText();
@@ -308,7 +315,7 @@ public class ListenerMenuToolBar extends BasicListener implements IExecutionList
 				} 
 		 			
 			} 
-			else if ((View = getViewParts(control)) != null)
+			else if ((View = getIsViewParts(control)) != null)
 			{   
 				IToolBarManager toolbarManager = View.getViewSite().getActionBars().getToolBarManager();
 				if (toolbarManager != null|| (toolbarManager instanceof ToolBarManager))
@@ -324,7 +331,7 @@ public class ListenerMenuToolBar extends BasicListener implements IExecutionList
 					} 
 				}
 			}
-			else if ((editor = getEditorParts(control)) != null)
+			else if ((editor = getIsEditorParts(control)) != null)
 			{   
 				IToolBarManager toolbarManager = editor.getEditorSite().getActionBars().getToolBarManager();
 				if (toolbarManager != null|| (toolbarManager instanceof ToolBarManager))
@@ -352,39 +359,33 @@ public class ListenerMenuToolBar extends BasicListener implements IExecutionList
 			{
 				try {
 					operationRecorder.recordUsingMenuToolIcons(
-							NameSite,
-							OperationSymbols.TOOLBAR_VALUE
+							NameSite,OperationSymbols.TOOLBAR_VALUE
 							,ItemIndex,getDisplayName(toolItem),
-							command.getId(),
-							command.getName());
+							command.getId(),command.getName());
 				} catch (NotDefinedException e) {
 					e.printStackTrace();
 				} 
 		 			
 			
 			}
-			else if ((ViewTool = getViewParts(control)) != null)
+			else if ((ViewTool = getIsViewParts(control)) != null)
 			{
 				try {
 					operationRecorder.recordUsingMenuToolIcons(
-							NameSite,
-							OperationSymbols.TOOLBAR_VALUE
+							NameSite,OperationSymbols.TOOLBAR_VALUE
 							,ItemIndex,getDisplayName(toolItem),
-							command.getId(),
-							command.getName());
+							command.getId(),command.getName());
 				} catch (NotDefinedException e) {
 					e.printStackTrace();
 				} 
 			}
-			else if ((EditorTool = getEditorParts(control)) != null)
+			else if ((EditorTool = getIsEditorParts(control)) != null)
 			{
 				try {
 					operationRecorder.recordUsingMenuToolIcons(
-							NameSite,
-							OperationSymbols.TOOLBAR_VALUE
+							NameSite,OperationSymbols.TOOLBAR_VALUE
 							,ItemIndex,getDisplayName(toolItem),
-							command.getId(),
-							command.getName());
+							command.getId(),command.getName());
 				} catch (NotDefinedException e) {
 					e.printStackTrace();
 				} 
@@ -405,9 +406,22 @@ public class ListenerMenuToolBar extends BasicListener implements IExecutionList
 				e.printStackTrace();
 			} 
 		}
+		else if (widget instanceof ToolBar)
+		{
+			ToolBar tool = (ToolBar) widget;
+			ItemIndex = getActionId((ToolBar) widget);
+			try {
+				operationRecorder.recordUsingMenuToolIcons(
+						NameSite,OperationSymbols.TOOLBAR_VALUE
+						,ItemIndex,getDisplayName(tool),
+						command.getId(),command.getName());
+			} catch (NotDefinedException e) {
+				e.printStackTrace();
+			} 
+		}
 		
 	}
-	private static IViewPart getViewParts(Control control)
+	private static IViewPart getIsViewParts(Control control)
 	{ IViewPart viewPart= null;
 		Shell shell = control.getShell();
 		Object data = shell.getData();
@@ -425,7 +439,7 @@ public class ListenerMenuToolBar extends BasicListener implements IExecutionList
 		}
 		return null;
 	}
-	private static IEditorPart getEditorParts(Control control)
+	private static IEditorPart getIsEditorParts(Control control)
 	{ IEditorPart editorPart= null;
 		Shell shell = control.getShell();
 		Object data = shell.getData();
