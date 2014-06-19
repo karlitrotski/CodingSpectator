@@ -74,6 +74,18 @@ public class OperationXMLTextChunk implements CharSequence {
 		return escaping;
 	}
 	
+	public void appendChild(String atributeName, int num) {
+		this.appendChild(atributeName, "" + num);
+	}
+	
+	public void appendChild(String atributeName, long num) {
+		this.appendChild(atributeName, "" + num);
+	}
+
+	public void appendChild(String atributeName, boolean val) {
+		this.appendChild(atributeName, val ? 1 : 0);
+	}
+	
 	public void appendChild(String atributeName, String atributeValue){
 		String input="\t" + openTag(atributeName) + 
 				escapeXMLString(atributeValue) + 

@@ -7,6 +7,7 @@ import edu.illinois.codingtracker.helpers.Configuration;
 import edu.illinois.codingtracker.operations.OperationLexer;
 import edu.illinois.codingtracker.operations.OperationSymbols;
 import edu.illinois.codingtracker.operations.OperationTextChunk;
+import edu.illinois.codingtracker.operations.OperationXMLTextChunk;
 import edu.illinois.codingtracker.operations.UserOperation;
 
 /**
@@ -59,27 +60,14 @@ public class LaunchedApplicationOperation extends UserOperation {
 	}
 	
 	@Override
-	protected void populateXMLTextChunk(OperationTextChunk textChunk){
-		textChunk.concat("<LaunchedApplicationOperation>" + "\n");
-		textChunk.concat("\t" + "<Launch_mode>" + "\n");
-		textChunk.concat("\t" + launchMode + "\n");
-		textChunk.concat("\t" + "</Launch_mode>" + "\n");
-		textChunk.concat("\t" + "<Launch_Name>" + "\n");
-		textChunk.concat("\t" + launchName + "\n");
-		textChunk.concat("\t" + "</Launch_Name>" + "\n");
-		textChunk.concat("\t" + "<Application>" + "\n");
-		textChunk.concat("\t" + application + "\n");
-		textChunk.concat("\t" + "</Application>" + "\n");
-		textChunk.concat("\t" + "<Product>" + "\n");
-		textChunk.concat("\t" + product + "\n");
-		textChunk.concat("\t" + "</Product>" + "\n");
-		textChunk.concat("\t" + "<UseProduct>" + "\n");
-		textChunk.concat("\t" + useProduct + "\n");
-		textChunk.concat("\t" + "</UseProduct>" + "\n");
-		textChunk.concat("\t" + "<timestamp>" + "\n");
-		textChunk.concat("\t" + getTime() + "\n");
-		textChunk.concat("\t" + "</timestamp>" + "\n");
-		textChunk.concat("</LaunchedApplicationOperation>" + "\n");
+	protected void populateXMLTextChunk(OperationXMLTextChunk textChunk){
+		textChunk.appendStartRoot(this);
+		textChunk.appendChild("Launch_Mode", launchMode);
+		textChunk.appendChild("Launch_Name", launchName);
+		textChunk.appendChild("Application", application);
+		textChunk.appendChild("Product", product);
+		textChunk.appendChild("UseProduct", useProduct);
+		textChunk.appendCloseRoot(this);
 	}
 
 	@Override
