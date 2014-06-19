@@ -13,12 +13,14 @@ import edu.illinois.codingtracker.operations.UserOperation;
  * 
  */
 public class TextRecorder {
-
-	private final static SafeRecorder recorderInstance= new SafeRecorder("codingtracker/codechanges.txt");
+	
+	private final static long timestamp = System.currentTimeMillis();
+	private final static SafeRecorder recorderInstance= new SafeRecorder("codingtracker/originalFormat/codechanges"+ timestamp +".txt");
+	private final static SafeRecorder recorderXMLInstance= new SafeRecorder("codingtracker/XMLFormat/codechanges"+ timestamp +".xml");
 
 	public static void record(UserOperation userOperation) {
-		recorderInstance.record(userOperation.generateXMLText());
-		//recorderInstance.record(userOperation.generateSerializationText());
+		recorderXMLInstance.record(userOperation.generateXMLText());
+		recorderInstance.record(userOperation.generateSerializationText());
 	}
 
 	public static String getMainRecordFilePath() {
