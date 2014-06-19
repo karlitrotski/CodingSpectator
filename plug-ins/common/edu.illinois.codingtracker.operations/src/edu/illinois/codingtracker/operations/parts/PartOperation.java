@@ -6,6 +6,7 @@ import edu.illinois.codingtracker.operations.OperationLexer;
 import edu.illinois.codingtracker.operations.OperationSymbols;
 import edu.illinois.codingtracker.operations.OperationTextChunk;
 import edu.illinois.codingtracker.operations.files.FileOperation;
+import edu.illinois.codingtracker.operations.OperationXMLTextChunk;
 /**
  * @see edu.illinois.codingtracker.listeners.PartListener.partActivated(IWorkBenchPart part)
  * */
@@ -49,7 +50,7 @@ public class PartOperation extends FileOperation {
 	}
 	
 	@Override
-	protected void populateXMLTextChunk(OperationTextChunk textChunk){
+	protected void populateXMLTextChunk(OperationXMLTextChunk textChunk){
 		textChunk.concat("<PartOperation>" + "\n");
 		super.populateXMLTextChunk(textChunk);
 		textChunk.concat("\t" + "<description>" + "\n");

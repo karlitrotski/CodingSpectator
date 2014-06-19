@@ -28,6 +28,7 @@ import edu.illinois.codingtracker.operations.JavaProjectsUpkeeper;
 import edu.illinois.codingtracker.operations.OperationLexer;
 import edu.illinois.codingtracker.operations.OperationTextChunk;
 import edu.illinois.codingtracker.operations.UserOperation;
+import edu.illinois.codingtracker.operations.OperationXMLTextChunk;
 
 /**
  * 
@@ -64,7 +65,7 @@ public abstract class ResourceOperation extends UserOperation {
 		textChunk.append(resourcePath);
 	}
 	
-	protected void populateXMLTextChunk(OperationTextChunk textChunk){
+	protected void populateXMLTextChunk(OperationXMLTextChunk textChunk){
 		textChunk.concat("\t" + "<ResourcePath>" + "\n");
 		textChunk.concat("\t" + resourcePath + "\n");
 		textChunk.concat("\t" + "</ResourcePath>" + "\n");

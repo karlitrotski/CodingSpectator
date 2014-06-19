@@ -9,6 +9,7 @@ import org.eclipse.core.runtime.IPath;
 
 import edu.illinois.codingtracker.operations.OperationLexer;
 import edu.illinois.codingtracker.operations.OperationTextChunk;
+import edu.illinois.codingtracker.operations.OperationXMLTextChunk;
 
 /**
  * 
@@ -40,7 +41,7 @@ public abstract class ReorganizedResourceOperation extends UpdatedResourceOperat
 	}
 
 	@Override
-	protected void populateXMLTextChunk(OperationTextChunk textChunk){
+	protected void populateXMLTextChunk(OperationXMLTextChunk textChunk){
 		super.populateXMLTextChunk(textChunk);
 		textChunk.concat("\t" + "<DestinationPath>" + "\n");
 		textChunk.concat("\t" + destinationPath + "\n");

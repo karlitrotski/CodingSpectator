@@ -11,6 +11,7 @@ import edu.illinois.codingtracker.helpers.Debugger;
 import edu.illinois.codingtracker.operations.OperationSymbols;
 import edu.illinois.codingtracker.operations.OperationTextChunk;
 import edu.illinois.codingtracker.operations.resources.BreakableResourceOperation;
+import edu.illinois.codingtracker.operations.OperationXMLTextChunk;
 
 /**
  * Note: This is an exception in the class hierarchy, because SavedFileOperation should extends
@@ -49,7 +50,7 @@ public class SavedFileOperation extends BreakableResourceOperation {
 	}
 	
 	@Override
-	protected void populateXMLTextChunk(OperationTextChunk textChunk){
+	protected void populateXMLTextChunk(OperationXMLTextChunk textChunk){
 		textChunk.concat("<SavedFileOperation>" + "\n");
 		super.populateXMLTextChunk(textChunk);
 		textChunk.concat("\t" + "<timestamp>" + "\n");

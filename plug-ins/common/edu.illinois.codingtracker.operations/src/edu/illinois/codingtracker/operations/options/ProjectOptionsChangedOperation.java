@@ -11,6 +11,7 @@ import edu.illinois.codingtracker.operations.JavaProjectsUpkeeper;
 import edu.illinois.codingtracker.operations.OperationLexer;
 import edu.illinois.codingtracker.operations.OperationSymbols;
 import edu.illinois.codingtracker.operations.OperationTextChunk;
+import edu.illinois.codingtracker.operations.OperationXMLTextChunk;
 
 /**
  * 
@@ -67,7 +68,7 @@ public class ProjectOptionsChangedOperation extends OptionsChangedOperation {
 	}
 	
 	@Override
-	protected void populateXMLTextChunk(OperationTextChunk textChunk) {
+	protected void populateXMLTextChunk(OperationXMLTextChunk textChunk) {
 		textChunk.concat("<ProjectOptionsChangedOperation>"+"\n");
 		textChunk.concat("\t"+"<ProjectName>"+"\n");
 		textChunk.concat("\t"+"projectName"+"\n");

@@ -6,6 +6,7 @@ package edu.illinois.codingtracker.operations.junit;
 import edu.illinois.codingtracker.operations.OperationLexer;
 import edu.illinois.codingtracker.operations.OperationSymbols;
 import edu.illinois.codingtracker.operations.OperationTextChunk;
+import edu.illinois.codingtracker.operations.OperationXMLTextChunk;
 
 /**
  * 
@@ -47,7 +48,7 @@ public class TestCaseFinishedOperation extends JUnitOperation {
 	}
 	
 	@Override
-	protected void populateXMLTextChunk(OperationTextChunk textChunk){
+	protected void populateXMLTextChunk(OperationXMLTextChunk textChunk){
 		textChunk.concat("<TestCaseFinishedOperation>" + "\n");
 		super.populateXMLTextChunk(textChunk);
 		textChunk.concat("\t" + "<Result>" + "\n");

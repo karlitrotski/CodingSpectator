@@ -10,6 +10,7 @@ import org.eclipse.jdt.core.JavaCore;
 
 import edu.illinois.codingtracker.operations.OperationSymbols;
 import edu.illinois.codingtracker.operations.OperationTextChunk;
+import edu.illinois.codingtracker.operations.OperationXMLTextChunk;
 
 /**
  * 
@@ -42,7 +43,7 @@ public class WorkspaceOptionsChangedOperation extends OptionsChangedOperation {
 	}
 	
 	@Override
-	protected void populateXMLTextChunk(OperationTextChunk textChunk) {
+	protected void populateXMLTextChunk(OperationXMLTextChunk textChunk) {
 		textChunk.concat("<WorkspaceOptionsChangedOperation"+"\n");
 		super.populateXMLTextChunk(textChunk);
 		textChunk.concat("\t" + "<timestamp>" + "\n");

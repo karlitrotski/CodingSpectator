@@ -21,6 +21,7 @@ import edu.illinois.codingtracker.helpers.Debugger;
 import edu.illinois.codingtracker.operations.OperationLexer;
 import edu.illinois.codingtracker.operations.OperationTextChunk;
 import edu.illinois.codingtracker.operations.UserOperation;
+import edu.illinois.codingtracker.operations.OperationXMLTextChunk;
 
 /**
  * Concrete implementations of this operation are no longer recorded.
@@ -154,7 +155,7 @@ public abstract class RefactoringOperation extends UserOperation {
 	}
 	
 	@Override
-	protected void populateXMLTextChunk(OperationTextChunk textChunk) {
+	protected void populateXMLTextChunk(OperationXMLTextChunk textChunk) {
 		textChunk.concat("\t"+"<ID>"+"\n");
 		textChunk.concat("\t"+id+"\n");
 		textChunk.concat("\t"+"</ID>"+"\n");

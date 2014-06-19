@@ -6,6 +6,7 @@ package edu.illinois.codingtracker.operations.conflicteditors;
 import edu.illinois.codingtracker.operations.OperationLexer;
 import edu.illinois.codingtracker.operations.OperationTextChunk;
 import edu.illinois.codingtracker.operations.UserOperation;
+import edu.illinois.codingtracker.operations.OperationXMLTextChunk;
 
 /**
  * 
@@ -31,7 +32,7 @@ public abstract class ConflictEditorOperation extends UserOperation {
 	}
 	
 	@Override
-	protected void populateXMLTextChunk(OperationTextChunk textChunk){
+	protected void populateXMLTextChunk(OperationXMLTextChunk textChunk){
 		textChunk.concat("\t" + "<EditorID>" + "\n");
 		textChunk.concat("\t" + editorID + "\n");
 		textChunk.concat("\t" + "</EditorID>" + "\n");

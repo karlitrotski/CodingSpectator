@@ -7,6 +7,7 @@ import org.eclipse.core.resources.IFile;
 
 import edu.illinois.codingtracker.operations.OperationSymbols;
 import edu.illinois.codingtracker.operations.OperationTextChunk;
+import edu.illinois.codingtracker.operations.OperationXMLTextChunk;
 
 /**
  * 
@@ -34,7 +35,7 @@ public class CVSCommittedFileOperation extends CommittedFileOperation {
 	}
 	
 	@Override
-	protected void populateXMLTextChunk(OperationTextChunk textChunk){
+	protected void populateXMLTextChunk(OperationXMLTextChunk textChunk){
 		textChunk.concat("<CVSCommittedFileOperation>" + "\n");
 		super.populateXMLTextChunk(textChunk);
 		textChunk.concat("\t" + "<timestamp>" + "\n");

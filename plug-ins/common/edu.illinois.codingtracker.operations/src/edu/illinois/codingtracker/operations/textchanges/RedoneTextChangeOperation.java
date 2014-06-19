@@ -8,6 +8,7 @@ import org.eclipse.jface.text.DocumentEvent;
 
 import edu.illinois.codingtracker.operations.OperationSymbols;
 import edu.illinois.codingtracker.operations.OperationTextChunk;
+import edu.illinois.codingtracker.operations.OperationXMLTextChunk;
 
 /**
  * 
@@ -40,7 +41,7 @@ public class RedoneTextChangeOperation extends TextChangeOperation {
 	}
 	
 	@Override
-	protected void populateXMLTextChunk(OperationTextChunk textChunk){
+	protected void populateXMLTextChunk(OperationXMLTextChunk textChunk){
 		textChunk.concat("<RedoneTextChangeOperation>" + "\n");
 		super.populateXMLTextChunk(textChunk);
 		textChunk.concat("\t" + "<timestamp>" + "\n");

@@ -21,6 +21,7 @@ import edu.illinois.codingtracker.operations.OperationSymbols;
 import edu.illinois.codingtracker.operations.OperationTextChunk;
 import edu.illinois.codingtracker.operations.UserOperation;
 import edu.illinois.codingtracker.operations.pluginusage.StateSymbols;
+import edu.illinois.codingtracker.operations.OperationXMLTextChunk;
 
 /**
  * Class that writes,  when Eclipse starts, all the list of installed plugins in alphabetical order 
@@ -54,7 +55,7 @@ public class PluginsList extends UserOperation {
 	}
 	
 	@Override
-	protected void populateXMLTextChunk(OperationTextChunk textChunk) {
+	protected void populateXMLTextChunk(OperationXMLTextChunk textChunk) {
 		populatePluginsList();
 		textChunk.concat("<PluginList>" + "\n");
 		textChunk.concat("\t" + "<List>" + "\n");

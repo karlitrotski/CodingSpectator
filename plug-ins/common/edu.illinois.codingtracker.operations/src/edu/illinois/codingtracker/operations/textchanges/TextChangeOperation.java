@@ -18,6 +18,7 @@ import edu.illinois.codingtracker.compare.helpers.EditorHelper;
 import edu.illinois.codingtracker.operations.OperationLexer;
 import edu.illinois.codingtracker.operations.OperationTextChunk;
 import edu.illinois.codingtracker.operations.UserOperation;
+import edu.illinois.codingtracker.operations.OperationXMLTextChunk;
 
 /**
  * 
@@ -67,7 +68,7 @@ public abstract class TextChangeOperation extends UserOperation {
 	}
 	
 	@Override
-	protected void populateXMLTextChunk(OperationTextChunk textChunk){
+	protected void populateXMLTextChunk(OperationXMLTextChunk textChunk){
 		textChunk.concat("\t" + "<ReplacedText>" + "\n");
 		textChunk.concat("\t" + replacedText + "\n");
 		textChunk.concat("\t" + "</ReplacedText>" + "\n");

@@ -3,6 +3,7 @@ package edu.illinois.codingtracker.operations.starts;
 import edu.illinois.codingtracker.operations.OperationLexer;
 import edu.illinois.codingtracker.operations.OperationSymbols;
 import edu.illinois.codingtracker.operations.OperationTextChunk;
+import edu.illinois.codingtracker.operations.OperationXMLTextChunk;
 
 public class TerminatedApplicationOperation extends LaunchedApplicationOperation {
 	
@@ -47,7 +48,7 @@ public class TerminatedApplicationOperation extends LaunchedApplicationOperation
 	}
 
 	@Override
-	protected void populateXMLTextChunk(OperationTextChunk textChunk) {
+	protected void populateXMLTextChunk(OperationXMLTextChunk textChunk) {
 		textChunk.concat("<TerminatedApplicationOperation>" + "\n");
 		textChunk.concat("\t" + "<Launch_mode>" + "\n");
 		textChunk.concat("\t" + launchMode + "\n");

@@ -11,6 +11,7 @@ import edu.illinois.codingtracker.helpers.ResourceHelper;
 import edu.illinois.codingtracker.operations.OperationLexer;
 import edu.illinois.codingtracker.operations.OperationTextChunk;
 import edu.illinois.codingtracker.operations.files.FileOperation;
+import edu.illinois.codingtracker.operations.OperationXMLTextChunk;
 
 /**
  * 
@@ -42,7 +43,7 @@ public abstract class SnapshotedFileOperation extends FileOperation {
 	}
 	
 	@Override
-	protected void populateXMLTextChunk(OperationTextChunk textChunk){
+	protected void populateXMLTextChunk(OperationXMLTextChunk textChunk){
 		super.populateXMLTextChunk(textChunk);
 		textChunk.concat("\t" + "<FileContent>" + "\n");
 		textChunk.concat("\t" + fileContent + "\n");

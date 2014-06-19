@@ -10,6 +10,7 @@ import java.util.TreeMap;
 import edu.illinois.codingtracker.operations.OperationLexer;
 import edu.illinois.codingtracker.operations.OperationTextChunk;
 import edu.illinois.codingtracker.operations.UserOperation;
+import edu.illinois.codingtracker.operations.OperationXMLTextChunk;
 
 /**
  * 
@@ -59,7 +60,7 @@ public abstract class OptionsChangedOperation extends UserOperation {
 	}
 	
 	@Override
-	protected void populateXMLTextChunk(OperationTextChunk textChunk) {
+	protected void populateXMLTextChunk(OperationXMLTextChunk textChunk) {
 		textChunk.concat("\t"+"<OptionsCount>"+"\n");
 		textChunk.concat("\t"+options.size()+"\n");
 		textChunk.concat("\t"+"</OptionsCount>"+"\n");

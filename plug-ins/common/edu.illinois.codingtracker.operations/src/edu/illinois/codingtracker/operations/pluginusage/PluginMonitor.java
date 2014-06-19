@@ -10,6 +10,7 @@ import edu.illinois.codingtracker.operations.OperationLexer;
 import edu.illinois.codingtracker.operations.OperationSymbols;
 import edu.illinois.codingtracker.operations.OperationTextChunk;
 import edu.illinois.codingtracker.operations.UserOperation;
+import edu.illinois.codingtracker.operations.OperationXMLTextChunk;
 
 /**
  * Class that detects when a plug-in state changes to active or when 
@@ -47,7 +48,7 @@ public class PluginMonitor extends UserOperation {
 	}
 	
 	@Override
-	protected void populateXMLTextChunk(OperationTextChunk textChunk) {
+	protected void populateXMLTextChunk(OperationXMLTextChunk textChunk) {
 		textChunk.concat("<TerminatedApplicationOperation>" + "\n");
 		textChunk.concat("\t" + "<text>" + "\n");
 		textChunk.concat("\t" + text + "\n");

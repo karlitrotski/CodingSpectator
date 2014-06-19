@@ -7,6 +7,7 @@ import org.eclipse.core.resources.IResource;
 
 import edu.illinois.codingtracker.operations.OperationLexer;
 import edu.illinois.codingtracker.operations.OperationTextChunk;
+import edu.illinois.codingtracker.operations.OperationXMLTextChunk;
 
 /**
  * 
@@ -34,7 +35,7 @@ public abstract class UpdatedResourceOperation extends BreakableResourceOperatio
 	}
 	
 	@Override
-	protected void populateXMLTextChunk(OperationTextChunk textChunk){
+	protected void populateXMLTextChunk(OperationXMLTextChunk textChunk){
 		super.populateXMLTextChunk(textChunk);
 		textChunk.concat("\t" + "<updateFlags>" + "\n");
 		textChunk.concat("\t" + updateFlags + "\n");

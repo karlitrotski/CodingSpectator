@@ -4,6 +4,7 @@ import edu.illinois.codingtracker.operations.OperationLexer;
 import edu.illinois.codingtracker.operations.OperationSymbols;
 import edu.illinois.codingtracker.operations.OperationTextChunk;
 import edu.illinois.codingtracker.operations.UserOperation;
+import edu.illinois.codingtracker.operations.OperationXMLTextChunk;
 /**
  * Class write symbol W when developer uses keys ShortCuts and
  * Write the ShortCuts command of execution name Example #W#Ctrl+C->Copy#
@@ -38,7 +39,7 @@ public class ShortCutCommandName extends UserOperation{
 	}
 	
 	@Override
-	protected void populateXMLTextChunk(OperationTextChunk textChunk){
+	protected void populateXMLTextChunk(OperationXMLTextChunk textChunk){
 		textChunk.concat("<ShortCutCommandName>" + "\n");
 		textChunk.concat("\t" + "<KeyShortCuts>" + "\n");
 		textChunk.concat("\t" + KeyShortcuts.trim() + "\n");

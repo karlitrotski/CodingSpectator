@@ -11,6 +11,7 @@ import edu.illinois.codingtracker.operations.OperationLexer;
 import edu.illinois.codingtracker.operations.OperationSymbols;
 import edu.illinois.codingtracker.operations.OperationTextChunk;
 import edu.illinois.codingtracker.operations.UserOperation;
+import edu.illinois.codingtracker.operations.OperationXMLTextChunk;
 
 //Esta clase esta repetida en el package operations.resources
 public class DetectFocusGainsWorkbench extends UserOperation{
@@ -35,7 +36,7 @@ public class DetectFocusGainsWorkbench extends UserOperation{
 	}
 	
 	@Override
-	protected void populateXMLTextChunk(OperationTextChunk textChunk) {
+	protected void populateXMLTextChunk(OperationXMLTextChunk textChunk) {
 		textChunk.concat("<DetectFocusGainsWorkbench>"+"\n");
 		textChunk.concat("\t" + "<timestamp>" + "\n");
 		textChunk.concat("\t" + getTime() + "\n");
