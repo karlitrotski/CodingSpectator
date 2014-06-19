@@ -5,6 +5,7 @@ import edu.illinois.codingtracker.operations.OperationLexer;
 import edu.illinois.codingtracker.operations.OperationSymbols;
 import edu.illinois.codingtracker.operations.OperationTextChunk;
 import edu.illinois.codingtracker.operations.UserOperation;
+import edu.illinois.codingtracker.operations.OperationXMLTextChunk;
 
 /**
  * 
@@ -39,7 +40,7 @@ public class AnnotationErrorOperation extends UserOperation {
 		textChunk.append(Integer.toString(this.annotationErrorsNumber));
 	}
 	
-	protected void populateXMLTextChunk(OperationTextChunk textChunk) {
+	protected void populateXMLTextChunk(OperationXMLTextChunk textChunk) {
 		textChunk.concat("<AnnotationErrorOperation>"+"\n");
 		textChunk.concat("\t"+"<ErrorsNumber>"+"\n");
 		textChunk.concat("\t"+annotationErrorsNumber+"\n");

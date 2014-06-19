@@ -6,6 +6,7 @@
 	import edu.illinois.codingtracker.operations.OperationSymbols;
 	import edu.illinois.codingtracker.operations.OperationTextChunk;
 	import edu.illinois.codingtracker.operations.UserOperation;
+	import edu.illinois.codingtracker.operations.OperationXMLTextChunk;
 
 public class QuickfixUsageOperation extends UserOperation {
 
@@ -37,7 +38,7 @@ public class QuickfixUsageOperation extends UserOperation {
 		}
 		
 		@Override
-		protected void populateXMLTextChunk(OperationTextChunk textChunk) {
+		protected void populateXMLTextChunk(OperationXMLTextChunk textChunk) {
 			textChunk.concat("<QuickfixUsageOperation>" + "\n");
 			textChunk.concat("\t" + "<ContentAssistEvent>" + "\n");
 			textChunk.concat("\t" + event.assistant + "\n");
