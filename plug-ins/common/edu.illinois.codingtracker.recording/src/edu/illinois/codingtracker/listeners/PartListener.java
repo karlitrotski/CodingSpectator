@@ -78,11 +78,10 @@ public class PartListener extends BasicListener implements IPartListener2, ISele
 						PartListener partListener = new PartListener();
 						activePage.addPartListener(partListener);
 						isPartListenerRegistered= true;
-						
-						for(IWorkbenchPartReference partRef: activePage.getViewReferences()){
-							IWorkbenchPart part= partRef.getPart(true);
-							if(part!=null){
-								part.getSite().getSelectionProvider().addSelectionChangedListener(partListener);
+						for (IWorkbenchPartReference partRef: activePage.getViewReferences()) {
+							IWorkbenchPart part = partRef.getPart(true);
+							if (part != null) {
+								partListener.addSelectionChangedListener(part);
 							}
 						}
 					}
@@ -91,13 +90,12 @@ public class PartListener extends BasicListener implements IPartListener2, ISele
 		});
 	}
 
-	public void partClosed(IWorkbenchPart part) {
-		IFile closedFile= getFileOfWorkbenchPart(part);
-		if (EditorHelper.isConflictEditor(part)) {
-			closeConflictEditor((CompareEditor)part);
-		} else if (closedFile != null) {
-			closeRegularEditor(part, closedFile);
-		}
+	public void addSelectionChangedListener(IWorkbenchPart part) {
+		part.getSite().getSelectionProvider().addSelectionChangedListener(this);
+	}
+	
+	public void removeSelectionChangedListener(IWorkbenchPart part) {
+		part.getSite().getSelectionProvider().removeSelectionChangedListener(this);
 	}
 
 	private IFile getFileOfWorkbenchPart(IWorkbenchPart part) {
@@ -156,6 +154,15 @@ public class PartListener extends BasicListener implements IPartListener2, ISele
 		// do nothing
 	}
 
+	public void partClosed(IWorkbenchPart part) {
+		IFile closedFile= getFileOfWorkbenchPart(part);
+		if (EditorHelper.isConflictEditor(part)) {
+			closeConflictEditor((CompareEditor)part);
+		} else if (closedFile != null) {
+			closeRegularEditor(part, closedFile);
+		}
+	}
+
 	@Override
 	public void partClosed(IWorkbenchPartReference partRef) {
 		IWorkbenchPart part= partRef.getPart(true);
@@ -164,6 +171,7 @@ public class PartListener extends BasicListener implements IPartListener2, ISele
 				partClosed(part);
 			} else if (part instanceof IViewPart) {
 				operationRecorder.recordViewPart(part.getTitle(), IPartState.CLOSED);
+				removeSelectionChangedListener(part);
 			}
 		}
 	}
@@ -182,6 +190,7 @@ public class PartListener extends BasicListener implements IPartListener2, ISele
 				operationRecorder.recordOpenedFile(openedFile);
 			} else if (part instanceof IViewPart) {
 				operationRecorder.recordViewPart(part.getTitle(), IPartState.OPENED);
+				addSelectionChangedListener(part);
 			}
 		}
 	}
@@ -219,7 +228,10 @@ public class PartListener extends BasicListener implements IPartListener2, ISele
 
 	@Override
 	public void selectionChanged(SelectionChangedEvent event) {
-		operationRecorder.recordViewPart(formater.formatMessage(event.getSelection()), IPartState.SELECTION_CHANGED);
+		String formatMessage= formater.formatMessage(event.getSelection());
+		Object source= event.getSource();
+		String sourceName= source.getClass().toString();
+		operationRecorder.recordViewPart("source: " + sourceName + " --- selection: " + formatMessage, IPartState.SELECTION_CHANGED);
 	}
 	
 }
