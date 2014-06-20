@@ -86,7 +86,7 @@ public class ListenerMenuToolBar extends BasicListener implements IExecutionList
 		Shell theShell = parent.getShell();
 		return parent == theShell.getMenuBar();
 	}
-	private static boolean isOnWorkbenchToolbar(ToolItem toolItem)
+	private static boolean getIsOnWorkbenchToolbar(ToolItem toolItem)
 	{
 		ToolBar toolBar = toolItem.getParent();
 		Shell shell = toolBar.getShell();
@@ -118,7 +118,7 @@ public class ListenerMenuToolBar extends BasicListener implements IExecutionList
 
 		return false;
 	}
-	public static String removeChar(String input, char toRemove)
+	public static String getRemoveChar(String input, char toRemove)
 	{
 		StringBuffer bufer = new StringBuffer(input.length());
 		int last = 0;
@@ -178,16 +178,16 @@ public class ListenerMenuToolBar extends BasicListener implements IExecutionList
 
 		return IdWizard;
 	}
-	public static String MenuItemIndex(MenuItem menuItem, String menuInx)
+	public static String getMenuItemIndex(MenuItem menuItem, String menuInx)
 	{if (menuItem == null)
 			return menuInx;
 
 		if (menuInx.length() > 0)
 			menuInx = "|" + menuInx;
 		menuInx = menuItem.getParent().indexOf(menuItem) + menuInx;
-		return MenuItemIndex(menuItem.getParent().getParentItem(), menuInx);
+		return getMenuItemIndex(menuItem.getParent().getParentItem(), menuInx);
 	}
-	public static String ToolItemIndex(ToolItem ToolItem, String ToolInx)
+	public static String getToolItemIndex(ToolItem ToolItem, String ToolInx)
 	{if (ToolItem == null)
 			return ToolInx;
 
@@ -208,11 +208,11 @@ public class ListenerMenuToolBar extends BasicListener implements IExecutionList
 			{
 				if (widget instanceof MenuItem)
 				{
-					ItemIndex = MenuItemIndex((MenuItem) widget, "");
+					ItemIndex = getMenuItemIndex((MenuItem) widget, "");
 				}
 				if (widget instanceof ToolItem)
 				{
-					ItemIndex = ToolItemIndex((ToolItem) widget, "");
+					ItemIndex = getToolItemIndex((ToolItem) widget, "");
 				}
 			}
 		}
@@ -284,11 +284,11 @@ public class ListenerMenuToolBar extends BasicListener implements IExecutionList
 	{
 		if (menuItem.getParent() == null || menuItem.getParent().getParentItem() == null)
 		{
-			return removeChar(menuItem.getText(), '&');
+			return getRemoveChar(menuItem.getText(), '&');
 		}
 		else
 			{
-			return getDisplayName(menuItem.getParent()) + "/" + removeChar(menuItem.getText(), '&');
+			return getDisplayName(menuItem.getParent()) + "/" + getRemoveChar(menuItem.getText(), '&');
 			}
 		}
 	public static void getNameMenuToolBar(Widget widget,Command command) 
@@ -355,7 +355,7 @@ public class ListenerMenuToolBar extends BasicListener implements IExecutionList
 			ItemIndex = getItemMenuToolId(toolItem);
 			IViewPart ViewTool = null;
 			IEditorPart EditorTool;
-			if (isOnWorkbenchToolbar(toolItem))
+			if (getIsOnWorkbenchToolbar(toolItem))
 			{
 				try {
 					operationRecorder.recordUsingMenuToolIcons(
