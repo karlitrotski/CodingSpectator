@@ -17,6 +17,7 @@ Require-Bundle: org.eclipse.swtbot.go,
  edu.illinois.codingspectator.refactoringproblems.parser,
  edu.illinois.codingspectator.efs,
  edu.illinois.codingspectator.refactorings.parser,
- edu.illinois.codingspectator.monitor.ui
+ edu.illinois.codingspectator.monitor.ui,
+ edu.illinois.codingtracker.recording;bundle-version="1.0.0"
 Eclipse-RegisterBuddy: org.apache.log4j
 
