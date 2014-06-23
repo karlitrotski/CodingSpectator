@@ -3,12 +3,17 @@
  */
 package edu.illinois.codingtracker.listeners;
 
+import java.util.ArrayList;
+import java.util.Iterator;
+
 import org.eclipse.compare.internal.CompareEditor;
 import org.eclipse.core.resources.IFile;
 import org.eclipse.jdt.internal.ui.viewsupport.StatusBarUpdater;
 import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.jface.viewers.ISelectionChangedListener;
+import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.jface.viewers.SelectionChangedEvent;
+import org.eclipse.jface.viewers.StructuredSelection;
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.ui.IEditorPart;
 import org.eclipse.ui.IEditorReference;
@@ -49,8 +54,20 @@ public class PartListener extends BasicListener implements IPartListener2, ISele
 			super(null);
 		}
 
-		public String formatMessage(ISelection sel) {
-			return super.formatMessage(sel);
+		public String [] formatMessages(ISelection sel) {
+			if (sel instanceof IStructuredSelection && !sel.isEmpty()) {
+				IStructuredSelection selection= (IStructuredSelection) sel;
+				String[] messages = new String[selection.size()];
+				Iterator <Object> selections = selection.iterator();
+				int count = 0;	
+				while(selections.hasNext()){
+					Object element = selections.next();
+					messages[count] = this.formatMessage(new StructuredSelection(element));
+					count++;
+				}
+				return messages;
+			}
+			return new String[0];
 		}
 	}
 	
@@ -228,10 +245,10 @@ public class PartListener extends BasicListener implements IPartListener2, ISele
 
 	@Override
 	public void selectionChanged(SelectionChangedEvent event) {
-		String formatMessage= formater.formatMessage(event.getSelection());
+		String [] messages= formater.formatMessages(event.getSelection());
 		Object source= event.getSource();
 		String sourceName= source.getClass().toString();
-		operationRecorder.recordViewPart("source: " + sourceName + " --- selection: " + formatMessage, IPartState.SELECTION_CHANGED);
+		operationRecorder.recordSelectionChanged(sourceName,messages);
 	}
 	
 }

@@ -25,6 +25,7 @@ import edu.illinois.codingtracker.compare.helpers.EditorHelper;
 import edu.illinois.codingtracker.helpers.Debugger;
 import edu.illinois.codingtracker.helpers.FileRevision;
 import edu.illinois.codingtracker.helpers.ResourceHelper;
+import edu.illinois.codingtracker.operations.SelectionChangedOperation;
 import edu.illinois.codingtracker.operations.shortcuts.ShortCutCommandName;
 import edu.illinois.codingtracker.operations.conflicteditors.ClosedConflictEditorOperation;
 import edu.illinois.codingtracker.operations.conflicteditors.OpenedConflictEditorOperation;
@@ -450,6 +451,10 @@ public class OperationRecorder {
 	public void recordVisibleFile(IFile visibleFile) {
 		invalidateLastEditedFile(visibleFile);
 		TextRecorder.record(new EditPartOperation(visibleFile, IPartState.VISIBLE));
+	}
+
+	public void recordSelectionChanged(String sourceName, String[] messages) {
+		TextRecorder.record(new SelectionChangedOperation(sourceName, messages));
 	}
 
 }

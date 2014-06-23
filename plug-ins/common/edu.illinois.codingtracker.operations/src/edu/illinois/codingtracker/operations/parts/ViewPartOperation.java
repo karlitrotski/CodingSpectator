@@ -61,8 +61,7 @@ public class ViewPartOperation extends UserOperation implements IPartState {
 	 */
 	@Override
 	public void replay() throws Exception {
-		// TODO Auto-generated method stub
-
+		
 	}
 
 	@Override

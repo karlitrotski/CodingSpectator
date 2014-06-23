@@ -117,5 +117,7 @@ public abstract class OperationSymbols {
 	
 	public static final char PLUGINS_USAGE = 'X';
 
-	public static final char VIEW_PART_OPERATION_SYMBOL = '%';	
+	public static final char VIEW_PART_OPERATION_SYMBOL = '%';
+	
+	public static final char SELECTION_CHANGED_OPERATION_SYMBOL = '*';	
 }
