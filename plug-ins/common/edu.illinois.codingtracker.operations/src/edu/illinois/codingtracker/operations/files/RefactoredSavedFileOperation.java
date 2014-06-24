@@ -44,9 +44,9 @@ public class RefactoredSavedFileOperation extends FileOperation {
 	protected void populateXMLTextChunk(OperationTextChunk textChunk){
 		textChunk.concat("<RefactoredSavedFileOperation>" + "\n");
 		super.populateXMLTextChunk(textChunk);
-		textChunk.concat("\t" + "<timestamp>" + "\n");
-		textChunk.concat("\t" + getTime() + "\n");
-		textChunk.concat("\t" + "</timestamp>" + "\n");
+		textChunk.concat("\t" + "<timestamp>");
+		textChunk.concat("" + getTime());
+		textChunk.concat("</timestamp>" + "\n");
 		textChunk.concat("</RefactoredSavedFileOperation>" + "\n");
 	}
 

@@ -40,9 +40,9 @@ public abstract class ConflictEditorTextChangeOperation extends TextChangeOperat
 	@Override
 	protected void populateXMLTextChunk(OperationTextChunk textChunk){
 		super.populateXMLTextChunk(textChunk);
-		textChunk.concat("\t" + "<EditorID>" + "\n");
-		textChunk.concat("\t" + editorID + "\n");
-		textChunk.concat("\t" + "</EditorID>" + "\n");
+		textChunk.concat("\t" + "<EditorID>");
+		textChunk.concat("" + editorID + "\n");
+		textChunk.concat("</EditorID>" + "\n");
 	}
 
 	@Override

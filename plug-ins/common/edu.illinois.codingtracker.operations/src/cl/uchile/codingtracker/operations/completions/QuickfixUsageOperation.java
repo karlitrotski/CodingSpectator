@@ -39,12 +39,12 @@ public class QuickfixUsageOperation extends UserOperation {
 		@Override
 		protected void populateXMLTextChunk(OperationTextChunk textChunk) {
 			textChunk.concat("<QuickfixUsageOperation>" + "\n");
-			textChunk.concat("\t" + "<ContentAssistEvent>" + "\n");
-			textChunk.concat("\t" + event.assistant + "\n");
-			textChunk.concat("\t" + "</ContentAssistEvent>" + "\n");
-			textChunk.concat("\t" + "<timestamp>" + "\n");
-			textChunk.concat("\t" + getTime() + "\n");
-			textChunk.concat("\t" + "</timestamp>" + "\n");
+			textChunk.concat("\t" + "<ContentAssistEvent>");
+			textChunk.concat("" + event.assistant);
+			textChunk.concat("</ContentAssistEvent>" + "\n");
+			textChunk.concat("\t" + "<timestamp>");
+			textChunk.concat("" + getTime());
+			textChunk.concat("</timestamp>" + "\n");
 			textChunk.concat("</QuickfixUsageOperation>" + "\n");
 		}
 

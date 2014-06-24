@@ -57,12 +57,12 @@ public class PluginsList extends UserOperation {
 	protected void populateXMLTextChunk(OperationTextChunk textChunk) {
 		populatePluginsList();
 		textChunk.concat("<PluginList>" + "\n");
-		textChunk.concat("\t" + "<List>" + "\n");
-		textChunk.concat("\t" + text + "\n");
-		textChunk.concat("\t" + "</List>" + "\n");
-		textChunk.concat("\t" + "<timestamp>" + "\n");
-		textChunk.concat("\t" + getTime() + "\n");
-		textChunk.concat("\t" + "</timestamp>" + "\n");
+		textChunk.concat("\t" + "<List>");
+		textChunk.concat(""+text);
+		textChunk.concat("</List>" + "\n");
+		textChunk.concat("\t" + "<timestamp>");
+		textChunk.concat("" + getTime());
+		textChunk.concat("</timestamp>" + "\n");
 		textChunk.concat("</PluginList>" + "\n");
 	}
 	
