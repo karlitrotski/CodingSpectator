@@ -27,6 +27,7 @@ import edu.illinois.codingtracker.helpers.FileRevision;
 import edu.illinois.codingtracker.helpers.ResourceHelper;
 import edu.illinois.codingtracker.operations.SelectionChangedOperation;
 import edu.illinois.codingtracker.operations.shortcuts.ShortCutCommandName;
+import edu.illinois.codingtracker.operations.shortcuts.UsingMenuToolIcons;
 import edu.illinois.codingtracker.operations.conflicteditors.ClosedConflictEditorOperation;
 import edu.illinois.codingtracker.operations.conflicteditors.OpenedConflictEditorOperation;
 import edu.illinois.codingtracker.operations.conflicteditors.SavedConflictEditorOperation;
@@ -455,6 +456,10 @@ public class OperationRecorder {
 
 	public void recordSelectionChanged(String sourceName, String[] messages) {
 		TextRecorder.record(new SelectionChangedOperation(sourceName, messages));
+	}
+
+	public void recordUsingMenuToolIcons(String nameSite, String contextmenuValue, String itemIndex, String displayName, String id, String name) {
+		TextRecorder.record(new UsingMenuToolIcons(nameSite, contextmenuValue, itemIndex, displayName, id,  name ));
 	}
 
 }
