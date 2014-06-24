@@ -76,6 +76,6 @@ public class TerminatedApplicationOperation extends LaunchedApplicationOperation
 	@Override
 	protected void initializeFrom(OperationLexer operationLexer) {
 		super.initializeFrom(operationLexer);
-		exitValues = operationLexer.readIntArray();
+		exitValues = operationLexer.readInts();
 	}
 }

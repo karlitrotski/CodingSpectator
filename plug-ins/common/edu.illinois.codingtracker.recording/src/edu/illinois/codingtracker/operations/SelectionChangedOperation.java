@@ -31,7 +31,7 @@ public class SelectionChangedOperation extends UserOperation {
 		textChunk.concat("<SelectionChangedOperation>" + "\n");
 		textChunk.concat("\t" + "<source>" + sourceName + "</source>" +"\n");
 		textChunk.concat("<selections>");
-		for(String selection:selections){
+		for(String selection: selections){
 			textChunk.concat("\t" + "<selection>" + selection + "</selection>" +"\n");
 		}
 		textChunk.concat("</selections>");
@@ -42,7 +42,7 @@ public class SelectionChangedOperation extends UserOperation {
 	@Override
 	protected void initializeFrom(OperationLexer operationLexer) {
 		sourceName = operationLexer.readString();
-		//messages = operationLexer.readString();
+		selections = operationLexer.readStrings();
 	}
 
 	@Override

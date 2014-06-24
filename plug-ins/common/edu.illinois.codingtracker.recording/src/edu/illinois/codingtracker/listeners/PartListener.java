@@ -3,9 +3,7 @@
  */
 package edu.illinois.codingtracker.listeners;
 
-import java.util.ArrayList;
 import java.util.Iterator;
-
 import org.eclipse.compare.internal.CompareEditor;
 import org.eclipse.core.resources.IFile;
 import org.eclipse.jdt.internal.ui.viewsupport.StatusBarUpdater;
