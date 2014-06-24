@@ -47,7 +47,35 @@ public class UsingMenuToolIcons extends UserOperation {
 
 	@Override
 	protected void populateXMLTextChunk(OperationTextChunk textChunk) {
-		// TODO Auto-generated method stub
+		textChunk.concat("<UsingMenuToolIcons>" + "\n");
+		textChunk.concat("\t" + "<Area>" + "\n");
+		textChunk.concat("\t" + nPart + "\n");
+		textChunk.concat("\t" + "</Area>" + "\n");
+		
+		textChunk.concat("\t" + "<Type>" + "\n");
+		textChunk.concat("\t" + nType + "\n");
+		textChunk.concat("\t" + "</Type>" + "\n");
+		
+		textChunk.concat("\t" + "<Index>" + "\n");
+		textChunk.concat("\t" + nIndex + "\n");
+		textChunk.concat("\t" + "</Index>" + "\n");
+
+		textChunk.concat("\t" + "<Name>" + "\n");
+		textChunk.concat("\t" + nName + "\n");
+		textChunk.concat("\t" + "</Name>" + "\n");
+		
+		textChunk.concat("\t" + "<CommandId>" + "\n");
+		textChunk.concat("\t" + nIdCommand + "\n");
+		textChunk.concat("\t" + "</CommandId>" + "\n");
+		
+		textChunk.concat("\t" + "<CommandName>" + "\n");
+		textChunk.concat("\t" + nNameCommand + "\n");
+		textChunk.concat("\t" + "</CommandName>" + "\n");
+		
+		textChunk.concat("\t" + "<timestamp>" + "\n");
+		textChunk.concat("\t" + getTime() + "\n");
+		textChunk.concat("\t" + "</timestamp>" + "\n");
+		textChunk.concat("</UsingMenuToolIcons>" + "\n");
 		
 	}
 
