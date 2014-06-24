@@ -45,4 +45,10 @@ public class UsingMenuToolIcons extends UserOperation {
 	public void replay() throws Exception {	
 	}
 
+	@Override
+	protected void populateXMLTextChunk(OperationTextChunk textChunk) {
+		// TODO Auto-generated method stub
+		
+	}
+
 }
