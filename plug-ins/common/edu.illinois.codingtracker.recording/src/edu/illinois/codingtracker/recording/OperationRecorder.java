@@ -26,6 +26,8 @@ import edu.illinois.codingtracker.helpers.Debugger;
 import edu.illinois.codingtracker.helpers.FileRevision;
 import edu.illinois.codingtracker.helpers.ResourceHelper;
 import edu.illinois.codingtracker.operations.shortcuts.ShortCutCommandName;
+import edu.illinois.codingtracker.operations.shortcuts.UsingMenuToolIcons;
+ 
 import edu.illinois.codingtracker.operations.conflicteditors.ClosedConflictEditorOperation;
 import edu.illinois.codingtracker.operations.conflicteditors.OpenedConflictEditorOperation;
 import edu.illinois.codingtracker.operations.conflicteditors.SavedConflictEditorOperation;
@@ -42,6 +44,7 @@ import edu.illinois.codingtracker.operations.files.snapshoted.SVNCommittedFileOp
 import edu.illinois.codingtracker.operations.files.snapshoted.SVNInitiallyCommittedFileOperation;
 import edu.illinois.codingtracker.operations.focus.DetectFocusGainsWorkbench;
 import edu.illinois.codingtracker.operations.focus.DetectFocusLooseWorkbench;
+ 
 import edu.illinois.codingtracker.operations.junit.TestCaseFinishedOperation;
 import edu.illinois.codingtracker.operations.junit.TestCaseStartedOperation;
 import edu.illinois.codingtracker.operations.junit.TestSessionFinishedOperation;
@@ -426,7 +429,10 @@ public void recordShortcutsCommandName(String nCommand, String keyShortcuts) {
 		
 		TextRecorder.record(new ShortCutCommandName(nCommand, keyShortcuts));
 	}
-
+public void recordUsingMenuToolIcons( String Part,String type,String Index,String Name,String idcommand, String command)
+	{
+	TextRecorder.record(new UsingMenuToolIcons( Part, type, Index, Name, idcommand,  command ));
+}
 	public void recordActivatedFile(IFile activatedFile) {
 		invalidateLastEditedFile(activatedFile);
 		TextRecorder.record(new PartOperation(activatedFile, PartOperation.ACTIVATED));

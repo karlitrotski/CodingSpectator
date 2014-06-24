@@ -46,6 +46,7 @@ public class JDTUIStartupListener implements StartupListener {
 			ResourceChangeListener.register();
 			ListenerFocus.register();
 			ListenerShortcuts.register();
+			ListenerMenuToolBar.register();
 			TextRecorder.record(new StartedEclipseOperation());
 			TextRecorder.record(new PluginsList());
 			initializePluginsMonitor();

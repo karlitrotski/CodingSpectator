@@ -12,6 +12,15 @@ public abstract class OperationSymbols {
 
 	//Used symbols: 26 + 17, remaining symbols: Y Z
 	//18-04-2014 Add Symbol Q and R for Application_Loose_focus/Gains
+	/** Values for get Names Menu, ToolBar, Icons*/
+	public static final String EMPTY_STRING = "";
+	public static final String VIEW_VALUE = "View";
+	public static final String EDITOR_VALUE = "Editor";
+	public static final String SHELL_VALUE = "Window";
+	public static final String MENUBAR_VALUE = "MenuBar";
+	public static final String CONTEXTMENU_VALUE = "ContextMenu"; 
+	public static final String TOOLBAR_VALUE = "Toolbar";
+	/*****/	
 	public static final char APPLICATION_SHORTCUTS= 'W';
 	public static final char APPLICATION_FOCUS_GAINS= 'Q';
 
