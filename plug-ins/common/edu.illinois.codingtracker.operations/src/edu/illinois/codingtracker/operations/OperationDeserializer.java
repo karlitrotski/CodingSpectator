@@ -73,7 +73,7 @@ public class OperationDeserializer {
 		return userOperations;
 	}
 
-	private static UserOperation createEmptyUserOperation(char operationSymbol) {
+	public static UserOperation createEmptyUserOperation(char operationSymbol) {
 		UserOperation userOperation;
 		//Falta instancias el metodo gain y loose
 		switch (operationSymbol) {
