@@ -55,7 +55,7 @@ public class OperationXMLTextChunk implements CharSequence {
 			return new String(s.getBytes(encoding), encoding);
 		} catch (UnsupportedEncodingException e) {
 			e.printStackTrace();
-			return "encoding error";
+			return "ENCODING_ERROR";
 		}
 	}
 	
