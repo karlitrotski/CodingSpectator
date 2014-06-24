@@ -3,16 +3,18 @@ import org.eclipse.core.commands.Command;
 import org.eclipse.core.commands.ExecutionEvent;
 import org.eclipse.core.commands.ExecutionException;
 import org.eclipse.core.commands.IExecutionListener;
-import org.eclipse.core.commands.NotHandledException; 
+import org.eclipse.core.commands.NotHandledException;
 import org.eclipse.core.commands.common.NotDefinedException;
 import org.eclipse.jface.bindings.keys.KeySequence;
 import org.eclipse.jface.bindings.keys.KeyStroke;
 import org.eclipse.jface.bindings.keys.SWTKeySupport;
 import org.eclipse.swt.widgets.Display;
-import org.eclipse.swt.widgets.Event; 
+import org.eclipse.swt.widgets.Event;
 import org.eclipse.ui.IWorkbenchWindow;
-import org.eclipse.ui.PlatformUI; 
-import org.eclipse.ui.commands.ICommandService;    
+import org.eclipse.ui.PlatformUI;
+import org.eclipse.ui.commands.ICommandService;
+
+
 
 /**
  * class ListenerISortctus for record Shortctus, and command name a Execution
@@ -21,16 +23,21 @@ import org.eclipse.ui.commands.ICommandService;
  */
 
 public class ListenerShortcuts extends BasicListener implements IExecutionListener {
+ 
+	
 	public void notHandled(String commandId, NotHandledException exception) {}
 	public void postExecuteFailure(String commandId, ExecutionException exception) {}
 	public void postExecuteSuccess(String commandId, Object returnValue) {}
+		 
 	public void preExecute(String commandId, ExecutionEvent event ) {
-		Command command = event.getCommand();
-		Object Trigger= event.getTrigger();
-		if(Trigger instanceof Event) 
-		{
-			try {
+	    Command command = event.getCommand();
+		Object Trigger= event.getTrigger(); 
+	 	if(Trigger instanceof Event) 
+		{	
+			try 
+		     { 
 				Event TriggerEvent = (Event)Trigger;
+				
 				if((TriggerEvent.keyCode>0))
 				{
 				   int accelerator = SWTKeySupport.convertEventToUnmodifiedAccelerator(TriggerEvent);
@@ -39,7 +46,7 @@ public class ListenerShortcuts extends BasicListener implements IExecutionListen
 	                if(!sequence.isEmpty()) 
 	                {  
 	                 operationRecorder.recordShortcutsCommandName(command.getName(),sequence.toString());
-	                    }
+	                }
 	            }
 				}
            
@@ -68,13 +75,15 @@ public class ListenerShortcuts extends BasicListener implements IExecutionListen
 		        	   if (CommandService != null) 
 		        	   	{
 		        	   	CommandService.addExecutionListener(new ListenerShortcuts());
+		        	    
+		       
 		        	   	isWindowListenerRegistered= true;
 		        	   	}
 					}
 		 		}
 		    }
 		});
-	}  
+	}
 }
 
 
