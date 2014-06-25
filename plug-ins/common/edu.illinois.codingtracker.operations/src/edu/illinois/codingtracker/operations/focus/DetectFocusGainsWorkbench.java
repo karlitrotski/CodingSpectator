@@ -37,9 +37,9 @@ public class DetectFocusGainsWorkbench extends UserOperation{
 	@Override
 	protected void populateXMLTextChunk(OperationTextChunk textChunk) {
 		textChunk.concat("<DetectFocusGainsWorkbench>"+"\n");
-		textChunk.concat("\t" + "<timestamp>" + "\n");
-		textChunk.concat("\t" + getTime() + "\n");
-		textChunk.concat("\t" + "</timestamp>" + "\n");	
+		textChunk.concat("\t" + "<timestamp>");
+		textChunk.concat("" + getTime());
+		textChunk.concat("</timestamp>" + "\n");	
 		textChunk.concat("</DetectFocusGainsWorkbench>"+"\n");
 	}
 	

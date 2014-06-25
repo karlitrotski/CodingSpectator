@@ -49,12 +49,12 @@ public class PluginMonitor extends UserOperation {
 	@Override
 	protected void populateXMLTextChunk(OperationTextChunk textChunk) {
 		textChunk.concat("<TerminatedApplicationOperation>" + "\n");
-		textChunk.concat("\t" + "<text>" + "\n");
-		textChunk.concat("\t" + text + "\n");
-		textChunk.concat("\t" + "</text>" + "\n");	
-		textChunk.concat("\t" + "<timestamp>" + "\n");
-		textChunk.concat("\t" + getTime() + "\n");
-		textChunk.concat("\t" + "</timestamp>" + "\n");
+		textChunk.concat("\t" + "<text>" );
+		textChunk.concat("" + text);
+		textChunk.concat("</text>" + "\n");	
+		textChunk.concat("\t" + "<timestamp>");
+		textChunk.concat("" + getTime());
+		textChunk.concat("</timestamp>" + "\n");
 		textChunk.concat("</TerminatedApplicationOperation>" + "\n");
 	}
 

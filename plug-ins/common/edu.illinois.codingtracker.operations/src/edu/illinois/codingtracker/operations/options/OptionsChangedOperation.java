@@ -60,16 +60,16 @@ public abstract class OptionsChangedOperation extends UserOperation {
 	
 	@Override
 	protected void populateXMLTextChunk(OperationTextChunk textChunk) {
-		textChunk.concat("\t"+"<OptionsCount>"+"\n");
-		textChunk.concat("\t"+options.size()+"\n");
-		textChunk.concat("\t"+"</OptionsCount>"+"\n");
+		textChunk.concat("\t"+"<OptionsCount>");
+		textChunk.concat("" + options.size());
+		textChunk.concat("</OptionsCount>"+"\n");
 		for (Entry<String, String> optionsEntry : options.entrySet()) {
-			textChunk.concat("\t"+"<KEY>"+"\n");
-			textChunk.concat("\t"+optionsEntry.getKey()+"\n");
-			textChunk.concat("\t"+"</KEY>"+"\n");
-			textChunk.concat("\t"+"<VALUE>"+"\n");
-			textChunk.concat("\t"+optionsEntry.getValue()+"\n");
-			textChunk.concat("\t"+"</VALUE>"+"\n");
+			textChunk.concat("\t"+"<KEY>");
+			textChunk.concat(""+optionsEntry.getKey());
+			textChunk.concat("</KEY>"+"\n");
+			textChunk.concat("\t"+"<VALUE>");
+			textChunk.concat(""+optionsEntry.getValue());
+			textChunk.concat("</VALUE>"+"\n");
 		}
 		
 	}

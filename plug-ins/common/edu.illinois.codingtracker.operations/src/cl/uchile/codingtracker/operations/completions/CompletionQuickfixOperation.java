@@ -37,9 +37,9 @@ public class CompletionQuickfixOperation extends UserOperation {
 	
 	protected void populateXMLTextChunk(OperationTextChunk textChunk) {
 		textChunk.concat("<CompletionQuickfixOperation>"+"\n");
-		textChunk.concat("\t" + "<timestamp>" + "\n");
-		textChunk.concat("\t" + getTime() + "\n");
-		textChunk.concat("\t" + "</timestamp>" + "\n");	
+		textChunk.concat("\t" + "<timestamp>");
+		textChunk.concat("" + getTime());
+		textChunk.concat("</timestamp>" + "\n");	
 		textChunk.concat("</CompletionQuickfixOperation>"+"\n");
 	}
 
