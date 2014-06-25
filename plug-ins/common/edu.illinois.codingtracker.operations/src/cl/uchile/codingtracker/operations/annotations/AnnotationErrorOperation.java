@@ -41,12 +41,12 @@ public class AnnotationErrorOperation extends UserOperation {
 	
 	protected void populateXMLTextChunk(OperationTextChunk textChunk) {
 		textChunk.concat("<AnnotationErrorOperation>"+"\n");
-		textChunk.concat("\t"+"<ErrorsNumber>"+"\n");
-		textChunk.concat("\t"+annotationErrorsNumber+"\n");
-		textChunk.concat("\t"+"</ErrorsNumber>"+"\n");
-		textChunk.concat("\t" + "<timestamp>" + "\n");
-		textChunk.concat("\t" + getTime() + "\n");
-		textChunk.concat("\t" + "</timestamp>" + "\n");	
+		textChunk.concat("\t"+"<ErrorsNumber>");
+		textChunk.concat(""+annotationErrorsNumber);
+		textChunk.concat("</ErrorsNumber>"+"\n");
+		textChunk.concat("\t" + "<timestamp>");
+		textChunk.concat("" + getTime());
+		textChunk.concat("</timestamp>" + "\n");	
 		textChunk.concat("</AnnotationErrorOperation>"+"\n");
 	}
 

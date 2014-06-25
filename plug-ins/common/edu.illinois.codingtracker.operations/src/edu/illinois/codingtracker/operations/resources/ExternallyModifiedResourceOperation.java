@@ -50,9 +50,9 @@ public class ExternallyModifiedResourceOperation extends ResourceOperation {
 	protected void populateXMLTextChunk(OperationTextChunk textChunk){
 		textChunk.concat("<ExternallyModifiedResourceOperation>" + "\n");
 		super.populateXMLTextChunk(textChunk);
-		textChunk.concat("\t" + "<isDeleted>" + "\n");
-		textChunk.concat("\t" + isDeleted + "\n");
-		textChunk.concat("\t" + "</isDeleted>" + "\n");
+		textChunk.concat("\t" + "<isDeleted>");
+		textChunk.concat("" + isDeleted);
+		textChunk.concat("</isDeleted>" + "\n");
 		textChunk.concat("</ExternallyModifiedResourceOperation>" + "\n");
 	}
 

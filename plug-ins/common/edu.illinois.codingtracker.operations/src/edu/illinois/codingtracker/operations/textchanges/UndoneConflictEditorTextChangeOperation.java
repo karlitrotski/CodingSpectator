@@ -44,9 +44,9 @@ public class UndoneConflictEditorTextChangeOperation extends ConflictEditorTextC
 	protected void populateXMLTextChunk(OperationTextChunk textChunk){
 		textChunk.concat("<UndoneConflictEditorTextChangeOperation>" + "\n");
 		super.populateXMLTextChunk(textChunk);
-		textChunk.concat("\t" + "<timestamp>" + "\n");
-		textChunk.concat("\t" + getTime() + "\n");
-		textChunk.concat("\t" + "</timestamp>" + "\n");
+		textChunk.concat("\t" + "<timestamp>");
+		textChunk.concat("" + getTime());
+		textChunk.concat("</timestamp>" + "\n");
 		textChunk.concat("</UndoneConflictEditorTextChangeOperation>" + "\n");
 	}
 

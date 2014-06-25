@@ -32,9 +32,9 @@ public abstract class JUnitOperation extends UserOperation {
 	
 	@Override
 	protected void populateXMLTextChunk(OperationTextChunk textChunk){
-		textChunk.concat("\t" + "<TestRunName>" + "\n");
-		textChunk.concat("\t" + testRunName + "\n");
-		textChunk.concat("\t" + "</TestRunName>" + "\n");
+		textChunk.concat("\t" + "<TestRunName>");
+		textChunk.concat("" + testRunName);
+		textChunk.concat("</TestRunName>" + "\n");
 	}
 
 	@Override

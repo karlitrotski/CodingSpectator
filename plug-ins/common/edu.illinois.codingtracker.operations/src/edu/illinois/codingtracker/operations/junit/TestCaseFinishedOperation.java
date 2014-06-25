@@ -50,12 +50,12 @@ public class TestCaseFinishedOperation extends JUnitOperation {
 	protected void populateXMLTextChunk(OperationTextChunk textChunk){
 		textChunk.concat("<TestCaseFinishedOperation>" + "\n");
 		super.populateXMLTextChunk(textChunk);
-		textChunk.concat("\t" + "<Result>" + "\n");
-		textChunk.concat("\t" + result + "\n");
-		textChunk.concat("\t" + "</Result>" + "\n");
-		textChunk.concat("\t" + "<timestamp>" + "\n");
-		textChunk.concat("\t" + getTime() + "\n");
-		textChunk.concat("\t" + "</timestamp>" + "\n");
+		textChunk.concat("\t" + "<Result>");
+		textChunk.concat("" + result);
+		textChunk.concat("</Result>" + "\n");
+		textChunk.concat("\t" + "<timestamp>");
+		textChunk.concat("" + getTime());
+		textChunk.concat("</timestamp>" + "\n");
 		textChunk.concat("</TestCaseFinishedOperation>" + "\n");
 	}
 

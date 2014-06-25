@@ -59,28 +59,28 @@ public class SaveMarkersStatusOperation extends UserOperation{
 			String message = currentMarkers[i].getAttribute("message").toString();
 			String resource = currentMarkers[i].getResource().getFullPath().toString();
 			if (kind == IResourceDelta.ADDED || kind == IResourceDelta.REMOVED) {
-				textChunk.concat("\t" + "\t" + "<CurrentMarker"+ i +">" + "\n");
-				textChunk.concat("\t" + "\t" + "<Kind>" + "\n");
-				textChunk.concat("\t" + "\t" + kind);
-				textChunk.concat("\t" + "\t" + "</Kind>" + "\n");
-				textChunk.concat("\t" + "\t" + "<LineNumber>" + "\n");
-				textChunk.concat("\t" + "\t" + lineNumber);
-				textChunk.concat("\t" + "\t" + "</LineNumber>" + "\n");
-				textChunk.concat("\t" + "\t" + "<Value>" + "\n");
-				textChunk.concat("\t" + "\t" + value);
-				textChunk.concat("\t" + "\t" + "</Value>" + "\n");
-				textChunk.concat("\t" + "\t" + "<Message>" + "\n");
-				textChunk.concat("\t" + "\t" + message);
-				textChunk.concat("\t" + "\t" + "</Message>" + "\n");
-				textChunk.concat("\t" + "\t" + "<Resource>" + "\n");
-				textChunk.concat("\t" + "\t" + resource);	
-				textChunk.concat("\t" + "\t" + "</Resource>" + "\n");
-				textChunk.concat("\t" + "\t" + "</CurrentMarker" + i +">" + "\n");
+				textChunk.concat("\t" + "<CurrentMarker"+ i +">");
+				textChunk.concat("\t" + "\t" + "<Kind>");
+				textChunk.concat("" + kind);
+				textChunk.concat("</Kind>" + "\n");
+				textChunk.concat("\t" + "\t" + "<LineNumber>");
+				textChunk.concat("" + lineNumber);
+				textChunk.concat("</LineNumber>" + "\n");
+				textChunk.concat("\t" + "\t" + "<Value>");
+				textChunk.concat("" + value);
+				textChunk.concat("</Value>" + "\n");
+				textChunk.concat("\t" + "\t" + "<Message>");
+				textChunk.concat("" + message);
+				textChunk.concat("</Message>" + "\n");
+				textChunk.concat("\t" + "\t" + "<Resource>");
+				textChunk.concat("" + resource);	
+				textChunk.concat("</Resource>" + "\n");
+				textChunk.concat("\t" + "</CurrentMarker" + i +">" + "\n");
 			}
 		}
-		textChunk.concat("\t" + "<timestamp>" + "\n");
-		textChunk.concat("\t" + getTime() + "\n");
-		textChunk.concat("\t" + "</timestamp>" + "\n");
+		textChunk.concat("\t" + "<timestamp>");
+		textChunk.concat("" + getTime());
+		textChunk.concat("</timestamp>" + "\n");
 		textChunk.concat("</SaveMarkersStatusOperation>" + "\n");
 	}
 
