@@ -36,19 +36,8 @@ public class OperationSymbolsTest {
 		ArrayList<Character> symbols = getSymbolValues();
 		for (Character symbol: symbols) {
 			UserOperation operation = OperationDeserializer.createEmptyUserOperation(symbol);
-			char operationSymbol;
-			try {
-				operationSymbol = UserOperation.class.getField("getOperationSymbol").getChar(operation);
-				assertTrue(symbol.charValue() == operationSymbol);
-			} catch (IllegalArgumentException e) {
-				fail("Fail getting field getOperationSymbol " + symbol + " from " + operation.toString());
-			} catch (SecurityException e) {
-				fail("Fail getting field getOperationSymbol " + symbol + " from " + operation.toString());
-			} catch (IllegalAccessException e) {
-				fail("Fail getting field getOperationSymbol " + symbol + " from " + operation.toString());
-			} catch (NoSuchFieldException e) {
-				fail("Fail getting field getOperationSymbol " + symbol + " from " + operation.toString());
-			}			
+			char operationSymbol = operation.getOperationSymbol();
+			assertTrue(symbol.charValue() == operationSymbol);
 		}
 	}
 
