@@ -26,7 +26,7 @@ public class ViewPartOperation extends UserOperation implements IPartState {
 	 * @see edu.illinois.codingtracker.operations.UserOperation#getOperationSymbol()
 	 */
 	@Override
-	protected char getOperationSymbol() {
+	public char getOperationSymbol() {
 		return OperationSymbols.VIEW_PART_OPERATION_SYMBOL;
 	}
 

@@ -22,7 +22,7 @@ public class ShortCutCommandName extends UserOperation{
 		this.KeyShortcuts=nkeyShortcuts;
 	}
 	@Override
-	protected char getOperationSymbol() {
+	public char getOperationSymbol() {
 		return OperationSymbols.APPLICATION_SHORTCUTS;
 	}
 

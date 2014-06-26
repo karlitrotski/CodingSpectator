@@ -24,7 +24,7 @@ public class CVSInitiallyCommittedFileOperation extends CommittedFileOperation {
 	}
 
 	@Override
-	protected char getOperationSymbol() {
+	public char getOperationSymbol() {
 		return OperationSymbols.FILE_CVS_INITIALLY_COMMITTED_SYMBOL;
 	}
 

@@ -32,7 +32,7 @@ public class ExternallyModifiedResourceOperation extends ResourceOperation {
 	}
 
 	@Override
-	protected char getOperationSymbol() {
+	public char getOperationSymbol() {
 		return OperationSymbols.RESOURCE_EXTERNALLY_MODIFIED_SYMBOL;
 	}
 

@@ -39,7 +39,7 @@ public class FinishedRefactoringOperation extends UserOperation {
 	}
 
 	@Override
-	protected char getOperationSymbol() {
+	public char getOperationSymbol() {
 		return OperationSymbols.REFACTORING_FINISHED_SYMBOL;
 	}
 

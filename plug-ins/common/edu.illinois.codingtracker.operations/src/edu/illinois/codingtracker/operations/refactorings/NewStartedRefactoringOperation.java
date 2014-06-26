@@ -97,7 +97,7 @@ public class NewStartedRefactoringOperation extends UserOperation {
 	}
 
 	@Override
-	protected char getOperationSymbol() {
+	public char getOperationSymbol() {
 		return OperationSymbols.NEW_REFACTORING_STARTED_SYMBOL;
 	}
 

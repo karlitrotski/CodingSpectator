@@ -31,7 +31,7 @@ public class ProjectOptionsChangedOperation extends OptionsChangedOperation {
 	}
 
 	@Override
-	protected char getOperationSymbol() {
+	public char getOperationSymbol() {
 		return OperationSymbols.PROJECT_OPTIONS_CHANGED_SYMBOL;
 	}
 

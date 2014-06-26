@@ -25,7 +25,7 @@ public class PerformedTextChangeOperation extends TextChangeOperation {
 	}
 
 	@Override
-	protected char getOperationSymbol() {
+	public char getOperationSymbol() {
 		return OperationSymbols.TEXT_CHANGE_PERFORMED_SYMBOL;
 	}
 

@@ -32,7 +32,7 @@ public class MovedResourceOperation extends ReorganizedResourceOperation {
 	}
 
 	@Override
-	protected char getOperationSymbol() {
+	public char getOperationSymbol() {
 		return OperationSymbols.RESOURCE_MOVED_SYMBOL;
 	}
 

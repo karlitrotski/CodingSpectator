@@ -28,7 +28,7 @@ public class TerminatedApplicationOperation extends LaunchedApplicationOperation
 	}
 	
 	@Override
-	protected char getOperationSymbol() {
+	public char getOperationSymbol() {
 		return OperationSymbols.APPLICATION_TERMINATED_SYMBOL;
 	}
 

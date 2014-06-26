@@ -11,7 +11,7 @@ public class SelectionChangedOperation extends UserOperation {
 	}
 
 	@Override
-	protected char getOperationSymbol() {
+	public char getOperationSymbol() {
 		return OperationSymbols.SELECTION_CHANGED_OPERATION_SYMBOL;
 	}
 

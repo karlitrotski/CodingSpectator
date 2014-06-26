@@ -37,7 +37,8 @@ public class OperationSymbolsTest {
 		for (Character symbol: symbols) {
 			UserOperation operation = OperationDeserializer.createEmptyUserOperation(symbol);
 			char operationSymbol = operation.getOperationSymbol();
-			assertTrue(symbol.charValue() == operationSymbol);
+			assertTrue("Expected symbol: " + symbol.charValue() + ", but was: " + operationSymbol + ", from user operation " + operation.toString()
+					, symbol.charValue() == operationSymbol);
 		}
 	}
 

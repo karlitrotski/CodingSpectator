@@ -27,7 +27,7 @@ public class CopiedResourceOperation extends ReorganizedResourceOperation {
 	}
 
 	@Override
-	protected char getOperationSymbol() {
+	public char getOperationSymbol() {
 		return OperationSymbols.RESOURCE_COPIED_SYMBOL;
 	}
 

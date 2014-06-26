@@ -25,7 +25,7 @@ public class PerformedConflictEditorTextChangeOperation extends ConflictEditorTe
 	}
 
 	@Override
-	protected char getOperationSymbol() {
+	public char getOperationSymbol() {
 		return OperationSymbols.CONFLICT_EDITOR_TEXT_CHANGE_PERFORMED_SYMBOL;
 	}
 

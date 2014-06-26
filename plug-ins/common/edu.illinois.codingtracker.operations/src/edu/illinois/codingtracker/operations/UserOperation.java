@@ -76,7 +76,7 @@ public abstract class UserOperation{
 		return true;
 	}
 
-	protected abstract char getOperationSymbol();
+	public abstract char getOperationSymbol();
 
 	public abstract String getDescription();
 

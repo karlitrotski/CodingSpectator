@@ -28,7 +28,7 @@ public class UndoneRefactoringOperation extends RefactoringOperation {
 	}
 
 	@Override
-	protected char getOperationSymbol() {
+	public char getOperationSymbol() {
 		return OperationSymbols.REFACTORING_UNDONE_SYMBOL;
 	}
 

@@ -26,7 +26,7 @@ public class EditedFileOperation extends FileOperation {
 	}
 
 	@Override
-	protected char getOperationSymbol() {
+	public char getOperationSymbol() {
 		return OperationSymbols.FILE_EDITED_SYMBOL;
 	}
 

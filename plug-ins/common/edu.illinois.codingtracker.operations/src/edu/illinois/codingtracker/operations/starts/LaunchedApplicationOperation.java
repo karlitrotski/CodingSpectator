@@ -40,7 +40,7 @@ public class LaunchedApplicationOperation extends UserOperation {
 	}
 
 	@Override
-	protected char getOperationSymbol() {
+	public char getOperationSymbol() {
 		return OperationSymbols.APPLICATION_LAUNCHED_SYMBOL;
 	}
 

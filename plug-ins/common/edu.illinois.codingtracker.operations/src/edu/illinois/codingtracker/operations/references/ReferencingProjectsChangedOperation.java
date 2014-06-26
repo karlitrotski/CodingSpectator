@@ -37,7 +37,7 @@ public class ReferencingProjectsChangedOperation extends UserOperation {
 	}
 
 	@Override
-	protected char getOperationSymbol() {
+	public char getOperationSymbol() {
 		return OperationSymbols.REFERENCING_PROJECTS_CHANGED_SYMBOL;
 	}
 

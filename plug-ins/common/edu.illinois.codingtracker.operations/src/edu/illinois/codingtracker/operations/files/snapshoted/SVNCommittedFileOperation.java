@@ -24,7 +24,7 @@ public class SVNCommittedFileOperation extends CommittedFileOperation {
 	}
 
 	@Override
-	protected char getOperationSymbol() {
+	public char getOperationSymbol() {
 		return OperationSymbols.FILE_SVN_COMMITTED_SYMBOL;
 	}
 

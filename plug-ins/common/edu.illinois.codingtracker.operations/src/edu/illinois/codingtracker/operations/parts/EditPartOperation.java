@@ -23,7 +23,7 @@ public class EditPartOperation extends FileOperation implements IPartState {
 	}
 
 	@Override
-	protected char getOperationSymbol() {	
+	public char getOperationSymbol() {	
 		return OperationSymbols.EDIT_PART_OPERATION_SYMBOL;
 	}
 

@@ -33,7 +33,7 @@ public class PerformedRefactoringOperation extends RefactoringOperation {
 	}
 
 	@Override
-	protected char getOperationSymbol() {
+	public char getOperationSymbol() {
 		return OperationSymbols.REFACTORING_PERFORMED_SYMBOL;
 	}
 

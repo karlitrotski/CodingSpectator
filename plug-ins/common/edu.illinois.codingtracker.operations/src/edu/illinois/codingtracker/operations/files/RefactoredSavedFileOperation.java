@@ -26,7 +26,7 @@ public class RefactoredSavedFileOperation extends FileOperation {
 	}
 
 	@Override
-	protected char getOperationSymbol() {
+	public char getOperationSymbol() {
 		return OperationSymbols.FILE_REFACTORED_SAVED_SYMBOL;
 	}
 
