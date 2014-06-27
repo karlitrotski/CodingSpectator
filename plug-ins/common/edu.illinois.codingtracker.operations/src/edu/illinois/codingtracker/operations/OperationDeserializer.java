@@ -6,6 +6,10 @@ package edu.illinois.codingtracker.operations;
 import java.util.LinkedList;
 import java.util.List;
 
+import cl.uchile.codingtracker.operations.annotations.AnnotationErrorOperation;
+import cl.uchile.codingtracker.operations.completions.CompletionQuickfixOperation;
+import cl.uchile.codingtracker.operations.completions.QuickfixUsageOperation;
+
 import edu.illinois.codingtracker.operations.conflicteditors.ClosedConflictEditorOperation;
 import edu.illinois.codingtracker.operations.conflicteditors.OpenedConflictEditorOperation;
 import edu.illinois.codingtracker.operations.conflicteditors.SavedConflictEditorOperation;
@@ -30,6 +34,8 @@ import edu.illinois.codingtracker.operations.junit.TestSessionLaunchedOperation;
 import edu.illinois.codingtracker.operations.junit.TestSessionStartedOperation;
 import edu.illinois.codingtracker.operations.options.ProjectOptionsChangedOperation;
 import edu.illinois.codingtracker.operations.options.WorkspaceOptionsChangedOperation;
+import edu.illinois.codingtracker.operations.parts.EditPartOperation;
+import edu.illinois.codingtracker.operations.parts.ViewPartOperation;
 import edu.illinois.codingtracker.operations.pluginusage.PluginMonitorOperation;
 import edu.illinois.codingtracker.operations.refactorings.FinishedRefactoringOperation;
 import edu.illinois.codingtracker.operations.refactorings.NewStartedRefactoringOperation;
@@ -42,17 +48,19 @@ import edu.illinois.codingtracker.operations.resources.CreatedResourceOperation;
 import edu.illinois.codingtracker.operations.resources.DeletedResourceOperation;
 import edu.illinois.codingtracker.operations.resources.ExternallyModifiedResourceOperation;
 import edu.illinois.codingtracker.operations.resources.MovedResourceOperation;
+import edu.illinois.codingtracker.operations.shortcuts.ShortCutCommandName;
 import edu.illinois.codingtracker.operations.starts.LaunchedApplicationOperation;
 import edu.illinois.codingtracker.operations.starts.PluginsList;
 import edu.illinois.codingtracker.operations.starts.StartedEclipseOperation;
 import edu.illinois.codingtracker.operations.starts.StartedRefactoringOperation;
+import edu.illinois.codingtracker.operations.starts.TerminatedApplicationOperation;
 import edu.illinois.codingtracker.operations.textchanges.PerformedConflictEditorTextChangeOperation;
 import edu.illinois.codingtracker.operations.textchanges.PerformedTextChangeOperation;
 import edu.illinois.codingtracker.operations.textchanges.RedoneConflictEditorTextChangeOperation;
 import edu.illinois.codingtracker.operations.textchanges.RedoneTextChangeOperation;
 import edu.illinois.codingtracker.operations.textchanges.UndoneConflictEditorTextChangeOperation;
 import edu.illinois.codingtracker.operations.textchanges.UndoneTextChangeOperation;
-
+import edu.illinois.codingtracker.operations.selectionchanged.SelectionChangedOperation;
 //TODO: Decide on where this class should be and how it should be used
 /**
  * 
@@ -84,10 +92,10 @@ public class OperationDeserializer {
 				userOperation= new PluginsList();
 			break;
 			case OperationSymbols.APPLICATION_FOCUS_GAINS:
-				userOperation= new DetectFocusLooseWorkbench();
+				userOperation= new DetectFocusGainsWorkbench();
 			break;
 			case OperationSymbols.APPLICATION_FOCUS_LOOSE:
-				userOperation= new DetectFocusGainsWorkbench();
+				userOperation= new DetectFocusLooseWorkbench();
 			break;
 			
 			case OperationSymbols.ECLIPSE_STARTED_SYMBOL:
@@ -216,6 +224,33 @@ public class OperationDeserializer {
 			case OperationSymbols.REFERENCING_PROJECTS_CHANGED_SYMBOL:
 				userOperation= new ReferencingProjectsChangedOperation();
 				break;
+
+				
+			case OperationSymbols.APPLICATION_SHORTCUTS:
+				userOperation= new ShortCutCommandName(null, null);
+				break;
+			case OperationSymbols.APPLICATION_TERMINATED_SYMBOL:
+				userOperation= new TerminatedApplicationOperation(null, null, null, null, false, null);
+				break;
+			case OperationSymbols.QUICKFIX_INVOCATION_SYMBOL:
+				userOperation= new CompletionQuickfixOperation(null);
+				break;
+			case OperationSymbols.QUICKFIX_USAGE_SYMBOL:
+				userOperation= new QuickfixUsageOperation();
+				break;
+			case OperationSymbols.CODE_ERROR_SYMBOL:
+				userOperation= new AnnotationErrorOperation(0);
+				break;
+			case OperationSymbols.EDIT_PART_OPERATION_SYMBOL:
+				userOperation= new EditPartOperation();
+				break;
+			case OperationSymbols.VIEW_PART_OPERATION_SYMBOL:
+				userOperation= new ViewPartOperation(null, null);
+				break;
+			case OperationSymbols.SELECTION_CHANGED_OPERATION_SYMBOL:
+				userOperation= new SelectionChangedOperation(null, null);
+				break;
+			
 			default:
 				throw new RuntimeException("Unsupported operation symbol: " + operationSymbol);
 		}

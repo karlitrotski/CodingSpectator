@@ -25,7 +25,7 @@ import edu.illinois.codingtracker.compare.helpers.EditorHelper;
 import edu.illinois.codingtracker.helpers.Debugger;
 import edu.illinois.codingtracker.helpers.FileRevision;
 import edu.illinois.codingtracker.helpers.ResourceHelper;
-import edu.illinois.codingtracker.operations.SelectionChangedOperation;
+import edu.illinois.codingtracker.operations.selectionchanged.*;
 import edu.illinois.codingtracker.operations.shortcuts.ShortCutCommandName;
 import edu.illinois.codingtracker.operations.shortcuts.UsingMenuToolIcons;
 import edu.illinois.codingtracker.operations.conflicteditors.ClosedConflictEditorOperation;
