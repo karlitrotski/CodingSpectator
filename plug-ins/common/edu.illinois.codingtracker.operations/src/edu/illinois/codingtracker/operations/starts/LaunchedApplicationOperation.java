@@ -3,40 +3,18 @@
  */
 package edu.illinois.codingtracker.operations.starts;
 
-import edu.illinois.codingtracker.helpers.Configuration;
-import edu.illinois.codingtracker.operations.OperationLexer;
 import edu.illinois.codingtracker.operations.OperationSymbols;
 import edu.illinois.codingtracker.operations.OperationTextChunk;
-import edu.illinois.codingtracker.operations.UserOperation;
 
 /**
  * 
  * @author Stas Negara
  * 
  */
-public class LaunchedApplicationOperation extends UserOperation {
-
-	private String launchMode;
-
-	private String launchName;
-
-	private String application;
-
-	private String product;
-
-	private boolean useProduct;
-
-	public LaunchedApplicationOperation() {
-		super();
-	}
+public class LaunchedApplicationOperation extends ApplicationOperation {
 
 	public LaunchedApplicationOperation(String launchMode, String launchName, String application, String product, boolean useProduct) {
-		super();
-		this.launchMode= launchMode;
-		this.launchName= launchName;
-		this.application= application;
-		this.product= product;
-		this.useProduct= useProduct;
+		super(launchMode, launchName, application, product, useProduct);
 	}
 
 	@Override
@@ -50,66 +28,13 @@ public class LaunchedApplicationOperation extends UserOperation {
 	}
 
 	@Override
-	protected void populateTextChunk(OperationTextChunk textChunk) {
-		textChunk.append(launchMode);
-		textChunk.append(launchName);
-		textChunk.append(application);
-		textChunk.append(product);
-		textChunk.append(useProduct);
-	}
-	
-	@Override
 	protected void populateXMLTextChunk(OperationTextChunk textChunk){
 		textChunk.concat("<LaunchedApplicationOperation>" + "\n");
-		textChunk.concat("\t" + "<Launch_mode>" + "\n");
-		textChunk.concat("\t" + launchMode + "\n");
-		textChunk.concat("\t" + "</Launch_mode>" + "\n");
-		textChunk.concat("\t" + "<Launch_Name>" + "\n");
-		textChunk.concat("\t" + launchName + "\n");
-		textChunk.concat("\t" + "</Launch_Name>" + "\n");
-		textChunk.concat("\t" + "<Application>" + "\n");
-		textChunk.concat("\t" + application + "\n");
-		textChunk.concat("\t" + "</Application>" + "\n");
-		textChunk.concat("\t" + "<Product>" + "\n");
-		textChunk.concat("\t" + product + "\n");
-		textChunk.concat("\t" + "</Product>" + "\n");
-		textChunk.concat("\t" + "<UseProduct>" + "\n");
-		textChunk.concat("\t" + useProduct + "\n");
-		textChunk.concat("\t" + "</UseProduct>" + "\n");
+		super.populateXMLTextChunk(textChunk);
 		textChunk.concat("\t" + "<timestamp>" + "\n");
 		textChunk.concat("\t" + getTime() + "\n");
 		textChunk.concat("\t" + "</timestamp>" + "\n");
 		textChunk.concat("</LaunchedApplicationOperation>" + "\n");
-	}
-
-	@Override
-	protected void initializeFrom(OperationLexer operationLexer) {
-		launchMode= operationLexer.readString();
-		launchName= operationLexer.readString();
-		application= operationLexer.readString();
-		product= operationLexer.readString();
-		if (!Configuration.isOldFormat) {
-			useProduct= operationLexer.readBoolean();
-		} else {
-			useProduct= Boolean.valueOf(operationLexer.readString());
-		}
-	}
-
-	@Override
-	public void replay() throws Exception {
-		//do nothing
-	}
-
-	@Override
-	public String toString() {
-		StringBuffer sb= new StringBuffer();
-		sb.append("Launch mode: " + launchMode + "\n");
-		sb.append("Launch name: " + launchName + "\n");
-		sb.append("Application: " + application + "\n");
-		sb.append("Product: " + product + "\n");
-		sb.append("UseProduct: " + useProduct + "\n");
-		sb.append(super.toString());
-		return sb.toString();
 	}
 
 }
