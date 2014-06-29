@@ -9,6 +9,7 @@ import org.eclipse.core.resources.IFile;
 import org.eclipse.jdt.internal.ui.viewsupport.StatusBarUpdater;
 import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.jface.viewers.ISelectionChangedListener;
+import org.eclipse.jface.viewers.ISelectionProvider;
 import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.jface.viewers.SelectionChangedEvent;
 import org.eclipse.jface.viewers.StructuredSelection;
@@ -20,6 +21,7 @@ import org.eclipse.ui.IViewPart;
 import org.eclipse.ui.IWorkbenchPage;
 import org.eclipse.ui.IWorkbenchPart;
 import org.eclipse.ui.IWorkbenchPartReference;
+import org.eclipse.ui.IWorkbenchPartSite;
 import org.eclipse.ui.IWorkbenchWindow;
 import org.eclipse.ui.texteditor.AbstractDecoratedTextEditor;
 
@@ -106,10 +108,20 @@ public class PartListener extends BasicListener implements IPartListener2, ISele
 	}
 
 	public void addSelectionChangedListener(IWorkbenchPart part) {
-		part.getSite().getSelectionProvider().addSelectionChangedListener(this);
+		if (part == null) return;
+		IWorkbenchPartSite site= part.getSite();
+		if (site == null) return;
+		ISelectionProvider selectionProvider= site.getSelectionProvider();
+		if (selectionProvider == null) return;
+		selectionProvider.addSelectionChangedListener(this);
 	}
 	
 	public void removeSelectionChangedListener(IWorkbenchPart part) {
+		if (part == null) return;
+		IWorkbenchPartSite site= part.getSite();
+		if (site == null) return;
+		ISelectionProvider selectionProvider= site.getSelectionProvider();
+		if (selectionProvider == null) return;
 		part.getSite().getSelectionProvider().removeSelectionChangedListener(this);
 	}
 
