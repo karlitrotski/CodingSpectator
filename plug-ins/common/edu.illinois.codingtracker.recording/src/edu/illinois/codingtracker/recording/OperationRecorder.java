@@ -72,7 +72,6 @@ import edu.illinois.codingtracker.operations.textchanges.UndoneConflictEditorTex
 import edu.illinois.codingtracker.operations.textchanges.UndoneTextChangeOperation;
 import cl.uchile.codingtracker.operations.annotations.AnnotationErrorOperation;
 import cl.uchile.codingtracker.operations.completions.CompletionQuickfixOperation;
-import cl.uchile.codingtracker.operations.completions.QuickfixUsageOperation;
 import cl.uchile.dcc.codingtracker.operations.markers.SaveMarkersStatusOperation;
 import edu.illinois.codingtracker.operations.parts.EditPartOperation;
 import edu.illinois.codingtracker.operations.parts.ViewPartOperation;
@@ -82,6 +81,10 @@ import edu.illinois.codingtracker.operations.parts.IPartState;
  * 
  * @author Stas Negara
  * @author Joffre Yagual - Added method recordNewAnnotationError
+ * 
+ * @author Juraj Kubelka, @author Catalina Espinoza Inaipil - we modified recordFinishedTestCase (it records progress state and trace now),
+ * we added recordTerminatedApplication, recordViewPart, recordActivatedFile,recordOpenedFile, 
+ * recordHiddenFile, recordVisibleFile, recordSelectionChanged
  * 
  */
 @SuppressWarnings("restriction")
@@ -289,10 +292,7 @@ public class OperationRecorder {
 		TextRecorder.record(new TestCaseStartedOperation(testRunName, testClassName, testMethodName));
 	}
  
-
- 	 
 	public void recordFinishedTestCase(String testRunName, String result, String progressState, String trace) {
- 
 		TextRecorder.record(new TestCaseFinishedOperation(testRunName, result, progressState, trace));
 	}
 	public void recordLaunchedApplication(String launchMode, String launchName, String application, String product, boolean useProduct) {

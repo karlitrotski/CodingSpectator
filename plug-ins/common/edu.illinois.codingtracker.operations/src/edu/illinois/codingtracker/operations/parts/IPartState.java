@@ -1,5 +1,10 @@
 package edu.illinois.codingtracker.operations.parts;
 
+/**
+ * @author Juraj Kubelka
+ * @author Catalina Espinoza Inaipil 
+ */
+
 public interface IPartState {
 
 	public static final String ACTIVATED = "ACTIVATED";

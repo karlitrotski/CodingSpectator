@@ -11,6 +11,9 @@ import edu.illinois.codingtracker.operations.OperationDeserializer;
 import edu.illinois.codingtracker.operations.OperationSymbols;
 import edu.illinois.codingtracker.operations.UserOperation;
 
+/**
+ * @author Juraj Kubelka
+ */
 public class OperationSymbolsTest {
 
 	@Test

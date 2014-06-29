@@ -7,6 +7,8 @@ package edu.illinois.codingtracker.operations;
  * 
  * @author Stas Negara
  * 
+ * @author Juraj Kubelka
+ * @author Catalina Espinoza Inaipil - we added append(int [] values), append(String[] messages).
  */
 public class OperationTextChunk implements CharSequence {
 

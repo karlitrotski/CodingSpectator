@@ -8,6 +8,9 @@ import edu.illinois.codingtracker.operations.OperationTextChunk;
 import edu.illinois.codingtracker.operations.files.FileOperation;
 /**
  * @see edu.illinois.codingtracker.listeners.PartListener.partActivated(IWorkBenchPart part)
+ * 
+ * @author Juraj Kubelka, @author Catalina Espinoza Inaipil
+ * It records the editor parts states (@see edu.illinois.codingtracker.operations.parts.IPartState).
  * */
 public class EditPartOperation extends FileOperation implements IPartState {
 	

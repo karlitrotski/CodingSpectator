@@ -5,6 +5,11 @@ import edu.illinois.codingtracker.operations.OperationSymbols;
 import edu.illinois.codingtracker.operations.OperationTextChunk;
 import edu.illinois.codingtracker.operations.UserOperation;
 
+/**
+ * @author Juraj Kubelka, @author Catalina Espinoza Inaipil
+ * It records the programmer's selection.
+ * */
+
 public class SelectionChangedOperation extends UserOperation {
 
 	private String sourceName;
@@ -52,8 +57,7 @@ public class SelectionChangedOperation extends UserOperation {
 
 	@Override
 	public void replay() throws Exception {
-		// TODO Auto-generated method stub
-
+		//do nothing
 	}
 
 	

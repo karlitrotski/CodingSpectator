@@ -7,6 +7,8 @@ package edu.illinois.codingtracker.operations;
  * 
  * @author Stas Negara
  * 
+ * @author Juraj Kubelka, @author Catalina Espinoza Inaipil
+ * we added readInts() and readStrings()
  */
 public class OperationLexer {
 

@@ -10,7 +10,7 @@ import edu.illinois.codingtracker.operations.UserOperation;
 
 /**
  * @author Juraj Kubelka, @author Catalina Espinoza
- *
+ * It records the view parts states.
  */
 public class ViewPartOperation extends UserOperation implements IPartState {
 
@@ -22,43 +22,28 @@ public class ViewPartOperation extends UserOperation implements IPartState {
 		this.state = state;
 	}
 
-	/* (non-Javadoc)
-	 * @see edu.illinois.codingtracker.operations.UserOperation#getOperationSymbol()
-	 */
 	@Override
 	public char getOperationSymbol() {
 		return OperationSymbols.VIEW_PART_OPERATION_SYMBOL;
 	}
 
-	/* (non-Javadoc)
-	 * @see edu.illinois.codingtracker.operations.UserOperation#getDescription()
-	 */
 	@Override
 	public String getDescription() {
 		return "View Part Operation, state: " + state;
 	}
 
-	/* (non-Javadoc)
-	 * @see edu.illinois.codingtracker.operations.UserOperation#populateTextChunk(edu.illinois.codingtracker.operations.OperationTextChunk)
-	 */
 	@Override
 	protected void populateTextChunk(OperationTextChunk textChunk) {
 		textChunk.append(state);
 		textChunk.append(title);
 	}
 
-	/* (non-Javadoc)
-	 * @see edu.illinois.codingtracker.operations.UserOperation#initializeFrom(edu.illinois.codingtracker.operations.OperationLexer)
-	 */
 	@Override
 	protected void initializeFrom(OperationLexer operationLexer) {
 		state = operationLexer.readString();
 		title = operationLexer.readString();
 	}
 
-	/* (non-Javadoc)
-	 * @see edu.illinois.codingtracker.operations.UserOperation#replay()
-	 */
 	@Override
 	public void replay() throws Exception {
 		
