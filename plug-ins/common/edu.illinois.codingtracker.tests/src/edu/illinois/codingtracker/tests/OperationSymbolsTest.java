@@ -13,6 +13,7 @@ import edu.illinois.codingtracker.operations.UserOperation;
 
 /**
  * @author Juraj Kubelka
+ * @author Catalina Espinoza Inaipil - we have added tests which check proper use of operation symbols.
  */
 public class OperationSymbolsTest {
 

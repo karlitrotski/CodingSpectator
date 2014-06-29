@@ -83,7 +83,6 @@ public class OperationDeserializer {
 
 	public static UserOperation createEmptyUserOperation(char operationSymbol) {
 		UserOperation userOperation;
-		//Falta instancias el metodo gain y loose
 		switch (operationSymbol) {
 			case OperationSymbols.PLUGINS_USAGE:
 				userOperation= new PluginMonitorOperation();
@@ -97,7 +96,6 @@ public class OperationDeserializer {
 			case OperationSymbols.APPLICATION_FOCUS_LOOSE:
 				userOperation= new DetectFocusLooseWorkbench();
 			break;
-			
 			case OperationSymbols.ECLIPSE_STARTED_SYMBOL:
 				userOperation= new StartedEclipseOperation();
 				break;
@@ -224,33 +222,30 @@ public class OperationDeserializer {
 			case OperationSymbols.REFERENCING_PROJECTS_CHANGED_SYMBOL:
 				userOperation= new ReferencingProjectsChangedOperation();
 				break;
-
-				
 			case OperationSymbols.APPLICATION_SHORTCUTS:
-				userOperation= new ShortCutCommandName(null, null);
+				userOperation= new ShortCutCommandName();
 				break;
 			case OperationSymbols.APPLICATION_TERMINATED_SYMBOL:
-				userOperation= new TerminatedApplicationOperation(null, null, null, null, false, null);
+				userOperation= new TerminatedApplicationOperation();
 				break;
 			case OperationSymbols.QUICKFIX_INVOCATION_SYMBOL:
-				userOperation= new CompletionQuickfixOperation(null);
+				userOperation= new CompletionQuickfixOperation();
 				break;
 			case OperationSymbols.QUICKFIX_USAGE_SYMBOL:
 				userOperation= new QuickfixUsageOperation();
 				break;
 			case OperationSymbols.CODE_ERROR_SYMBOL:
-				userOperation= new AnnotationErrorOperation(0);
+				userOperation= new AnnotationErrorOperation();
 				break;
 			case OperationSymbols.EDIT_PART_OPERATION_SYMBOL:
 				userOperation= new EditPartOperation();
 				break;
 			case OperationSymbols.VIEW_PART_OPERATION_SYMBOL:
-				userOperation= new ViewPartOperation(null, null);
+				userOperation= new ViewPartOperation();
 				break;
 			case OperationSymbols.SELECTION_CHANGED_OPERATION_SYMBOL:
-				userOperation= new SelectionChangedOperation(null, null);
+				userOperation= new SelectionChangedOperation();
 				break;
-			
 			default:
 				throw new RuntimeException("Unsupported operation symbol: " + operationSymbol);
 		}

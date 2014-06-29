@@ -13,6 +13,10 @@ import edu.illinois.codingtracker.operations.OperationTextChunk;
  */
 public class LaunchedApplicationOperation extends ApplicationOperation {
 
+	public LaunchedApplicationOperation() {
+		super();
+	}
+
 	public LaunchedApplicationOperation(String launchMode, String launchName, String application, String product, boolean useProduct) {
 		super(launchMode, launchName, application, product, useProduct);
 	}

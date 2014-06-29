@@ -20,6 +20,10 @@ public class SelectionChangedOperation extends UserOperation {
 		this.selections = messages;
 	}
 
+	public SelectionChangedOperation() {
+		super();
+	}
+
 	@Override
 	public char getOperationSymbol() {
 		return OperationSymbols.SELECTION_CHANGED_OPERATION_SYMBOL;

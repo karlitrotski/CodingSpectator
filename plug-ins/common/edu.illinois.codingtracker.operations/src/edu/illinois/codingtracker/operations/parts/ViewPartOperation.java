@@ -22,6 +22,10 @@ public class ViewPartOperation extends UserOperation implements IPartState {
 		this.state = state;
 	}
 
+	public ViewPartOperation() {
+		super();
+	}
+
 	@Override
 	public char getOperationSymbol() {
 		return OperationSymbols.VIEW_PART_OPERATION_SYMBOL;

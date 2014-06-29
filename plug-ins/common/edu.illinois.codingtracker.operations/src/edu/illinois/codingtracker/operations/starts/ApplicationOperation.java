@@ -21,10 +21,6 @@ public abstract class ApplicationOperation extends UserOperation {
 		super();
 	}
 
-	public ApplicationOperation(long timestamp) {
-		super(timestamp);
-	}
-
 	public ApplicationOperation(String launchMode, String launchName,
 			String application, String product, boolean useProduct) {
 		this.launchMode= launchMode;
@@ -45,22 +41,13 @@ public abstract class ApplicationOperation extends UserOperation {
 	
 	@Override
 	protected void populateXMLTextChunk(OperationTextChunk textChunk){
-		textChunk.concat("\t" + "<Launch_mode>" + "\n");
-		textChunk.concat("\t" + launchMode + "\n");
-		textChunk.concat("\t" + "</Launch_mode>" + "\n");
-		textChunk.concat("\t" + "<Launch_Name>" + "\n");
-		textChunk.concat("\t" + launchName + "\n");
-		textChunk.concat("\t" + "</Launch_Name>" + "\n");
-		textChunk.concat("\t" + "<Application>" + "\n");
-		textChunk.concat("\t" + application + "\n");
-		textChunk.concat("\t" + "</Application>" + "\n");
-		textChunk.concat("\t" + "<Product>" + "\n");
-		textChunk.concat("\t" + product + "\n");
-		textChunk.concat("\t" + "</Product>" + "\n");
-		textChunk.concat("\t" + "<UseProduct>" + "\n");
-		textChunk.concat("\t" + useProduct + "\n");
-		textChunk.concat("\t" + "</UseProduct>" + "\n");
+		textChunk.concat("\t" + "<LaunchMode>" + launchMode + "</LaunchMode>" + "\n");
+		textChunk.concat("\t" + "<LaunchName>" + launchName + "</LaunchName>" + "\n");
+		textChunk.concat("\t" + "<Application>" + application + "</Application>" + "\n");
+		textChunk.concat("\t" + "<Product>" + product + "</Product>" + "\n");
+		textChunk.concat("\t" + "<UseProduct>" + (useProduct ? 1 : 0) + "</UseProduct>" + "\n");
 	}
+	
 	@Override
 	protected void initializeFrom(OperationLexer operationLexer) {
 		launchMode= operationLexer.readString();
