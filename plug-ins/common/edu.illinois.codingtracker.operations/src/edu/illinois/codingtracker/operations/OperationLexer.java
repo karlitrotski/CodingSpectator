@@ -7,6 +7,8 @@ package edu.illinois.codingtracker.operations;
  * 
  * @author Stas Negara
  * 
+ * @author Juraj Kubelka, @author Catalina Espinoza Inaipil
+ * we added readInts() and readStrings()
  */
 public class OperationLexer {
 
@@ -57,8 +59,26 @@ public class OperationLexer {
 		return getNextLexeme();
 	}
 
+	public String[] readStrings() {
+		int size = Integer.parseInt(getNextLexeme());
+		String[] values = new String[size];
+		for(int i = 0; i < size; i++) {
+			values[i] = getNextLexeme();
+		}
+		return values;
+	}
+
 	public int readInt() {
 		return Integer.parseInt(getNextLexeme());
+	}
+
+	public int[] readInts() {
+		int size = Integer.parseInt(getNextLexeme());
+		int[] values = new int[size];
+		for(int i = 0; i < size; i++) {
+			values[i] = Integer.parseInt(getNextLexeme());
+		}
+		return values;
 	}
 
 	public long readLong() {
@@ -92,14 +112,6 @@ public class OperationLexer {
 	public static String unescapeString(String str) {
 		String tempString= str.replace(ESCAPED_ESCAPE_SYMBOL, ESCAPE_SYMBOL);
 		return tempString.replace(ESCAPED_DELIMETER_SYMBOL, DELIMETER_SYMBOL);
-	}
-
-	public int[] readIntArray() {
-		// TODO [1,0,3,9]
-		// String values = getNextLexeme();
-		int [] i = new int[1];
-		i[0] = 0;
-		return i;
 	}
 
 }

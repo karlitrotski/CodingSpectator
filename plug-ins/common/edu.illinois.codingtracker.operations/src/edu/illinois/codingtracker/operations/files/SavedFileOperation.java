@@ -31,7 +31,7 @@ public class SavedFileOperation extends BreakableResourceOperation {
 	}
 
 	@Override
-	protected char getOperationSymbol() {
+	public char getOperationSymbol() {
 		return OperationSymbols.FILE_SAVED_SYMBOL;
 	}
 

@@ -11,6 +11,8 @@ import edu.illinois.codingtracker.operations.OperationTextChunk;
  * 
  * @author Stas Negara
  * 
+ * @author Juraj Kubelka
+ * @author Catalina Espinoza Inaipil - we added progress state and trace to be recorded.
  */
 public class TestCaseFinishedOperation extends JUnitOperation {
 
@@ -29,7 +31,7 @@ public class TestCaseFinishedOperation extends JUnitOperation {
 	}
 
 	@Override
-	protected char getOperationSymbol() {
+	public char getOperationSymbol() {
 		return OperationSymbols.TEST_CASE_FINISHED_SYMBOL;
 	}
 

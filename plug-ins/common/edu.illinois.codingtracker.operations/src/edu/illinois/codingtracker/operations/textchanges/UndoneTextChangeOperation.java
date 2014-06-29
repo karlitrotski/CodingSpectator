@@ -25,7 +25,7 @@ public class UndoneTextChangeOperation extends TextChangeOperation {
 	}
 
 	@Override
-	protected char getOperationSymbol() {
+	public char getOperationSymbol() {
 		return OperationSymbols.TEXT_CHANGE_UNDONE_SYMBOL;
 	}
 

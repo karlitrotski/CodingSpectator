@@ -106,7 +106,7 @@ public abstract class OperationSymbols {
 
 	public static final char APPLICATION_LAUNCHED_SYMBOL= 'C';
 
-	public static final char APPLICATION_TERMINATED_SYMBOL = 'S';
+	public static final char APPLICATION_TERMINATED_SYMBOL = 'Z';
 
 	public static final char WORKSPACE_OPTIONS_CHANGED_SYMBOL= 'D';
 
@@ -122,7 +122,11 @@ public abstract class OperationSymbols {
 	
 	public static final char PLUGINS_SYMBOL= 'V'; //Issue ListaPlugins
 
-	public static final char PART_OPERATION_SYMBOL= '@';
+	public static final char EDIT_PART_OPERATION_SYMBOL= '@';
 	
-	public static final char PLUGINS_USAGE = 'X';	
+	public static final char PLUGINS_USAGE = 'X';
+
+	public static final char VIEW_PART_OPERATION_SYMBOL = '%';
+	
+	public static final char SELECTION_CHANGED_OPERATION_SYMBOL = '*';	
 }

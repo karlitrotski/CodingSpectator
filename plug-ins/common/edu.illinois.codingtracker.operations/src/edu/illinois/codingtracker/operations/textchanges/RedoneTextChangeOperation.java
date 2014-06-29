@@ -25,7 +25,7 @@ public class RedoneTextChangeOperation extends TextChangeOperation {
 	}
 
 	@Override
-	protected char getOperationSymbol() {
+	public char getOperationSymbol() {
 		return OperationSymbols.TEXT_CHANGE_REDONE_SYMBOL;
 	}
 

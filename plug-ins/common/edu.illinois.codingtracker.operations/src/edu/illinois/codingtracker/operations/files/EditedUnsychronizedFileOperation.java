@@ -34,7 +34,7 @@ public class EditedUnsychronizedFileOperation extends FileOperation {
 	}
 
 	@Override
-	protected char getOperationSymbol() {
+	public char getOperationSymbol() {
 		return OperationSymbols.FILE_EDITED_UNSYNCHRONIZED_SYMBOL;
 	}
 

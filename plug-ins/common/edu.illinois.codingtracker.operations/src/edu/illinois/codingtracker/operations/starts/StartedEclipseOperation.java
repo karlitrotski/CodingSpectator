@@ -26,7 +26,7 @@ public class StartedEclipseOperation extends UserOperation {
 	}
 
 	@Override
-	protected char getOperationSymbol() {
+	public char getOperationSymbol() {
 		return OperationSymbols.ECLIPSE_STARTED_SYMBOL;
 	}
 

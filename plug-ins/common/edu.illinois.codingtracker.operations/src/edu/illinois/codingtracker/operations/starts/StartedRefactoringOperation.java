@@ -21,7 +21,7 @@ public class StartedRefactoringOperation extends UserOperation {
 	}
 
 	@Override
-	protected char getOperationSymbol() {
+	public char getOperationSymbol() {
 		return OperationSymbols.REFACTORING_STARTED_SYMBOL;
 	}
 

@@ -25,7 +25,7 @@ public class RedoneConflictEditorTextChangeOperation extends ConflictEditorTextC
 	}
 
 	@Override
-	protected char getOperationSymbol() {
+	public char getOperationSymbol() {
 		return OperationSymbols.CONFLICT_EDITOR_TEXT_CHANGE_REDONE_SYMBOL;
 	}
 

@@ -27,7 +27,7 @@ public class WorkspaceOptionsChangedOperation extends OptionsChangedOperation {
 	}
 
 	@Override
-	protected char getOperationSymbol() {
+	public char getOperationSymbol() {
 		return OperationSymbols.WORKSPACE_OPTIONS_CHANGED_SYMBOL;
 	}
 

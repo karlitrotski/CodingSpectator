@@ -24,7 +24,7 @@ public class NewFileOperation extends SnapshotedFileOperation {
 	}
 
 	@Override
-	protected char getOperationSymbol() {
+	public char getOperationSymbol() {
 		return OperationSymbols.FILE_NEW_SYMBOL;
 	}
 

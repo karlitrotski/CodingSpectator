@@ -26,7 +26,7 @@ public class TestSessionLaunchedOperation extends JUnitOperation {
 	}
 
 	@Override
-	protected char getOperationSymbol() {
+	public char getOperationSymbol() {
 		return OperationSymbols.TEST_SESSION_LAUNCHED_SYMBOL;
 	}
 

@@ -13,6 +13,8 @@ import org.eclipse.jdt.junit.model.ITestRunSession;
  * 
  * @author Stas Negara
  * 
+ * @author Juraj Kubelka
+ * @author Catalina Espinoza Inaipil - we modified testCaseFinished to save progress state and trace.
  */
 public class JUnitListener extends BasicListener {
 

@@ -20,7 +20,7 @@ public class DetectFocusGainsWorkbench extends UserOperation{
 	}
 		
 	@Override
-	protected char getOperationSymbol() {
+	public char getOperationSymbol() {
 		return OperationSymbols.APPLICATION_FOCUS_GAINS;
 	}
 

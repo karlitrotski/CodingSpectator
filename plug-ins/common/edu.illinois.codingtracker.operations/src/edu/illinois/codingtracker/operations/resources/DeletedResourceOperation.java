@@ -27,7 +27,7 @@ public class DeletedResourceOperation extends UpdatedResourceOperation {
 	}
 
 	@Override
-	protected char getOperationSymbol() {
+	public char getOperationSymbol() {
 		return OperationSymbols.RESOURCE_DELETED_SYMBOL;
 	}
 

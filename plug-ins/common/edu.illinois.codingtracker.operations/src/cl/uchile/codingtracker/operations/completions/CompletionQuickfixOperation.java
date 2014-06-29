@@ -20,7 +20,7 @@ public class CompletionQuickfixOperation extends UserOperation {
 	}
 
 	@Override
-	protected char getOperationSymbol() {
+	public char getOperationSymbol() {
 		return OperationSymbols.QUICKFIX_INVOCATION_SYMBOL;
 	}
 

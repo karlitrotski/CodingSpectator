@@ -37,7 +37,7 @@ public class OpenedConflictEditorOperation extends ConflictEditorOperation {
 	}
 
 	@Override
-	protected char getOperationSymbol() {
+	public char getOperationSymbol() {
 		return OperationSymbols.CONFLICT_EDITOR_OPENED_SYMBOL;
 	}
 

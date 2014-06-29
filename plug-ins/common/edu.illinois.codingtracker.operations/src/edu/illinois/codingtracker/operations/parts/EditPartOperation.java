@@ -8,32 +8,31 @@ import edu.illinois.codingtracker.operations.OperationTextChunk;
 import edu.illinois.codingtracker.operations.files.FileOperation;
 /**
  * @see edu.illinois.codingtracker.listeners.PartListener.partActivated(IWorkBenchPart part)
+ * 
+ * @author Juraj Kubelka, @author Catalina Espinoza Inaipil
+ * It records the editor parts states (@see edu.illinois.codingtracker.operations.parts.IPartState).
  * */
-public class PartOperation extends FileOperation {
+public class EditPartOperation extends FileOperation implements IPartState {
 	
-	public static final String ACTIVATED = "ACTIVATED";
-	public static final String OPENED = "OPENED";
-	public static final String HIDDEN = "HIDDEN";
-	public static final String VISIBLE = "VISIBLE";
-	private String description;
-
-	public PartOperation() {
+	private String state;
+	
+	public EditPartOperation() {
 		super();
 	}
 
-	public PartOperation(IFile file, String description) {
+	public EditPartOperation(IFile file, String state) {
 		super(file);
-		this.description = description;
+		this.state = state;
 	}
 
 	@Override
-	protected char getOperationSymbol() {	
-		return OperationSymbols.PART_OPERATION_SYMBOL;
+	public char getOperationSymbol() {	
+		return OperationSymbols.EDIT_PART_OPERATION_SYMBOL;
 	}
 
 	@Override
 	public String getDescription() {
-		return "Part Operation, description: " + description;
+		return "Edit Part Operation, state: " + state;
 	}
 
 	@Override
@@ -44,26 +43,22 @@ public class PartOperation extends FileOperation {
 
 	@Override
 	protected void populateTextChunk(OperationTextChunk textChunk) {
-		textChunk.append(description);
+		textChunk.append(state);
 		super.populateTextChunk(textChunk);
 	}
 	
 	@Override
 	protected void populateXMLTextChunk(OperationTextChunk textChunk){
-		textChunk.concat("<PartOperation>" + "\n");
+		textChunk.concat("<EditPartOperation>" + "\n");
 		super.populateXMLTextChunk(textChunk);
-		textChunk.concat("\t" + "<description>");
-		textChunk.concat("" + description);
-		textChunk.concat("</description>" + "\n");
-		textChunk.concat("\t" + "<timestamp>");
-		textChunk.concat("" + getTime());
-		textChunk.concat("</timestamp>" + "\n");
-		textChunk.concat("</PartOperation>" + "\n");
+		textChunk.concat("\t" + "<state>" + state + "</state>" + "\n");
+		textChunk.concat("\t" + "<timestamp>" + getTime() + "</timestamp>" + "\n");
+		textChunk.concat("</EditPartOperation>" + "\n");
 	}
 
 	@Override
 	protected void initializeFrom(OperationLexer operationLexer) {
-		description = operationLexer.readString();
+		state = operationLexer.readString();
 		super.initializeFrom(operationLexer);
 	}
 

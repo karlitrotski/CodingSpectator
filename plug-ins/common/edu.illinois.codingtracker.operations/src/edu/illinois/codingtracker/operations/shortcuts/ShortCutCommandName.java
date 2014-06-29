@@ -16,13 +16,18 @@ public class ShortCutCommandName extends UserOperation{
 	private String commandName;
 	private String KeyShortcuts;
 
+		public ShortCutCommandName() {
+		super();
+	}
+	
 	public ShortCutCommandName(String nCommand, String nkeyShortcuts)
 	{
 		this.commandName=nCommand;
 		this.KeyShortcuts=nkeyShortcuts;
 	}
+
 	@Override
-	protected char getOperationSymbol() {
+	public char getOperationSymbol() {
 		return OperationSymbols.APPLICATION_SHORTCUTS;
 	}
 

@@ -3,12 +3,20 @@
  */
 package edu.illinois.codingtracker.listeners;
 
+import java.util.Iterator;
 import org.eclipse.compare.internal.CompareEditor;
 import org.eclipse.core.resources.IFile;
+import org.eclipse.jdt.internal.ui.viewsupport.StatusBarUpdater;
+import org.eclipse.jface.viewers.ISelection;
+import org.eclipse.jface.viewers.ISelectionChangedListener;
+import org.eclipse.jface.viewers.IStructuredSelection;
+import org.eclipse.jface.viewers.SelectionChangedEvent;
+import org.eclipse.jface.viewers.StructuredSelection;
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.ui.IEditorPart;
 import org.eclipse.ui.IEditorReference;
 import org.eclipse.ui.IPartListener2;
+import org.eclipse.ui.IViewPart;
 import org.eclipse.ui.IWorkbenchPage;
 import org.eclipse.ui.IWorkbenchPart;
 import org.eclipse.ui.IWorkbenchPartReference;
@@ -16,16 +24,52 @@ import org.eclipse.ui.IWorkbenchWindow;
 import org.eclipse.ui.texteditor.AbstractDecoratedTextEditor;
 
 import edu.illinois.codingtracker.compare.helpers.EditorHelper;
+import edu.illinois.codingtracker.operations.parts.IPartState;
 
 /**
  * 
  * @author Stas Negara
  * @author Mohsen Vakilian - Extracted this class from CodeChangeTracker and added the method
  *         {@link #getActivePage()}.
+ * @author Juraj Kubelka
+ * @author Catalina Espinoza Inaipil - we have extended it by listening to all part state changes
+ *         and by listening to selection changes inside view parts.
  * 
  */
 @SuppressWarnings("restriction")
-public class PartListener extends BasicListener implements IPartListener2 {
+public class PartListener extends BasicListener implements IPartListener2, ISelectionChangedListener {
+	
+	/** 
+	 * It is used for formating a string which represents selected elements in part views. 
+	 * 
+	 * @author Juraj Kubelka
+	 * @author Catalina Espinoza Inaipil
+	 *
+	 */
+	public class SelectionChangeFormater extends StatusBarUpdater {
+
+		public SelectionChangeFormater() {
+			super(null);
+		}
+
+		public String [] formatMessages(ISelection sel) {
+			if (sel instanceof IStructuredSelection && !sel.isEmpty()) {
+				IStructuredSelection selection= (IStructuredSelection) sel;
+				String[] messages = new String[selection.size()];
+				Iterator <Object> selections = selection.iterator();
+				int count = 0;	
+				while(selections.hasNext()){
+					Object element = selections.next();
+					messages[count] = this.formatMessage(new StructuredSelection(element));
+					count++;
+				}
+				return messages;
+			}
+			return new String[0];
+		}
+	}
+	
+	private SelectionChangeFormater formater = new SelectionChangeFormater();
 
 	private static IWorkbenchPage getActivePage() {
 		IWorkbenchWindow activeWorkbenchWindow= BasicListener.getActiveWorkbenchWindow();
@@ -46,26 +90,27 @@ public class PartListener extends BasicListener implements IPartListener2 {
 				while (!isPartListenerRegistered) {
 					IWorkbenchPage activePage= getActivePage();
 					if (activePage != null) {
-						activePage.addPartListener(new PartListener());
+						PartListener partListener = new PartListener();
+						activePage.addPartListener(partListener);
 						isPartListenerRegistered= true;
+						for (IWorkbenchPartReference partRef: activePage.getViewReferences()) {
+							IWorkbenchPart part = partRef.getPart(true);
+							if (part != null) {
+								partListener.addSelectionChangedListener(part);
+							}
+						}
 					}
 				}
 			}
 		});
 	}
 
-	public void partActivated(IWorkbenchPart part) {
-		IFile activatedFile = getFileOfWorkbenchPart(part);
-		operationRecorder.recordActivatedFile(activatedFile);
+	public void addSelectionChangedListener(IWorkbenchPart part) {
+		part.getSite().getSelectionProvider().addSelectionChangedListener(this);
 	}
-
-	public void partClosed(IWorkbenchPart part) {
-		IFile closedFile= getFileOfWorkbenchPart(part);
-		if (EditorHelper.isConflictEditor(part)) {
-			closeConflictEditor((CompareEditor)part);
-		} else if (closedFile != null) {
-			closeRegularEditor(part, closedFile);
-		}
+	
+	public void removeSelectionChangedListener(IWorkbenchPart part) {
+		part.getSite().getSelectionProvider().removeSelectionChangedListener(this);
 	}
 
 	private IFile getFileOfWorkbenchPart(IWorkbenchPart part) {
@@ -111,7 +156,10 @@ public class PartListener extends BasicListener implements IPartListener2 {
 		IWorkbenchPart part= partRef.getPart(true);
 		if(part!=null) {
 			if(part instanceof IEditorPart){
-				partActivated(part);
+				IFile activatedFile = getFileOfWorkbenchPart(part);
+				operationRecorder.recordActivatedFile(activatedFile);
+			} else if (part instanceof IViewPart) {
+				operationRecorder.recordViewPart(part.getTitle(), IPartState.ACTIVATED);
 			}
 		}	
 	}
@@ -121,12 +169,24 @@ public class PartListener extends BasicListener implements IPartListener2 {
 		// do nothing
 	}
 
+	public void partClosed(IWorkbenchPart part) {
+		IFile closedFile= getFileOfWorkbenchPart(part);
+		if (EditorHelper.isConflictEditor(part)) {
+			closeConflictEditor((CompareEditor)part);
+		} else if (closedFile != null) {
+			closeRegularEditor(part, closedFile);
+		}
+	}
+
 	@Override
 	public void partClosed(IWorkbenchPartReference partRef) {
 		IWorkbenchPart part= partRef.getPart(true);
 		if(part!=null) {
 			if(part instanceof IEditorPart){
 				partClosed(part);
+			} else if (part instanceof IViewPart) {
+				operationRecorder.recordViewPart(part.getTitle(), IPartState.CLOSED);
+				removeSelectionChangedListener(part);
 			}
 		}
 	}
@@ -143,6 +203,9 @@ public class PartListener extends BasicListener implements IPartListener2 {
 			if(part instanceof IEditorPart){
 				IFile openedFile = getFileOfWorkbenchPart(part);
 				operationRecorder.recordOpenedFile(openedFile);
+			} else if (part instanceof IViewPart) {
+				operationRecorder.recordViewPart(part.getTitle(), IPartState.OPENED);
+				addSelectionChangedListener(part);
 			}
 		}
 	}
@@ -154,6 +217,8 @@ public class PartListener extends BasicListener implements IPartListener2 {
 			if(part instanceof IEditorPart){
 				IFile hiddenFile = getFileOfWorkbenchPart(part);
 				operationRecorder.recordHiddenFile(hiddenFile);
+			} else if (part instanceof IViewPart) {
+				operationRecorder.recordViewPart(part.getTitle(), IPartState.HIDDEN);
 			}
 		}
 	}
@@ -165,6 +230,8 @@ public class PartListener extends BasicListener implements IPartListener2 {
 			if(part instanceof IEditorPart){
 				IFile visibleFile = getFileOfWorkbenchPart(part);
 				operationRecorder.recordVisibleFile(visibleFile);
+			} else if (part instanceof IViewPart) {
+				operationRecorder.recordViewPart(part.getTitle(), IPartState.VISIBLE);
 			}
 		}
 	}
@@ -174,4 +241,12 @@ public class PartListener extends BasicListener implements IPartListener2 {
 		// do nothing
 	}
 
+	@Override
+	public void selectionChanged(SelectionChangedEvent event) {
+		String [] messages= formater.formatMessages(event.getSelection());
+		Object source= event.getSource();
+		String sourceName= source.getClass().toString();
+		operationRecorder.recordSelectionChanged(sourceName,messages);
+	}
+	
 }

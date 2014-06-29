@@ -29,7 +29,7 @@ public class TestCaseStartedOperation extends JUnitOperation {
 	}
 
 	@Override
-	protected char getOperationSymbol() {
+	public char getOperationSymbol() {
 		return OperationSymbols.TEST_CASE_STARTED_SYMBOL;
 	}
 

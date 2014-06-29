@@ -27,7 +27,7 @@ public class ClosedFileOperation extends FileOperation {
 	}
 
 	@Override
-	protected char getOperationSymbol() {
+	public char getOperationSymbol() {
 		return OperationSymbols.FILE_CLOSED_SYMBOL;
 	}
 

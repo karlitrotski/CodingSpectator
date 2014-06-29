@@ -18,6 +18,8 @@ import edu.illinois.codingtracker.helpers.Messages;
  * 
  * @author Stas Negara
  * 
+ * @author Juraj Kubelka, @author Catalina Espinoza Inaipil - we change ILaunchListener to ILaunchesListener2, 
+ * to record when a launch is terminated and then store exit values.
  */
 public class LaunchListener extends BasicListener implements ILaunchesListener2 {
 

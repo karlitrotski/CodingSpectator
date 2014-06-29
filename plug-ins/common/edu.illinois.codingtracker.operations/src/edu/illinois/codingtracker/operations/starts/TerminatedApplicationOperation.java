@@ -4,22 +4,19 @@ import edu.illinois.codingtracker.operations.OperationLexer;
 import edu.illinois.codingtracker.operations.OperationSymbols;
 import edu.illinois.codingtracker.operations.OperationTextChunk;
 
-public class TerminatedApplicationOperation extends LaunchedApplicationOperation {
+/**
+ * 
+ * @author Juraj Kubelka
+ * @author Catalina Espinoza Inaipil - It stores when a launch is terminated and records exit values.
+ * 
+ */
+public class TerminatedApplicationOperation extends ApplicationOperation {
 	
-	//TODO: Esta clase esta mal implementada, hace un mal uso de la jerarquíade UserOperation. 
-	// Se modifico para que la escritura por XML funcionara, pero hay que revisar.
-	
-	private String launchMode;
-
-	private String launchName;
-
-	private String application;
-
-	private String product;
-
-	private boolean useProduct;
-
 	private int[] exitValues;
+
+	public TerminatedApplicationOperation() {
+		super();
+	}
 
 	public TerminatedApplicationOperation(String launchMode, String launchName, String application, String product, boolean useProduct, 
 			int[] exitValues) {
@@ -28,7 +25,7 @@ public class TerminatedApplicationOperation extends LaunchedApplicationOperation
 	}
 	
 	@Override
-	protected char getOperationSymbol() {
+	public char getOperationSymbol() {
 		return OperationSymbols.APPLICATION_TERMINATED_SYMBOL;
 	}
 
@@ -39,43 +36,39 @@ public class TerminatedApplicationOperation extends LaunchedApplicationOperation
 	
 	@Override
 	protected void populateTextChunk(OperationTextChunk textChunk) {
-		textChunk.append(launchMode);
-		textChunk.append(launchName);
-		textChunk.append(application);
-		textChunk.append(product);
-		textChunk.append(useProduct);
+		super.populateTextChunk(textChunk);
+		textChunk.append(exitValues);
 	}
 
 	@Override
 	protected void populateXMLTextChunk(OperationTextChunk textChunk) {
 		textChunk.concat("<TerminatedApplicationOperation>" + "\n");
-		textChunk.concat("\t" + "<Launch_mode>" + "\n");
-		textChunk.concat("\t" + launchMode + "\n");
-		textChunk.concat("\t" + "</Launch_mode>" + "\n");
-		textChunk.concat("\t" + "<Launch_Name>" + "\n");
-		textChunk.concat("\t" + launchName + "\n");
-		textChunk.concat("\t" + "</Launch_Name>" + "\n");
-		textChunk.concat("\t" + "<Application>" + "\n");
-		textChunk.concat("\t" + application + "\n");
-		textChunk.concat("\t" + "</Application>" + "\n");
-		textChunk.concat("\t" + "<Product>" + "\n");
-		textChunk.concat("\t" + product + "\n");
-		textChunk.concat("\t" + "</Product>" + "\n");
-		textChunk.concat("\t" + "<UseProduct>" + "\n");
-		textChunk.concat("\t" + useProduct + "\n");
-		textChunk.concat("\t" + "</UseProduct>" + "\n");
-		textChunk.concat("\t" + "<exitValues>" + "\n");
-		textChunk.concat("\t" + exitValues + "\n");
-		textChunk.concat("\t" + "</exitValues>" + "\n");		
-		textChunk.concat("\t" + "<timestamp>" + "\n");
-		textChunk.concat("\t" + getTime() + "\n");
-		textChunk.concat("\t" + "</timestamp>" + "\n");
+		super.populateXMLTextChunk(textChunk);
+		textChunk.concat("\t" + "<exitValues>");
+		for(int exitValue: exitValues) {
+			textChunk.concat("<exitValue>" + exitValue + "</exitValue>");
+		}
+		textChunk.concat("</exitValues>" + "\n");		
+		textChunk.concat("\t" + "<timestamp>" + getTime() + "</timestamp>" + "\n");
 		textChunk.concat("</TerminatedApplicationOperation>" + "\n");
 	}
-
+	
+	@Override
+	public String toString() {
+		StringBuffer sb= new StringBuffer();
+		sb.append(super.toString());
+		sb.append("Exit Values: [");
+		if (exitValues != null)
+			for(int exitValue: exitValues) {
+				sb.append(" " + exitValue);
+			}
+		sb.append("]" + "\n");
+		return sb.toString();
+	}
+	
 	@Override
 	protected void initializeFrom(OperationLexer operationLexer) {
 		super.initializeFrom(operationLexer);
-		exitValues = operationLexer.readIntArray();
+		exitValues = operationLexer.readInts();
 	}
 }

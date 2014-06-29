@@ -25,9 +25,9 @@ import edu.illinois.codingtracker.compare.helpers.EditorHelper;
 import edu.illinois.codingtracker.helpers.Debugger;
 import edu.illinois.codingtracker.helpers.FileRevision;
 import edu.illinois.codingtracker.helpers.ResourceHelper;
+import edu.illinois.codingtracker.operations.selectionchanged.*;
 import edu.illinois.codingtracker.operations.shortcuts.ShortCutCommandName;
 import edu.illinois.codingtracker.operations.shortcuts.UsingMenuToolIcons;
- 
 import edu.illinois.codingtracker.operations.conflicteditors.ClosedConflictEditorOperation;
 import edu.illinois.codingtracker.operations.conflicteditors.OpenedConflictEditorOperation;
 import edu.illinois.codingtracker.operations.conflicteditors.SavedConflictEditorOperation;
@@ -44,7 +44,6 @@ import edu.illinois.codingtracker.operations.files.snapshoted.SVNCommittedFileOp
 import edu.illinois.codingtracker.operations.files.snapshoted.SVNInitiallyCommittedFileOperation;
 import edu.illinois.codingtracker.operations.focus.DetectFocusGainsWorkbench;
 import edu.illinois.codingtracker.operations.focus.DetectFocusLooseWorkbench;
- 
 import edu.illinois.codingtracker.operations.junit.TestCaseFinishedOperation;
 import edu.illinois.codingtracker.operations.junit.TestCaseStartedOperation;
 import edu.illinois.codingtracker.operations.junit.TestSessionFinishedOperation;
@@ -73,13 +72,19 @@ import edu.illinois.codingtracker.operations.textchanges.UndoneConflictEditorTex
 import edu.illinois.codingtracker.operations.textchanges.UndoneTextChangeOperation;
 import cl.uchile.codingtracker.operations.annotations.AnnotationErrorOperation;
 import cl.uchile.codingtracker.operations.completions.CompletionQuickfixOperation;
-import cl.uchile.codingtracker.operations.completions.QuickfixUsageOperation;
 import cl.uchile.dcc.codingtracker.operations.markers.SaveMarkersStatusOperation;
-import edu.illinois.codingtracker.operations.parts.PartOperation;
+import edu.illinois.codingtracker.operations.parts.EditPartOperation;
+import edu.illinois.codingtracker.operations.parts.ViewPartOperation;
+import edu.illinois.codingtracker.operations.parts.IPartState;
+
 /**
  * 
  * @author Stas Negara
  * @author Joffre Yagual - Added method recordNewAnnotationError
+ * 
+ * @author Juraj Kubelka, @author Catalina Espinoza Inaipil - we modified recordFinishedTestCase (it records progress state and trace now),
+ * we added recordTerminatedApplication, recordViewPart, recordActivatedFile,recordOpenedFile, 
+ * recordHiddenFile, recordVisibleFile, recordSelectionChanged
  * 
  */
 @SuppressWarnings("restriction")
@@ -287,10 +292,7 @@ public class OperationRecorder {
 		TextRecorder.record(new TestCaseStartedOperation(testRunName, testClassName, testMethodName));
 	}
  
-
- 	 
 	public void recordFinishedTestCase(String testRunName, String result, String progressState, String trace) {
- 
 		TextRecorder.record(new TestCaseFinishedOperation(testRunName, result, progressState, trace));
 	}
 	public void recordLaunchedApplication(String launchMode, String launchName, String application, String product, boolean useProduct) {
@@ -416,41 +418,48 @@ public class OperationRecorder {
 	}
 
 
-	public void recordLooseFocus() {
-		
+	public void recordLooseFocus() {	
 		TextRecorder.record(new DetectFocusLooseWorkbench());
 	}
 
-	public void recordGainsFocus() {
-		
+	public void recordGainsFocus() {		
 		TextRecorder.record(new DetectFocusGainsWorkbench());
 	}
-public void recordShortcutsCommandName(String nCommand, String keyShortcuts) {
-		
+
+	public void recordShortcutsCommandName(String nCommand, String keyShortcuts) {
 		TextRecorder.record(new ShortCutCommandName(nCommand, keyShortcuts));
 	}
-public void recordUsingMenuToolIcons( String Part,String type,String Index,String Name,String idcommand, String command)
-	{
-	TextRecorder.record(new UsingMenuToolIcons( Part, type, Index, Name, idcommand,  command ));
-}
+
+	public void recordViewPart(String title, String state) {
+		TextRecorder.record(new ViewPartOperation(title, state));
+	}
+
 	public void recordActivatedFile(IFile activatedFile) {
 		invalidateLastEditedFile(activatedFile);
-		TextRecorder.record(new PartOperation(activatedFile, PartOperation.ACTIVATED));
+		TextRecorder.record(new EditPartOperation(activatedFile, IPartState.ACTIVATED));
 	}
 
 	public void recordOpenedFile(IFile openedFile) {
 		invalidateLastEditedFile(openedFile);
-		TextRecorder.record(new PartOperation(openedFile, PartOperation.OPENED));
+		TextRecorder.record(new EditPartOperation(openedFile, IPartState.OPENED));
 	}
 
 	public void recordHiddenFile(IFile hiddenFile) {
 		invalidateLastEditedFile(hiddenFile);
-		TextRecorder.record(new PartOperation(hiddenFile, PartOperation.HIDDEN));
+		TextRecorder.record(new EditPartOperation(hiddenFile, IPartState.HIDDEN));
 	}
 
 	public void recordVisibleFile(IFile visibleFile) {
 		invalidateLastEditedFile(visibleFile);
-		TextRecorder.record(new PartOperation(visibleFile, PartOperation.VISIBLE));
-		
+		TextRecorder.record(new EditPartOperation(visibleFile, IPartState.VISIBLE));
 	}
+
+	public void recordSelectionChanged(String sourceName, String[] messages) {
+		TextRecorder.record(new SelectionChangedOperation(sourceName, messages));
+	}
+
+	public void recordUsingMenuToolIcons(String nameSite, String contextmenuValue, String itemIndex, String displayName, String id, String name) {
+		TextRecorder.record(new UsingMenuToolIcons(nameSite, contextmenuValue, itemIndex, displayName, id,  name ));
+	}
+
 }

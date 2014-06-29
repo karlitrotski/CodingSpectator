@@ -38,7 +38,7 @@ public class CreatedResourceOperation extends UpdatedResourceOperation {
 	}
 
 	@Override
-	protected char getOperationSymbol() {
+	public char getOperationSymbol() {
 		return OperationSymbols.RESOURCE_CREATED_SYMBOL;
 	}
 

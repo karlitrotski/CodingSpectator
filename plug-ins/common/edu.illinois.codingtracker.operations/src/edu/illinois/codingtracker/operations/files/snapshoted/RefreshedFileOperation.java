@@ -43,7 +43,7 @@ public class RefreshedFileOperation extends SnapshotedFileOperation {
 	}
 
 	@Override
-	protected char getOperationSymbol() {
+	public char getOperationSymbol() {
 		return OperationSymbols.FILE_REFRESHED_SYMBOL;
 	}
 

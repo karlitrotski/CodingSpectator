@@ -63,7 +63,7 @@ public class MonitorTask extends TimerTask {
 		        }
 		    }		    		    
 		}
-		TextRecorder.record(new PluginMonitor(text));
+		TextRecorder.record(new PluginMonitorOperation(text));
 	}
 
 }

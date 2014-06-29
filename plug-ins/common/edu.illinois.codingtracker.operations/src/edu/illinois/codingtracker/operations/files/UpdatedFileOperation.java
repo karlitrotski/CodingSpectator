@@ -35,7 +35,7 @@ public class UpdatedFileOperation extends FileOperation {
 	}
 
 	@Override
-	protected char getOperationSymbol() {
+	public char getOperationSymbol() {
 		return OperationSymbols.FILE_UPDATED_SYMBOL;
 	}
 

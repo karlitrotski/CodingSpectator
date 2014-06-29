@@ -27,7 +27,7 @@ public class ClosedConflictEditorOperation extends ConflictEditorOperation {
 	}
 
 	@Override
-	protected char getOperationSymbol() {
+	public char getOperationSymbol() {
 		return OperationSymbols.CONFLICT_EDITOR_CLOSED_SYMBOL;
 	}
 	

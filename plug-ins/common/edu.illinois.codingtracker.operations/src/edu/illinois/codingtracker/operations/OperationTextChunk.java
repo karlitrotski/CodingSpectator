@@ -7,6 +7,8 @@ package edu.illinois.codingtracker.operations;
  * 
  * @author Stas Negara
  * 
+ * @author Juraj Kubelka
+ * @author Catalina Espinoza Inaipil - we added append(int [] values), append(String[] messages).
  */
 public class OperationTextChunk implements CharSequence {
 
@@ -32,26 +34,22 @@ public class OperationTextChunk implements CharSequence {
 		text.append(OperationLexer.escapeString(str)).append(OperationLexer.DELIMETER_SYMBOL);
 	}
 	
-	public void concat(String str) {
-		if (str == null) {
-			str= "";
-		}
-		text.append(OperationLexer.escapeString(str));
-	}
-
-
 	public void append(int num) {
 		text.append(num).append(OperationLexer.DELIMETER_SYMBOL);
 	}
 	
-	public void append(int [] values){
-		String output="";
-		for(int i=0;i<values.length;i++){
-			output+=values[i];
-			if(i<values.length-1)
-				output+=",";
+	public void append(int [] values) {
+		this.append(values.length);
+		for(int value: values) {
+			this.append(value);
 		}
-		this.append(output);
+	}
+	
+	public void append(String[] messages) {
+		this.append(messages.length);
+		for(String message: messages) {
+			this.append(message);
+		}
 	}
 	
 	public void append(long num) {
@@ -60,6 +58,13 @@ public class OperationTextChunk implements CharSequence {
 
 	public void append(boolean val) {
 		append(val ? 1 : 0);
+	}
+
+	public void concat(String str) {
+		if (str == null) {
+			str= "";
+		}
+		text.append(OperationLexer.escapeString(str));
 	}
 
 	@Override

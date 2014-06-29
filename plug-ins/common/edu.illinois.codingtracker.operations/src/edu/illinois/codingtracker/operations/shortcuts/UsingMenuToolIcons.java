@@ -22,7 +22,7 @@ public class UsingMenuToolIcons extends UserOperation {
 	}
 	
 	@Override
-	protected char getOperationSymbol() { 
+	public char getOperationSymbol() { 
 		return '0';
 	}
 
