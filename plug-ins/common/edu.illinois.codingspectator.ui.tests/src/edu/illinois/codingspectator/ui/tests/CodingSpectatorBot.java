@@ -283,5 +283,9 @@ public class CodingSpectatorBot {
 
 		});
 	}
+	
+	public void activeTabItem(String className){
+		bot.cTabItem(className).activate();
+	}
 
 }

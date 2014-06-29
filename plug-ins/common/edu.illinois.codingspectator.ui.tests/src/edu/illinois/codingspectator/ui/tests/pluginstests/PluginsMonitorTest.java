@@ -32,7 +32,7 @@ public class PluginsMonitorTest {
 	 * this test
 	 */
 	@Test
-	public void pluginsMonitorOperationTest(){
+	public void pluginsMonitorOperationTest(){		
 		bot.sleep(150000);
 		String generatedOperationsRecord= ResourceHelper.readFileContent(mainRecordFile);		
 		assertTrue(generatedOperationsRecord.contains("<TerminatedApplicationOperation>"));
