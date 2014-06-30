@@ -17,6 +17,11 @@ import org.eclipse.swt.widgets.Display;
 import org.eclipse.ui.IEditorPart;
 import org.eclipse.ui.IWorkbenchPage;
 import org.eclipse.ui.IWorkbenchWindow;
+import org.eclipse.swt.widgets.Shell;
+import org.eclipse.swt.widgets.Table;
+import org.eclipse.swt.widgets.TableItem;
+import org.eclipse.swt.events.SelectionEvent;
+import org.eclipse.swt.events.SelectionListener;
 
 
 /**
@@ -102,7 +107,41 @@ public class CompletionListener extends BasicListener implements ICompletionList
 
 	public void selectionChanged(ICompletionProposal proposal,
 			boolean smartToggle) {
-
+		IWorkbenchWindow activeWindow= getActiveWorkbenchWindow();
+		IWorkbenchPage activePage= activeWindow.getActivePage();
+		IEditorPart editor = activePage.getActiveEditor();
+		ISourceViewerExtension3 viewer = CompletionListener.getSourceViewerExtension3(editor);
+		ITextViewer textViewer = (ITextViewer)viewer;
+		Shell textViewerShell = textViewer.getTextWidget().getShell();
+		Shell [] textViewerShells = textViewerShell.getShells();
+		Table quickFixTable = null;
+		for (int i= 0; i< textViewerShells.length; i++) {
+			org.eclipse.swt.widgets.Control [] shellChildren = textViewerShells[i].getChildren();
+			for (int j= 0; j< shellChildren.length; j++) {
+				if (shellChildren[j] instanceof Table) {
+					quickFixTable = (Table)shellChildren[j];
+					break;
+				}
+			}
+		}
+		if (quickFixTable != null) {
+			SelectionListener quickFixUsageListener= new SelectionListener() {
+				private String itemSelectedText;
+				
+				public void widgetSelected(SelectionEvent e) {
+					if(e.item instanceof TableItem) {
+						TableItem ti = (TableItem)e.item;
+						itemSelectedText = ti.getText();
+					}
+				}
+				public void widgetDefaultSelected(SelectionEvent e) {
+					String selectedText = itemSelectedText;
+					operationRecorder.recordNewQuickfixUsage(selectedText);
+				}
+			};
+			
+			quickFixTable.addSelectionListener(quickFixUsageListener);
+		}
 	}
 
 
