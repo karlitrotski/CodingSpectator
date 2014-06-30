@@ -22,7 +22,7 @@ public class CompletionQuickfixOperation extends UserOperation {
 	}
 
 	@Override
-	protected char getOperationSymbol() {
+	public char getOperationSymbol() {
 		return OperationSymbols.QUICKFIX_INVOCATION_SYMBOL;
 	}
 
@@ -50,6 +50,14 @@ public class CompletionQuickfixOperation extends UserOperation {
 		
 	}
 	*/
+	
+	protected void populateXMLTextChunk(OperationTextChunk textChunk) {
+		textChunk.concat("<CompletionQuickfixOperation>"+"\n");
+		textChunk.concat("\t" + "<timestamp>");
+		textChunk.concat("" + getTime());
+		textChunk.concat("</timestamp>" + "\n");	
+		textChunk.concat("</CompletionQuickfixOperation>"+"\n");
+	}
 
 	@Override
 	protected void initializeFrom(OperationLexer operationLexer) {

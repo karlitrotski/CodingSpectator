@@ -10,6 +10,7 @@
 public class QuickfixUsageOperation extends UserOperation {
 
 		protected String result;
+		
 		public QuickfixUsageOperation() {
 			super();
 		}
@@ -20,7 +21,7 @@ public class QuickfixUsageOperation extends UserOperation {
 		}
 
 		@Override
-		protected char getOperationSymbol() {
+		public char getOperationSymbol() {
 			return OperationSymbols.QUICKFIX_USAGE_SYMBOL;
 		}
 
@@ -46,6 +47,17 @@ public class QuickfixUsageOperation extends UserOperation {
 			textChunk.concat("\t" + "" + "\n");
 		}
 		*/
+		
+/*		protected void populateXMLTextChunk(OperationTextChunk textChunk) {
+			textChunk.concat("<QuickfixUsageOperation>" + "\n");
+			textChunk.concat("\t" + "<ContentAssistEvent>");
+			textChunk.concat("" + event.assistant);
+			textChunk.concat("</ContentAssistEvent>" + "\n");
+			textChunk.concat("\t" + "<timestamp>");
+			textChunk.concat("" + getTime());
+			textChunk.concat("</timestamp>" + "\n");
+			textChunk.concat("</QuickfixUsageOperation>" + "\n");
+		}*/
 
 		@Override
 		protected void initializeFrom(OperationLexer operationLexer) {
@@ -57,6 +69,12 @@ public class QuickfixUsageOperation extends UserOperation {
 		public void replay() throws Exception {
 			// TODO Auto-generated method stub
 
+		}
+
+		@Override
+		protected void populateXMLTextChunk(OperationTextChunk textChunk) {
+			// TODO Auto-generated method stub
+			
 		}
 
 	}
