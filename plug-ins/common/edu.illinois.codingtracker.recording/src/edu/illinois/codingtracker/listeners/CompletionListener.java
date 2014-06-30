@@ -3,41 +3,20 @@
  */
 package edu.illinois.codingtracker.listeners;
 
-import org.eclipse.jdt.internal.ui.text.correction.IStatusLineProposal;
-import org.eclipse.jdt.internal.ui.text.correction.JavaCorrectionAssistant;
-import org.eclipse.jdt.internal.ui.text.correction.JavaCorrectionProcessor;
-import org.eclipse.jdt.ui.text.java.IQuickAssistProcessor;
-import org.eclipse.jface.text.IDocument;
 import org.eclipse.jface.text.IRegion;
 import org.eclipse.jface.text.ITextHover;
-import org.eclipse.jface.text.ITextHoverExtension2;
 import org.eclipse.jface.text.DefaultTextHover;
 import org.eclipse.jface.text.ITextOperationTarget;
 import org.eclipse.jface.text.ITextViewer;
-import org.eclipse.jface.text.ITextViewerExtension2;
-import org.eclipse.jface.text.ITextHoverExtension2;
 import org.eclipse.jface.text.contentassist.ContentAssistEvent;
-import org.eclipse.jface.text.contentassist.ContentAssistant;
 import org.eclipse.jface.text.contentassist.ICompletionListener;
 import org.eclipse.jface.text.contentassist.ICompletionProposal;
-import org.eclipse.jface.text.contentassist.ICompletionProposalExtension3;
-import org.eclipse.jface.text.contentassist.IContentAssistProcessor;
-import org.eclipse.jface.text.contentassist.IContentAssistant;
-import org.eclipse.jface.text.contentassist.IContentAssistantExtension2;
-import org.eclipse.jface.text.quickassist.QuickAssistAssistant;
-import org.eclipse.jface.text.source.ContentAssistantFacade;
 import org.eclipse.jface.text.source.ISourceViewer;
-import org.eclipse.jface.text.source.ISourceViewerExtension2;
 import org.eclipse.jface.text.source.ISourceViewerExtension3;
-import org.eclipse.jface.text.source.ISourceViewerExtension4;
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.ui.IEditorPart;
 import org.eclipse.ui.IWorkbenchPage;
 import org.eclipse.ui.IWorkbenchWindow;
-import org.eclipse.ui.texteditor.AbstractTextEditor;
-import org.eclipse.ui.texteditor.ITextEditor;
-import org.eclipse.jface.text.contentassist.IContentAssistantExtension;
-
 
 
 /**
@@ -45,7 +24,6 @@ import org.eclipse.jface.text.contentassist.IContentAssistantExtension;
  * @author Joffre Yagual
  * 
  */
-//@SuppressWarnings("restriction")
 public class CompletionListener extends BasicListener implements ICompletionListener {
 
 	private static CompletionListener instance = null;
@@ -102,20 +80,30 @@ public class CompletionListener extends BasicListener implements ICompletionList
 		return null;
 	}
 		
+		
 	@SuppressWarnings("deprecation")
 	public void assistSessionStarted(ContentAssistEvent event) {
-		//Write code here for processing the event
-
-		operationRecorder.recordNewCompletionQuickfix(event);
+		IWorkbenchWindow activeWindow= getActiveWorkbenchWindow();
+		IWorkbenchPage activePage= activeWindow.getActivePage();
+		IEditorPart editor = activePage.getActiveEditor();
+		ISourceViewerExtension3 viewer = CompletionListener.getSourceViewerExtension3(editor);
+		ITextViewer textViewer = (ITextViewer)viewer;
+		ITextHover defaultHover = new DefaultTextHover((ISourceViewer)viewer);
+		IRegion hoverRegion = defaultHover.getHoverRegion(textViewer, viewer.getQuickAssistInvocationContext().getOffset());
+		String errorInfo = defaultHover.getHoverInfo(textViewer, hoverRegion);
+		String errorText = textViewer.getTextWidget().getSelectionText();
+		int offset = viewer.getQuickAssistInvocationContext().getOffset();
+		operationRecorder.recordNewCompletionQuickfix(errorInfo, errorText, offset);
 
 	}
 	
 	public void assistSessionEnded(ContentAssistEvent event) {
-		//operationRecorder.recordNewQuickfixUsage(event);
 	}
 
 	public void selectionChanged(ICompletionProposal proposal,
 			boolean smartToggle) {
+
 	}
+
 
 }
