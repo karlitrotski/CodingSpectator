@@ -50,10 +50,12 @@ public abstract class QuickFixTest {
 	}
 
 	
-	protected void applyQuickFix(int index){
-		SWTBotEclipseEditor e = bot.getTextEditor(getTestFileName());
-		bot.activeTabItem(getTestFileName());
+	protected void applyQuickFix(int index, int line){
+		SWTBotEclipseEditor e = bot.getTextEditor(getTestFileName()+ ".java");
+		bot.activeTabItem(getTestFileName() + ".java");
+		e.navigateTo(line, 0);
 		e.quickfix(index);
+		e.save();
 	}
 
 }
