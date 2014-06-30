@@ -1,7 +1,5 @@
 	package cl.uchile.codingtracker.operations.completions;
 
-	import org.eclipse.jface.text.contentassist.ContentAssistEvent;
-
 	import edu.illinois.codingtracker.operations.OperationLexer;
 	import edu.illinois.codingtracker.operations.OperationSymbols;
 	import edu.illinois.codingtracker.operations.OperationTextChunk;
@@ -9,15 +7,15 @@
 
 public class QuickfixUsageOperation extends UserOperation {
 
-		protected ContentAssistEvent event;
+		protected String result;
 		
 		public QuickfixUsageOperation() {
 			super();
 		}
 
-		public QuickfixUsageOperation(ContentAssistEvent event) {
+		public QuickfixUsageOperation(String result) {
 			super();
-			this.event=event;	
+			this.result=result;	
 		}
 
 		@Override
@@ -33,11 +31,27 @@ public class QuickfixUsageOperation extends UserOperation {
 
 		@Override
 		protected void populateTextChunk(OperationTextChunk textChunk) {
-			textChunk.append("  "+event.assistant); 
+			textChunk.append(result); 
 		}
 		
-		@Override
 		protected void populateXMLTextChunk(OperationTextChunk textChunk) {
+			textChunk.append(result); 
+		}
+		
+		/* esto deberìa funcionar en el master
+		@Override
+		protected void populateXMLTextChunk(OperationTextChunk textChunk){
+			textChunk.concat("QuickFixUsageOperation");
+			super.populateXMLTextChunk(textChunk);
+			textChunk.concat(result);
+			textChunk.concat("\t" + "" + "\n"); 
+			textChunk.concat("\t" + getTime() + "\n"); 
+			textChunk.concat("\t" + "" + "\n");
+		}
+		*/
+		
+/*		protected void populateXMLTextChunk(OperationTextChunk textChunk) {
+>>>>>>> quickfix
 			textChunk.concat("<QuickfixUsageOperation>" + "\n");
 			textChunk.concat("\t" + "<ContentAssistEvent>");
 			textChunk.concat("" + event.assistant);
@@ -46,8 +60,10 @@ public class QuickfixUsageOperation extends UserOperation {
 			textChunk.concat("" + getTime());
 			textChunk.concat("</timestamp>" + "\n");
 			textChunk.concat("</QuickfixUsageOperation>" + "\n");
+<<<<<<< HEAD
 		}
-
+=======
+		}*/
 		@Override
 		protected void initializeFrom(OperationLexer operationLexer) {
 			// TODO Auto-generated method stub
