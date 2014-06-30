@@ -3,6 +3,7 @@
  */
 package edu.illinois.codingtracker.listeners;
 
+<<<<<<< HEAD
 import javax.sound.sampled.Control;
 
 import org.eclipse.jdt.internal.ui.text.correction.IStatusLineProposal;
@@ -18,6 +19,13 @@ import org.eclipse.jface.text.ITextOperationTarget;
 import org.eclipse.jface.text.ITextViewer;
 import org.eclipse.jface.text.ITextViewerExtension2;
 import org.eclipse.jface.text.ITextHoverExtension2;
+=======
+import org.eclipse.jface.text.IRegion;
+import org.eclipse.jface.text.ITextHover;
+import org.eclipse.jface.text.DefaultTextHover;
+import org.eclipse.jface.text.ITextOperationTarget;
+import org.eclipse.jface.text.ITextViewer;
+>>>>>>> ac27c6de59f85830d8b2644504677aabb27ca3b2
 import org.eclipse.jface.text.contentassist.ContentAssistEvent;
 import org.eclipse.jface.text.contentassist.ContentAssistant;
 import org.eclipse.jface.text.contentassist.ICompletionListener;
@@ -53,7 +61,6 @@ import org.eclipse.swt.events.*;
  * @author Joffre Yagual
  * 
  */
-//@SuppressWarnings("restriction")
 public class CompletionListener extends BasicListener implements ICompletionListener {
 
 	private static CompletionListener instance = null;
@@ -113,6 +120,7 @@ public class CompletionListener extends BasicListener implements ICompletionList
 		
 	@SuppressWarnings("deprecation")
 	public void assistSessionStarted(ContentAssistEvent event) {
+<<<<<<< HEAD
 		//Write code here for processing the event
 		operationRecorder.recordNewCompletionQuickfix(event);
 
@@ -140,10 +148,23 @@ public class CompletionListener extends BasicListener implements ICompletionList
 		if (viewer.getCurrentAnnotationHover() != null) {
 			//String texto = viewer.getCurrentAnnotationHover().getHoverInfo((ISourceViewer)viewer, viewer.getQuickAssistInvocationContext().getOffset());
 		}
+=======
+		IWorkbenchWindow activeWindow= getActiveWorkbenchWindow();
+		IWorkbenchPage activePage= activeWindow.getActivePage();
+		IEditorPart editor = activePage.getActiveEditor();
+		ISourceViewerExtension3 viewer = CompletionListener.getSourceViewerExtension3(editor);
+		ITextViewer textViewer = (ITextViewer)viewer;
+		ITextHover defaultHover = new DefaultTextHover((ISourceViewer)viewer);
+		IRegion hoverRegion = defaultHover.getHoverRegion(textViewer, viewer.getQuickAssistInvocationContext().getOffset());
+		String errorInfo = defaultHover.getHoverInfo(textViewer, hoverRegion);
+		String errorText = textViewer.getTextWidget().getSelectionText();
+		int offset = viewer.getQuickAssistInvocationContext().getOffset();
+		operationRecorder.recordNewCompletionQuickfix(errorInfo, errorText, offset);
+
+>>>>>>> ac27c6de59f85830d8b2644504677aabb27ca3b2
 	}
 	
 	public void assistSessionEnded(ContentAssistEvent event) {
-		//operationRecorder.recordNewQuickfixUsage(event);
 	}
 
 	public void selectionChanged(ICompletionProposal proposal,

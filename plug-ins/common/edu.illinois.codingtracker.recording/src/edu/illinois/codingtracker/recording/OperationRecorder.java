@@ -11,6 +11,7 @@ import java.util.Set;
 import org.eclipse.compare.internal.CompareEditor;
 import org.eclipse.core.filebuffers.ITextFileBuffer;
 import org.eclipse.core.resources.IFile;
+import org.eclipse.core.resources.IMarkerDelta;
 import org.eclipse.core.resources.IResource;
 import org.eclipse.core.runtime.IPath;
 import org.eclipse.jdt.core.IJavaProject;
@@ -24,6 +25,7 @@ import edu.illinois.codingtracker.compare.helpers.EditorHelper;
 import edu.illinois.codingtracker.helpers.Debugger;
 import edu.illinois.codingtracker.helpers.FileRevision;
 import edu.illinois.codingtracker.helpers.ResourceHelper;
+import edu.illinois.codingtracker.operations.shortcuts.ShortCutCommandName;
 import edu.illinois.codingtracker.operations.conflicteditors.ClosedConflictEditorOperation;
 import edu.illinois.codingtracker.operations.conflicteditors.OpenedConflictEditorOperation;
 import edu.illinois.codingtracker.operations.conflicteditors.SavedConflictEditorOperation;
@@ -38,6 +40,8 @@ import edu.illinois.codingtracker.operations.files.snapshoted.NewFileOperation;
 import edu.illinois.codingtracker.operations.files.snapshoted.RefreshedFileOperation;
 import edu.illinois.codingtracker.operations.files.snapshoted.SVNCommittedFileOperation;
 import edu.illinois.codingtracker.operations.files.snapshoted.SVNInitiallyCommittedFileOperation;
+import edu.illinois.codingtracker.operations.focus.DetectFocusGainsWorkbench;
+import edu.illinois.codingtracker.operations.focus.DetectFocusLooseWorkbench;
 import edu.illinois.codingtracker.operations.junit.TestCaseFinishedOperation;
 import edu.illinois.codingtracker.operations.junit.TestCaseStartedOperation;
 import edu.illinois.codingtracker.operations.junit.TestSessionFinishedOperation;
@@ -55,6 +59,7 @@ import edu.illinois.codingtracker.operations.resources.DeletedResourceOperation;
 import edu.illinois.codingtracker.operations.resources.ExternallyModifiedResourceOperation;
 import edu.illinois.codingtracker.operations.resources.MovedResourceOperation;
 import edu.illinois.codingtracker.operations.starts.LaunchedApplicationOperation;
+import edu.illinois.codingtracker.operations.starts.TerminatedApplicationOperation;
 import edu.illinois.codingtracker.operations.textchanges.ConflictEditorTextChangeOperation;
 import edu.illinois.codingtracker.operations.textchanges.PerformedConflictEditorTextChangeOperation;
 import edu.illinois.codingtracker.operations.textchanges.PerformedTextChangeOperation;
@@ -66,7 +71,8 @@ import edu.illinois.codingtracker.operations.textchanges.UndoneTextChangeOperati
 import cl.uchile.codingtracker.operations.annotations.AnnotationErrorOperation;
 import cl.uchile.codingtracker.operations.completions.CompletionQuickfixOperation;
 import cl.uchile.codingtracker.operations.completions.QuickfixUsageOperation;
-
+import cl.uchile.dcc.codingtracker.operations.markers.SaveMarkersStatusOperation;
+import edu.illinois.codingtracker.operations.parts.PartOperation;
 /**
  * 
  * @author Stas Negara
@@ -277,13 +283,19 @@ public class OperationRecorder {
 	public void recordStartedTestCase(String testRunName, String testClassName, String testMethodName) {
 		TextRecorder.record(new TestCaseStartedOperation(testRunName, testClassName, testMethodName));
 	}
+ 
 
-	public void recordFinishedTestCase(String testRunName, String result) {
-		TextRecorder.record(new TestCaseFinishedOperation(testRunName, result));
+ 	 
+	public void recordFinishedTestCase(String testRunName, String result, String progressState, String trace) {
+ 
+		TextRecorder.record(new TestCaseFinishedOperation(testRunName, result, progressState, trace));
 	}
-
 	public void recordLaunchedApplication(String launchMode, String launchName, String application, String product, boolean useProduct) {
 		TextRecorder.record(new LaunchedApplicationOperation(launchMode, launchName, application, product, useProduct));
+	}
+
+	public void recordTerminatedApplication(String launchMode, String launchName, String application, String product, boolean useProduct, int[] exitValues) {
+		TextRecorder.record(new TerminatedApplicationOperation(launchMode, launchName, application, product, useProduct, exitValues));
 	}
 
 	public void recordStartedRefactoring(RefactoringDescriptor refactoringDescriptor, int eventType) {
@@ -395,6 +407,44 @@ public class OperationRecorder {
 	public void recordNewQuickfixUsage(String result) {
 		TextRecorder.record(new QuickfixUsageOperation(result));
 	}
+	
+	public void recordMarkersStatus(IMarkerDelta [] deltas) {
+		TextRecorder.record(new SaveMarkersStatusOperation(deltas));
+	}
 
 
+	public void recordLooseFocus() {
+		
+		TextRecorder.record(new DetectFocusLooseWorkbench());
+	}
+
+	public void recordGainsFocus() {
+		
+		TextRecorder.record(new DetectFocusGainsWorkbench());
+	}
+public void recordShortcutsCommandName(String nCommand, String keyShortcuts) {
+		
+		TextRecorder.record(new ShortCutCommandName(nCommand, keyShortcuts));
+	}
+
+	public void recordActivatedFile(IFile activatedFile) {
+		invalidateLastEditedFile(activatedFile);
+		TextRecorder.record(new PartOperation(activatedFile, PartOperation.ACTIVATED));
+	}
+
+	public void recordOpenedFile(IFile openedFile) {
+		invalidateLastEditedFile(openedFile);
+		TextRecorder.record(new PartOperation(openedFile, PartOperation.OPENED));
+	}
+
+	public void recordHiddenFile(IFile hiddenFile) {
+		invalidateLastEditedFile(hiddenFile);
+		TextRecorder.record(new PartOperation(hiddenFile, PartOperation.HIDDEN));
+	}
+
+	public void recordVisibleFile(IFile visibleFile) {
+		invalidateLastEditedFile(visibleFile);
+		TextRecorder.record(new PartOperation(visibleFile, PartOperation.VISIBLE));
+		
+	}
 }
