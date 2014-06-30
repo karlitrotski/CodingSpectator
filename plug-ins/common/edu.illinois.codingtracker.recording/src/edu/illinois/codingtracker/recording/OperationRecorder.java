@@ -72,6 +72,7 @@ import edu.illinois.codingtracker.operations.textchanges.UndoneConflictEditorTex
 import edu.illinois.codingtracker.operations.textchanges.UndoneTextChangeOperation;
 import cl.uchile.codingtracker.operations.annotations.AnnotationErrorOperation;
 import cl.uchile.codingtracker.operations.completions.CompletionQuickfixOperation;
+import cl.uchile.codingtracker.operations.completions.QuickfixUsageOperation;
 import cl.uchile.dcc.codingtracker.operations.markers.SaveMarkersStatusOperation;
 import edu.illinois.codingtracker.operations.parts.EditPartOperation;
 import edu.illinois.codingtracker.operations.parts.ViewPartOperation;
