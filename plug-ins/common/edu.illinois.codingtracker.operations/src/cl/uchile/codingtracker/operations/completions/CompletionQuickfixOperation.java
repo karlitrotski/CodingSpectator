@@ -1,7 +1,5 @@
 package cl.uchile.codingtracker.operations.completions;
 
-import org.eclipse.jface.text.contentassist.ContentAssistEvent;
-
 import edu.illinois.codingtracker.operations.OperationLexer;
 import edu.illinois.codingtracker.operations.OperationSymbols;
 import edu.illinois.codingtracker.operations.OperationTextChunk;
@@ -9,14 +7,18 @@ import edu.illinois.codingtracker.operations.UserOperation;
 
 public class CompletionQuickfixOperation extends UserOperation {
 
-	protected ContentAssistEvent event;
+	protected String errorInfo, errorText;
+	protected int offset;
+	
 	public CompletionQuickfixOperation() {
 		super();
 	}
 
-	public CompletionQuickfixOperation(ContentAssistEvent event) {
+	public CompletionQuickfixOperation(String errorInfo, String errorText, int offset) {
 		super();
-		this.event=event;	
+		this.errorInfo= errorInfo;
+		this.errorText= errorText;
+		this.offset= offset;
 	}
 
 	@Override
@@ -32,7 +34,9 @@ public class CompletionQuickfixOperation extends UserOperation {
 
 	@Override
 	protected void populateTextChunk(OperationTextChunk textChunk) {
-		textChunk.append("");//""+event); 
+		textChunk.append(errorInfo);
+		textChunk.append(errorText);
+		textChunk.append(offset);
 	}
 
 	@Override
