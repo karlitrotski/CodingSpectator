@@ -38,35 +38,24 @@ public class CompletionQuickfixOperation extends UserOperation {
 		textChunk.append(errorText);
 		textChunk.append(offset);
 	}
-	/*esto deberìa funcionar en el master
-	@Override
-	protected void populateXMLTextChunk(OperationTextChunk textChunk){
-		textChunk.concat("CompletionQuickFixOperation");
-		super.populateXMLTextChunk(textChunk);
-		//textChunk.concat(result);
-		textChunk.concat("\t" + "" + "\n"); 
-		textChunk.concat("\t" + getTime() + "\n"); 
-		textChunk.concat("\t" + "" + "\n");
-		
-	}
-	*/
 	
 	protected void populateXMLTextChunk(OperationTextChunk textChunk) {
 		textChunk.concat("<CompletionQuickfixOperation>"+"\n");
+		textChunk.concat("\t" + "<errorInfo>");
+		textChunk.concat("" + errorInfo);
+		textChunk.concat("</errorInfo>" + "\n");
+		textChunk.concat("\t" + "<errorText>");
+		textChunk.concat("" + errorText);
+		textChunk.concat("</errorText>" + "\n");
+		textChunk.concat("\t" + "<offset>");
+		textChunk.concat("" + offset);
+		textChunk.concat("</offset>" + "\n");
 		textChunk.concat("\t" + "<timestamp>");
 		textChunk.concat("" + getTime());
 		textChunk.concat("</timestamp>" + "\n");	
 		textChunk.concat("</CompletionQuickfixOperation>"+"\n");
 	}
 	
-	protected void populateXMLTextChunk(OperationTextChunk textChunk) {
-		textChunk.concat("<CompletionQuickfixOperation>"+"\n");
-		textChunk.concat("\t" + "<timestamp>");
-		textChunk.concat("" + getTime());
-		textChunk.concat("</timestamp>" + "\n");	
-		textChunk.concat("</CompletionQuickfixOperation>"+"\n");
-	}
-
 	@Override
 	protected void initializeFrom(OperationLexer operationLexer) {
 		// TODO Auto-generated method stub
