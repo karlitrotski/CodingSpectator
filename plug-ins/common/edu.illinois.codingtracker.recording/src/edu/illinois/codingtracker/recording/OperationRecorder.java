@@ -400,8 +400,8 @@ public class OperationRecorder {
 		TextRecorder.record(new AnnotationErrorOperation(currentAnnotationErrors));
 	}
 	
-	public void recordNewCompletionQuickfix(ContentAssistEvent event) {
-		TextRecorder.record(new CompletionQuickfixOperation(event));
+	public void recordNewCompletionQuickfix(String errorInfo, String errorText, int offset) {
+		TextRecorder.record(new CompletionQuickfixOperation(errorInfo, errorText, offset));
 		
 	}
 	public void recordNewQuickfixUsage(ContentAssistEvent event) {
