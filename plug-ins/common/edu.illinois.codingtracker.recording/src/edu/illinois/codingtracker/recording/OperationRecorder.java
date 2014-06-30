@@ -392,8 +392,8 @@ public class OperationRecorder {
 		TextRecorder.record(new CompletionQuickfixOperation(event));
 		
 	}
-	public void recordNewQuickfixUsage(ContentAssistEvent event) {
-		//TextRecorder.record(new QuickfixUsageOperation(event));
+	public void recordNewQuickfixUsage(String result) {
+		TextRecorder.record(new QuickfixUsageOperation(result));
 	}
 
 
