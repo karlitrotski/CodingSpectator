@@ -35,35 +35,16 @@ public class QuickfixUsageOperation extends UserOperation {
 		}
 		
 		protected void populateXMLTextChunk(OperationTextChunk textChunk) {
-			textChunk.append(result); 
-		}
-		
-		/* esto deberìa funcionar en el master
-		@Override
-		protected void populateXMLTextChunk(OperationTextChunk textChunk){
-			textChunk.concat("QuickFixUsageOperation");
-			super.populateXMLTextChunk(textChunk);
-			textChunk.concat(result);
-			textChunk.concat("\t" + "" + "\n"); 
-			textChunk.concat("\t" + getTime() + "\n"); 
-			textChunk.concat("\t" + "" + "\n");
-		}
-		*/
-		
-/*		protected void populateXMLTextChunk(OperationTextChunk textChunk) {
->>>>>>> quickfix
 			textChunk.concat("<QuickfixUsageOperation>" + "\n");
-			textChunk.concat("\t" + "<ContentAssistEvent>");
-			textChunk.concat("" + event.assistant);
-			textChunk.concat("</ContentAssistEvent>" + "\n");
+			textChunk.concat("\t" + "<Used Quickfix>");
+			textChunk.concat("" + result);
+			textChunk.concat("</Used Quickfix>" + "\n");
 			textChunk.concat("\t" + "<timestamp>");
 			textChunk.concat("" + getTime());
 			textChunk.concat("</timestamp>" + "\n");
 			textChunk.concat("</QuickfixUsageOperation>" + "\n");
-<<<<<<< HEAD
 		}
-=======
-		}*/
+		
 		@Override
 		protected void initializeFrom(OperationLexer operationLexer) {
 			// TODO Auto-generated method stub
