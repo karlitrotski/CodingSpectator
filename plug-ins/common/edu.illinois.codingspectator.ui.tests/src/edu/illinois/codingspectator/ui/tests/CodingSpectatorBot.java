@@ -79,7 +79,7 @@ public class CodingSpectatorBot {
 
 	public void createANewJavaProject(String projectName) {
 		bot.menu("File").menu("New").menu("Project...").click();
-
+		
 		final SWTBotShell shell= activateShellWithName("New Project");
 
 		getCurrentTree().expandNode("Java").select("Java Project");
@@ -181,7 +181,7 @@ public class CodingSpectatorBot {
 
 		Tree swtTree= (Tree)bot.widget(widgetOfType(Tree.class), packageExplorerComposite);
 		SWTBotTree tree= new SWTBotTree(swtTree);
-
+		
 		return tree.select(projectName);
 	}
 
@@ -286,6 +286,10 @@ public class CodingSpectatorBot {
 	
 	public void activeTabItem(String className){
 		bot.cTabItem(className).activate();
+	}
+	
+	public void closeAll(){
+		bot.menu("File").menu("Close All");
 	}
 
 }

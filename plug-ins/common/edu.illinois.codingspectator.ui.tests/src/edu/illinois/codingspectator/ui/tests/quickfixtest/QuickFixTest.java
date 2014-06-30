@@ -2,6 +2,8 @@ package edu.illinois.codingspectator.ui.tests.quickfixtest;
 
 import org.eclipse.swtbot.eclipse.finder.widgets.SWTBotEclipseEditor;
 import org.junit.BeforeClass;
+import org.junit.Test;
+
 import edu.illinois.codingspectator.ui.tests.CodingSpectatorBot;
 
 
@@ -23,9 +25,9 @@ public abstract class QuickFixTest {
 		return getTestFileName() + ".java";
 	}
 	
-	protected void doAddJavaClass(String file) throws Exception {
+	protected void doAddJavaClass() throws Exception {
 		bot.createANewJavaClass(getProjectName(), getTestFileName());
-		bot.prepareJavaTextInEditor(file, getTestFileFullName());
+		bot.prepareJavaTextInEditor("quickfixtest", getTestFileFullName());
 	}
 	
 	
@@ -35,9 +37,16 @@ public abstract class QuickFixTest {
 		bot.dismissWelcomeScreenIfPresent();
 	}
 	
-	public final void setupProject(String file) throws Exception {
+	@Test
+	public final void test() throws Exception{
+		setupProject();
+		executeTest();
+	}
+	protected abstract void executeTest();
+
+	public final void setupProject() throws Exception {
 		bot.createANewJavaProject(getProjectName());
-		doAddJavaClass(file);
+		doAddJavaClass();
 	}
 
 	
