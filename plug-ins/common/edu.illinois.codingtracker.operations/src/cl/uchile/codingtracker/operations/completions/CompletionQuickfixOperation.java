@@ -38,6 +38,18 @@ public class CompletionQuickfixOperation extends UserOperation {
 		textChunk.append(errorText);
 		textChunk.append(offset);
 	}
+	/*esto deberìa funcionar en el master
+	@Override
+	protected void populateXMLTextChunk(OperationTextChunk textChunk){
+		textChunk.concat("CompletionQuickFixOperation");
+		super.populateXMLTextChunk(textChunk);
+		//textChunk.concat(result);
+		textChunk.concat("\t" + "" + "\n"); 
+		textChunk.concat("\t" + getTime() + "\n"); 
+		textChunk.concat("\t" + "" + "\n");
+		
+	}
+	*/
 
 	@Override
 	protected void initializeFrom(OperationLexer operationLexer) {

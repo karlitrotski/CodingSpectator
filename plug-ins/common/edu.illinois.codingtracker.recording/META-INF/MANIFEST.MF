@@ -19,3 +19,18 @@ Bundle-RequiredExecutionEnvironment: JavaSE-1.6
 Bundle-Vendor: University of Ilinois
 Bundle-ActivationPolicy: lazy
 Export-Package: edu.illinois.codingtracker.recording
+Import-Package: edu.illinois.codingtracker.compare.helpers,
+ edu.illinois.codingtracker.helpers,
+ org.eclipse.compare.internal,
+ org.eclipse.core.filebuffers,
+ org.eclipse.core.runtime;version="3.4.0",
+ org.eclipse.jface.text,
+ org.eclipse.jface.text.contentassist,
+ org.eclipse.jface.text.quickassist,
+ org.eclipse.jface.text.source,
+ org.eclipse.ltk.core.refactoring,
+ org.eclipse.ltk.core.refactoring.history,
+ org.eclipse.swt,
+ org.eclipse.swt.widgets,
+ org.eclipse.ui,
+ org.eclipse.ui.texteditor

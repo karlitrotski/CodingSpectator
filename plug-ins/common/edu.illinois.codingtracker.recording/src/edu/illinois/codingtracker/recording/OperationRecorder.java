@@ -404,8 +404,8 @@ public class OperationRecorder {
 		TextRecorder.record(new CompletionQuickfixOperation(errorInfo, errorText, offset));
 		
 	}
-	public void recordNewQuickfixUsage(ContentAssistEvent event) {
-		//TextRecorder.record(new QuickfixUsageOperation(event));
+	public void recordNewQuickfixUsage(String result) {
+		TextRecorder.record(new QuickfixUsageOperation(result));
 	}
 	
 	public void recordMarkersStatus(IMarkerDelta [] deltas) {
