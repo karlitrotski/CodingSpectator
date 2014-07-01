@@ -472,13 +472,16 @@ public class ListenerMenuToolBar extends BasicListener implements IExecutionList
 		return null;
 	}
 	@Override
-	public void preExecute(String commandId, ExecutionEvent event) {
-		Command commandd = event.getCommand();
-		Object Trigger= event.getTrigger(); 
-		Event TriggerEvent = (Event)Trigger; 
-		Widget widget =TriggerEvent.widget;
-		getNameMenuToolBar(widget,commandd);
-	 }
+	public void preExecute(String commandId, ExecutionEvent event) 
+	{
+		if (!(event.getTrigger() == null))	
+			{	Command commandd = event.getCommand();
+				Object Trigger= event.getTrigger(); 
+				Event TriggerEvent = (Event)Trigger; 
+				Widget widget =TriggerEvent.widget;
+				getNameMenuToolBar(widget,commandd);
+			}
+		}
  	}
  
  
