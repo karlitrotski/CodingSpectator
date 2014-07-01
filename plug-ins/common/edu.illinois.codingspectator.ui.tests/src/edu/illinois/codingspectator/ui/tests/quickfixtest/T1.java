@@ -12,7 +12,7 @@ import edu.illinois.codingtracker.recording.TextRecorder;
 
 public class T1 extends QuickFixTest{
 	
-	protected static File mainRecordFile= new File(TextRecorder.getMainRecordFilePath());
+	protected static File mainRecordFile= new File(TextRecorder.getMainRecordFilePathXML());
 	
 	@Override
 	protected String getTestFileName() {
