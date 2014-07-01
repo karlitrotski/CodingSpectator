@@ -26,5 +26,8 @@ public class TextRecorder {
 	public static String getMainRecordFilePath() {
 		return recorderInstance.mainRecordFilePath;
 	}
-
+	
+	public static String getMainRecordFilePathXML(){
+		return recorderXMLInstance.mainRecordFilePath;
+	}
 }

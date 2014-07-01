@@ -18,7 +18,7 @@ import edu.illinois.codingtracker.recording.TextRecorder;
  */
 public class PluginsListTest{
 	
-	protected static File mainRecordFile= new File(TextRecorder.getMainRecordFilePath());
+	protected static File mainRecordFile= new File(TextRecorder.getMainRecordFilePathXML());
 	
 	/*
 	 * It's necessary clean the log on TextRecorder.getMainRecordFilePath() before run

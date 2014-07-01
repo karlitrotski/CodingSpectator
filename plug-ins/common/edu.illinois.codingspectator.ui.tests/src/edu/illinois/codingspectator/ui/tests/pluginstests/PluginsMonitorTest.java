@@ -19,7 +19,7 @@ import edu.illinois.codingtracker.recording.TextRecorder;
  */
 public class PluginsMonitorTest {
 	
-	protected static File mainRecordFile= new File(TextRecorder.getMainRecordFilePath());
+	protected static File mainRecordFile= new File(TextRecorder.getMainRecordFilePathXML());
 	private static SWTWorkbenchBot	bot;
 	
 	@BeforeClass
@@ -35,6 +35,6 @@ public class PluginsMonitorTest {
 	public void pluginsMonitorOperationTest(){		
 		bot.sleep(150000);
 		String generatedOperationsRecord= ResourceHelper.readFileContent(mainRecordFile);		
-		assertTrue(generatedOperationsRecord.contains("<TerminatedApplicationOperation>"));
+		assertTrue(generatedOperationsRecord.contains("<PluginMonitorOperation>"));
 	}
 }
