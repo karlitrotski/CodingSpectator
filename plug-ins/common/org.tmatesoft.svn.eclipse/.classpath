@@ -2,12 +2,13 @@
 <classpath>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-1.6"/>
 	<classpathentry kind="con" path="org.eclipse.pde.core.requiredPlugins"/>
-	<classpathentry exported="true" kind="lib" path="antlr-runtime-3.1.3.jar"/>
-	<classpathentry exported="true" kind="lib" path="jna.jar"/>
-	<classpathentry exported="true" kind="lib" path="sqljet.1.0.3.jar"/>
-	<classpathentry exported="true" kind="lib" path="svnkit-cli.jar" sourcepath="svn-kit/svnkit-1.3.4.6888/svnkitclisrc.zip"/>
-	<classpathentry exported="true" kind="lib" path="svnkit-javahl.jar"/>
-	<classpathentry exported="true" kind="lib" path="svnkit.jar" sourcepath="svn-kit/svnkit-1.3.4.6888/svnkitsrc.zip"/>
-	<classpathentry exported="true" kind="lib" path="trilead.jar"/>
+	<classpathentry exported="true" kind="lib" path="antlr-runtime-3.4.jar"/>
+	<classpathentry exported="true" kind="lib" path="jna-3.4.0.jar"/>
+	<classpathentry exported="true" kind="lib" path="sqljet-1.1.2.jar"/>
+	<classpathentry exported="true" kind="lib" path="svnkit-cli-1.3.8.jar" sourcepath="svn-kit/svn-kit-1.3.8/svnkit-cli-1.3.8-sources.jar"/>
+	<classpathentry exported="true" kind="lib" path="svnkit-javahl16-1.3.8.jar" sourcepath="svn-kit/svn-kit-1.3.8/svnkit-javahl16-1.3.8-sources.jar"/>
+	<classpathentry exported="true" kind="lib" path="svnkit-1.3.8.jar" sourcepath="svn-kit/svn-kit-1.3.8/svnkit-1.3.8-sources.jar"/>
+	<classpathentry exported="true" kind="lib" path="trilead-ssh2-1.0.0-build215.jar"/>
+	<classpathentry exported="true" kind="lib" path="sequence-library-1.0.2.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

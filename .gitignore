@@ -7,4 +7,11 @@ org.eclipse.jdt.ui.tests/
 org.eclipse.test.performance/
 org.eclipse.text.tests/
 
-plug-ins/common/edu.illinois.codingtracker.operations/META-INF/MANIFEST.MF
+plug-ins/common/org.tmatesoft.svn.eclipse/antlr-runtime-3.4.jar
+plug-ins/common/org.tmatesoft.svn.eclipse/jna-3.4.0.jar
+plug-ins/common/org.tmatesoft.svn.eclipse/sequence-library-1.0.2.jar
+plug-ins/common/org.tmatesoft.svn.eclipse/sqljet-1.1.2.jar
+plug-ins/common/org.tmatesoft.svn.eclipse/svnkit-1.3.8.jar
+plug-ins/common/org.tmatesoft.svn.eclipse/svnkit-cli-1.3.8.jar
+plug-ins/common/org.tmatesoft.svn.eclipse/svnkit-javahl16-1.3.8.jar
+plug-ins/common/org.tmatesoft.svn.eclipse/trilead-ssh2-1.0.0-build215.jar
