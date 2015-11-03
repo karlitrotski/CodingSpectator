@@ -62,7 +62,7 @@ public class UploadingPreferencePage extends BundlePreferencePage implements IWo
 
 	private void createUploadNowButton() {
 		Button uploadButton= new Button(getFieldEditorParent(), SWT.PUSH);
-		uploadButton.setText(Activator.populateMessageWithPluginName(Messages.UploadingPreferencePage_UploadNowButtonText));
+		uploadButton.setText(Messages.UploadingPreferencePage_UploadNowButtonText);
 
 		uploadButton.addSelectionListener(new SelectionAdapter() {
 
