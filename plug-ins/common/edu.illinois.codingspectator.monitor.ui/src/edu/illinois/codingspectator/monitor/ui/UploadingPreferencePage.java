@@ -33,6 +33,7 @@ import edu.illinois.codingspectator.monitor.ui.submission.Submitter;
 public class UploadingPreferencePage extends BundlePreferencePage implements IWorkbenchPreferencePage {
 
 	private StringFieldEditor lastUploadTextField;
+	private StringFieldEditor productionUploadURLTextField;
 
 	public UploadingPreferencePage() {
 		super(GRID);
@@ -50,7 +51,14 @@ public class UploadingPreferencePage extends BundlePreferencePage implements IWo
 	@Override
 	protected void createFieldEditors() {
 		lastUploadTextField= addDisabledTextField(Messages.PrefsFacade_LastUploadTimeKey, Messages.UploadingPreferencePage_LastUploadTextField);
+		createProductionUploadURLField();
 		createUploadNowButton();
+		
+	}
+
+	private void createProductionUploadURLField() {
+		productionUploadURLTextField = new StringFieldEditor("ProductionUploadURLKey", "Upload URL (Production Mode) :", getFieldEditorParent());
+		addField(productionUploadURLTextField);
 	}
 
 	@Override
