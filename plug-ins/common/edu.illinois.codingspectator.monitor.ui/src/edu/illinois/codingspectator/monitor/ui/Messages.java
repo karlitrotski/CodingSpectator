@@ -22,6 +22,8 @@ public class Messages extends NLS {
 	public static String PrefsFacade_ForcedAutomaticUpdateHasBeenSetKey;
 
 	public static String PrefsFacade_LastUploadTimeKey;
+	
+	public static String PrefsFacade_ProductionUploadURLKey;
 
 	public static String SecureStorage_PasswordKey;
 
@@ -36,6 +38,8 @@ public class Messages extends NLS {
 	public static String UserValidationDialog_Username;
 
 	public static String UploadingPreferencePage_LastUploadTextField;
+	
+	public static String UploadingPreferencePage_ProductionUploadURLTextField;
 
 	public static String UploadingPreferencePage_Description;
 

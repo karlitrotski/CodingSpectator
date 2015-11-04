@@ -57,7 +57,9 @@ public class UploadingPreferencePage extends BundlePreferencePage implements IWo
 	}
 
 	private void createProductionUploadURLField() {
-		productionUploadURLTextField = new StringFieldEditor("ProductionUploadURLKey", "Upload URL (Production Mode) :", getFieldEditorParent());
+		productionUploadURLTextField = new StringFieldEditor(Messages.PrefsFacade_ProductionUploadURLKey,
+															 Messages.UploadingPreferencePage_ProductionUploadURLTextField,
+															 getFieldEditorParent());
 		addField(productionUploadURLTextField);
 	}
 
