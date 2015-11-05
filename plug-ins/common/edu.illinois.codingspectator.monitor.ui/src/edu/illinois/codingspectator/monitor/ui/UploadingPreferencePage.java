@@ -57,14 +57,12 @@ public class UploadingPreferencePage extends BundlePreferencePage implements IWo
 	}
 
 	private void createUploadURLFields() {
-		productionUploadURLTextField = createUploadURLField(Messages.PrefsFacade_ProductionUploadURLKey, Messages.UploadingPreferencePage_ProductionUploadURLTextField,
-				Messages.AuthenticationPrompter_ProductionRepositoryURL);
+		productionUploadURLTextField = createUploadURLField(Messages.PrefsFacade_ProductionUploadURLKey, Messages.UploadingPreferencePage_ProductionUploadURLTextField);
 		
-		testUploadURLTextField = createUploadURLField(Messages.PrefsFacade_TestUploadURLKey, Messages.UploadingPreferencePage_TestUploadURLTextField,
-				Messages.AuthenticationPrompter_TestRepositoryURL);
+		testUploadURLTextField = createUploadURLField(Messages.PrefsFacade_TestUploadURLKey, Messages.UploadingPreferencePage_TestUploadURLTextField);
 	}
 
-	private StringFieldEditor createUploadURLField(String textFieldValue, String textFieldLabel, String textValue) {
+	private StringFieldEditor createUploadURLField(String textFieldValue, String textFieldLabel) {
 		StringFieldEditor textField = new StringFieldEditor(textFieldValue, textFieldLabel, getFieldEditorParent());
 		addField(textField);
 		return textField;
