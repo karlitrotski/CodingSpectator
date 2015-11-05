@@ -67,7 +67,6 @@ public class UploadingPreferencePage extends BundlePreferencePage implements IWo
 	private StringFieldEditor createUploadURLField(String textFieldValue, String textFieldLabel, String textValue) {
 		StringFieldEditor textField = new StringFieldEditor(textFieldValue, textFieldLabel, getFieldEditorParent());
 		addField(textField);
-		PrefsFacade.getInstance().getPreferenceStore().setValue(textFieldValue, textValue);		
 		return textField;
 	}
 
@@ -75,6 +74,8 @@ public class UploadingPreferencePage extends BundlePreferencePage implements IWo
 	public boolean performOk() {
 		// Do not store any values for the disabled text fields
 		// All values will be stored manually through PrefsFacade
+		PrefsFacade.getInstance().getPreferenceStore().setValue(PrefsFacade.ProductionUploadURLKey, productionUploadURLTextField.getStringValue());
+		PrefsFacade.getInstance().getPreferenceStore().setValue(PrefsFacade.TestUploadURLKey, testUploadURLTextField.getStringValue());
 		return true;
 	}
 
