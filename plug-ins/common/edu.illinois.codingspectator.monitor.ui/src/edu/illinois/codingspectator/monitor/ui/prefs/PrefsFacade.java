@@ -23,6 +23,10 @@ import edu.illinois.codingspectator.monitor.ui.submission.Submitter;
  * @author nchen
  */
 public class PrefsFacade {
+	
+	public static final String ProductionUploadURLKey = "ProductionUploadURLKey";
+
+	public static final String TestUploadURLKey = "TestUploadURLKey";
 
 	private static final String TESTING_UUID= "00000000-0000-0000-0000-000000000000"; //$NON-NLS-1$
 
