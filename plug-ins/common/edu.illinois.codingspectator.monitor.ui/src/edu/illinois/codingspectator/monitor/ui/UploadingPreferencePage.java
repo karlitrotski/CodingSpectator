@@ -52,27 +52,22 @@ public class UploadingPreferencePage extends BundlePreferencePage implements IWo
 	@Override
 	protected void createFieldEditors() {
 		lastUploadTextField= addDisabledTextField(Messages.PrefsFacade_LastUploadTimeKey, Messages.UploadingPreferencePage_LastUploadTextField);
-		createProductionUploadURLField();
-		createTestUploadURLField();
+		createUploadURLFields();
 		createUploadNowButton();
-		
 	}
 
-	private void createTestUploadURLField() {
-		testUploadURLTextField = new StringFieldEditor(Messages.PrefsFacade_TestUploadURLKey,
-													   Messages.UploadingPreferencePage_TestUploadURLTextField,
-													   getFieldEditorParent());
-		addField(testUploadURLTextField);
-		PrefsFacade.getInstance().getPreferenceStore().setValue(Messages.PrefsFacade_TestUploadURLKey, Messages.AuthenticationPrompter_TestRepositoryURL);
+	private void createUploadURLFields() {
+		createUploadURLField(productionUploadURLTextField, Messages.PrefsFacade_ProductionUploadURLKey,
+				Messages.UploadingPreferencePage_ProductionUploadURLTextField, Messages.AuthenticationPrompter_ProductionRepositoryURL);
 		
+		createUploadURLField(testUploadURLTextField, Messages.PrefsFacade_TestUploadURLKey,
+				Messages.UploadingPreferencePage_TestUploadURLTextField, Messages.AuthenticationPrompter_TestRepositoryURL);
 	}
 
-	private void createProductionUploadURLField() {
-		productionUploadURLTextField = new StringFieldEditor(Messages.PrefsFacade_ProductionUploadURLKey,
-															 Messages.UploadingPreferencePage_ProductionUploadURLTextField,
-															 getFieldEditorParent());
-		addField(productionUploadURLTextField);
-		PrefsFacade.getInstance().getPreferenceStore().setValue(Messages.PrefsFacade_ProductionUploadURLKey, Messages.AuthenticationPrompter_ProductionRepositoryURL);
+	private void createUploadURLField(StringFieldEditor textField, String textFieldValue, String textFieldLabel, String textValue) {
+		textField = new StringFieldEditor(textFieldValue, textFieldLabel, getFieldEditorParent());
+		addField(textField);
+		PrefsFacade.getInstance().getPreferenceStore().setValue(textFieldValue, textValue);		
 	}
 
 	@Override
