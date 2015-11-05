@@ -57,17 +57,18 @@ public class UploadingPreferencePage extends BundlePreferencePage implements IWo
 	}
 
 	private void createUploadURLFields() {
-		createUploadURLField(productionUploadURLTextField, Messages.PrefsFacade_ProductionUploadURLKey,
-				Messages.UploadingPreferencePage_ProductionUploadURLTextField, Messages.AuthenticationPrompter_ProductionRepositoryURL);
+		productionUploadURLTextField = createUploadURLField(Messages.PrefsFacade_ProductionUploadURLKey, Messages.UploadingPreferencePage_ProductionUploadURLTextField,
+				Messages.AuthenticationPrompter_ProductionRepositoryURL);
 		
-		createUploadURLField(testUploadURLTextField, Messages.PrefsFacade_TestUploadURLKey,
-				Messages.UploadingPreferencePage_TestUploadURLTextField, Messages.AuthenticationPrompter_TestRepositoryURL);
+		testUploadURLTextField = createUploadURLField(Messages.PrefsFacade_TestUploadURLKey, Messages.UploadingPreferencePage_TestUploadURLTextField,
+				Messages.AuthenticationPrompter_TestRepositoryURL);
 	}
 
-	private void createUploadURLField(StringFieldEditor textField, String textFieldValue, String textFieldLabel, String textValue) {
-		textField = new StringFieldEditor(textFieldValue, textFieldLabel, getFieldEditorParent());
+	private StringFieldEditor createUploadURLField(String textFieldValue, String textFieldLabel, String textValue) {
+		StringFieldEditor textField = new StringFieldEditor(textFieldValue, textFieldLabel, getFieldEditorParent());
 		addField(textField);
 		PrefsFacade.getInstance().getPreferenceStore().setValue(textFieldValue, textValue);		
+		return textField;
 	}
 
 	@Override
