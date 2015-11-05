@@ -34,6 +34,7 @@ public class UploadingPreferencePage extends BundlePreferencePage implements IWo
 
 	private StringFieldEditor lastUploadTextField;
 	private StringFieldEditor productionUploadURLTextField;
+	private StringFieldEditor testUploadURLTextField;
 
 	public UploadingPreferencePage() {
 		super(GRID);
@@ -52,7 +53,16 @@ public class UploadingPreferencePage extends BundlePreferencePage implements IWo
 	protected void createFieldEditors() {
 		lastUploadTextField= addDisabledTextField(Messages.PrefsFacade_LastUploadTimeKey, Messages.UploadingPreferencePage_LastUploadTextField);
 		createProductionUploadURLField();
+		createTestUploadURLField();
 		createUploadNowButton();
+		
+	}
+
+	private void createTestUploadURLField() {
+		testUploadURLTextField = new StringFieldEditor(Messages.PrefsFacade_TestUploadURLKey,
+													   Messages.UploadingPreferencePage_TestUploadURLTextField,
+													   getFieldEditorParent());
+		addField(testUploadURLTextField);
 		
 	}
 
