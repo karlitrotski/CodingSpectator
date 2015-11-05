@@ -61,6 +61,7 @@ public class UploadingPreferencePage extends BundlePreferencePage implements IWo
 															 Messages.UploadingPreferencePage_ProductionUploadURLTextField,
 															 getFieldEditorParent());
 		addField(productionUploadURLTextField);
+		PrefsFacade.getInstance().getPreferenceStore().setValue(Messages.PrefsFacade_ProductionUploadURLKey, Messages.AuthenticationPrompter_ProductionRepositoryURL);
 	}
 
 	@Override
