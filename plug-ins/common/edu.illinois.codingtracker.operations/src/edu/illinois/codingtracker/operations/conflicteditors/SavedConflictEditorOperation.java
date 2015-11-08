@@ -59,6 +59,12 @@ public class SavedConflictEditorOperation extends ConflictEditorOperation {
 		textChunk.concat("</timestamp>" + "\n");
 		textChunk.concat("</SavedConflictEditorOperation>" + "\n");
 	}
+	
+	@Override
+	protected void populateCSVTextChunk(OperationTextChunk textChunk){
+		textChunk.concat("SavedConflictEditorOperation , "+ getTime()+ " ,");
+		textChunk.concat("[{Success : "+ success +"}]\n");
+	}
 
 	@Override
 	protected void initializeFrom(OperationLexer operationLexer) {

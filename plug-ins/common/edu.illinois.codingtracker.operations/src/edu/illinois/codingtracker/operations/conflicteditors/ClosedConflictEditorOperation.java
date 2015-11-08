@@ -40,6 +40,13 @@ public class ClosedConflictEditorOperation extends ConflictEditorOperation {
 		textChunk.concat("</timestamp>" + "\n");
 		textChunk.concat("</ClosedConflictEditorOperation>" + "\n");
 	}
+	
+	@Override
+	protected void populateCSVTextChunk(OperationTextChunk textChunk){
+		textChunk.concat("ClosedConflictEditorOperation , "+ getTime()+ " ,");
+		textChunk.concat("[{Editor ID : "+ super.getEditorID() +"}]\n");
+	}
+
 
 	@Override
 	public String getDescription() {

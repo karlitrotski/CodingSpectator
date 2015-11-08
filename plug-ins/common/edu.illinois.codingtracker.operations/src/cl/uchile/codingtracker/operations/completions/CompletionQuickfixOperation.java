@@ -56,6 +56,14 @@ public class CompletionQuickfixOperation extends UserOperation {
 		textChunk.concat("</CompletionQuickfixOperation>"+"\n");
 	}
 	
+	protected void populateCSVTextChunk(OperationTextChunk textChunk){
+		textChunk.concat("CompletionQuickfixOperation , "+ getTime()+ " ,");
+		textChunk.concat("\"[{ErrorInfo : "+ errorInfo +",");
+		textChunk.concat("ErrorText : "+ errorText + ",");
+		textChunk.concat("Offset : "+ offset + "}]\" \n");
+	}
+
+	
 	@Override
 	protected void initializeFrom(OperationLexer operationLexer) {
 		// TODO Auto-generated method stub

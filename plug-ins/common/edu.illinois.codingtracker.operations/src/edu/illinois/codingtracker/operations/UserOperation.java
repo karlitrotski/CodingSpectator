@@ -47,6 +47,12 @@ public abstract class UserOperation{
 		populateXMLTextChunk(textChunk);
 		return textChunk;
 	}
+	
+	public OperationTextChunk generateCSVText() {
+		OperationTextChunk textChunk= new OperationTextChunk();
+		populateCSVTextChunk(textChunk);
+		return textChunk;
+	}
 
 	public void deserialize(OperationLexer operationLexer) {
 		if (operationLexer.getCurrentOperationSymbol() != getOperationSymbol()) {
@@ -83,9 +89,12 @@ public abstract class UserOperation{
 	protected abstract void populateTextChunk(OperationTextChunk textChunk);
 	
 	protected abstract void populateXMLTextChunk(OperationTextChunk textChunk);
+	
+	protected abstract void populateCSVTextChunk(OperationTextChunk textChunk);
 
 	protected abstract void initializeFrom(OperationLexer operationLexer);
 
 	public abstract void replay() throws Exception;
+
 
 }

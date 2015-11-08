@@ -68,6 +68,14 @@ public class OpenedConflictEditorOperation extends ConflictEditorOperation {
 		textChunk.concat("</timestamp>" + "\n");
 		textChunk.concat("</OpenedConflictEditorOperation>" + "\n");
 	}
+	
+	@Override
+	protected void populateCSVTextChunk(OperationTextChunk textChunk){
+		textChunk.concat("OpenedConflictEditorOperation , "+ getTime()+ " ,");
+		textChunk.concat("\"[{Editor ID : "+ super.getEditorID() +",");
+		textChunk.concat("File path : "+ editedFilePath +",");
+		textChunk.concat("Initial content : "+ initialContent +"}]\" \n");
+	}
 
 	@Override
 	protected void initializeFrom(OperationLexer operationLexer) {

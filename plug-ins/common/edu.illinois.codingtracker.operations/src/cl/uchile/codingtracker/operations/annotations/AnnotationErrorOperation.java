@@ -49,6 +49,11 @@ public class AnnotationErrorOperation extends UserOperation {
 		textChunk.concat("</timestamp>" + "\n");	
 		textChunk.concat("</AnnotationErrorOperation>"+"\n");
 	}
+	
+	protected void populateCSVTextChunk(OperationTextChunk textChunk){
+		textChunk.concat("AnnotationErrorOperation , "+ getTime()+ " ,");
+		textChunk.concat("[{ErrorsNumber : "+ annotationErrorsNumber +"}]\n");
+	}
 
 	@Override
 	protected void initializeFrom(OperationLexer operationLexer) {
