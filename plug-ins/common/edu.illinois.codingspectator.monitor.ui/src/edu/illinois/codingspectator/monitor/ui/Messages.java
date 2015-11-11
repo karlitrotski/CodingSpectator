@@ -22,10 +22,6 @@ public class Messages extends NLS {
 	public static String PrefsFacade_ForcedAutomaticUpdateHasBeenSetKey;
 
 	public static String PrefsFacade_LastUploadTimeKey;
-	
-	public static String PrefsFacade_ProductionUploadURLKey;
-	
-	public static String PrefsFacade_TestUploadURLKey;
 
 	public static String SecureStorage_PasswordKey;
 
