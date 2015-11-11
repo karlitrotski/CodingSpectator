@@ -81,6 +81,7 @@ public class Activator extends AbstractUIPlugin implements IStartup {
 	protected void initializeDefaultPreferences(IPreferenceStore store) {
 		super.initializeDefaultPreferences(store);
 		store.setDefault(PrefsFacade.ProductionUploadURLKey, PrefsFacade.ProductionUploadURL_Default);
+		store.setDefault(PrefsFacade.TestUploadURLKey, PrefsFacade.TestUploadURL_Default);
 	}
 	
 	/**
