@@ -1,6 +1,7 @@
 package edu.illinois.codingspectator.ui.tests.modifyuploadurl;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
 
 import org.eclipse.swtbot.eclipse.finder.SWTWorkbenchBot;
 import org.eclipse.swtbot.swt.finder.exceptions.WidgetNotFoundException;
@@ -10,6 +11,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 import edu.illinois.codingspectator.monitor.ui.AuthenticationPrompter;
+import edu.illinois.codingspectator.monitor.ui.Messages;
 import edu.illinois.codingspectator.monitor.ui.prefs.PrefsFacade;
 
 /**
@@ -21,6 +23,7 @@ import edu.illinois.codingspectator.monitor.ui.prefs.PrefsFacade;
  * pages. In particular it accesses the Uploading page and changes
  * the text field "Upload URL (Test Mode)"
  * 
+ * This test is only available for Windows
  * @author Tomas
  *
  */
@@ -46,11 +49,9 @@ public class TestModifyUploadUrl {
 		String newUploadURLValue= "newTestUploadURLValue";
 		
 		if(System.getProperty("os.name").startsWith("Windows")){
-			bot.menu("Window").menu("Preferences").click();
-			SWTBotShell shell=bot.shell("Preferences");
-			shell.activate();
+			bot.menu("&Window").menu("&Preferences").click();
 			bot.tree().expandNode("CodingSpectator").select("Uploading");
-			bot.textWithLabel(PrefsFacade.TestUploadURLKey).setText(newUploadURLValue);
+			bot.textWithLabel(Messages.UploadingPreferencePage_TestUploadURLTextField).setText(newUploadURLValue);
 			bot.button("OK").click();
 			
 			assertEquals(newUploadURLValue, authProvider.getRepositoryURL());
