@@ -48,6 +48,14 @@ public abstract class ApplicationOperation extends UserOperation {
 		textChunk.concat("\t" + "<UseProduct>" + (useProduct ? 1 : 0) + "</UseProduct>" + "\n");
 	}
 	
+	protected void populateCSVTextChunk(OperationTextChunk textChunk){
+		textChunk.concat("LaunchMode : "+ launchMode + ",");
+		textChunk.concat("LaunchName : "+ launchName + ",");
+		textChunk.concat("Application : "+ application + ",");
+		textChunk.concat("Product : "+ product + ",");
+		textChunk.concat("UseProduct : "+ (useProduct ? 1 : 0));
+	}
+	
 	@Override
 	protected void initializeFrom(OperationLexer operationLexer) {
 		launchMode= operationLexer.readString();

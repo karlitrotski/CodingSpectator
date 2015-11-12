@@ -53,6 +53,12 @@ public class PluginMonitorOperation extends UserOperation {
 		textChunk.concat("\t" + "<timestamp>" + getTime() + "</timestamp>" + "\n");
 		textChunk.concat("</PluginMonitorOperation>" + "\n");
 	}
+	
+	protected void populateCSVTextChunk(OperationTextChunk textChunk){
+		textChunk.concat("PluginMonitorOperation , "+ getTime()+ " ,");
+		textChunk.concat("[{Text : "+ text +"}]\n");
+	}
+
 
 	@Override
 	protected void initializeFrom(OperationLexer operationLexer) {

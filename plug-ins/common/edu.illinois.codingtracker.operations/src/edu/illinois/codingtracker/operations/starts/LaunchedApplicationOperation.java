@@ -40,5 +40,13 @@ public class LaunchedApplicationOperation extends ApplicationOperation {
 		textChunk.concat("\t" + "</timestamp>" + "\n");
 		textChunk.concat("</LaunchedApplicationOperation>" + "\n");
 	}
+	
+	@Override
+	protected void populateCSVTextChunk(OperationTextChunk textChunk){
+		textChunk.concat("LaunchedApplicationOperation , "+ getTime()+ " ,");
+		textChunk.concat("\"[{");
+		super.populateCSVTextChunk(textChunk);
+		textChunk.concat("}]\" \n");
+	}
 
 }

@@ -73,5 +73,10 @@ public abstract class OptionsChangedOperation extends UserOperation {
 		}
 		
 	}
+	
+	@Override
+	protected void populateCSVTextChunk(OperationTextChunk textChunk){
+		
+	}
 
 }

@@ -42,6 +42,13 @@ public abstract class BreakableResourceOperation extends ResourceOperation {
 		textChunk.concat("" + success);
 		textChunk.concat("</success>" + "\n");
 	}
+	
+	@Override
+	protected void populateCSVTextChunk(OperationTextChunk textChunk){
+		super.populateCSVTextChunk(textChunk);
+		textChunk.concat(",");
+		textChunk.concat("Success : "+ success);
+	}
 
 	@Override
 	protected void initializeFrom(OperationLexer operationLexer) {

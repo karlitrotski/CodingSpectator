@@ -50,5 +50,12 @@ public class EditedFileOperation extends FileOperation {
 		textChunk.concat("</EditedFileOperation>" + "\n");
 	}
 
+	@Override
+	protected void populateCSVTextChunk(OperationTextChunk textChunk){
+		textChunk.concat("EditedFileOperation , "+ getTime()+ " ,");
+		textChunk.concat("[{");
+		super.populateCSVTextChunk(textChunk);
+		textChunk.concat("}]\n");
+	}
 
 }

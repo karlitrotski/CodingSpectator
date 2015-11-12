@@ -66,6 +66,12 @@ public class PluginsList extends UserOperation {
 		textChunk.concat("</PluginList>" + "\n");
 	}
 	
+	protected void populateCSVTextChunk(OperationTextChunk textChunk){
+		textChunk.concat("PluginList , "+ getTime()+ " ,");
+		textChunk.concat("[{List : "+ text +"}]\n");
+	}
+
+	
 	/* Gets the String representation of bundle's state. */
 	private String getState(Bundle b){
 		return StateSymbols.getStateName(b.getState());

@@ -49,5 +49,13 @@ public class UndoneConflictEditorTextChangeOperation extends ConflictEditorTextC
 		textChunk.concat("</timestamp>" + "\n");
 		textChunk.concat("</UndoneConflictEditorTextChangeOperation>" + "\n");
 	}
+	
+	@Override
+	protected void populateCSVTextChunk(OperationTextChunk textChunk){
+		textChunk.concat("UndoneConflictEditorTextChangeOperation , "+ getTime()+ " ,");
+		textChunk.concat("\"[{");
+		super.populateCSVTextChunk(textChunk);
+		textChunk.concat("}]\" \n");
+	}
 
 }

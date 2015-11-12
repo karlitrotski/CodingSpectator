@@ -53,6 +53,15 @@ public class TestSessionLaunchedOperation extends JUnitOperation {
 		textChunk.concat("</timestamp>" + "\n");
 		textChunk.concat("</TestSessionLaunchedOperation>" + "\n");
 	}
+	
+	@Override
+	protected void populateCSVTextChunk(OperationTextChunk textChunk){
+		textChunk.concat("TestSessionLaunchedOperation , "+ getTime()+ " ,");
+		textChunk.concat("\"[{");
+		super.populateCSVTextChunk(textChunk);
+		textChunk.concat(",");
+		textChunk.concat("Launched_Project_Name : "+ launchedProjectName + "}]\" \n");
+	}
 
 	@Override
 	protected void initializeFrom(OperationLexer operationLexer) {

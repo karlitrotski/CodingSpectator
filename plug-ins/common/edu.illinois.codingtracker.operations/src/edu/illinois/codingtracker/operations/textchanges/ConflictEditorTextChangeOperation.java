@@ -44,6 +44,13 @@ public abstract class ConflictEditorTextChangeOperation extends TextChangeOperat
 		textChunk.concat("" + editorID + "\n");
 		textChunk.concat("</EditorID>" + "\n");
 	}
+	
+	@Override
+	protected void populateCSVTextChunk(OperationTextChunk textChunk){
+		super.populateCSVTextChunk(textChunk);
+		textChunk.concat(",");
+		textChunk.concat("EditorID : "+ editorID);
+	}
 
 	@Override
 	protected void initializeFrom(OperationLexer operationLexer) {

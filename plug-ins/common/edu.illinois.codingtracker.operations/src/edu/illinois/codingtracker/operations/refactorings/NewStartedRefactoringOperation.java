@@ -332,5 +332,10 @@ public class NewStartedRefactoringOperation extends UserOperation {
 		textChunk.concat("</timestamp>" + "\n");		
 		textChunk.concat("</NewStartedRefactoringOperation>"+"\n");
 	}
+	
+	@Override
+	protected void populateCSVTextChunk(OperationTextChunk textChunk){
+		
+	}
 
 }

@@ -44,6 +44,12 @@ public class DetectFocusGainsWorkbench extends UserOperation{
 	}
 	
 	@Override
+	protected void populateCSVTextChunk(OperationTextChunk textChunk){
+		textChunk.concat("DetectFocusGainsWorkbench , "+ getTime()+ " ,");
+		textChunk.concat("{}\n");
+	}
+	
+	@Override
 	protected void initializeFrom(OperationLexer operationLexer) {
 		// TODO Auto-generated method stub
 		

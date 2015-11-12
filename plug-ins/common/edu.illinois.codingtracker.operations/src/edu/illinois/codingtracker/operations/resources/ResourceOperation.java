@@ -69,6 +69,10 @@ public abstract class ResourceOperation extends UserOperation {
 		textChunk.concat("" + resourcePath);
 		textChunk.concat("</ResourcePath>" + "\n");
 	}
+	
+	protected void populateCSVTextChunk(OperationTextChunk textChunk){
+		textChunk.concat("ResourcePath : "+ resourcePath);
+	}
 
 	@Override
 	protected void initializeFrom(OperationLexer operationLexer) {

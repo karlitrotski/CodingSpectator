@@ -58,6 +58,15 @@ public class EditedUnsychronizedFileOperation extends FileOperation {
 		textChunk.concat("\t" + "</EditorContent>" + "\n");
 		textChunk.concat("</EditedUnsynchronizedFileOperation>" + "\n");
 	}
+	
+	@Override
+	protected void populateCSVTextChunk(OperationTextChunk textChunk){
+		textChunk.concat("EditedUnsynchronizedFileOperation , "+ getTime()+ " ,");
+		textChunk.concat("\"[{");
+		super.populateCSVTextChunk(textChunk);
+		textChunk.concat(",");
+		textChunk.concat("EditorContent : "+ editorContent + "}]\" \n");
+	}
 
 
 	@Override

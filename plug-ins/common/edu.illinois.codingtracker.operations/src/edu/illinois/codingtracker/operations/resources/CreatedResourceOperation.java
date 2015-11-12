@@ -66,6 +66,17 @@ public class CreatedResourceOperation extends UpdatedResourceOperation {
 		textChunk.concat("\t" + "</fileContent>" + "\n");
 		textChunk.concat("</CreatedResourceOperation>" + "\n");
 	}
+	
+	@Override
+	protected void populateCSVTextChunk(OperationTextChunk textChunk){
+		textChunk.concat("CreatedResourceOperation , "+ getTime()+ " ,");
+		textChunk.concat("\"[{");
+		super.populateCSVTextChunk(textChunk);
+		textChunk.concat(",");
+		textChunk.concat("isFile : "+ isFile + ",");
+		textChunk.concat("fileContent : "+ fileContent + "}]\" \n");
+	}
+
 
 	@Override
 	protected void initializeFrom(OperationLexer operationLexer) {

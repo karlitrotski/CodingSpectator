@@ -49,6 +49,14 @@ public class RefactoredSavedFileOperation extends FileOperation {
 		textChunk.concat("</timestamp>" + "\n");
 		textChunk.concat("</RefactoredSavedFileOperation>" + "\n");
 	}
+	
+	@Override
+	protected void populateCSVTextChunk(OperationTextChunk textChunk){
+		textChunk.concat("RefactoredSavedFileOperation , "+ getTime()+ " ,");
+		textChunk.concat("[{");
+		super.populateCSVTextChunk(textChunk);
+		textChunk.concat("}]\n");
+	}
 
 
 }

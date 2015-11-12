@@ -177,6 +177,11 @@ public abstract class RefactoringOperation extends UserOperation {
 		}
 		
 	}
+	
+	@Override
+	protected void populateCSVTextChunk(OperationTextChunk textChunk){
+		
+	}
 
 	protected abstract void replayRefactoring(RefactoringDescriptor refactoringDescriptor) throws CoreException;
 

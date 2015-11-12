@@ -51,6 +51,14 @@ public abstract class CommittedFileOperation extends SnapshotedFileOperation {
 		textChunk.concat("" + committedRevision);
 		textChunk.concat("</CommittedRevision>" + "\n");
 	}
+	
+	@Override
+	protected void populateCSVTextChunk(OperationTextChunk textChunk){
+		super.populateCSVTextChunk(textChunk);
+		textChunk.concat(",");
+		textChunk.concat("Revision : "+ revision + ",");
+		textChunk.concat("CommittedRevision : "+ committedRevision);
+	}
 
 	@Override
 	protected void initializeFrom(OperationLexer operationLexer) {

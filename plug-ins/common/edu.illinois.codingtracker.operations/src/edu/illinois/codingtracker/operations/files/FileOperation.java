@@ -29,6 +29,10 @@ public abstract class FileOperation extends ResourceOperation {
 	protected void populateXMLTextChunk(OperationTextChunk textChunk){
 		super.populateXMLTextChunk(textChunk);
 	}
+	
+	protected void populateCSVTextChunk(OperationTextChunk textChunk){
+		super.populateCSVTextChunk(textChunk);
+	}
 
 
 }

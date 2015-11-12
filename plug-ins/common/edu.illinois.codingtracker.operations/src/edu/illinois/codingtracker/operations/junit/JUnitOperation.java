@@ -36,6 +36,12 @@ public abstract class JUnitOperation extends UserOperation {
 		textChunk.concat("" + testRunName);
 		textChunk.concat("</TestRunName>" + "\n");
 	}
+	
+	@Override
+	protected void populateCSVTextChunk(OperationTextChunk textChunk){
+		textChunk.concat("TestRunName : "+ testRunName);
+	}
+	
 
 	@Override
 	protected void initializeFrom(OperationLexer operationLexer) {
