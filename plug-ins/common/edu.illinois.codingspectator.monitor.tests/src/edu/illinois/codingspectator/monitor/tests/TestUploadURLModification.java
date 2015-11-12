@@ -29,28 +29,23 @@ public class TestUploadURLModification {
 	
 	@Test 
 	public void shouldChangeTestUploadURL(){
-		String oldUploadURLValue = "oldUploadURLValue";
-		String newUploadURLValue = "newUploadURLValue";
-		
-		PrefsFacade.getInstance().getPreferenceStore().setValue(PrefsFacade.TestUploadURLKey, oldUploadURLValue);
-		assertEquals(oldUploadURLValue, authProvider.getRepositoryURL());
-		
-		PrefsFacade.getInstance().getPreferenceStore().setValue(PrefsFacade.TestUploadURLKey, newUploadURLValue);
-		assertEquals(newUploadURLValue, authProvider.getRepositoryURL());
-
+		shouldChangeUploadURL(PrefsFacade.TestUploadURLKey);
 	}
 	
 	@Test
 	public void shouldChangeProductionUploadURL(){
+		shouldChangeUploadURL(PrefsFacade.ProductionUploadURLKey);
+	}
+	
+	private void shouldChangeUploadURL(String key){
 		String oldUploadURLValue = "oldUploadURLValue";
 		String newUploadURLValue = "newUploadURLValue";
 		
-		PrefsFacade.getInstance().getPreferenceStore().setValue(PrefsFacade.ProductionUploadURLKey, oldUploadURLValue);
+		PrefsFacade.getInstance().getPreferenceStore().setValue(key, oldUploadURLValue);
 		assertEquals(oldUploadURLValue, authProvider.getRepositoryURL());
 		
-		PrefsFacade.getInstance().getPreferenceStore().setValue(PrefsFacade.ProductionUploadURLKey, newUploadURLValue);
+		PrefsFacade.getInstance().getPreferenceStore().setValue(key, newUploadURLValue);
 		assertEquals(newUploadURLValue, authProvider.getRepositoryURL());
 
 	}
-	
 }
