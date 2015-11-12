@@ -7,6 +7,7 @@ import org.junit.Test;
 
 import edu.illinois.codingspectator.monitor.core.authentication.AuthenticationProvider;
 import edu.illinois.codingspectator.monitor.ui.AuthenticationPrompter;
+import edu.illinois.codingspectator.monitor.ui.RunningModes;
 import edu.illinois.codingspectator.monitor.ui.prefs.PrefsFacade;
 
 
@@ -26,15 +27,15 @@ public class TestUploadURLModification {
 	public void setUp(){
 		authProvider = new AuthenticationPrompter();
 	}
-	
-	@Test 
-	public void shouldChangeTestUploadURL(){
-		shouldChangeUploadURL(PrefsFacade.TestUploadURLKey);
-	}
+
 	
 	@Test
-	public void shouldChangeProductionUploadURL(){
-		shouldChangeUploadURL(PrefsFacade.ProductionUploadURLKey);
+	public void shouldChangeUploadUrl(){
+		if (RunningModes.isInProductionMode()){
+			shouldChangeUploadURL(PrefsFacade.ProductionUploadURLKey);
+		}else{
+			shouldChangeUploadURL(PrefsFacade.TestUploadURLKey);
+		}
 	}
 	
 	private void shouldChangeUploadURL(String key){
