@@ -107,12 +107,21 @@ public class PrefsFacade {
 		return DateFormat.getDateTimeInstance(DateFormat.FULL, DateFormat.FULL);
 	}
 
-	public String getTestUploadURL() {
+	public String getUploadURL(){
+		if (RunningModes.isInProductionMode()) {
+			return getProductionUploadURL();
+		} else {
+			return getTestUploadURL();
+		}
+	}
+	
+	private String getProductionUploadURL() {
+		return getPreferenceStore().getString(ProductionUploadURLKey);
+	}
+
+	private String getTestUploadURL() {
 		return getPreferenceStore().getString(TestUploadURLKey);
 	}
 
-	public String getProductionUploadURL() {
-		return getPreferenceStore().getString(ProductionUploadURLKey);
-	}
 
 }

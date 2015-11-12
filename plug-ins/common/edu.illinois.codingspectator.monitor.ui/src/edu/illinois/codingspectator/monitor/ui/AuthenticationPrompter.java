@@ -107,10 +107,6 @@ public class AuthenticationPrompter implements AuthenticationProvider {
 
 	@Override
 	public String getRepositoryURL() {
-		if (RunningModes.isInProductionMode()) {
-			return PrefsFacade.getInstance().getProductionUploadURL();
-		} else {
-			return PrefsFacade.getInstance().getTestUploadURL();
-		}
+		return PrefsFacade.getInstance().getUploadURL();
 	}
 }
