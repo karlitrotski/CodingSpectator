@@ -33,6 +33,8 @@ import edu.illinois.codingspectator.monitor.ui.submission.Submitter;
 public class UploadingPreferencePage extends BundlePreferencePage implements IWorkbenchPreferencePage {
 
 	private StringFieldEditor lastUploadTextField;
+	private StringFieldEditor productionUploadURLTextField;
+	private StringFieldEditor testUploadURLTextField;
 
 	public UploadingPreferencePage() {
 		super(GRID);
@@ -50,19 +52,34 @@ public class UploadingPreferencePage extends BundlePreferencePage implements IWo
 	@Override
 	protected void createFieldEditors() {
 		lastUploadTextField= addDisabledTextField(Messages.PrefsFacade_LastUploadTimeKey, Messages.UploadingPreferencePage_LastUploadTextField);
+		createUploadURLFields();
 		createUploadNowButton();
+	}
+
+	private void createUploadURLFields() {
+		productionUploadURLTextField = createUploadURLField(PrefsFacade.ProductionUploadURLKey, Messages.UploadingPreferencePage_ProductionUploadURLTextField);
+		
+		testUploadURLTextField = createUploadURLField(PrefsFacade.TestUploadURLKey, Messages.UploadingPreferencePage_TestUploadURLTextField);
+	}
+
+	private StringFieldEditor createUploadURLField(String textFieldValue, String textFieldLabel) {
+		StringFieldEditor textField = new StringFieldEditor(textFieldValue, textFieldLabel, getFieldEditorParent());
+		addField(textField);
+		return textField;
 	}
 
 	@Override
 	public boolean performOk() {
 		// Do not store any values for the disabled text fields
 		// All values will be stored manually through PrefsFacade
+		PrefsFacade.getInstance().getPreferenceStore().setValue(PrefsFacade.ProductionUploadURLKey, productionUploadURLTextField.getStringValue());
+		PrefsFacade.getInstance().getPreferenceStore().setValue(PrefsFacade.TestUploadURLKey, testUploadURLTextField.getStringValue());
 		return true;
 	}
 
 	private void createUploadNowButton() {
 		Button uploadButton= new Button(getFieldEditorParent(), SWT.PUSH);
-		uploadButton.setText(Activator.populateMessageWithPluginName(Messages.UploadingPreferencePage_UploadNowButtonText));
+		uploadButton.setText(Messages.UploadingPreferencePage_UploadNowButtonText);
 
 		uploadButton.addSelectionListener(new SelectionAdapter() {
 

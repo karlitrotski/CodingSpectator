@@ -11,6 +11,7 @@ import org.eclipse.core.runtime.Platform;
 import org.eclipse.core.runtime.Status;
 import org.eclipse.equinox.internal.p2.ui.sdk.scheduler.AutomaticUpdatePlugin;
 import org.eclipse.equinox.internal.p2.ui.sdk.scheduler.PreferenceConstants;
+import org.eclipse.jface.preference.IPreferenceStore;
 import org.eclipse.ui.IStartup;
 import org.eclipse.ui.plugin.AbstractUIPlugin;
 import org.osgi.framework.BundleContext;
@@ -76,6 +77,13 @@ public class Activator extends AbstractUIPlugin implements IStartup {
 		super.stop(context);
 	}
 
+	@Override
+	protected void initializeDefaultPreferences(IPreferenceStore store) {
+		super.initializeDefaultPreferences(store);
+		store.setDefault(PrefsFacade.ProductionUploadURLKey, PrefsFacade.ProductionUploadURL_Default);
+		store.setDefault(PrefsFacade.TestUploadURLKey, PrefsFacade.TestUploadURL_Default);
+	}
+	
 	/**
 	 * Returns the shared instance
 	 * 
