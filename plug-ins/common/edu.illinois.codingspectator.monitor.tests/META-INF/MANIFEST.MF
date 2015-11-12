@@ -15,3 +15,4 @@ Require-Bundle: edu.illinois.codingspectator.monitor.ui,
  edu.illinois.codingspectator.efs
 Bundle-Vendor: Univeristy of Illinois
 Bundle-ActivationPolicy: lazy
+Import-Package: org.eclipse.jface.preference

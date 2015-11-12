@@ -107,4 +107,12 @@ public class PrefsFacade {
 		return DateFormat.getDateTimeInstance(DateFormat.FULL, DateFormat.FULL);
 	}
 
+	public String getTestUploadURL() {
+		return getPreferenceStore().getString(TestUploadURLKey);
+	}
+
+	public String getProductionUploadURL() {
+		return getPreferenceStore().getString(ProductionUploadURLKey);
+	}
+
 }

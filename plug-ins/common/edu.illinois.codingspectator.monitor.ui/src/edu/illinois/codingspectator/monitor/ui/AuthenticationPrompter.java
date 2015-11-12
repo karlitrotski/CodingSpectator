@@ -15,6 +15,7 @@ import org.eclipse.ui.PlatformUI;
 
 import edu.illinois.codingspectator.monitor.core.authentication.AuthenticationProvider;
 import edu.illinois.codingspectator.monitor.core.submission.LocalSVNManager;
+import edu.illinois.codingspectator.monitor.ui.prefs.PrefsFacade;
 import edu.illinois.codingspectator.monitor.ui.prefs.SecureStorageFacade;
 import edu.illinois.codingspectator.monitor.ui.submission.Submitter;
 
@@ -107,9 +108,9 @@ public class AuthenticationPrompter implements AuthenticationProvider {
 	@Override
 	public String getRepositoryURL() {
 		if (RunningModes.isInProductionMode()) {
-			return Messages.AuthenticationPrompter_ProductionRepositoryURL;
+			return PrefsFacade.getInstance().getProductionUploadURL();
 		} else {
-			return Messages.AuthenticationPrompter_TestRepositoryURL;
+			return PrefsFacade.getInstance().getTestUploadURL();
 		}
 	}
 }
