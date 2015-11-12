@@ -12,6 +12,18 @@ import org.junit.Test;
 import edu.illinois.codingspectator.monitor.ui.AuthenticationPrompter;
 import edu.illinois.codingspectator.monitor.ui.prefs.PrefsFacade;
 
+/**
+ * This class tests the modification of the upload URL set in 
+ * the preference store and whether this modification is reflected
+ * in the AuthenticationPrompter's getUploardURL method.
+ * 
+ * It accesses the Preference window and the CodingSpectator preference 
+ * pages. In particular it accesses the Uploading page and changes
+ * the text field "Upload URL (Test Mode)"
+ * 
+ * @author Tomas
+ *
+ */
 public class TestModifyUploadUrl {
 	SWTWorkbenchBot bot;
 	AuthenticationPrompter authProvider;
@@ -41,9 +53,6 @@ public class TestModifyUploadUrl {
 			bot.textWithLabel(PrefsFacade.TestUploadURLKey).setText(newUploadURLValue);
 			bot.button("OK").click();
 			
-			/* 
-			bot.tree().getTreeItem("CodingSpectator").select();
-			bot.tree().getTreeItem("CodingSpectator").getNode("Uploading").select(); */
 			assertEquals(newUploadURLValue, authProvider.getRepositoryURL());
 		}
 	}
