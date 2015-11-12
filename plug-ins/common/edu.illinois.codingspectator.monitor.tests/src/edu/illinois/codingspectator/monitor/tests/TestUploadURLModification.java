@@ -28,17 +28,30 @@ public class TestUploadURLModification {
 		authProvider = new AuthenticationPrompter();
 	}
 
-	
 	@Test
-	public void shouldChangeUploadUrl(){
+	public void shouldUseDefaultUploadUrl(){
 		if (RunningModes.isInProductionMode()){
-			shouldChangeUploadURL(PrefsFacade.ProductionUploadURLKey);
+			checkDefaultURL(PrefsFacade.ProductionUploadURLKey, PrefsFacade.ProductionUploadURL_Default);
 		}else{
-			shouldChangeUploadURL(PrefsFacade.TestUploadURLKey);
+			checkDefaultURL(PrefsFacade.TestUploadURLKey, PrefsFacade.TestUploadURL_Default);
 		}
 	}
 	
-	private void shouldChangeUploadURL(String key){
+
+	@Test
+	public void shouldChangeUploadURL(){
+		if (RunningModes.isInProductionMode()){
+			checkChangeUploadURL(PrefsFacade.ProductionUploadURLKey);
+		}else{
+			checkChangeUploadURL(PrefsFacade.TestUploadURLKey);
+		}
+	}
+	
+	private void checkDefaultURL(String key, String defaultValue) {
+		assertEquals(defaultValue, authProvider.getRepositoryURL());
+	}
+	
+	private void checkChangeUploadURL(String key){
 		String oldUploadURLValue = "oldUploadURLValue";
 		String newUploadURLValue = "newUploadURLValue";
 		
