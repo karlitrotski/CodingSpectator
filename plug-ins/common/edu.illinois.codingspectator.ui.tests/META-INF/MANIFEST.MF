@@ -20,4 +20,5 @@ Require-Bundle: org.eclipse.swtbot.go,
  edu.illinois.codingspectator.monitor.ui,
  edu.illinois.codingtracker.recording
 Eclipse-RegisterBuddy: org.apache.log4j
+Import-Package: edu.illinois.codingspectator.monitor.core.authentication
 
