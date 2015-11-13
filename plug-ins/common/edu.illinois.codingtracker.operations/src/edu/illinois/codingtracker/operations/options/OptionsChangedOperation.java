@@ -74,9 +74,14 @@ public abstract class OptionsChangedOperation extends UserOperation {
 		
 	}
 	
+	
 	@Override
 	protected void populateCSVTextChunk(OperationTextChunk textChunk){
-		
+		textChunk.concat("OptionsCount : "+ options.size() + ",");
+		for (Entry<String, String> optionsEntry : options.entrySet()) {
+			textChunk.concat("KEY : "+ optionsEntry.getKey() + ",");
+			textChunk.concat("VALUE : "+ optionsEntry.getValue() +",");
+		}
 	}
 
 }

@@ -38,7 +38,9 @@ public abstract class ConflictEditorOperation extends UserOperation {
 	}
 	
 	@Override
-	protected void populateCSVTextChunk(OperationTextChunk textChunk){	}
+	protected void populateCSVTextChunk(OperationTextChunk textChunk){	
+		textChunk.concat("EditorID : editorID");
+	}
 
 	@Override
 	protected void initializeFrom(OperationLexer operationLexer) {

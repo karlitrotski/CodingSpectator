@@ -47,7 +47,7 @@ public class QuickfixUsageOperation extends UserOperation {
 		
 		protected void populateCSVTextChunk(OperationTextChunk textChunk){
 			textChunk.concat("QuickfixUsageOperation , "+ getTime()+ " ,");
-			textChunk.concat("[{Used Quickfix : "+ result +"}]\n");
+			textChunk.concat("\"[{Used Quickfix : "+ result +"}]\" \n");
 		}
 		
 		@Override

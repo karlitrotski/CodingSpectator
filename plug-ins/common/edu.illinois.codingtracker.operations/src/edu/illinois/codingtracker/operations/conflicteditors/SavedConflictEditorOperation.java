@@ -63,7 +63,10 @@ public class SavedConflictEditorOperation extends ConflictEditorOperation {
 	@Override
 	protected void populateCSVTextChunk(OperationTextChunk textChunk){
 		textChunk.concat("SavedConflictEditorOperation , "+ getTime()+ " ,");
-		textChunk.concat("[{Success : "+ success +"}]\n");
+		textChunk.concat("\"[{");
+		super.populateCSVTextChunk(textChunk);
+		textChunk.concat(",");
+		textChunk.concat("Success : "+ success +"}]\" \n");
 	}
 
 	@Override

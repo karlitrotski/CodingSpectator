@@ -9,6 +9,7 @@ import java.util.Map.Entry;
 import java.util.Set;
 import java.util.TreeMap;
 
+import org.eclipse.core.resources.IResourceDelta;
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.jdt.core.IJavaProject;
 import org.eclipse.ltk.core.refactoring.CheckConditionsOperation;
@@ -335,7 +336,19 @@ public class NewStartedRefactoringOperation extends UserOperation {
 	
 	@Override
 	protected void populateCSVTextChunk(OperationTextChunk textChunk){
-		
+		textChunk.concat("NewStartedRefactoringOperation , "+ getTime()+ " ,");
+		textChunk.concat("\"[{");
+		textChunk.concat("ShouldAlwaysReplay :"+ shouldAlwaysReplay +",");
+		textChunk.concat("RefactoringMode :"+ refactoringMode +",");
+		textChunk.concat("ID :"+ id +",");
+		textChunk.concat("PROJECT :"+ project +",");
+		textChunk.concat("FLAGS :"+ flags +",");
+		textChunk.concat("ArgumentsCount :"+ arguments.size() +",");
+		for (Entry<String, String> argumentEntry : arguments.entrySet()) {
+			textChunk.concat("KEY :"+ argumentEntry.getKey() +",");
+			textChunk.concat("VALUE :"+ argumentEntry.getValue()+",");
+		}
+		textChunk.concat("}]\" \n");
 	}
 
 }

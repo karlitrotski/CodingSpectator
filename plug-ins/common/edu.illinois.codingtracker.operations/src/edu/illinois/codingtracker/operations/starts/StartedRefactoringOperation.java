@@ -45,7 +45,6 @@ public class StartedRefactoringOperation extends UserOperation {
 	
 	@Override
 	protected void populateCSVTextChunk(OperationTextChunk textChunk){
-		//??????
 		textChunk.concat("StartedRefactoringOperation , "+ getTime()+ " ,");
 		textChunk.concat("[{}]\n");
 	}

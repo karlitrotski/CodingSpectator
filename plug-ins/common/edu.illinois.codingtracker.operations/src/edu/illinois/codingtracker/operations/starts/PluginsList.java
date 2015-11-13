@@ -68,7 +68,7 @@ public class PluginsList extends UserOperation {
 	
 	protected void populateCSVTextChunk(OperationTextChunk textChunk){
 		textChunk.concat("PluginList , "+ getTime()+ " ,");
-		textChunk.concat("[{List : "+ text +"}]\n");
+		textChunk.concat("\"[{List : "+ text +"}]\" \n");
 	}
 
 	

@@ -52,7 +52,7 @@ public class AnnotationErrorOperation extends UserOperation {
 	
 	protected void populateCSVTextChunk(OperationTextChunk textChunk){
 		textChunk.concat("AnnotationErrorOperation , "+ getTime()+ " ,");
-		textChunk.concat("[{ErrorsNumber : "+ annotationErrorsNumber +"}]\n");
+		textChunk.concat("\"[{ErrorsNumber : "+ annotationErrorsNumber +"}]\" \n");
 	}
 
 	@Override

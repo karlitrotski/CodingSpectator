@@ -46,7 +46,7 @@ public class DetectFocusGainsWorkbench extends UserOperation{
 	@Override
 	protected void populateCSVTextChunk(OperationTextChunk textChunk){
 		textChunk.concat("DetectFocusGainsWorkbench , "+ getTime()+ " ,");
-		textChunk.concat("{}\n");
+		textChunk.concat("[{}]\n");
 	}
 	
 	@Override

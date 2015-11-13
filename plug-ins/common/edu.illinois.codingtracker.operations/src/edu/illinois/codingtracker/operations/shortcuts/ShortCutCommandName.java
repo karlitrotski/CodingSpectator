@@ -59,7 +59,7 @@ public class ShortCutCommandName extends UserOperation{
 	
 	protected void populateCSVTextChunk(OperationTextChunk textChunk){
 		textChunk.concat("ShortCutCommandName , "+ getTime()+ " ,");
-		textChunk.concat("\"[{KeyShortCuts : "+ KeyShortcuts.trim() +",");
+		textChunk.concat("\"[{[{KeyShortCuts : "+ KeyShortcuts.trim() +",");
 		textChunk.concat("CommandName : "+ commandName + "}]\" \n");
 	}
 

@@ -54,7 +54,6 @@ public class StartedEclipseOperation extends UserOperation {
 	
 	@Override
 	protected void populateCSVTextChunk(OperationTextChunk textChunk){
-		//??????
 		textChunk.concat("StartedEclipseOperation , "+ getTime()+ " ,");
 		textChunk.concat("[{}]\n");
 	}
