@@ -26,6 +26,10 @@ public class PluginMonitorOperation extends UserOperation {
 	public PluginMonitorOperation() {
 		super();
 	}
+	public PluginMonitorOperation(String textPlu, long lastMod) {
+		super(lastMod);
+		this.text.append(textPlu);
+	}
 
 	public PluginMonitorOperation(StringBuffer text) {
 		this.text = text;

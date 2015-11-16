@@ -66,12 +66,12 @@ public class PluginsList extends UserOperation {
 		textChunk.concat("</PluginList>" + "\n");
 	}
 	
-	/* Gets the String representation of bundle's state. */
+	/** Gets the String representation of bundle's state. */
 	private String getState(Bundle b){
 		return StateSymbols.getStateName(b.getState());
 	}
 	
-	/*
+	/**
 	 * Creates a new StringBuffer and writes the Eclipse plugins in 
 	 * alphabetical order and grouped by Provider
 	 */
