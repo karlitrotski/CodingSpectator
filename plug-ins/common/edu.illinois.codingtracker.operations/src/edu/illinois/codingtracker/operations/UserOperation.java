@@ -23,7 +23,7 @@ public abstract class UserOperation{
 
 	protected static IEditorPart currentEditor= null;
 
-	private long timestamp;
+	protected long timestamp;
 
 
 	public UserOperation() {

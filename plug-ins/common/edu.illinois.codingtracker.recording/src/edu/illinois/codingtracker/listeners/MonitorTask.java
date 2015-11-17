@@ -26,6 +26,7 @@ public class MonitorTask extends TimerTask {
 		                    .getBundles();
 		            for (int k = 0; k < bundles.length; k++) {
 		            	bundlesMap.put(bundles[k].getSymbolicName(), bundles[k].getState());
+		            	
 		            }
 		        }
 		    }		    		    
@@ -35,7 +36,6 @@ public class MonitorTask extends TimerTask {
 	@Override
 	public void run() {
 		int newState;
-		StringBuffer text = new StringBuffer("");
 		IBundleGroupProvider[] providers = Platform.getBundleGroupProviders();
 		if (providers != null) {
 		    for (int i = 0; i < providers.length; i++) {
@@ -46,16 +46,21 @@ public class MonitorTask extends TimerTask {
 		            for (int k = 0; k < bundles.length; k++) {
 		            	newState = bundles[k].getState();
 		            	if(!bundlesMap.containsKey(bundles[k].getSymbolicName())){
-		            		text.append("New plug-in: "+bundles[k].getSymbolicName() 
-		            				+" - State: "+StateSymbols.getStateName(bundles[k].getState())+" \n");
+		            		long lastMod= bundles[k].getLastModified();
+		            		String textPlu="New plug-in: "+bundles[k].getSymbolicName() 
+		            				+" - State: "+StateSymbols.getStateName(bundles[k].getState())+" \n";
 		            		bundlesMap.put(bundles[k].getSymbolicName(), bundles[k].getState());
+		            		TextRecorder.record(new PluginMonitorOperation(textPlu,lastMod));
 		            	}
 		            	else{
 		            		int oldState = bundlesMap.get(bundles[k].getSymbolicName());
+		            		
 		            		if(oldState != newState){
-			            		text.append("Plug-in "+bundles[k].getSymbolicName()+" changed state from " 
+		            			long lastMod= bundles[k].getLastModified();		            			
+			            		String textPlu="Plug-in "+bundles[k].getSymbolicName()+" changed state from " 
 			            				+ StateSymbols.getStateName(oldState) + 
-			            				" to "+StateSymbols.getStateName(newState)+" \n");
+			            				" to "+StateSymbols.getStateName(newState)+" \n";			            					            		
+			            		TextRecorder.record(new PluginMonitorOperation(textPlu,lastMod));
 			            		bundlesMap.put(bundles[k].getSymbolicName(), bundles[k].getState());
 		            		}
 		            	}
@@ -63,7 +68,7 @@ public class MonitorTask extends TimerTask {
 		        }
 		    }		    		    
 		}
-		TextRecorder.record(new PluginMonitorOperation(text));
+		
 	}
 
 }

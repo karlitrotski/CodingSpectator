@@ -23,16 +23,16 @@ import edu.illinois.codingtracker.operations.UserOperation;
 import edu.illinois.codingtracker.operations.pluginusage.StateSymbols;
 
 /**
- * Class that writes,  when Eclipse starts, all the list of installed plugins in alphabetical order 
+ * Class that writes,  when Eclipse starts, all the list of installed plugins in alphabetical order
  * and grouped by Provider. This Class uses V symbol from OperationSymbols.
- * 
+ *
  * @author Carlos_Dettoni
  * @author Sebastian_Sanchez
  */
 public class PluginsList extends UserOperation {
-	
+
 	StringBuffer text;
-	
+
 	public PluginsList() {
 		super();
 	}
@@ -52,7 +52,7 @@ public class PluginsList extends UserOperation {
 		populatePluginsList();
 		textChunk.append(text);
 	}
-	
+
 	@Override
 	protected void populateXMLTextChunk(OperationTextChunk textChunk) {
 		populatePluginsList();
@@ -65,20 +65,19 @@ public class PluginsList extends UserOperation {
 		textChunk.concat("</timestamp>" + "\n");
 		textChunk.concat("</PluginList>" + "\n");
 	}
-	
+
 	protected void populateCSVTextChunk(OperationTextChunk textChunk){
 		textChunk.concat("PluginList , "+ getTime()+ " ,");
 		textChunk.concat("\"[{List : "+ text +"}]\" \n");
 	}
 
-	
-	/* Gets the String representation of bundle's state. */
+	/** Gets the String representation of bundle's state. */
 	private String getState(Bundle b){
 		return StateSymbols.getStateName(b.getState());
 	}
-	
-	/*
-	 * Creates a new StringBuffer and writes the Eclipse plugins in 
+
+	/**
+	 * Creates a new StringBuffer and writes the Eclipse plugins in
 	 * alphabetical order and grouped by Provider
 	 */
 	private void populatePluginsList() {
@@ -102,16 +101,16 @@ public class PluginsList extends UserOperation {
 		    for (String str : bundlesMap.keySet()) {
 		    	List <String> valueList = bundlesMap.get(str);
 		    	Collections.sort(valueList, String.CASE_INSENSITIVE_ORDER);
-		    	text.append(" Bundle:: " + str + "," + valueList.toString());		    	
+		    	text.append(" Bundle:: " + str + "," + valueList.toString());
 		    }
-		    		    
-		}		
-		
+
+		}
+
 	}
 
 	@Override
 	protected void initializeFrom(OperationLexer operationLexer) {
-		text = new StringBuffer(operationLexer.readString());	
+		text = new StringBuffer(operationLexer.readString());
 	}
 
 	@Override
