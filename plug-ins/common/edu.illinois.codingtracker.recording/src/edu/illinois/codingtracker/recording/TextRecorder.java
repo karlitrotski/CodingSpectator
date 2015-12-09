@@ -17,7 +17,7 @@ public class TextRecorder {
 	private final static long timestamp = System.currentTimeMillis();
 	private final static SafeRecorder recorderInstance= new SafeRecorder("codingtracker/originalFormat/codechanges"+ timestamp +".txt");
 	private final static SafeRecorder recorderXMLInstance= new SafeRecorder("codingtracker/XMLFormat/codechanges"+ timestamp +".xml");
-	private final static SafeRecorder recorderCSVInstance= new SafeRecorder("codingtracker(CSVFormat/codechanges"+ timestamp +".csv");
+	private final static SafeRecorder recorderCSVInstance= new SafeRecorder("codingtracker/CSVFormat/codechanges"+ timestamp +".csv");
 
 	public static void record(UserOperation userOperation) {
 		recorderXMLInstance.record(userOperation.generateXMLText());

@@ -20,6 +20,7 @@ import org.eclipse.jface.text.DocumentEvent;
 import org.eclipse.jface.text.contentassist.ContentAssistEvent;
 import org.eclipse.ltk.core.refactoring.RefactoringDescriptor;
 import org.eclipse.ltk.core.refactoring.history.RefactoringExecutionEvent;
+import org.eclipse.ui.IWorkbenchWindow;
 
 import edu.illinois.codingtracker.compare.helpers.EditorHelper;
 import edu.illinois.codingtracker.helpers.Debugger;
@@ -419,12 +420,12 @@ public class OperationRecorder {
 	}
 
 
-	public void recordLooseFocus() {	
-		TextRecorder.record(new DetectFocusLooseWorkbench());
+	public void recordLooseFocus(IWorkbenchWindow window) {	
+		TextRecorder.record(new DetectFocusLooseWorkbench(window));
 	}
 
-	public void recordGainsFocus() {		
-		TextRecorder.record(new DetectFocusGainsWorkbench());
+	public void recordGainsFocus(IWorkbenchWindow window) {		
+		TextRecorder.record(new DetectFocusGainsWorkbench(window));
 	}
 
 	public void recordShortcutsCommandName(String nCommand, String keyShortcuts) {
