@@ -47,7 +47,10 @@ public class DetectFocusGainsWorkbench extends UserOperation{
 		textChunk.concat("<DetectFocusGainsWorkbench>"+"\n");
 		textChunk.concat("\t" + "<timestamp>");
 		textChunk.concat("" + getTime());
-		textChunk.concat("</timestamp>" + "\n");	
+		textChunk.concat("</timestamp>" + "\n");
+		textChunk.concat("\t" + "<Window>" + "\n");
+		textChunk.concat("\t" + win + "\n");
+		textChunk.concat("\t" + "</Window>" + "\n");
 		textChunk.concat("</DetectFocusGainsWorkbench>"+"\n");
 	}
 	

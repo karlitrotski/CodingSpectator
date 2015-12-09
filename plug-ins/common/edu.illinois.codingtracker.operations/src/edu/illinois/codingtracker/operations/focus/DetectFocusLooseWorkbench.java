@@ -49,6 +49,9 @@ public class DetectFocusLooseWorkbench extends UserOperation{
 		textChunk.concat("\t" + "<timestamp>");
 		textChunk.concat("" + getTime());
 		textChunk.concat("</timestamp>" + "\n");	
+		textChunk.concat("\t" + "<Window>" + "\n");
+		textChunk.concat("\t" + win + "\n");
+		textChunk.concat("\t" + "</Window>" + "\n");
 		textChunk.concat("</DetectFocusLooseWorkbench>"+"\n");
 	}
 	
