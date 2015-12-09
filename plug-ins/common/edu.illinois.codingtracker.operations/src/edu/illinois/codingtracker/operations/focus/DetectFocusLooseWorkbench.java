@@ -16,6 +16,8 @@ import edu.illinois.codingtracker.operations.UserOperation;
 
 //Esta clase esta repetida en el package operations.resources
 public class DetectFocusLooseWorkbench extends UserOperation{
+	
+	private int win;
 
 	
 	public DetectFocusLooseWorkbench() {
@@ -23,7 +25,7 @@ public class DetectFocusLooseWorkbench extends UserOperation{
 	}
 //FaltaImplementar
 	public DetectFocusLooseWorkbench(IWorkbenchWindow window) {
-	super();
+		win = window.hashCode();
 	}
 
 	@Override
@@ -47,7 +49,16 @@ public class DetectFocusLooseWorkbench extends UserOperation{
 		textChunk.concat("\t" + "<timestamp>");
 		textChunk.concat("" + getTime());
 		textChunk.concat("</timestamp>" + "\n");	
+		textChunk.concat("\t" + "<Window>" + "\n");
+		textChunk.concat("\t" + win + "\n");
+		textChunk.concat("\t" + "</Window>" + "\n");
 		textChunk.concat("</DetectFocusLooseWorkbench>"+"\n");
+	}
+	
+	@Override
+	protected void populateCSVTextChunk(OperationTextChunk textChunk){
+		textChunk.concat("DetectFocusLooseWorkbench , "+ getTime()+ " ,");
+		textChunk.concat("[{Window : " + win + "}]\n");
 	}
 	
 	@Override

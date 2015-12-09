@@ -48,5 +48,13 @@ public class RedoneTextChangeOperation extends TextChangeOperation {
 		textChunk.concat("</timestamp>" + "\n");
 		textChunk.concat("</RedoneTextChangeOperation>" + "\n");
 	}
+	
+	@Override
+	protected void populateCSVTextChunk(OperationTextChunk textChunk){
+		textChunk.concat("RedoneTextChangeOperation , "+ getTime()+ " ,");
+		textChunk.concat("\"[{");
+		super.populateCSVTextChunk(textChunk);
+		textChunk.concat("}]\" \n");
+	}
 
 }

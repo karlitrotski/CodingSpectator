@@ -60,6 +60,16 @@ public class TestCaseStartedOperation extends JUnitOperation {
 		textChunk.concat("</timestamp>" + "\n");
 		textChunk.concat("</TestCaseStartedOperation>" + "\n");
 	}
+	
+	@Override
+	protected void populateCSVTextChunk(OperationTextChunk textChunk){
+		textChunk.concat("TestCaseFinishedOperation , "+ getTime()+ " ,");
+		textChunk.concat("\"[{");
+		super.populateCSVTextChunk(textChunk);
+		textChunk.concat(",");
+		textChunk.concat("Test_class_name : "+ testClassName + ",");
+		textChunk.concat("Test_method_name : "+ testMethodName + "}]\" \n");
+	}
 
 	@Override
 	protected void initializeFrom(OperationLexer operationLexer) {

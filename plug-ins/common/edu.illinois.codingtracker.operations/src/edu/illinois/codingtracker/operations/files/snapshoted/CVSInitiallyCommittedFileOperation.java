@@ -42,5 +42,13 @@ public class CVSInitiallyCommittedFileOperation extends CommittedFileOperation {
 		textChunk.concat("</timestamp>" + "\n");
 		textChunk.concat("</CVSInitiallyCommittedFileOperation>" + "\n");
 	}
+	
+	@Override
+	protected void populateCSVTextChunk(OperationTextChunk textChunk){
+		textChunk.concat("CVSInitiallyCommittedFileOperation , "+ getTime()+ " ,");
+		textChunk.concat("\"[{");
+		super.populateCSVTextChunk(textChunk);
+		textChunk.concat("}]\" \n");
+	}
 
 }

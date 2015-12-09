@@ -52,6 +52,18 @@ public class SelectionChangedOperation extends UserOperation {
 		textChunk.concat("\t" + "<timestamp>" + getTime() + "</timestamp>" + "\n");
 		textChunk.concat("</SelectionChangedOperation>" + "\n");
 	}
+	
+	@Override
+	protected void populateCSVTextChunk(OperationTextChunk textChunk){
+		textChunk.concat("SelectionChangedOperation , "+ getTime()+ " ,");
+		textChunk.concat("\"[{");
+		textChunk.concat("source :"+ sourceName +",");
+		textChunk.concat("selections : [{");
+		for(String selection: selections){
+			textChunk.concat("selection :"+ selection + ",");
+		}
+		textChunk.concat("}]}]\" \n");
+	}
 
 	@Override
 	protected void initializeFrom(OperationLexer operationLexer) {

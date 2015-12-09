@@ -42,5 +42,13 @@ public class SVNCommittedFileOperation extends CommittedFileOperation {
 		textChunk.concat("</timestamp>" + "\n");
 		textChunk.concat("</SVNCommittedFileOperation>" + "\n");
 	}
+	
+	@Override
+	protected void populateCSVTextChunk(OperationTextChunk textChunk){
+		textChunk.concat("SVNCommittedFileOperation , "+ getTime()+ " ,");
+		textChunk.concat("\"[{");
+		super.populateCSVTextChunk(textChunk);
+		textChunk.concat("}]\" \n");
+	}
 
 }

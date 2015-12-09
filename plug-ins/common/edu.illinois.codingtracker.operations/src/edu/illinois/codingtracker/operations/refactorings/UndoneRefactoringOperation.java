@@ -53,5 +53,13 @@ public class UndoneRefactoringOperation extends RefactoringOperation {
 		textChunk.concat("</UndoneRefactoringOperation>"+"\n");
 		
 	}
+	
+	@Override
+	protected void populateCSVTextChunk(OperationTextChunk textChunk){
+		textChunk.concat("UndoneRefactoringOperation , "+ getTime()+ " ,");
+		textChunk.concat("\"[{");
+		super.populateCSVTextChunk(textChunk);
+		textChunk.concat("}]\" \n");
+	}
 
 }

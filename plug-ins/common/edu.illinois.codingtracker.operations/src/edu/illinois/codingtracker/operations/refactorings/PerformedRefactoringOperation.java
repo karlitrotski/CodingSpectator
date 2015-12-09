@@ -79,7 +79,14 @@ public class PerformedRefactoringOperation extends RefactoringOperation {
 		textChunk.concat("" + getTime());
 		textChunk.concat("</timestamp>" + "\n");
 		textChunk.concat("</PerformedRefactoringOperation>"+"\n");
-		
+	}
+	
+	@Override
+	protected void populateCSVTextChunk(OperationTextChunk textChunk){
+		textChunk.concat("PerformedRefactoringOperation , "+ getTime()+ " ,");
+		textChunk.concat("\"[{");
+		super.populateCSVTextChunk(textChunk);
+		textChunk.concat("}]\" \n");
 	}
 
 }

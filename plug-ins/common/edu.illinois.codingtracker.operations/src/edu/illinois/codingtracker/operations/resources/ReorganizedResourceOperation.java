@@ -48,6 +48,13 @@ public abstract class ReorganizedResourceOperation extends UpdatedResourceOperat
 	}
 	
 	@Override
+	protected void populateCSVTextChunk(OperationTextChunk textChunk){
+		super.populateCSVTextChunk(textChunk);
+		textChunk.concat(",");
+		textChunk.concat("DestinationPath : "+ destinationPath);
+	}
+	
+	@Override
 	protected void initializeFrom(OperationLexer operationLexer) {
 		super.initializeFrom(operationLexer);
 		destinationPath= operationLexer.readString();

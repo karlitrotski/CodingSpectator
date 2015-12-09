@@ -57,5 +57,13 @@ public class ClosedFileOperation extends FileOperation {
 		textChunk.concat("</timestamp>" + "\n");
 		textChunk.concat("</ClosedFileOperation>" + "\n");
 	}
+	
+	@Override
+	protected void populateCSVTextChunk(OperationTextChunk textChunk){
+		textChunk.concat("ClosedFileOperation , "+ getTime()+ " ,");
+		textChunk.concat("\"[{");
+		super.populateCSVTextChunk(textChunk);
+		textChunk.concat("}]\" \n");
+	}
 
 }

@@ -50,5 +50,13 @@ public class CopiedResourceOperation extends ReorganizedResourceOperation {
 		textChunk.concat("\t" + "</timestamp>" + "\n");
 		textChunk.concat("</CopiedResourceOperation>" + "\n");
 	}
+	
+	@Override
+	protected void populateCSVTextChunk(OperationTextChunk textChunk){
+		textChunk.concat("CopiedResourceOperation , "+ getTime()+ " ,");
+		textChunk.concat("\"[{");
+		super.populateCSVTextChunk(textChunk);
+		textChunk.concat("}]\" \n");
+	}
 
 }

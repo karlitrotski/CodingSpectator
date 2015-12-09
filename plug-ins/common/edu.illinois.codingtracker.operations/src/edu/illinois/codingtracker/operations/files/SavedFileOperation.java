@@ -57,5 +57,13 @@ public class SavedFileOperation extends BreakableResourceOperation {
 		textChunk.concat("</timestamp>" + "\n");
 		textChunk.concat("</SavedFileOperation>" + "\n");
 	}
+	
+	@Override
+	protected void populateCSVTextChunk(OperationTextChunk textChunk){
+		textChunk.concat("SavedFileOperation , "+ getTime()+ " ,");
+		textChunk.concat("\"[{");
+		super.populateCSVTextChunk(textChunk);
+		textChunk.concat("}]\" \n");
+	}
 
 }

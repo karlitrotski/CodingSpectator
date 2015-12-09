@@ -23,7 +23,7 @@ public abstract class UserOperation{
 
 	protected static IEditorPart currentEditor= null;
 
-	private long timestamp;
+	protected long timestamp;
 
 
 	public UserOperation() {
@@ -45,6 +45,12 @@ public abstract class UserOperation{
 	public OperationTextChunk generateXMLText(){
 		OperationTextChunk textChunk= new OperationTextChunk();
 		populateXMLTextChunk(textChunk);
+		return textChunk;
+	}
+	
+	public OperationTextChunk generateCSVText() {
+		OperationTextChunk textChunk= new OperationTextChunk();
+		populateCSVTextChunk(textChunk);
 		return textChunk;
 	}
 
@@ -83,9 +89,12 @@ public abstract class UserOperation{
 	protected abstract void populateTextChunk(OperationTextChunk textChunk);
 	
 	protected abstract void populateXMLTextChunk(OperationTextChunk textChunk);
+	
+	protected abstract void populateCSVTextChunk(OperationTextChunk textChunk);
 
 	protected abstract void initializeFrom(OperationLexer operationLexer);
 
 	public abstract void replay() throws Exception;
+
 
 }

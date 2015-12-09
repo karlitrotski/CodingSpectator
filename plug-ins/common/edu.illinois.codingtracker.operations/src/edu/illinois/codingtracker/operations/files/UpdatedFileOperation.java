@@ -63,6 +63,16 @@ public class UpdatedFileOperation extends FileOperation {
 		textChunk.concat("</CommittedRevision>" + "\n");
 		textChunk.concat("</UpdatedFileOperation>" + "\n");
 	}
+	
+	@Override
+	protected void populateCSVTextChunk(OperationTextChunk textChunk){
+		textChunk.concat("UpdatedFileOperation , "+ getTime()+ " ,");
+		textChunk.concat("\"[{");
+		super.populateCSVTextChunk(textChunk);
+		textChunk.concat(",");
+		textChunk.concat("Revision : "+ revision + ",");
+		textChunk.concat("CommittedRevision : "+ committedRevision + "}]\" \n");
+	}
 
 	@Override
 	protected void initializeFrom(OperationLexer operationLexer) {

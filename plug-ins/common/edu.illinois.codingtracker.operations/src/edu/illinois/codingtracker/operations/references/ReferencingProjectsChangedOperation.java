@@ -5,6 +5,7 @@ package edu.illinois.codingtracker.operations.references;
 
 import java.util.HashSet;
 import java.util.Set;
+import java.util.Map.Entry;
 
 import org.eclipse.jdt.core.IJavaProject;
 
@@ -94,7 +95,7 @@ public class ReferencingProjectsChangedOperation extends UserOperation {
 	protected void populateXMLTextChunk(OperationTextChunk textChunk) {
 		textChunk.concat("<ReferencingProjectsChangedOperation>"+"\n");
 		textChunk.concat("\t"+"<ProjectName>");
-		textChunk.concat(""+"projectName");
+		textChunk.concat(""+projectName);
 		textChunk.concat("</ProjectName>"+"\n");
 		textChunk.concat("\t"+"<ReferencingProjectsCount>");
 		textChunk.concat(""+referencingProjectNames.size());
@@ -110,6 +111,18 @@ public class ReferencingProjectsChangedOperation extends UserOperation {
 		textChunk.concat("</ReferencingProjectsChangedOperation>"+"\n");
 		
 		
+	}
+	
+	@Override
+	protected void populateCSVTextChunk(OperationTextChunk textChunk){
+		textChunk.concat("ReferencingProjectsChangedOperation , "+ getTime()+ " ,");
+		textChunk.concat("\"[{");
+		textChunk.concat("ProjectName :"+ projectName +",");
+		textChunk.concat("ReferencingProjectsCount :"+ referencingProjectNames.size() +",");
+		for (String referencingProjectName : referencingProjectNames) {
+			textChunk.concat("ReferencingProjectName :"+ referencingProjectName + ",");
+		}
+		textChunk.concat("}]\" \n");
 	}
 
 }

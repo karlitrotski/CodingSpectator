@@ -78,5 +78,15 @@ public class UsingMenuToolIcons extends UserOperation {
 		textChunk.concat("</UsingMenuToolIcons>" + "\n");
 		
 	}
+	
+	protected void populateCSVTextChunk(OperationTextChunk textChunk){
+		textChunk.concat("UsingMenuToolIcons , "+ getTime()+ " ,");
+		textChunk.concat("\"[{Area : "+ nPart +",");
+		textChunk.concat("Type : "+ nType + ",");
+		textChunk.concat("Index : "+ nIndex + ",");
+		textChunk.concat("Name : "+ nName + ",");
+		textChunk.concat("CommandId : "+ nIdCommand + ",");
+		textChunk.concat("CommandName : "+ nNameCommand + "}]\" \n");
+	}
 
 }

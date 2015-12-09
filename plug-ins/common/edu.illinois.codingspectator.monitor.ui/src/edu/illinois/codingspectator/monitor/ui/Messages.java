@@ -13,10 +13,6 @@ public class Messages extends NLS {
 
 	public static String AuthenticationPrompter_FailureMessage;
 
-	public static String AuthenticationPrompter_ProductionRepositoryURL;
-
-	public static String AuthenticationPrompter_TestRepositoryURL;
-
 	public static String MainPreferencePage_PreferencePageDescription;
 
 	public static String PrefsFacade_ForcedAutomaticUpdateHasBeenSetKey;
@@ -36,6 +32,10 @@ public class Messages extends NLS {
 	public static String UserValidationDialog_Username;
 
 	public static String UploadingPreferencePage_LastUploadTextField;
+	
+	public static String UploadingPreferencePage_ProductionUploadURLTextField;
+	
+	public static String UploadingPreferencePage_TestUploadURLTextField;
 
 	public static String UploadingPreferencePage_Description;
 

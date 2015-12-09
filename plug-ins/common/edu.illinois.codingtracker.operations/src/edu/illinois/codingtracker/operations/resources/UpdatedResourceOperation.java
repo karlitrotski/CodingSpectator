@@ -40,6 +40,13 @@ public abstract class UpdatedResourceOperation extends BreakableResourceOperatio
 		textChunk.concat("\t" + updateFlags + "\n");
 		textChunk.concat("\t" + "</updateFlags>" + "\n");
 	}
+	
+	@Override
+	protected void populateCSVTextChunk(OperationTextChunk textChunk){
+		super.populateCSVTextChunk(textChunk);
+		textChunk.concat(",");
+		textChunk.concat("updateFlags : "+ updateFlags);
+	}
 
 	@Override
 	protected void initializeFrom(OperationLexer operationLexer) {

@@ -36,6 +36,11 @@ public abstract class ConflictEditorOperation extends UserOperation {
 		textChunk.concat("" + editorID);
 		textChunk.concat( "</EditorID>" + "\n");
 	}
+	
+	@Override
+	protected void populateCSVTextChunk(OperationTextChunk textChunk){	
+		textChunk.concat("EditorID : editorID");
+	}
 
 	@Override
 	protected void initializeFrom(OperationLexer operationLexer) {
@@ -48,6 +53,10 @@ public abstract class ConflictEditorOperation extends UserOperation {
 		sb.append("Editor ID: " + editorID + "\n");
 		sb.append(super.toString());
 		return sb.toString();
+	}
+	
+	protected String getEditorID(){
+		return editorID;
 	}
 
 }

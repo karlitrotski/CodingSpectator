@@ -26,11 +26,11 @@ public class ListenerFocus extends BasicListener {
 		
 			public void windowDeactivated(IWorkbenchWindow window)
 			{
-				operationRecorder.recordLooseFocus();
+				operationRecorder.recordLooseFocus(window);
 			}
 			public void windowActivated(IWorkbenchWindow window) 
 			{
-				operationRecorder.recordGainsFocus();
+				operationRecorder.recordGainsFocus(window);
 			}
     };
     PlatformUI.getWorkbench().addWindowListener(focusListener);

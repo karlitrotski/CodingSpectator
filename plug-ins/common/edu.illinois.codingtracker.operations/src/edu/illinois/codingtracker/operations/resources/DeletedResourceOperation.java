@@ -60,5 +60,13 @@ public class DeletedResourceOperation extends UpdatedResourceOperation {
 		textChunk.concat("\t" + "</timestamp>" + "\n");
 		textChunk.concat("</DeletedResourceOperation>" + "\n");
 	}
+	
+	@Override
+	protected void populateCSVTextChunk(OperationTextChunk textChunk){
+		textChunk.concat("DeletedResourceOperation , "+ getTime()+ " ,");
+		textChunk.concat("\"[{");
+		super.populateCSVTextChunk(textChunk);
+		textChunk.concat("}]\" \n");
+	}
 
 }

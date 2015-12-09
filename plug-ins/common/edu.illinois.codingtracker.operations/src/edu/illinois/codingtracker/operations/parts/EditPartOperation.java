@@ -55,6 +55,15 @@ public class EditPartOperation extends FileOperation implements IPartState {
 		textChunk.concat("\t" + "<timestamp>" + getTime() + "</timestamp>" + "\n");
 		textChunk.concat("</EditPartOperation>" + "\n");
 	}
+	
+	@Override
+	protected void populateCSVTextChunk(OperationTextChunk textChunk){
+		textChunk.concat("EditPartOperation , "+ getTime()+ " ,");
+		textChunk.concat("\"[{");
+		super.populateCSVTextChunk(textChunk);
+		textChunk.concat(",");
+		textChunk.concat("state : "+ state + "}]\" \n");
+	}
 
 	@Override
 	protected void initializeFrom(OperationLexer operationLexer) {

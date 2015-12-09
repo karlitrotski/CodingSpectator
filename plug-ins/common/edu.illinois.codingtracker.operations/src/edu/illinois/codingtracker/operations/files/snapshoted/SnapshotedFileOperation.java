@@ -48,6 +48,13 @@ public abstract class SnapshotedFileOperation extends FileOperation {
 		textChunk.concat("" + fileContent);
 		textChunk.concat("</FileContent>" + "\n");
 	}
+	
+	@Override
+	protected void populateCSVTextChunk(OperationTextChunk textChunk){
+		super.populateCSVTextChunk(textChunk);
+		textChunk.concat(",");
+		textChunk.concat("FileContent : "+ fileContent);
+	}
 
 
 	@Override

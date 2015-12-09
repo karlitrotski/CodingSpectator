@@ -45,6 +45,11 @@ public class QuickfixUsageOperation extends UserOperation {
 			textChunk.concat("</QuickfixUsageOperation>" + "\n");
 		}
 		
+		protected void populateCSVTextChunk(OperationTextChunk textChunk){
+			textChunk.concat("QuickfixUsageOperation , "+ getTime()+ " ,");
+			textChunk.concat("\"[{Used Quickfix : "+ result +"}]\" \n");
+		}
+		
 		@Override
 		protected void initializeFrom(OperationLexer operationLexer) {
 			// TODO Auto-generated method stub

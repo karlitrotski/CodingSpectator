@@ -81,6 +81,13 @@ public abstract class TextChangeOperation extends UserOperation {
 		textChunk.concat("" + length);
 		textChunk.concat("</Length>" + "\n");
 	}
+	
+	protected void populateCSVTextChunk(OperationTextChunk textChunk){
+		textChunk.concat("ReplacedText : "+ replacedText + ",");
+		textChunk.concat("NewText : "+ newText + ",");
+		textChunk.concat("Offset : "+ offset + ",");
+		textChunk.concat("Length : "+ length);
+	}
 
 	@Override
 	protected void initializeFrom(OperationLexer operationLexer) {

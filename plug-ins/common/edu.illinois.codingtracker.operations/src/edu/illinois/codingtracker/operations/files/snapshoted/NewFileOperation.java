@@ -42,5 +42,13 @@ public class NewFileOperation extends SnapshotedFileOperation {
 		textChunk.concat("</timestamp>" + "\n");
 		textChunk.concat("</NewFileOperation>" + "\n");
 	}
+	
+	@Override
+	protected void populateCSVTextChunk(OperationTextChunk textChunk){
+		textChunk.concat("NewFileOperation , "+ getTime()+ " ,");
+		textChunk.concat("\"[{");
+		super.populateCSVTextChunk(textChunk);
+		textChunk.concat("}]\" \n");
+	}
 
 }

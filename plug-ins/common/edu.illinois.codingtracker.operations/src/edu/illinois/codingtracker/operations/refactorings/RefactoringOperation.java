@@ -177,6 +177,18 @@ public abstract class RefactoringOperation extends UserOperation {
 		}
 		
 	}
+	
+	@Override
+	protected void populateCSVTextChunk(OperationTextChunk textChunk){
+		textChunk.concat("ID :"+ id +",");
+		textChunk.concat("PROJECT :"+ project +",");
+		textChunk.concat("FLAGS :"+ flags +",");
+		textChunk.concat("ArgumentsCount :"+ arguments.size() +",");
+		for (Entry<String, String> argumentEntry : arguments.entrySet()) {
+			textChunk.concat("KEY :"+ argumentEntry.getKey() +",");
+			textChunk.concat("VALUE :"+ argumentEntry.getValue()+",");
+		}
+	}
 
 	protected abstract void replayRefactoring(RefactoringDescriptor refactoringDescriptor) throws CoreException;
 

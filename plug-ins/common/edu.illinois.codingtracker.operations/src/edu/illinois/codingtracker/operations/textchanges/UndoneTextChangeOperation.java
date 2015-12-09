@@ -48,5 +48,13 @@ public class UndoneTextChangeOperation extends TextChangeOperation {
 		textChunk.concat("</timestamp>" + "\n");
 		textChunk.concat("</UndoneTextChangeOperation>" + "\n");
 	}
+	
+	@Override
+	protected void populateCSVTextChunk(OperationTextChunk textChunk){
+		textChunk.concat("UndoneTextChangeOperation , "+ getTime()+ " ,");
+		textChunk.concat("\"[{");
+		super.populateCSVTextChunk(textChunk);
+		textChunk.concat("}]\" \n");
+	}
 
 }

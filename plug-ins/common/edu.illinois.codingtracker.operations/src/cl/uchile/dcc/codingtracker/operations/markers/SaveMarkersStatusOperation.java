@@ -83,6 +83,28 @@ public class SaveMarkersStatusOperation extends UserOperation{
 		textChunk.concat("</timestamp>" + "\n");
 		textChunk.concat("</SaveMarkersStatusOperation>" + "\n");
 	}
+	
+	@Override
+	protected void populateCSVTextChunk(OperationTextChunk textChunk){
+		textChunk.concat("SaveMarkersStatusOperation , "+ getTime()+ " ,");
+		textChunk.concat("\"[");
+		for (int i = 0; i < currentMarkers.length; i++) {
+			int kind = currentMarkers[i].getKind();
+			String lineNumber = currentMarkers[i].getAttribute("lineNumber").toString();
+			String value = currentMarkers[i].getAttribute("arguments").toString();
+			String message = currentMarkers[i].getAttribute("message").toString();
+			String resource = currentMarkers[i].getResource().getFullPath().toString();
+			if (kind == IResourceDelta.ADDED || kind == IResourceDelta.REMOVED) {
+				textChunk.concat("{CurrentMarker"+ i +":[{");
+				textChunk.concat("Kind : "+ kind + ",");
+				textChunk.concat("LineNumber :"+ lineNumber +",");
+				textChunk.concat("Value : "+ value + ",");
+				textChunk.concat("Message : "+ message + ",");
+				textChunk.concat("Resource : "+ resource + "}]},");
+			}
+		}
+		textChunk.concat("}]\" \n");
+	}
 
 	@Override
 	protected void initializeFrom(OperationLexer operationLexer) {

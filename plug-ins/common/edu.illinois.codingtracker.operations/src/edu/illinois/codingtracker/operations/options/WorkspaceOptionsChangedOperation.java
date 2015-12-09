@@ -50,5 +50,13 @@ public class WorkspaceOptionsChangedOperation extends OptionsChangedOperation {
 		textChunk.concat("</timestamp>" + "\n");
 		textChunk.concat("</WorkspaceOptionsChangedOperation"+"\n");		
 	}
+	
+	@Override
+	protected void populateCSVTextChunk(OperationTextChunk textChunk){
+		textChunk.concat("WorkspaceOptionsChangedOperation , "+ getTime()+ " ,");
+		textChunk.concat("\"[{");
+		super.populateCSVTextChunk(textChunk);
+		textChunk.concat("}]\" \n");
+	}
 
 }

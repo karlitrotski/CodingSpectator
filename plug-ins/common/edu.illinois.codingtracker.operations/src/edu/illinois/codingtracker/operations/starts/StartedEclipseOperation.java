@@ -51,6 +51,13 @@ public class StartedEclipseOperation extends UserOperation {
 		textChunk.concat("</timestamp>" + "\n");
 		textChunk.concat("</StartedEclipseOperation>" + "\n");
 	}
+	
+	@Override
+	protected void populateCSVTextChunk(OperationTextChunk textChunk){
+		textChunk.concat("StartedEclipseOperation , "+ getTime()+ " ,");
+		textChunk.concat("[{}]\n");
+	}
+
 
 	@Override
 	protected void initializeFrom(OperationLexer operationLexer) {

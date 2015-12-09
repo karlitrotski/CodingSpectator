@@ -61,5 +61,11 @@ public class ViewPartOperation extends UserOperation implements IPartState {
 		textChunk.concat("\t" + "<timestamp>" + getTime() + "</timestamp>" + "\n");
 		textChunk.concat("</ViewPartOperation>" + "\n");
 	}
+	
+	protected void populateCSVTextChunk(OperationTextChunk textChunk){
+		textChunk.concat("ViewPartOperation , "+ getTime()+ " ,");
+		textChunk.concat("\"[{State : "+ state +",");
+		textChunk.concat("Title : "+ title + "}]\" \n");
+	}
 
 }

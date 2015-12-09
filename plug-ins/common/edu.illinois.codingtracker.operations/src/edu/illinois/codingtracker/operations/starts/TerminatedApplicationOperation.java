@@ -54,6 +54,17 @@ public class TerminatedApplicationOperation extends ApplicationOperation {
 	}
 	
 	@Override
+	protected void populateCSVTextChunk(OperationTextChunk textChunk){
+		textChunk.concat("TerminatedApplicationOperation , "+ getTime()+ " ,");
+		textChunk.concat("\"[{");
+		textChunk.concat("exitValues : [{");
+		for(int exitValue: exitValues) {
+			textChunk.concat("exitValue :"+ exitValue + ",");
+		}
+		textChunk.concat("}]}]\" \n");
+	}
+	
+	@Override
 	public String toString() {
 		StringBuffer sb= new StringBuffer();
 		sb.append(super.toString());
